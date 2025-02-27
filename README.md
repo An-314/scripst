@@ -6,6 +6,7 @@
 
 - [Scripst](#scripst)
 - [📑 目录](#-目录)
+- [🚀 特性](#-特性)
 - [📦 安装](#-安装)
   - [安装 Typst](#安装-typst)
   - [下载 Scripst 模板](#下载-scripst-模板)
@@ -20,7 +21,15 @@
   - [book 文档](#book-文档)
   - [report 文档](#report-文档)
 - [📜 贡献](#-贡献)
+- [📦 依赖](#-依赖)
+- [🎯 TODO](#-todo)
 ---
+
+## 🚀 特性
+
+- 高扩展性：模块化设计，便于对模板进行扩展
+- 多语言设计：针对不同语言进行本地化设计
+- 支持自定义countblock：方便生成定理、题目等其他计数器以及样式
 
 ## 📦 安装
 
@@ -67,6 +76,7 @@ project/
 ```
 ~/.local/share/typst/packages/local/scripst/1.1.0  # Linux
 %APPDATA%\typst\packages\local\scripst\1.1.0       # Windows
+~/Library/Application Support/typst/packages/local/scripst/1.1.0  # macOS
 ```
 然后在 Typst 文件中直接引入：
 ```typst
@@ -113,10 +123,11 @@ typst init @local/scripst:1.1.0 project_name
 | `template` | `str` | `"article"` | 选择模板 (`"article"`, `"book"`, `"report"`) |
 | `title` | `content`, `str`, `none` | `""` | 文档标题 |
 | `info` | `content`, `str`, `none` | `""` | 文档副标题或补充信息 |
-| `author` | `list` | `()` | 作者列表 |
+| `author` | `array` | `()` | 作者列表 |
 | `time` | `content`, `str`, `none` | `""` | 文档时间 |
 | `abstract` | `content`, `str`, `none` | `none` | 文档摘要 |
-| `keywords` | `list` | `()` | 关键词 |
+| `keywords` | `array` | `()` | 关键词 |
+| `preface` | `content`, `str`, `none` | `none` | 前言 |
 | `font_size` | `length` | `11pt` | 字体大小 |
 | `contents` | `bool` | `false` | 是否生成目录 |
 | `content_depth` | `int` | `2` | 目录深度 |
@@ -148,3 +159,15 @@ typst init @local/scripst:1.1.0 project_name
 
 - **GitHub 仓库**：[Scripst](https://github.com/An-314/scripst)
 - **问题反馈**：提交 Issue 进行讨论
+
+## 📦 依赖
+
+对于部分内容，Scripst 引用了以下 Typst 包：
+
+- [tablem](https://typst.app/universe/package/tablem)
+- [physica](https://typst.app/universe/package/physica)
+
+## 🎯 TODO
+
+- [ ] 利用locale进行多语言支持
+- [ ] 完善颜色设置

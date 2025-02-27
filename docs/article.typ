@@ -55,7 +55,7 @@ brew install typst # macOS
 
 可以选择 `<> code` $->$ `Download ZIP` 来下载 Scripst 的模板。在使用时，只需要将模板文件放在你的文档目录下，然后在文档的开头引入模板文件即可。
 
-#caution[
+#countblock("cau", cb, count: false)[
   要考虑清楚项目的目录结构，以便正确引入模板文件。
   ```
   project/
@@ -127,10 +127,10 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
   template: "article",  // str: ("article", "book", "report")
   title: "",            // str, content, none
   info: "",             // str, content, none
-  author: (),           // list
+  author: (),           // array
   time: "",             // str, content, none
   abstract: none,       // str, content, none
-  keywords: (),         // list
+  keywords: (),         // array
   font_size: 11pt,      // length
   contents: false,      // bool
   content_depth: 2,     // int
@@ -204,7 +204,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | author | `list`| `()` | 文档作者 |
+    | author | `array`| `()` | 文档作者 |
   ],
   numbering: none,
 )
@@ -213,7 +213,11 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 
 文档的作者。要传入`str`或者`content`的列表。
 
-#caution[注意，如果是一个作者的情况，请不要传入`str`或者`content`，而是传入一个`str`或者`content`的列表，例如：`author: ("作者",)`]
+#countblock(
+  "cau",
+  cb,
+  count: false,
+)[注意，如果是一个作者的情况，请不要传入`str`或者`content`，而是传入一个`str`或者`content`的列表，例如：`author: ("作者",)`]
 
 #newpara()
 
@@ -277,7 +281,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | keywords | `list`| `()` | 文档关键词 |
+    | keywords | `array`| `()` | 文档关键词 |
   ],
   numbering: none,
 )
@@ -410,7 +414,7 @@ _这是斜体的文本。_ _This is italic text._
 图片环境会自动编号，如下所示：
 
 #figure(
-  image("../pic/散宝.jpg", width: 70%),
+  image("pic/pic.jpg", width: 50%),
   caption: "散宝",
 )
 
@@ -571,9 +575,71 @@ typst 为列举提供了简单的环境，如所示：
 
 但有时候我们需要换行，这时候就可以使用`#newpara()`函数。
 
-区别于官方提供的 `#parabreak()` 函数，`#newpara()` 函数会在段落之间插入一个空行，这样无论在什么场景下，都会开启新的自然段。
+区别于官方提供的 `#parbreak()` 函数，`#newpara()` 函数会在段落之间插入一个空行，这样无论在什么场景下，都会开启新的自然段。
 
 只要你觉得需要换行，就可以使用`#newpara()`函数。
+
+== countblock
+
+countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某些可以计数的内容进行计数。
+
+全局变量 `cb` 记录着所有可以使用的计数器，你可以通过 `add_countblock` 函数来添加一个计数器。
+
+默认的countblock有
+```typst
+#let cb = (
+  "thm": ("Theorem", rgb("#817ffaa5")),
+  "def": ("Definition", rgb("#72ab68ab")),
+  "prob": ("Problem", rgb("#ac2df653")),
+  "prop": ("Proposition", rgb("#6f68abab")),
+  "note": ("Note", rgb("#464040ad")),
+  "cau": ("⚠️", rgb("#f62d2d53")),
+)
+```
+这些计数器已经初始化，你可以直接使用。
+
+#countblock("note", cb, count: false)[
+  由于 typst 语言的函数不存在指针或引用，传入的变量不能修改，我们只能通过显示的返回值来修改变量。并且将其传入下一个函数。目前作者没有找到更好的方法。
+]
+
+#newpara()
+
+=== countblock 的新建与注册
+
+
+同时，你可以通过 `add_countblock` 函数来添加（或重载）一个计条目，再通过 `register_countblock` 函数来注册这个计数器。
+```typst
+#let cb = add_countblock("test", "This is a test", teal)
+#show: register_countblock.with("test")
+```
+此后你就可以使用 `countblock` 函数来对这个计数器进行计数。
+
+#let cb = add_countblock("test", "This is a test", teal)
+#show: register_countblock.with("test")
+
+=== countblock 的使用
+
+#countblock("test", cb)[
+  1 + 1 = 2
+]
+
+#countblock("test", cb)[
+  1 + 2 = 3
+]
+#countblock("test", cb)[
+  1 + 3 = 4
+]
+#countblock("test", cb)[
+  1 + 1 = 2
+]
+
+#newpara()
+
+这些计数器编号的逻辑是：
+- 如果没有章节，那么只有一个计数器编号
+- 如果有章节，那么计数器编号是*章节号.本章节内截至此块出现过的该种块的数量*
+
+*如此，你可以注册和使用任意数量的计数器。*
 
 = 结语
 

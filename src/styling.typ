@@ -1,4 +1,4 @@
-#import "font.typ": *
+#import "configs.typ": *
 
 #let stydoc(title, author, body) = {
   set document(title: title, author: author)

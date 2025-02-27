@@ -1,4 +1,4 @@
-#import "font.typ": *
+#import "configs.typ": *
 #import "styling.typ": *
 #import "components.typ": *
 #import "template.typ": *

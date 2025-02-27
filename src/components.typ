@@ -1,4 +1,4 @@
-#import "font.typ": *
+#import "configs.typ": *
 #import "styling.typ": *
 
 #let mkblock(font, weight, size, vup, vdown) = {
@@ -102,57 +102,48 @@
   mkcontent: mkcontent(0em, 0em),
 )
 
-#let theorem-counter = counter("theorem")
+#let cb = (
+  "thm": ("Theorem", rgb("#817ffaa5")),
+  "def": ("Definition", rgb("#72ab68ab")),
+  "prob": ("Problem", rgb("#ac2df653")),
+  "prop": ("Proposition", rgb("#6f68abab")),
+  "note": ("Note", rgb("#c2c2c2ad")),
+  "cau": ("⚠️", rgb("#f62d2d53")),
+)
 
-#show heading.where(level: 1): it => {
-  theorem-counter.set(0)
-  it
+#let add_countblock(cb: cb, name, info, color) = {
+  cb.insert(name, (info, color))
+  return cb
 }
 
-#let theorem(body, name: none) = {
-  theorem-counter.step()
+#let register_countblock(name, body) = {
+  show heading.where(level: 1): it => {
+    counter(name).update(0)
+    it
+  }
+  body
+}
 
+#let countblock(name, subname: "", cb, count: true, body) = {
+  if count { counter(name).step() }
+  if cb.at(name) == none { panic("countblock: block not registered") }
   block(
-    fill: rgb(241, 241, 255),
+    fill: cb.at(name).at(1),
     inset: 8pt,
     radius: 2pt,
     width: 100%,
-  )[*Theorem [#context counter(heading.where(level:1)).display().#context theorem-counter.display()]* #if(name!=none){emph(name)} #h(0.75em) #body]
-  // 这里选择这样的方式而非使用二级计数器是出于与章节名的严格对应
-}
-
-#let note(body) = {
-  block(
-    fill: rgb("#72ab68ab"),
-    inset: 8pt,
-    radius: 2pt,
-    width: 100%,
-  )[*Note.* #h(0.75em) #body]
-}
-
-#let caution(body) = {
-  block(
-    fill: rgb("#ca9187ab"),
-    inset: 8pt,
-    radius: 2pt,
-    width: 100%,
-  )[*⚠️* #h(0.75em) #body]
-}
-
-#let proof(body) = {
-  set enum(numbering: "(1)")
-  block(
-    inset: 8pt,
-    width: 100%,
-  )[_Proof._ #h(0.75em) #body
-    #align(right)[$qed$]
-  ]
-}
-
-#let solution(body) = {
-  set enum(numbering: "(1)")
-  block(
-    inset: 8pt,
-    width: 100%,
-  )[*解答.* #h(0.75em) #body]
+    {
+      let num = ""
+      let info = cb.at(name).at(0)
+      if count {
+        num = context {
+          if query(heading.where(level: 1)).len() != 0 {
+            " " + context counter(heading.where(level: 1)).display() + "." + context counter(name).display()
+          } else { " " + context counter(name).display() }
+        }
+      }
+      let title = info + num + " " + subname
+      [*#title* #h(0.75em) #body]
+    },
+  )
 }
