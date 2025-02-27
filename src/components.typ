@@ -149,3 +149,10 @@
     },
   )
 }
+
+#let definition = countblock.with("def", cb)
+#let theorem = countblock.with("thm", cb)
+#let proposition = countblock.with("prop", cb)
+#let problem = countblock.with("prob", cb)
+#let note = countblock.with("note", cb)
+#let caution = countblock.with("cau", cb)

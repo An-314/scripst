@@ -649,53 +649,61 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 ]
 其中`subname`如传入，是需要指定的。
 
-此外还有刚才创建的`test`计数器，你可以使用`countblock`函数来计数：
+你也可以将其封装成另一个函数：
+```typst
+#let test = countblock.with()
+```
+对于刚才创建的`test`计数器，你可以使用`countblock`函数来计数：
 
 ```typst
 #countblock("test", cb)[
   1 + 1 = 2
 ]
 
-#countblock("test", cb)[
+#test[
   1 + 2 = 3
 ]
 ```
+#let test = countblock.with("test", cb)
 #countblock("test", cb)[
   1 + 1 = 2
 ]
-#countblock("test", cb)[
+#test[
   1 + 2 = 3
 ]
 
-其余默认给定的计数器也可以使用，例如：
-#countblock("prob", cb)[
+其余默认给定的计数器也可以使用，直接封装好的函数：
+```typst
+#definition(subname:[...])[]
+#theorem(subname:[...])[]
+#proposition(subname:[...])[]
+#problem(subname:[...])[]
+#note[]
+#caution[]
 
-  有一个问题，求解它。
+```
+#definition[
+
+  这是一个定义，请你理解它。
 ]
 
-#countblock("prop", cb)[
+#theorem[
 
-  有一个命题，证明它。
+  这是一个定理，请你证明它。
 ]
 
-#countblock("note", cb)[
+#proposition[
 
-  有一个注记，记录它。
+  这是一个命题，请你证明它。
 ]
 
-#countblock("cau", cb)[
+#note(count: false)[
 
-  有一个警告，注意它。
+  这是一个注记，请你注意它。
 ]
 
-#countblock("def", cb)[
-
-  有一个定义，记住它。
-]
-
-#countblock("thm", cb)[
-
-  有一个定理，证明它。
+#caution(count: false)[
+  这是一个提醒，请你谨慎它。
 ]
 
 #newpara()
