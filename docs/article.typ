@@ -1,10 +1,9 @@
 #import "@local/scripst:1.1.0": *
 
 #show: scripst.with(
-  template: "report",
   title: [Scripst 的使用方法],
-  info: [report模板],
-  author: ("AnZrew",),
+  info: [article模板],
+  author: ("AnZrew", "AnZreww", "AnZrewww"),
   time: datetime.today().display(),
   abstract: [Scripst 是 Typst 语言的模板，用来生成简约的日常使用的文档，以满足文档、作业、笔记、论文等需求],
   keywords: (
@@ -12,18 +11,15 @@
     "Typst",
     "模板",
   ),
-  preface: [
-    Typst 是一种简单的文档生成语言，它的语法类似于 Markdown 的轻量级标记，利用合适的 `set` 和 `show` 指令，可以高自由度地定制文档的样式。
-
-    Scripst 是本人编写的 Typst 模板，用来生成简约的日常使用的文档，以满足文档、作业、笔记、论文等需求。
-  ],
   contents: true,
   content_depth: 3,
   matheq_depth: 2,
   lang: "zh",
 )
 
+Typst 是一种简单的文档生成语言，它的语法类似于 Markdown 的轻量级标记，利用合适的 `set` 和 `show` 指令，可以高自由度地定制文档的样式。
 
+Scripst 是本人编写的 Typst 模板，用来生成简约的日常使用的文档，以满足文档、作业、笔记、论文等需求。
 
 = 使用 Scripst 排版 Typst 文档
 
@@ -97,22 +93,20 @@ brew install typst # macOS
 ```
 这样的好处是你可以直接通过`typst init`来一键使用模板创建新的项目：
 ```bash
-typst init -t @local/scripst:1.1.0 project
+typst init @local/scripst:1.1.0 project_name
 ```
 #newpara()
 
-在引入模板后通过这样的方式创建一个`report`文件：
+在引入模板后通过这样的方式创建一个`article`文件：
 
 ```typst
 #show: scripst.with(
-  template: "report",
   title: [Scripst 的使用方法],
   info: [这是文章的模板],
   author: ("作者1", "作者2", "作者3"),
   time: datetime.today().display(),
   abstract: [摘要],
   keywords: ("关键词1", "关键词2", "关键词3"),
-  preface: [前言]
   contents: true,
   content_depth: 2,
   matheq_depth: 2,
@@ -130,14 +124,13 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 
 ```typst
 #let scripst(
-  template: "book",  // str: ("article", "book", "report")
+  template: "article",  // str: ("article", "book", "report")
   title: "",            // str, content, none
   info: "",             // str, content, none
   author: (),           // list
   time: "",             // str, content, none
   abstract: none,       // str, content, none
   keywords: (),         // list
-  preface: none,        // str, content, none
   font_size: 11pt,      // length
   contents: false,      // bool
   content_depth: 2,     // int
@@ -151,7 +144,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 
 #newpara()
 
-== tempalate
+== template
 
 #figure(
   three-line-table[
@@ -166,7 +159,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 
 目前 Scripst 提供了三种模板，分别是 article 、book 和 report 。
 
-本模板采用 report 模板。
+本模板采用 article 模板。
 
 - article：适用于日常文档、作业、小型笔记、小型论文等
 - book：适用于书籍、课程笔记等
@@ -188,7 +181,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 
 #newpara()
 
-文档的标题。（不为空时）会出现在文档的封面和页眉中。
+文档的标题。（不为空时）会出现在文档的开头和页眉中。
 
 == info
 
@@ -203,7 +196,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 
 #newpara()
 
-文档的信息。（不为空时）会出现在文档的封面和页眉中。可以作为文章的副标题或者补充信息。
+文档的信息。（不为空时）会出现在文档的开头和页眉中。可以作为文章的副标题或者补充信息。
 
 == author
 
@@ -239,7 +232,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 
 #newpara()
 
-文档的时间。会出现在文档的封面和页眉中。
+文档的时间。会出现在文档的开头和页眉中。
 
 你可以选择用 typst 提供的 `datetime` 来获取或者格式化时间，例如今天的时间：
 
@@ -261,7 +254,7 @@ datetime.today().display()
 
 #newpara()
 
-文档的摘要。（不为空时）会出现在文档的摘要和目录页。
+文档的摘要。（不为空时）会出现在文档的开头。
 
 建议在使用摘要前，实现定义一个`content`，例如：
 
@@ -295,22 +288,7 @@ datetime.today().display()
 
 和`author`一样，参数是一个列表，而不能是一个字符串。
 
-只有在`abstract`不为空时，关键词才会出现在文档的摘要页。
-
-== preface
-
-#figure(
-  three-line-table[
-    | 参数 | 类型 | 默认值 | 说明 |
-    | --- | --- | --- | --- |
-    | preface | `content`, `str`, `none`| `none` | 文档前言 |
-  ],
-  numbering: none,
-)
-
-#newpara()
-
-文档的前言。（不为空时）会出现在文档的正文之前。
+只有在`abstract`不为空时，关键词才会出现在文档的开头。
 
 == font_size
 
@@ -403,21 +381,11 @@ datetime.today().display()
 
 文档的开头会显示标题、信息、作者、时间、摘要、关键词等信息。，如该文档的开头所示。
 
-标题、信息、作者、时间内容全部在封面页，封面页不显示页码。
-
-摘要、关键词在摘要页，摘要和目录页用罗马数字编号。
-
-== 前言
-
-前言会显示在正文之前，如该文档的前言所示。
-
 == 目录
 
 如果`contents`参数为`true`，则会生成目录亦如该文档的目录所示。
 
 == 字体与环境
-
-从正文开始，页码计数器会重置，并且以阿拉伯数字编号。
 
 Scripst 提供了一些常用的字体和环境，如粗体、斜体、标题、图片、表格、列表、引用、链接、数学公式等。
 

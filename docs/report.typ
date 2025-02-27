@@ -1,9 +1,9 @@
 #import "@local/scripst:1.1.0": *
 
 #show: scripst.with(
-  template: "book",
+  template: "report",
   title: [Scripst 的使用方法],
-  info: [book模板],
+  info: [report模板],
   author: ("AnZrew",),
   time: datetime.today().display(),
   abstract: [Scripst 是 Typst 语言的模板，用来生成简约的日常使用的文档，以满足文档、作业、笔记、论文等需求],
@@ -97,15 +97,15 @@ brew install typst # macOS
 ```
 这样的好处是你可以直接通过`typst init`来一键使用模板创建新的项目：
 ```bash
-typst init -t @local/scripst:1.1.0 project
+typst init @local/scripst:1.1.0 project_name
 ```
 #newpara()
 
-在引入模板后通过这样的方式创建一个`book`文件：
+在引入模板后通过这样的方式创建一个`report`文件：
 
 ```typst
 #show: scripst.with(
-  template: "book",
+  template: "report",
   title: [Scripst 的使用方法],
   info: [这是文章的模板],
   author: ("作者1", "作者2", "作者3"),
@@ -123,8 +123,6 @@ typst init -t @local/scripst:1.1.0 project
 这些参数以及其含义见 @para 。
 
 这样你就可以开始撰写你的文档了。
-
-#pagebreak()
 
 = 模板参数说明 <para>
 
@@ -168,7 +166,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 
 目前 Scripst 提供了三种模板，分别是 article 、book 和 report 。
 
-本模板采用 book 模板。
+本模板采用 report 模板。
 
 - article：适用于日常文档、作业、小型笔记、小型论文等
 - book：适用于书籍、课程笔记等
@@ -263,7 +261,7 @@ datetime.today().display()
 
 #newpara()
 
-文档的摘要。（不为空时）会出现在文档的摘要页。
+文档的摘要。（不为空时）会出现在文档的摘要和目录页。
 
 建议在使用摘要前，实现定义一个`content`，例如：
 
@@ -312,7 +310,7 @@ datetime.today().display()
 
 #newpara()
 
-文档的前言。（不为空时）会出现在文档的前言页。
+文档的前言。（不为空时）会出现在文档的正文之前。
 
 == font_size
 
@@ -399,8 +397,6 @@ datetime.today().display()
 
 在使用 `#show: scripst.with(...)` 时，`body` 参数是不用手动传入的，typst 会自动将剩余的文档内容传入 `body` 参数。
 
-#pagebreak()
-
 = 模板效果展示
 
 == 文档开头
@@ -409,19 +405,15 @@ datetime.today().display()
 
 标题、信息、作者、时间内容全部在封面页，封面页不显示页码。
 
-摘要、关键词在摘要页，摘要页不显示页码。
+摘要、关键词在摘要页，摘要和目录页用罗马数字编号。
 
 == 前言
 
-前言会显示在摘要页之后，如该文档的前言所示。
-
-前言的页码编号是小写的英文字母。
+前言会显示在正文之前，如该文档的前言所示。
 
 == 目录
 
 如果`contents`参数为`true`，则会生成目录亦如该文档的目录所示。
-
-从目录页开始，页码计数器会重置，并且以罗马数字编号。
 
 == 字体与环境
 
@@ -614,8 +606,6 @@ typst 为列举提供了简单的环境，如所示：
 区别于官方提供的 `#parabreak()` 函数，`#newpara()` 函数会在段落之间插入一个空行，这样无论在什么场景下，都会开启新的自然段。
 
 只要你觉得需要换行，就可以使用`#newpara()`函数。
-
-#pagebreak()
 
 = 结语
 
