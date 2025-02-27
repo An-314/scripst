@@ -15,8 +15,8 @@ $(PREVIEW_DIR):
 	mkdir -p $(PREVIEW_DIR)
 
 $(PREVIEW_DIR)/%-1.png $(PREVIEW_DIR)/%-2.png: $(PDF_DIR)/%.pdf | $(PREVIEW_DIR)
-	convert -density $(DENSITY) $<[0] -quality $(QUALITY) -resize $(SIZE) $(PREVIEW_DIR)/$*-1.png
-	convert -density $(DENSITY) $<[1] -quality $(QUALITY) -resize $(SIZE) $(PREVIEW_DIR)/$*-2.png
+	convert -density $(DENSITY) $<[0] -quality $(QUALITY) -resize $(SIZE) -background white -alpha remove $(PREVIEW_DIR)/$*-1.png
+	convert -density $(DENSITY) $<[1] -quality $(QUALITY) -resize $(SIZE) -background white -alpha remove $(PREVIEW_DIR)/$*-2.png
 
 clean:
 	rm -rf $(PREVIEW_DIR)
