@@ -1,7 +1,8 @@
-#import "env.typ": *
+#import "font.typ": *
 #import "styling.typ": *
 #import "components.typ": *
 #import "template.typ": *
+#import "package.typ": *
 
 #let scripst(
   template: "article",
@@ -11,6 +12,7 @@
   time: "",
   abstract: none,
   keywords: (),
+  preface: none,
   font_size: 11pt,
   contents: false,
   content_depth: 2,
@@ -29,17 +31,20 @@
   show: stytable
   show: styenum
   show: stylist
+  show: stytermlist
   show: styquote
   show: styraw
+  show: styref
   show: stylink
   show: stymatheq.with(eq_depth: matheq_depth)
   show: styheader.with(title, info)
   if template == "article" {
     mkarticle(title, info, author, time, abstract, keywords, contents, content_depth, body)
   } else if template == "book" {
-    mkbook(title, info, author, time, abstract, keywords, contents, content_depth, body)
+    show: stychapter
+    mkbook(title, info, author, time, abstract, keywords, preface, contents, content_depth, body)
   } else if template == "report" {
-    mkreport(title, info, author, time, abstract, keywords, contents, content_depth, body)
+    mkreport(title, info, author, time, abstract, keywords, preface, contents, content_depth, body)
   } else {
     panic("Unknown template!")
   }

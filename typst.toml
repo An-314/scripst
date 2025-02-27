@@ -14,4 +14,4 @@ exclude = ["/img/*", "/examples/*"]
 
 [template]
 path = "template"
-entrypoint = "template/main.typ"
+entrypoint = "main.typ"

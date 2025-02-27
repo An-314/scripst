@@ -1,4 +1,4 @@
-#import "env.typ": *
+#import "font.typ": *
 
 #let stydoc(title, author, body) = {
   set document(title: title, author: author)
@@ -44,6 +44,15 @@
       #it
     ]
   }
+  body
+}
+
+#let stychapter(body) = {
+  show heading.where(level: 1): it => align(center)[
+    #v(2em)
+    #set text(1.5em)
+    #it
+  ]
   body
 }
 
@@ -97,10 +106,20 @@
   body
 }
 
+#let stytermlist(indent: 2em, body) = {
+  set terms(indent: indent)
+  show terms: it => [
+    #it
+    #par()[#text(size: 0.0em)[#h(0.0em)]]
+    #v(-12pt)
+  ]
+  body
+}
+
 #let styquote(font: font.quote, body) = {
   show quote: it => [
     #set text(font: font)
-    #align(center)[#it]
+    #align(center)[#emph[#it]]
   ]
   body
 }
@@ -141,7 +160,7 @@
 }
 
 #let stynumbering(numbering: "1", body) = {
-  set page(numbering: "1", number-align: center)
+  set page(numbering: numbering, number-align: center)
   body
 }
 
@@ -171,17 +190,17 @@
         if sec != none and sec != () {
           let secnum = mksec(sec)
           if info != "" and info != none {
-            return grid(columns: (1fr,) * 3, align: (left, center, right))[#title][#info][#secnum]
+            return grid(columns: (1fr,) * 3, align: (left, center, right))[#smallcaps(title)][#info][#secnum]
           } else if title != "" and title != none {
-            return grid(columns: (1fr,) * 2, align: (left, right))[#title][#secnum]
+            return grid(columns: (1fr,) * 2, align: (left, right))[#smallcaps(title)][#secnum]
           } else {
             return align(right)[#secnum]
           }
         } else {
           if info != "" and info != none {
-            return grid(columns: (1fr,) * 2, align: (left, right))[#title][#info]
+            return grid(columns: (1fr,) * 2, align: (left, right))[#smallcaps(title)][#info]
           } else if title != "" and title != none {
-            return align(lest)[#title]
+            return align(lest)[#smallcaps(title)]
           } else {
             return none
           }

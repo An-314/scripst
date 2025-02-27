@@ -1,4 +1,4 @@
-#import "env.typ": *
+#import "font.typ": *
 #import "styling.typ": *
 
 #let mkblock(font, weight, size, vup, vdown) = {
@@ -47,17 +47,15 @@
 }
 
 #let mkpreface(font, size, vup, vdown) = {
-  (it, lang: "zh") => align(center)[
+  (it, lang: "zh") => [
     #v(vup)
-    #text(font: font, size: size)[
-      #{
-        if lang == "zh" { [*前言*] } else if lang == "fr" { [*Préface*] } else { [*Preface*] }
-      }#it
+    #text(font: font, size: size)[#align(center)[
+        #if lang == "zh" { [*前言*] } else if lang == "fr" { [*Préface*] } else { [*Preface*] }
+      ]
     ]
-    #v(1em)
     #set par(first-line-indent: 2em, leading: 1.1em)
     #v(2pt)
-    #preface
+    #it
     #v(vdown)
   ]
 }
@@ -80,17 +78,17 @@
   mkinfo: mkblock(font.author, 500, 1.5em, 0.5em, 0em),
   mkauthor: mkauthor(font.author, 1.1em, 0em, 0em),
   mktime: mkblock(font.body, 500, 1em, -0.3em, 0em),
-  mkabstruct: mkabstruct(font.body, 1em, 0em, 10pt),
+  mkabstruct: mkabstruct(font.body, 1em, 10pt, 10pt),
   mkcontent: mkcontent(0em, 0em),
 )
 
 #let book = (
-  mktitle: mkblock(font.title, 700, 2.3em, 20em, 50em),
+  mktitle: mkblock(font.title, 700, 2.3em, 10em, 10em),
   mkinfo: mkblock(font.title, 700, 1.5em, 0em, 10em),
   mkauthor: mkauthor(font.author, 1.1em, 0em, 0em),
   mktime: mkblock(font.body, 500, 1.3em, 10em, 0em),
   mkabstruct: mkabstruct(font.body, 1em, 0em, 10pt),
-  mkpreface: mkpreface(font.body, 1.1em, 0em, 10pt),
+  mkpreface: mkpreface(font.body, 2em, 0em, 10pt),
   mkcontent: mkcontent(0em, 0em),
 )
 
