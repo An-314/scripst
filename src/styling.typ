@@ -1,4 +1,5 @@
 #import "configs.typ": *
+#import "locale.typ" : *
 
 #let stydoc(title, author, body) = {
   set document(title: title, author: author)
@@ -39,8 +40,7 @@
     counter(math.equation).update(0)
     box(width: 100%)[
       #v(0.3em)
-      #set heading(numbering: "一") if lang == "zh"
-      #set heading(numbering: "I") if lang != "zh"
+      #set heading(numbering: {localize(number_format, lang: lang)})
       #it
     ]
   }
