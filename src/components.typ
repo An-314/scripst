@@ -35,7 +35,7 @@
     *#localize("abstract", lang: lang)*#abstract
     #v(1pt)
     #if keywords != () [
-    *#localize("keywords", lang: lang)* #text(font: kai, keywords.join(localize("keywords_separator")))
+    *#localize("keywords", lang: lang)* #text(font: kai, keywords.join(localize("keywords_separator", lang: lang)))
     ]
     #v(vdown)
   ]
@@ -44,7 +44,7 @@
 #let mkpreface(font, size, vup, vdown) = {
   (it, lang: "zh") => [
     #v(vup)
-    #text(font: font, size: size)[#align(center)[#localize("preface", lang)]
+    #text(font: font, size: size)[#align(center)[#localize("preface", lang: lang)]
     ]
     #set par(first-line-indent: 2em, leading: 1.1em)
     #v(2pt)
