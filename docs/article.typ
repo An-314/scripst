@@ -606,8 +606,7 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 
 === countblock 的新建与注册
 
-
-同时，你可以通过 `add_countblock` 函数来添加（或重载）一个计条目，再通过 `register_countblock` 函数来注册这个计数器。
+同时，你可以通过 `add_countblock` 函数来添加（或重载）一个计数器，再通过 `register_countblock` 函数来注册这个计数器。
 ```typst
 #let cb = add_countblock("test", "This is a test", teal)
 #show: register_countblock.with("test")
