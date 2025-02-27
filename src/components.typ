@@ -32,10 +32,10 @@
     #v(vup)
     #set par(first-line-indent: 0em, leading: 1.1em)
     #v(2pt)
-    *#localize("abstract", lang: lang)*#abstract
+    *#localize("abstract", lang: lang): *#abstract
     #v(1pt)
     #if keywords != () [
-    *#localize("keywords", lang: lang)* #text(font: kai, keywords.join(localize("keywords_separator", lang: lang)))
+    *#localize("keywords", lang: lang): * #text(font: kai, keywords.join(localize("keywords_separator", lang: lang)))
     ]
     #v(vdown)
   ]
