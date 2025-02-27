@@ -129,14 +129,17 @@ typst init @local/scripst:1.1.0 project_name
 
 ### article 文档
 
+![Article Page 1](./previews/article-1.png) ![Article Page 2](./previews/article-2.png)  
 [Aritcle 示例](./docs/article.pdf)
 
 ### book 文档
 
+![Book Page 1](./previews/book-1.png) ![Book Page 2](./previews/book-2.png)  
 [Book 示例](./docs/book.pdf)
 
 ### report 文档
 
+![Report Page 1](./previews/report-1.png) ![Report Page 2](./previews/report-2.png)  
 [Report 示例](./docs/report.pdf)
 
 ## 📜 贡献
