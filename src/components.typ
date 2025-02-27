@@ -156,3 +156,13 @@
 #let problem = countblock.with("prob", cb)
 #let note = countblock.with("note", cb)
 #let caution = countblock.with("cau", cb)
+
+#let proof(body) = {
+  set enum(numbering: "(1)")
+  block(
+    inset: 8pt,
+    width: 100%,
+  )[_Proof._ #h(0.75em) #body
+    #align(right)[$qed$]
+  ]
+}

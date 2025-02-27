@@ -638,6 +638,7 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
     a^p eq.triple a mod p
   $
 ]
+#proof[略。]
 ```
 就会创建一个定理块，并且计数：
 #countblock("thm", subname: [_Fermat's Little Theorem_], cb)[
@@ -647,6 +648,7 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
     a^p eq.triple a (mod p)
   $
 ]
+#proof[略。]
 其中`subname`如传入，是需要指定的。
 
 你也可以将其封装成另一个函数：
