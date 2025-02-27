@@ -103,12 +103,12 @@
 )
 
 #let cb = (
-  "thm": ("Theorem", rgb("#817ffaa5")),
-  "def": ("Definition", rgb("#72ab68ab")),
-  "prob": ("Problem", rgb("#ac2df653")),
-  "prop": ("Proposition", rgb("#6f68abab")),
-  "note": ("Note", rgb("#c2c2c2ad")),
-  "cau": ("⚠️", rgb("#f62d2d53")),
+  "thm": ("Theorem", color.blue),
+  "def": ("Definition", color.green),
+  "prob": ("Problem", color.purple),
+  "prop": ("Proposition", color.purple-grey),
+  "note": ("Note", color.grey),
+  "cau": ("⚠️", color.red),
 )
 
 #let add_countblock(cb: cb, name, info, color) = {
@@ -127,11 +127,13 @@
 #let countblock(name, subname: "", cb, count: true, body) = {
   if count { counter(name).step() }
   if cb.at(name) == none { panic("countblock: block not registered") }
+  let color = cb.at(name).at(1)
   block(
-    fill: cb.at(name).at(1),
+    fill: color.transparentize(60%),
     inset: 8pt,
     radius: 2pt,
     width: 100%,
+    stroke: (left: (thickness: 4pt, paint: cb.at(name).at(1))),
     {
       let num = ""
       let info = cb.at(name).at(0)

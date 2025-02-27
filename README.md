@@ -31,6 +31,10 @@
 - 多语言设计：针对不同语言进行本地化设计
 - 支持自定义countblock：方便生成定理、题目等其他计数器以及样式
 
+![Demo0](./previews/article-1.png)
+![Demo1](./previews/article-12.png)
+![Demo2](./previews/article-9.png)
+
 ## 📦 安装
 
 ### 安装 Typst
@@ -170,4 +174,3 @@ typst init @local/scripst:1.1.0 project_name
 ## 🎯 TODO
 
 - [ ] 利用locale进行多语言支持
-- [ ] 完善颜色设置

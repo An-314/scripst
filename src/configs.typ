@@ -18,7 +18,10 @@
 )
 
 #let color = (
-  red: "#FF0000",
-  green: "#00FF00",
-  blue: "#0000FF",
+  red: rgb("#f62d2d53"),
+  green: rgb("#72ab68ab"),
+  blue: rgb("#817ffab7"),
+  grey: rgb("#c2c2c2ad"),
+  purple-grey: rgb("#6f68abab"),
+  purple: rgb("#ac2df653"),
 )

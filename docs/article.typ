@@ -619,6 +619,40 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 
 === countblock 的使用
 
+采用 `countblock` 函数来创建一个块：
+```typst
+#countblock(
+  name,
+  subname,
+  count: true,
+  cb: cb,
+)[
+  ...
+]
+```
+其中 `name` 是计数器的名称，`subname` 是创建该条目的名称，`count` 是是否计数，`cb` 是计数器的列表。例如
+```typst
+#countblock("thm", subname: "Fermat's Little Theorem", cb)[
+
+  If $p$ is a prime number, then for any integer $a$, the number $a^p - a$ is an integer multiple of $p$.
+  $
+    a^p eq.triple a mod p
+  $
+]
+```
+就会创建一个定理块，并且计数：
+#countblock("thm", subname: [_Fermat's Little Theorem_], cb)[
+
+  If $p$ is a prime number, then for any integer $a$, the number $a^p - a$ is an integer multiple of $p$.
+  $
+    a^p eq.triple a (mod p)
+  $
+]
+其中`subname`如传入，是需要指定的。
+
+此外还有刚才创建的`test`计数器，你可以使用`countblock`函数来计数：
+
+```typst
 #countblock("test", cb)[
   1 + 1 = 2
 ]
@@ -626,11 +660,43 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 #countblock("test", cb)[
   1 + 2 = 3
 ]
-#countblock("test", cb)[
-  1 + 3 = 4
-]
+```
 #countblock("test", cb)[
   1 + 1 = 2
+]
+#countblock("test", cb)[
+  1 + 2 = 3
+]
+
+其余默认给定的计数器也可以使用，例如：
+#countblock("prob", cb)[
+
+  有一个问题，求解它。
+]
+
+#countblock("prop", cb)[
+
+  有一个命题，证明它。
+]
+
+#countblock("note", cb)[
+
+  有一个注记，记录它。
+]
+
+#countblock("cau", cb)[
+
+  有一个警告，注意它。
+]
+
+#countblock("def", cb)[
+
+  有一个定义，记住它。
+]
+
+#countblock("thm", cb)[
+
+  有一个定理，证明它。
 ]
 
 #newpara()
