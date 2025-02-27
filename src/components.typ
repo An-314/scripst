@@ -107,6 +107,7 @@
   "def": ("Definition", color.green),
   "prob": ("Problem", color.purple),
   "prop": ("Proposition", color.purple-grey),
+  "ex": ("example", color.green-blue),
   "note": ("Note", color.grey),
   "cau": ("⚠️", color.red),
 )
@@ -154,6 +155,7 @@
 #let theorem = countblock.with("thm", cb)
 #let proposition = countblock.with("prop", cb)
 #let problem = countblock.with("prob", cb)
+#let example = countblock.with("ex", cb)
 #let note = countblock.with("note", cb)
 #let caution = countblock.with("cau", cb)
 

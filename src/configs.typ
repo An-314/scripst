@@ -24,4 +24,5 @@
   grey: rgb("#c2c2c2ad"),
   purple-grey: rgb("#6f68abab"),
   purple: rgb("#ac2df653"),
+  green-blue: rgb("#2dab8cab"),
 )
