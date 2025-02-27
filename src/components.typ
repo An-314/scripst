@@ -1,5 +1,6 @@
 #import "configs.typ": *
 #import "styling.typ": *
+#import "locale.typ" : *
 
 #let mkblock(font, weight, size, vup, vdown) = {
   it => align(center)[
@@ -31,16 +32,10 @@
     #v(vup)
     #set par(first-line-indent: 0em, leading: 1.1em)
     #v(2pt)
-    #{
-      if lang == "zh" { [*摘要：*] } else if lang == "fr" { [*Résumé :*] } else { [*Abstract:*] }
-    }#abstract
+    *#localize("abstract", lang: lang)*#abstract
     #v(1pt)
     #if keywords != () [
-      #{
-        if lang == "zh" { [*关键词：* #text(font: kai, keywords.join("；"))] } else if lang == "f#" {
-          [*Mots-clés :* #text(font: kai, keywords.join(", "))]
-        } else { [*Keywords:* #text(font: kai, keywords.join(", "))] }
-      }
+    *#localize("keywords", lang: lang)* #text(font: kai, keywords.join(localize("keywords_separator")))
     ]
     #v(vdown)
   ]
@@ -49,9 +44,7 @@
 #let mkpreface(font, size, vup, vdown) = {
   (it, lang: "zh") => [
     #v(vup)
-    #text(font: font, size: size)[#align(center)[
-        #if lang == "zh" { [*前言*] } else if lang == "fr" { [*Préface*] } else { [*Preface*] }
-      ]
+    #text(font: font, size: size)[#align(center)[#localize("preface", lang)]
     ]
     #set par(first-line-indent: 2em, leading: 1.1em)
     #v(2pt)
