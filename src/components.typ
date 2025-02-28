@@ -26,7 +26,7 @@
   ]
 }
 
-#let mkabstruct(font, size, vup, vdown) = {
+#let mkabstract(font, size, vup, vdown) = {
   (abstract, keywords, lang: "zh") => [
     #v(vup)
     #set par(first-line-indent: 0em, leading: 1.1em)
@@ -78,7 +78,7 @@
   mkinfo: mkblock(font.author, 500, 1.5em, 0.5em, 0em),
   mkauthor: mkauthor(font.author, 1.1em, 0em, 0em),
   mktime: mkblock(font.body, 500, 1em, -0.3em, 0em),
-  mkabstruct: mkabstruct(font.body, 1em, 10pt, 10pt),
+  mkabstract: mkabstract(font.body, 1em, 10pt, 10pt),
   mkcontent: mkcontent(0em, 0em),
 )
 
@@ -87,7 +87,7 @@
   mkinfo: mkblock(font.title, 700, 1.5em, 0em, 10em),
   mkauthor: mkauthor(font.author, 1.1em, 0em, 0em),
   mktime: mkblock(font.body, 500, 1.3em, 10em, 0em),
-  mkabstruct: mkabstruct(font.body, 1em, 0em, 10pt),
+  mkabstract: mkabstract(font.body, 1em, 0em, 10pt),
   mkpreface: mkpreface(font.body, 2em, 0em, 10pt),
   mkcontent: mkcontent(0em, 0em),
 )
@@ -97,7 +97,7 @@
   mkinfo: mkblock(font.title, 700, 2.5em, 0em, 15em),
   mkauthor: mkauthor(font.author, 1.3em, 0em, 0em),
   mktime: mkblock(font.body, 500, 1.3em, 10em, 0em),
-  mkabstruct: mkabstruct(font.body, 1em, 0em, 10pt),
+  mkabstract: mkabstract(font.body, 1em, 0em, 10pt),
   mkpreface: mkpreface(font.body, 1.1em, 0em, 10pt),
   mkcontent: mkcontent(0em, 0em),
 )
