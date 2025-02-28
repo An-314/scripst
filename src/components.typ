@@ -1,6 +1,6 @@
 #import "configs.typ": *
 #import "styling.typ": *
-#import "locale.typ" : *
+#import "locale.typ": *
 
 #let mkblock(font, weight, size, vup, vdown) = {
   it => align(center)[
@@ -35,7 +35,7 @@
     *#localize("abstract", lang: lang): *#abstract
     #v(1pt)
     #if keywords != () [
-    *#localize("keywords", lang: lang): * #text(font: kai, keywords.join(localize("keywords_separator", lang: lang)))
+      *#localize("keywords", lang: lang): * #text(font: kai, keywords.join(localize("keywords_separator", lang: lang)+" "))
     ]
     #v(vdown)
   ]

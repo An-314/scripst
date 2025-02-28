@@ -39,12 +39,12 @@
   show: stymatheq.with(eq_depth: matheq_depth)
   show: styheader.with(title, info)
   if template == "article" {
-    mkarticle(title, info, author, time, abstract, keywords, contents, content_depth, body)
+    mkarticle(title, info, author, time, abstract, keywords, contents, content_depth, lang, body)
   } else if template == "book" {
     show: stychapter
-    mkbook(title, info, author, time, abstract, keywords, preface, contents, content_depth, body)
+    mkbook(title, info, author, time, abstract, keywords, preface, contents, content_depth, lang, body)
   } else if template == "report" {
-    mkreport(title, info, author, time, abstract, keywords, preface, contents, content_depth, body)
+    mkreport(title, info, author, time, abstract, keywords, preface, contents, content_depth, lang, body)
   } else {
     panic("Unknown template!")
   }
