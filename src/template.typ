@@ -8,7 +8,7 @@
   if info != none and info != "" { (article.mkinfo)(info) }
   if author != none and author != () { (article.mkauthor)(author) }
   if time != none and time != "" { (article.mktime)(time) }
-  if abstract != none and abstract != "" { (article.mkabstruct)(abstract, keywords) }
+  if abstract != none and abstract != "" { (article.mkabstract)(abstract, keywords) }
   if contents != false { (article.mkcontent)(content_depth) }
   body
 }
@@ -21,7 +21,7 @@
   pagebreak()
   if abstract != none and abstract != "" {
     newpara()
-    (book.mkabstruct)(abstract, keywords)
+    (book.mkabstract)(abstract, keywords)
     pagebreak()
   }
   show: stynumbering.with(numbering: "a")
@@ -54,7 +54,7 @@
   counter(page).update(1)
   if abstract != none and abstract != "" {
     newpara()
-    (article.mkabstruct)(abstract, keywords)
+    (article.mkabstract)(abstract, keywords)
   }
   if contents != false {
     newpara()
