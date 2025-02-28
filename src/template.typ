@@ -2,18 +2,18 @@
 #import "styling.typ": *
 #import "components.typ": *
 
-#let mkarticle(title, info, author, time, abstract, keywords, contents, content_depth, body) = {
+#let mkarticle(title, info, author, time, abstract, keywords, contents, content_depth, lang, body) = {
   show: stynumbering.with(numbering: "1")
   if title != none and title != "" { (article.mktitle)(title) }
   if info != none and info != "" { (article.mkinfo)(info) }
   if author != none and author != () { (article.mkauthor)(author) }
   if time != none and time != "" { (article.mktime)(time) }
-  if abstract != none and abstract != "" { (article.mkabstract)(abstract, keywords) }
+  if abstract != none and abstract != "" { (article.mkabstract)(abstract, keywords, lang: lang) }
   if contents != false { (article.mkcontent)(content_depth) }
   body
 }
 
-#let mkbook(title, info, author, time, abstract, keywords, preface, contents, content_depth, body) = {
+#let mkbook(title, info, author, time, abstract, keywords, preface, contents, content_depth, lang, body) = {
   if title != none and title != "" { (book.mktitle)(title) }
   if info != none and info != "" { (book.mkinfo)(info) }
   if author != none and author != () { (book.mkauthor)(author) }
@@ -21,7 +21,7 @@
   pagebreak()
   if abstract != none and abstract != "" {
     newpara()
-    (book.mkabstract)(abstract, keywords)
+    (book.mkabstract)(abstract, keywords, lang: lang)
     pagebreak()
   }
   show: stynumbering.with(numbering: "a")
@@ -44,7 +44,7 @@
   body
 }
 
-#let mkreport(title, info, author, time, abstract, keywords, preface, contents, content_depth, body) = {
+#let mkreport(title, info, author, time, abstract, keywords, preface, contents, content_depth, lang, body) = {
   if title != none and title != "" { (report.mktitle)(title) }
   if info != none and info != "" { (report.mkinfo)(info) }
   if author != none and author != () { (report.mkauthor)(author) }
@@ -54,7 +54,7 @@
   counter(page).update(1)
   if abstract != none and abstract != "" {
     newpara()
-    (article.mkabstract)(abstract, keywords)
+    (article.mkabstract)(abstract, keywords, lang: lang)
   }
   if contents != false {
     newpara()
