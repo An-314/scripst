@@ -1,6 +1,7 @@
 # Makefile for generating PDFs from Typst and generating thumbnails with ImageMagick
 
-PDF_DIR = docs
+PDF_DIR = docs/builds
+TYP_DIR = docs
 PREVIEW_DIR = previews
 DENSITY = 200  # DPI 分辨率
 QUALITY = 90   # 输出质量
@@ -21,8 +22,8 @@ doc: $(TEMPLATE_DOCS)
 
 preview: $(PREVIEW_ALL)
 
-$(PDF_DIR)/%.pdf: $(PDF_DIR)/%.typ
-	cd $(PDF_DIR) && typst compile $*.typ $*.pdf
+$(PDF_DIR)/%.pdf: $(TYP_DIR)/%.typ
+	cd $(TYP_DIR) && typst compile $*.typ builds/$*.pdf
 
 $(PREVIEW_DIR):
 	mkdir -p $(PREVIEW_DIR)
