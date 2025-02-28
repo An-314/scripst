@@ -21,6 +21,7 @@
   - [book 文档](#book-文档)
   - [report 文档](#report-文档)
 - [📜 贡献](#-贡献)
+- [📌 字体](#-字体)
 - [📦 依赖](#-依赖)
 - [🎯 TODO](#-todo)
 ---
@@ -163,6 +164,14 @@ typst init @local/scripst:1.1.0 project_name
 
 - **GitHub 仓库**：[Scripst](https://github.com/An-314/scripst)
 - **问题反馈**：提交 Issue 进行讨论
+
+## 📌 字体
+
+本项目依赖以下字体：
+- 主要字体：[CMU Serif](https://en.wikipedia.org/wiki/Computer_Modern), [Consolas](https://en.wikipedia.org/wiki/Consolas)
+- 备选字体：[Linux Libertine](https://en.wikipedia.org/wiki/Linux_Libertine)
+- 以及simsun, SimHei, KaiTi等中文字体
+请确保已安装该字体，或根据需要进行替换。
 
 ## 📦 依赖
 
