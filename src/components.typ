@@ -107,7 +107,7 @@
   "def": ("Definition", color.green),
   "prob": ("Problem", color.purple),
   "prop": ("Proposition", color.purple-grey),
-  "ex": ("example", color.green-blue),
+  "ex": ("Example", color.green-blue),
   "note": ("Note", color.grey),
   "cau": ("⚠️", color.red),
 )
