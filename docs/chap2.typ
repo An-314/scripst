@@ -202,7 +202,8 @@ datetime.today().display()
 #newpara()
 
 文档的语言，默认为`"zh"`。
-接受#link{"https://en.wikipedia.org/wiki/ISO_639-1"}[ISO_639-1]编码格式传入，如`"zh"`、`"en"`、`"fr"`等。
+
+接受#link("https://en.wikipedia.org/wiki/ISO_639-1")[ISO_639-1]编码格式传入，如`"zh"`、`"en"`、`"fr"`等。
 
 == body
 
