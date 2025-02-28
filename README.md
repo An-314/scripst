@@ -79,14 +79,22 @@ project/
 #### 方法 2：使用 Typst 本地包管理
 将 Scripst 存放至：
 ```
-~/.local/share/typst/packages/local/scripst/1.1.0  # Linux
-%APPDATA%\typst\packages\local\scripst\1.1.0       # Windows
+~/.local/share/typst/packages/local/scripst/1.1.0                 # Linux
+%APPDATA%\typst\packages\local\scripst\1.1.0                      # Windows
 ~/Library/Application Support/typst/packages/local/scripst/1.1.0  # macOS
 ```
+
+```bash 
+cd {data-dir}/typst/packages/local/scripst
+git clone https://github.com/An-314/scripst 1.1.0
+```
+其中`data-dir`为Typst的数据目录，如上述Linux系统中的`~/.local/share/typst`，Windows系统中的`%APPDATA%\typst`，macOS系统中的`~/Library/Application Support/typst`。
+
 然后在 Typst 文件中直接引入：
 ```typst
 #import "@local/scripst:1.1.0": *
 ```
+即可使用 Scripst 模板。
 
 使用 `typst init` 快速创建项目：
 ```bash
