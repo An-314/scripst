@@ -2,25 +2,25 @@
 
 = 模板效果展示
 
-== 文档开头
+== 扉页
 
-文档的开头会显示标题、信息、作者、时间、摘要、关键词等信息。，如该文档的开头所示。
+文档的开头会显示标题、信息、作者、时间、摘要、关键词等信息，如该文档的扉页所示。
 
 == 目录
 
-如果`contents`参数为`true`，则会生成目录亦如该文档的目录所示。
+如果`contents`参数为`true`，则会生成目录，效果见本文档目录。
 
-== 字体与环境
+== 文字样式与环境
 
-Scripst 提供了一些常用的字体和环境，如粗体、斜体、标题、图片、表格、列表、引用、链接、数学公式等。
+Scripst 提供了一些常用的文字样式和环境，如粗体、斜体、标题、图片、表格、列表、引用、链接、数学公式等。
 
 === 字体
 
-这是正常的文本。 This is normal text.
+这是正常的文本。 This is a normal text.
 
-*这是粗体的文本。* *This is bold text.*
+*这是粗体的文本。* *This is a bold text.*
 
-_这是斜体的文本。_ _This is italic text._
+_这是斜体的文本。_ _This is an italic text._
 
 安装 CMU Serif 字体以获得更好（类似LaTeX）的显示效果。
 
@@ -28,7 +28,7 @@ _这是斜体的文本。_ _This is italic text._
 
 ==== 标题
 
-一级标题采用中文/罗马数字编号（取决于文档语言），其余级别标题采用阿拉伯数字编号。
+一级标题编号随文档语言而异，包括中文/罗马数字/希腊字母/假名/阿拉伯文数字/印地文数字等，其余级别标题采用阿拉伯数字编号。
 
 ==== 图片
 
@@ -41,7 +41,7 @@ _这是斜体的文本。_ _This is italic text._
 
 ==== 表格
 
-得益于 `tablem` 包，可以用 Markdown 的方式编写表格，如下所示：
+得益于 `tablem` 包，使用本模板时可以用 Markdown 的方式编写表格，如下所示：
 
 #grid(columns: (1fr, 1fr), align: (horizon, horizon))[
   ```typst
@@ -91,7 +91,7 @@ _这是斜体的文本。_ _This is italic text._
   )
 ]
 
-可以选择`numbering: none,`使得表格不编号，就像前面章节的表格并没有进入全文的表格计数器一样。
+可以选择`numbering: none,`使得表格不编号，如上所示，前面章节的表格并没有进入全文的表格计数器。
 
 ==== 数学公式
 
@@ -192,7 +192,7 @@ typst 为列举提供了简单的环境，如所示：
 
 == `#newpara()`函数
 
-由于设计的时候，有些模块不会自动换行。这是有必要的，例如数学公式后面如果不换行就表示对上面的数学公式的解释。
+默认某些模块不自动换行。这是有必要的，例如，数学公式后面如果不换行就表示对上面的数学公式的解释。
 
 但有时候我们需要换行，这时候就可以使用`#newpara()`函数。
 
@@ -259,7 +259,7 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
     a^p eq.triple a mod p
   $
 ]
-#proof[略。]
+#proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
 ```
 就会创建一个定理块，并且计数：
 #countblock("thm", subname: [_Fermat's Little Theorem_], cb)[
@@ -269,7 +269,7 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
     a^p eq.triple a (mod p)
   $
 ]
-#proof[略。]
+#proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
 其中`subname`如传入，是需要指定的。
 
 你也可以将其封装成另一个函数：
@@ -311,7 +311,7 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 
 #theorem[
 
-  这是一个定理，请你证明它。
+  这是一个定理，请你使用它。
 ]
 
 #problem[
@@ -330,7 +330,7 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 ]
 
 #caution(count: false)[
-  这是一个提醒，请你谨慎它。
+  这是一个提醒，请你当心它。
 ]
 
 #newpara()
