@@ -19,7 +19,9 @@
     "Typst",
     "模板",
   ),
-  preface = preface,
+  preface = preface, 
+  /* 当template选择'article'时不支持设定preface参数*/
+  /* preface parameter not available if template sets to 'article'*/
   contents: true,
   content_depth: 3,
   matheq_depth: 2,
