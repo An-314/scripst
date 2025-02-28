@@ -1,7 +1,9 @@
 # Makefile for generating PDFs from Typst and generating thumbnails with ImageMagick
 
 PDF_DIR = docs/builds
+PDF_DIR_LOCALE = docs/locale/builds
 TYP_DIR = docs
+TYP_DIR_LOCALE = docs/locale
 PREVIEW_DIR = previews
 DENSITY = 200  # DPI 分辨率
 QUALITY = 90   # 输出质量
@@ -9,6 +11,8 @@ SIZE = 300x    # 目标缩略图大小
 
 PDF_FILES = article book report
 TEMPLATE_DOCS = $(foreach file, $(PDF_FILES), $(PDF_DIR)/$(file).pdf)
+TEMPLATE_DOCS_LOCALE = $(PDF_DIR_LOCALE)/article-en.pdf
+TEMPLATE_DOCS_ALL = $(TEMPLATE_DOCS) $(TEMPLATE_DOCS_LOCALE)
 
 PREVIEW_IMAGES = $(foreach file, $(PDF_FILES), $(PREVIEW_DIR)/$(file)-1.png $(PREVIEW_DIR)/$(file)-2.png)
 
@@ -16,14 +20,19 @@ PREVIEW_EXTRA = $(PREVIEW_DIR)/article-12.png $(PREVIEW_DIR)/article-9.png
 
 PREVIEW_ALL = $(PREVIEW_IMAGES) $(PREVIEW_EXTRA)
 
-all: $(TEMPLATE_DOCS) $(PREVIEW_ALL)
+all: $(TEMPLATE_DOCS_ALL) $(PREVIEW_ALL)
 
-doc: $(TEMPLATE_DOCS)
+doc: $(TEMPLATE_DOCS_ALL)
 
 preview: $(PREVIEW_ALL)
 
 $(PDF_DIR)/%.pdf: $(TYP_DIR)/%.typ
+	mkdir -p $(PDF_DIR)
 	cd $(TYP_DIR) && typst compile $*.typ builds/$*.pdf
+
+$(PDF_DIR_LOCALE)/article-en.pdf: $(TYP_DIR_LOCALE)/article-en.typ
+	mkdir -p $(PDF_DIR_LOCALE)
+	typst compile $(TYP_DIR_LOCALE)/article-en.typ $(PDF_DIR_LOCALE)/article-en.pdf
 
 $(PREVIEW_DIR):
 	mkdir -p $(PREVIEW_DIR)

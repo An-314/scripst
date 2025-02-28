@@ -209,12 +209,13 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 默认的countblock有
 ```typst
 #let cb = (
-  "thm": ("Theorem", rgb("#817ffaa5")),
-  "def": ("Definition", rgb("#72ab68ab")),
-  "prob": ("Problem", rgb("#ac2df653")),
-  "prop": ("Proposition", rgb("#6f68abab")),
-  "note": ("Note", rgb("#464040ad")),
-  "cau": ("⚠️", rgb("#f62d2d53")),
+  "thm": ("Theorem", color.blue),
+  "def": ("Definition", color.green),
+  "prob": ("Problem", color.purple),
+  "prop": ("Proposition", color.purple-grey),
+  "ex": ("Example", color.green-blue),
+  "note": ("Note", color.grey),
+  "cau": ("⚠️", color.red),
 )
 ```
 这些计数器已经初始化，你可以直接使用。
@@ -252,22 +253,24 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 ```
 其中 `name` 是计数器的名称，`subname` 是创建该条目的名称，`count` 是是否计数，`cb` 是计数器的列表。例如
 ```typst
-#countblock("thm", subname: "Fermat's Little Theorem", cb)[
+#countblock("thm", subname: [_Fermat's Last Theorem_], cb)[
 
-  If $p$ is a prime number, then for any integer $a$, the number $a^p - a$ is an integer multiple of $p$.
+  No three $a, b, c in NN^+$ can satisfy the equation
   $
-    a^p eq.triple a mod p
+    a^n + b^n = c^n
   $
+  for any integer value of $n$ greater than 2.
 ]
 #proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
 ```
 就会创建一个定理块，并且计数：
-#countblock("thm", subname: [_Fermat's Little Theorem_], cb)[
+#countblock("thm", subname: [_Fermat's Last Theorem_], cb)[
 
-  If $p$ is a prime number, then for any integer $a$, the number $a^p - a$ is an integer multiple of $p$.
+  No three $a, b, c in NN^+$ can satisfy the equation
   $
-    a^p eq.triple a (mod p)
+    a^n + b^n = c^n
   $
+  for any integer value of $n$ greater than 2.
 ]
 #proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
 其中`subname`如传入，是需要指定的。

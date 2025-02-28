@@ -1,11 +1,11 @@
 #import "@local/scripst:1.1.0": *
 
 #show: scripst.with(
-  title: [How to Use Scripst],
-  info: [article template],
+  title: [Scripst Documentation],
+  info: [Article Style Set],
   author: ("AnZrew", "AnZreww", "AnZrewww"),
   time: datetime.today().display(),
-  abstract: [Scripst is a Typst language template used to generate simple daily documents to meet the needs of documents, assignments, notes, papers, etc.],
+  abstract: [Scripst is a simple and easy-to-use Typst language template, suitable for various scenarios such as daily documents, assignments, notes, papers, etc.],
   keywords: (
     "Scripst",
     "Typst",
@@ -17,11 +17,11 @@
   lang: "en",
 )
 
-Typst is a simple document generation language with syntax similar to Markdown's lightweight markup. Using appropriate `set` and `show` commands, you can highly customize the document's style.
+Typst is a simple document generation language with syntax similar to lightweight Markdown markup. Using appropriate `set` and `show` commands, you can highly customise the style of your documents.
 
-Scripst is a Typst template I wrote to generate simple daily documents to meet the needs of documents, assignments, notes, papers, etc.
+Scripst is a simple and easy-to-use Typst language template, suitable for various scenarios such as daily documents, assignments, notes, papers, etc.
 
-= Using Scripst to Typeset Typst Documents
+= Typesetting Typst Documents with Scripst
 
 == Using Typst
 
@@ -31,7 +31,7 @@ Compared to LaTeX, Typst has the following advantages:
 - Extremely fast compilation speed
 - Simple and lightweight syntax
 - Strong code extensibility
-- Easier math formula input
+- Easier mathematical formula input
 - ...
 
 Therefore, Typst is very suitable for writing lightweight daily documents. You can get even better typesetting results than LaTeX with the time cost of writing Markdown.
@@ -44,18 +44,20 @@ sudo pacman -S typst # Arch Linux
 winget install --id Typst.Typst # Windows
 brew install typst # macOS
 ```
-
+#newpara()
 You can also find more information in the #link("https://github.com/typst/typst")[Typst GitHub repository].
 
 == Using Scripst
 
-Based on Typst, Scripst provides some templates to generate simple daily documents.
+Based on Typst, Scripst provides some simple templates for convenient daily document generation.
 
-You can find and download Scripst templates in the #link("https://github.com/An-314/scripst")[Scripst GitHub repository].
+=== Using Extracted Files
+
+You can find and download the Scripst templates in the #link("https://github.com/An-314/scripst")[Scripst GitHub repository].
 
 You can choose `<> code` $->$ `Download ZIP` to download the Scripst templates. When using them, just place the template files in your document directory and import the template files at the beginning of your document.
 
-#countblock("cau", cb, count: false)[
+#caution(count: false)[
   Consider the project directory structure to correctly import the template files.
   ```
   project/
@@ -78,9 +80,11 @@ You can choose `<> code` $->$ `Download ZIP` to download the Scripst templates. 
 
 The advantage of this method is that you can adjust some parameters in the template at any time. Since the template is designed modularly, you can easily find and modify the parts you need to change.
 
-*A better way* is to refer to the official #link("https://github.com/typst/packages?tab=readme-ov-file#local-packages")[local package management documentation] and place the template files in the local package management directory `{data-dir}/typst/packages/{namespace}/{name}/{version}`, so you can use the Scripst templates anywhere.
+=== Local Package Management
 
-Of course, you don't need to worry about not being able to modify the template files. You can directly use `#set, #show` commands in the document to override some parameters in the template.
+*A better way is* to refer to the official #link("https://github.com/typst/packages?tab=readme-ov-file#local-packages")[local package management documentation] and place the template files in the local package management directory `{data-dir}/typst/packages/{namespace}/{name}/{version}`, so you can use the Scripst templates anywhere.
+
+Of course, you don't have to worry about not being able to modify the template files. You can directly use `#set, #show` commands in the document to override some parameters in the template.
 
 For example, the template should be placed in
 ```
@@ -96,6 +100,19 @@ The advantage of this is that you can directly use `typst init` to create a new 
 typst init @local/scripst:1.1.0 project_name
 ```
 #newpara()
+
+=== Online Package Management
+
+We will submit it to the community as soon as possible so that you can directly use
+```typst
+#import "@preview/scripst:1.1.0": *
+```
+to import the Scripst templates in your document.
+
+This method does not require downloading the template files, just import them in the document.
+
+
+---------------------------------------------------------------------------------------------------------------------
 
 After importing the template, create an `article` file in this way:
 
@@ -114,13 +131,13 @@ After importing the template, create an `article` file in this way:
 )
 ```
 
-These parameters and their meanings are explained in @para.
+See @para for the meaning of these parameters.
 
-Now you can start writing your document.
+Then you can start writing your document.
 
 = Template Parameter Description <para>
 
-The Scripst template provides some parameters to customize the document's style.
+The Scripst template provides some parameters to customise the style of the document.
 
 ```typst
 #let scripst(
@@ -161,11 +178,11 @@ Currently, Scripst provides three templates: article, book, and report.
 
 This template uses the article template.
 
-- article: Suitable for daily documents, assignments, small notes, small papers, etc.
+- article: Suitable for daily documents, assignments, tiny notes, light papers, etc.
 - book: Suitable for books, course notes, etc.
 - report: Suitable for lab reports, papers, etc.
 
-Other string inputs will cause `panic`: `"Unknown template!"`.
+Passing other strings will cause a `panic`: `"Unknown template!"`.
 
 == title
 
@@ -180,7 +197,7 @@ Other string inputs will cause `panic`: `"Unknown template!"`.
 
 #newpara()
 
-The document title. (If not empty) it will appear at the beginning of the document and in the header.
+The title of the document. (If not empty) it will appear at the beginning and in the header of the document.
 
 == info
 
@@ -195,7 +212,7 @@ The document title. (If not empty) it will appear at the beginning of the docume
 
 #newpara()
 
-The document information. (If not empty) it will appear at the beginning of the document and in the header. It can be used as a subtitle or supplementary information for the article.
+The information of the document. (If not empty) it will appear at the beginning and in the header of the document. It can be used as a subtitle or supplementary information for the article.
 
 == author
 
@@ -210,13 +227,11 @@ The document information. (If not empty) it will appear at the beginning of the 
 
 #newpara()
 
-The document authors. Pass in a list of `str` or `content`.
+The authors of the document. Pass a list of `str` or `content`.
 
-#countblock(
-  "cau",
-  cb,
-  count: false,
-)[Note, if there is only one author, do not pass in `str` or `content`, but pass in a list of `str` or `content`, for example: `author: ("Author",)`]
+#caution(count: false)[
+  Note, if there is only one author, do not pass a `str` or `content`, but pass a list of one `str` or `content`, for example: `author: ("Author",)`
+]
 
 #newpara()
 
@@ -235,7 +250,7 @@ It will be displayed at the beginning of the article with $min(\#"authors", 3)$ 
 
 #newpara()
 
-The document time. It will appear at the beginning of the document and in the header.
+The time of the document. It will appear at the beginning and in the header of the document.
 
 You can choose to use Typst's `datetime` to get or format the time, such as today's date:
 
@@ -257,7 +272,7 @@ datetime.today().display()
 
 #newpara()
 
-The document abstract. (If not empty) it will appear at the beginning of the document.
+The abstract of the document. (If not empty) it will appear at the beginning of the document.
 
 It is recommended to define a `content` before using the abstract, for example:
 
@@ -287,7 +302,7 @@ Then pass it to the `abstract` parameter.
 
 #newpara()
 
-The document keywords. Pass in a list of `str` or `content`.
+The keywords of the document. Pass a list of `str` or `content`.
 
 Like `author`, the parameter is a list, not a string.
 
@@ -306,9 +321,9 @@ Keywords will only appear at the beginning of the document if `abstract` is not 
 
 #newpara()
 
-The document font size. The default is `11pt`.
+The font size of the document. The default is `11pt`.
 
-Refer to the `length` type values, you can pass in units such as `pt`, `mm`, `cm`, `in`, `em`, etc.
+Refer to the `length` type values, you can pass `pt`, `mm`, `cm`, `in`, `em`, etc.
 
 == contents
 
@@ -363,16 +378,16 @@ Generally, use `1` when there are no chapters, and use `2` when there are chapte
   three-line-table[
     | Parameter | Type | Default Value | Description |
     | --- | --- | --- | --- |
-    | lang | `str`| `"en"` | Document language |
+    | lang | `str`| `"zh"` | Document language |
   ],
   numbering: none,
 )
 
 #newpara()
 
-The document language. The default is `"en"`.
+The document language. The default is `"zh"`.
 
-You can pass in languages such as `"zh"`, `"en"`, `"fr"`, etc.
+Accepts #link("https://en.wikipedia.org/wiki/ISO_639-1")[ISO_639-1] encoding format, such as `"zh"`, `"en"`, `"fr"`, etc.
 
 == body
 
@@ -380,13 +395,13 @@ When using `#show: scripst.with(...)`, the `body` parameter does not need to be 
 
 = Template Effect Display
 
-== Document Beginning
+== Front Page
 
 The beginning of the document will display the title, information, authors, time, abstract, keywords, etc., as shown at the beginning of this document.
 
 == Table of Contents
 
-If the `contents` parameter is `true`, a table of contents will be generated as shown in this document.
+If the `contents` parameter is `true`, a table of contents will be generated, as shown in this document.
 
 == Fonts and Environments
 
@@ -394,11 +409,11 @@ Scripst provides some commonly used fonts and environments, such as bold, italic
 
 === Fonts
 
-This is normal text. This is normal text.
+This is normal text. C'est un texte normal.
 
-*This is bold text.* *This is bold text.*
+*This is bold text.* *C'est un texte en gras.*
 
-_This is italic text._ _This is italic text._
+_This is italic text._ _C'est un texte en italique._
 
 Install the CMU Serif font for better (LaTeX-like) display effects.
 
@@ -406,20 +421,20 @@ Install the CMU Serif font for better (LaTeX-like) display effects.
 
 ==== Headings
 
-Level 1 headings use Chinese/Roman numerals (depending on the document language), and other levels use Arabic numerals.
+Level 1 headings are numbered according to the document language, including Chinese/Roman numerals/Greek letters/Kana/Numerals in Arabic/Hindi numerals, etc. Other levels use Arabic numerals.
 
 ==== Images
 
 The image environment will automatically number the images, as shown below:
 
 #figure(
-  image("pic/pic.jpg", width: 50%),
-  caption: "Scattered Treasure",
+  image("pic/pic.jpg", width: 60%),
+  caption: "Little Scara",
 )
 
 ==== Tables
 
-Thanks to the `tablem` package, you can write tables in Markdown style, as shown below:
+Thanks to the `tablem` package, you can write tables in Markdown style when using this template, as shown below:
 
 #grid(columns: (1fr, 1fr), align: (horizon, horizon))[
   ```typst
@@ -427,8 +442,8 @@ Thanks to the `tablem` package, you can write tables in Markdown style, as shown
     three-line-table[
       | Name | Age | Gender |
       | --- | --- | --- |
-      | Zhang San | 18 | Male |
-      | Li Si | 19 | Female |
+      | Jane | 18 | Male |
+      | Doe | 19 | Female |
     ],
     caption: [`three-line-table` table example],
   )
@@ -438,8 +453,8 @@ Thanks to the `tablem` package, you can write tables in Markdown style, as shown
     three-line-table[
       | Name | Age | Gender |
       | --- | --- | --- |
-      | Zhang San | 18 | Male |
-      | Li Si | 19 | Female |
+      | Jane | 18 | Male |
+      | Doe | 19 | Female |
     ],
     caption: [`three-line-table` table example],
   )
@@ -451,8 +466,8 @@ Thanks to the `tablem` package, you can write tables in Markdown style, as shown
     tablem[
       | Name | Age | Gender |
       | --- | --- | --- |
-      | Zhang San | 18 | Male |
-      | Li Si | 19 | Female |
+      | Jane | 18 | Male |
+      | Doe | 19 | Female |
     ],
     caption: [`tablem` table example],
   )
@@ -462,14 +477,14 @@ Thanks to the `tablem` package, you can write tables in Markdown style, as shown
     tablem[
       | Name | Age | Gender |
       | --- | --- | --- |
-      | Zhang San | 18 | Male |
-      | Li Si | 19 | Female |
+      | Jane | 18 | Male |
+      | Doe | 19 | Female |
     ],
     caption: [`tablem` table example],
   )
 ]
 
-You can choose `numbering: none,` to make the table unnumbered, just like the tables in the previous chapters did not enter the full text table counter.
+You can choose `numbering: none,` to make the table unnumbered, as shown above, the tables in the previous chapters did not enter the full text table counter.
 
 ==== Math Formulas
 
@@ -484,7 +499,7 @@ $
 $
 are numbered.
 
-Thanks to the `physica` package, Typst's simple math input method is greatly expanded while still retaining its simplicity:
+Thanks to the `physica` package, Typst's math input method is greatly expanded while still retaining its simplicity:
 $
   &div vb(E) &=& rho / epsilon_0 \
   &div vb(B) &=& 0 \
@@ -540,12 +555,12 @@ Typst provides a simple environment for lists, as shown:
 
 #grid(columns: (1fr, 1fr), align: (horizon, horizon))[
   ```typst
-  #quote(attribution: [*Einstein*], block: true)[
+  #quote(attribution: "Einstein", block: true)[
     God does not play dice with the universe.
   ]
   ```
 ][
-  #quote(attribution: [*Einstein*], block: true)[
+  #quote(attribution: "Einstein", block: true)[
     God does not play dice with the universe.
   ]
 ]
@@ -559,6 +574,7 @@ Typst provides a simple environment for lists, as shown:
   #link("https://www.google.com/")[Google]
   ```
 ][
+  \
   #link("https://www.google.com/")[Google]
 ]
 
@@ -570,7 +586,7 @@ Use `<label>` and `@label` to achieve hyperlinks and citations.
 
 == `#newpara()` Function
 
-Due to the design, some modules do not automatically wrap. This is necessary, for example, if the explanation of the above math formula does not wrap.
+By default, some modules do not automatically wrap. This is necessary, for example, if the explanation of the above math formula does not wrap.
 
 But sometimes we need to wrap, and this is where the `#newpara()` function comes in.
 
@@ -578,81 +594,85 @@ Unlike the official `#parbreak()` function, the `#newpara()` function inserts a 
 
 Whenever you feel the need to wrap, you can use the `#newpara()` function.
 
-== Countblock
+== countblock
 
-Countblock is a counter module provided by Scripst to count specific elements in a document.
+countblock is a counter module provided by Scripst to count certain countable content in the document.
 
-The global variable `cb` stores all available counters, and you can add a counter using the `add_countblock` function.
+The global variable `cb` records all available counters, and you can add a counter using the `add_countblock` function.
 
-Default countblocks are initialized as follows:
+The default countblocks are
 ```typst
 #let cb = (
-  "thm": ("Theorem", rgb("#817ffaa5")),
-  "def": ("Definition", rgb("#72ab68ab")),
-  "prob": ("Problem", rgb("#ac2df653")),
-  "prop": ("Proposition", rgb("#6f68abab")),
-  "note": ("Note", rgb("#464040ad")),
-  "cau": ("⚠️", rgb("#f62d2d53")),
+  "thm": ("Theorem", color.blue),
+  "def": ("Definition", color.green),
+  "prob": ("Problem", color.purple),
+  "prop": ("Proposition", color.purple-grey),
+  "ex": ("Example", color.green-blue),
+  "note": ("Note", color.grey),
+  "cau": ("⚠️", color.red),
 )
 ```
-These counters are pre-initialized and ready for use.
+These counters are already initialised, and you can use them directly.
 
-#countblock("note", cb, count: false)[
-  Since Typst functions do not support pointers or references, passed variables cannot be modified. Instead, the function must return a modified value to be passed to the next function. Currently, no better solution has been found.
+#note(count: false)[
+  Since Typst language functions do not have pointers or references, the passed variables cannot be modified. We can only modify variables through explicit return values and pass them to the next function. The author has not found a better method yet.
 ]
 
 #newpara()
 
-=== Creating and Registering a Countblock
+=== Creating and Registering countblock
 
-You can add (or override) a counter using `add_countblock` and register it using `register_countblock`:
+At the same time, you can add (or override) a counter using the `add_countblock` function and then register this counter using the `register_countblock` function.
 ```typst
 #let cb = add_countblock("test", "This is a test", teal)
 #show: register_countblock.with("test")
 ```
-After registration, the `countblock` function can be used to count elements with this counter.
+After that, you can use the `countblock` function to count this counter.
 
 #let cb = add_countblock("test", "This is a test", teal)
 #show: register_countblock.with("test")
 
-=== Using Countblock
+=== Using countblock
 
-A `countblock` can be created using:
+Use the `countblock` function to create a block:
 ```typst
 #countblock(
   name,
   subname,
   count: true,
   cb: cb,
-)[
-  ...
-]
+)[ ... ]
 ```
-Where `name` is the counter name, `subname` specifies the entry name, `count` determines if counting is enabled, and `cb` is the counter list. For example:
+where `name` is the name of the counter, `subname` is the name of the entry being created, `count` is whether to count, and `cb` is the list of counters. For example
 ```typst
-#countblock("thm", subname: "Fermat's Little Theorem", cb)[
-  If $p$ is a prime number, then for any integer $a$, the number $a^p - a$ is an integer multiple of $p$.
+#countblock("thm", subname: [_Fermat's Last Theorem_], cb)[
+
+  No three $a, b, c in NN^+$ can satisfy the equation
   $
-    a^p eq.triple a (mod p)
+    a^n + b^n = c^n
   $
+  for any integer value of $n$ greater than 2.
 ]
-#proof[Omitted.]
+#proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
 ```
-This creates a theorem block with numbering:
+will create a theorem block and count it:
+#countblock("thm", subname: [_Fermat's Last Theorem_], cb)[
 
-#countblock("thm", subname: [_Fermat's Little Theorem_], cb)[
-  If $p$ is a prime number, then for any integer $a$, the number $a^p - a$ is an integer multiple of $p$.
+  No three $a, b, c in NN^+$ can satisfy the equation
   $
-    a^p eq.triple a (mod p)
+    a^n + b^n = c^n
   $
+  for any integer value of $n$ greater than 2.
 ]
-#proof[Omitted.]
+#proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
+where `subname` is required if passed.
 
-You can also encapsulate it as another function:
+You can also encapsulate it into another function:
 ```typst
-#let test = countblock.with()
+#let test = countblock.with("test", cb)
 ```
-For the newly created `test` counter, use `countblock` to count:
+For the `test` counter just created, you can use the `countblock` function to count:
+
 ```typst
 #countblock("test", cb)[
   1 + 1 = 2
@@ -670,64 +690,58 @@ For the newly created `test` counter, use `countblock` to count:
   1 + 2 = 3
 ]
 
-Default counters can also be used directly:
+The other default counters can also be used with the pre-packaged functions:
 ```typst
-#definition(subname:[...])[]
-#theorem(subname:[...])[]
-#proposition(subname:[...])[]
-#problem(subname:[...])[]
-#note[]
-#caution[]
-#proof[]
+#definition(subname: [...])[]
+#theorem(subname: [...])[]
+#proposition(subname: [...])[]
+#problem(subname: [...])[]
+#note(count: false)[]
+#caution(count: false)[]
 ```
-
 #definition[
 
-  This is a definition. Please understand it.
+  This is a definition, please understand it.
 ]
 
 #theorem[
 
-  This is a theorem. Please prove it.
-]
-
-#proposition[
-
-  This is a proposition. Please prove it.
-]
-
-#proof[
-  It is obvious.
+  This is a theorem, please use it.
 ]
 
 #problem[
 
-  This is a problem. Please solve it.
+  This is a problem, please solve it.
+]
+
+#proposition[
+
+  This is a proposition, please prove it.
 ]
 
 #note(count: false)[
 
-  This is a note. Please take note of it.
+  This is a note, please note it.
 ]
 
 #caution(count: false)[
-  This is a caution. Please be careful with it.
+  This is a caution, please be careful with it.
 ]
 
 #newpara()
 
-These counters follow this numbering logic:
-- If there are no sections, there is a single counter.
-- If sections exist, the counter follows the format *SectionNumber.CurrentCountInSection*.
+The numbering logic of these counters is:
+- If there are no chapters, there is only one counter number
+- If there are chapters, the counter number is *chapter number. the number of this type of block that has appeared in this chapter up to this block*
 
-*Thus, you can register and use any number of counters.*
+*In this way, you can register and use any number of countblocks.*
 
-== Conclusion
+= Conclusion
 
-This document demonstrated the usage of Scripst, including template parameters and their effects.
+The above documentation demonstrated Scripst, explained the template parameters, and showed the template effects.
 
-We hope this guide helps you better utilize Typst and Scripst.
+I hope this document helps you better use Typst and Scripst.
 
-Your suggestions and improvements for Scripst are always welcome, including code contributions.
+You are also welcome to provide suggestions, improvements, and/or contribute code to Scripst.
 
-Thank you for supporting Typst and Scripst!
+Thank you for your support of Typst and Scripst!
