@@ -90,7 +90,7 @@ datetime.today().display()
 
 文档的摘要。（不为空时）会出现在文档的开头。
 
-建议在使用摘要前，实现定义一个`content`，例如：
+建议在使用摘要前，首先定义一个`content`，例如：
 
 ```typst
 #let abstract = [
@@ -201,9 +201,8 @@ datetime.today().display()
 
 #newpara()
 
-文档的语言。默认为`"zh"`。
-
-可以传入`"zh"`、`"en"`、`"fr"`等语言。
+文档的语言，默认为`"zh"`。
+接受#link{"https://en.wikipedia.org/wiki/ISO_639-1"}[ISO_639-1]编码格式传入，如`"zh"`、`"en"`、`"fr"`等。
 
 == body
 
