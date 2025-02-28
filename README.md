@@ -178,7 +178,7 @@ typst init @local/scripst:1.1.0 project_name
 本项目依赖以下字体：
 - 主要字体：[CMU Serif](https://en.wikipedia.org/wiki/Computer_Modern), [Consolas](https://en.wikipedia.org/wiki/Consolas)
 - 备选字体：[Linux Libertine](https://en.wikipedia.org/wiki/Linux_Libertine)
-- 以及simsun, SimHei, KaiTi等中文字体
+- 以及SimSun, SimHei, KaiTi等中文字体
 请确保已安装该字体，或根据需要进行替换。
 
 ## 📦 依赖
