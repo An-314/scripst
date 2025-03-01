@@ -594,13 +594,13 @@ Unlike the official `#parbreak()` function, the `#newpara()` function inserts a 
 
 Whenever you feel the need to wrap, you can use the `#newpara()` function.
 
-== countblock
+== Countblock
 
-countblock is a counter module provided by Scripst to count certain countable content in the document.
+Countblock is a counter module provided by Scripst for counting certain countable content in the document.
 
 The global variable `cb` records all available counters, and you can add a counter using the `add_countblock` function.
 
-The default countblocks are
+The default countblocks include:
 ```typst
 #let cb = (
   "thm": ("Theorem", color.blue),
@@ -612,40 +612,48 @@ The default countblocks are
   "cau": ("⚠️", color.red),
 )
 ```
+
 These counters are already initialised, and you can use them directly.
 
-#note(count: false)[
-  Since Typst language functions do not have pointers or references, the passed variables cannot be modified. We can only modify variables through explicit return values and pass them to the next function. The author has not found a better method yet.
-]
+#note(count: false)[ 
+  Since Typst language functions do not have pointers or references, variables passed cannot be modified. We can only modify variables via explicit return values and pass them to the next function. Currently, the author has not found a better method. 
+  ]
 
 #newpara()
 
-=== Creating and Registering countblock
+=== Creating and Registering countblocks
 
-At the same time, you can add (or override) a counter using the `add_countblock` function and then register this counter using the `register_countblock` function.
+You can also add (or overload) a counter using the `add_countblock` function and register it using the `register_countblock` function:
+
 ```typst
 #let cb = add_countblock("test", "This is a test", teal)
 #show: register_countblock.with("test")
 ```
-After that, you can use the `countblock` function to count this counter.
 
-#let cb = add_countblock("test", "This is a test", teal)
+After that, you can use the countblock function to count this counter.
+
+#let cb = add_countblock("test", "This is a test", teal) 
 #show: register_countblock.with("test")
 
-=== Using countblock
+=== Using countblocks
 
 Use the `countblock` function to create a block:
+
 ```typst
 #countblock(
   name,
   subname,
   count: true,
   cb: cb,
-)[ ... ]
+  lab: none,
+)[
+  ...
+]
 ```
-where `name` is the name of the counter, `subname` is the name of the entry being created, `count` is whether to count, and `cb` is the list of counters. For example
+Where `name` is the counter's name, `subname` is the entry's name, `count` indicates whether it should be counted, and `cb` is the counter's list. For example:
+
 ```typst
-#countblock("thm", subname: [_Fermat's Last Theorem_], cb)[
+#countblock("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
 
   No three $a, b, c in NN^+$ can satisfy the equation
   $
@@ -655,8 +663,9 @@ where `name` is the name of the counter, `subname` is the name of the entry bein
 ]
 #proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
 ```
-will create a theorem block and count it:
-#countblock("thm", subname: [_Fermat's Last Theorem_], cb)[
+
+This will create a theorem block and count it: 
+#countblock("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
 
   No three $a, b, c in NN^+$ can satisfy the equation
   $
@@ -665,13 +674,22 @@ will create a theorem block and count it:
   for any integer value of $n$ greater than 2.
 ]
 #proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
-where `subname` is required if passed.
+Where `subname` is required as passed.
+
+Additionally, you can use the `lab` parameter to assign a label to this block, so you can reference it later in the text. For example, the `fermat` theorem block can be referenced as `@fermat`.
+
+```typst
+Fermat did not provide a public proof for @fermat.
+```
+Fermat did not provide a public proof for @fermat.
 
 You can also encapsulate it into another function:
+
 ```typst
 #let test = countblock.with("test", cb)
 ```
-For the `test` counter just created, you can use the `countblock` function to count:
+
+For the previously created `test` counter, you can use the `countblock` function to count:
 
 ```typst
 #countblock("test", cb)[
@@ -682,15 +700,22 @@ For the `test` counter just created, you can use the `countblock` function to co
   1 + 2 = 3
 ]
 ```
+
 #let test = countblock.with("test", cb)
 #countblock("test", cb)[
-  1 + 1 = 2
+  $
+    1 + 1 = 2
+  $
 ]
 #test[
-  1 + 2 = 3
+  $
+    1 + 2 = 3
+  $
 ]
 
-The other default counters can also be used with the pre-packaged functions:
+
+Other default counters can also be used with the pre-packaged functions:
+
 ```typst
 #definition(subname: [...])[]
 #theorem(subname: [...])[]
@@ -699,42 +724,60 @@ The other default counters can also be used with the pre-packaged functions:
 #note(count: false)[]
 #caution(count: false)[]
 ```
+
 #definition[
 
-  This is a definition, please understand it.
+This is a definition, please understand it. 
 ]
 
-#theorem[
+#theorem(lab: "test")[
 
-  This is a theorem, please use it.
+This is a theorem, please use it. (Added a label to this countblock for referencing later) 
 ]
 
 #problem[
 
-  This is a problem, please solve it.
+This is a problem, please solve it. 
 ]
 
 #proposition[
 
-  This is a proposition, please prove it.
+This is a proposition, please prove it. 
 ]
 
 #note(count: false)[
 
-  This is a note, please note it.
+This is a note, please take note of it. 
 ]
 
-#caution(count: false)[
-  This is a caution, please be careful with it.
+#caution(count: false)[ 
+  This is a reminder, please be cautious about it. 
 ]
+
+#theorem[
+
+This is a test of referencing @test. 
+]
+
+You can also have Typst list all countblocks:
+
+```typst
+#outline(title: [List of Thms], target: figure.where(kind: "thm"))
+```
+#outline(title: [List of Thms], target: figure.where(kind: "thm"))
 
 #newpara()
 
-The numbering logic of these counters is:
-- If there are no chapters, there is only one counter number
-- If there are chapters, the counter number is *chapter number. the number of this type of block that has appeared in this chapter up to this block*
+#note(count: false)[ 
+  The `kind` parameter here is the `name` specified when defining the countblock, which is the key string in the `cb` dictionary. 
+  ]
 
-*In this way, you can register and use any number of countblocks.*
+The numbering logic for these counters is as follows:
+
+- If there is no section, there will be only one counter number;
+- If there are sections, the counter number will be *section number. number of this type of block within the section up to this point*
+
+*Thus, you can register and use any number of counters.*
 
 = Conclusion
 
