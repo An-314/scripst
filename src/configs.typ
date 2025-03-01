@@ -8,6 +8,7 @@
   title: hei,
   author: kai,
   body: song,
+  countblock: song,
   heading: hei,
   caption: kai,
   header: smallcap,
