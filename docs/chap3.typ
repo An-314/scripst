@@ -353,7 +353,18 @@ Fermat 并没有对 @fermat 给出公开的证明。
   这是对 @test 引用的测试。
 ]
 
+你也可以让typst给出countblock的列表：
+
+```typst
+#outline(title: [List of Thms], target: figure.where(kind: "thm"))
+```
+#outline(title: [List of Thms], target: figure.where(kind: "thm"))
+
 #newpara()
+
+#note(count: false)[
+  这里`kind`的参数值是在定义该countblock时指定的`name`，即`cb`字典中的键的字符串。
+]
 
 这些计数器编号的逻辑是：
 - 如果没有章节，那么只有一个计数器编号
