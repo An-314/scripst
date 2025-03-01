@@ -95,16 +95,6 @@
   mkcontent: mkcontent(0em, 0em),
 )
 
-#let cb = (
-  "thm": ("Theorem", color.blue),
-  "def": ("Definition", color.green),
-  "prob": ("Problem", color.purple),
-  "prop": ("Proposition", color.purple-grey),
-  "ex": ("Example", color.green-blue),
-  "note": ("Note", color.grey),
-  "cau": ("⚠️", color.red),
-)
-
 #let add_countblock(cb: cb, name, info, color) = {
   cb.insert(name, (info, color))
   return cb
@@ -155,8 +145,8 @@
       supplement: cb.at(name).at(0),
       numbering: it => {
         if query(heading.where(level: 1)).len() != 0 {
-          " " + counter(heading.where(level: 1)).display() + "." + counter(name).display()
-        } else { " " + counter(name).display() }
+          counter(heading.where(level: 1)).display() + "." + counter(name).display()
+        } else { counter(name).display() }
       },
     )
     #if lab != none { label(lab) }

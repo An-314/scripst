@@ -27,3 +27,13 @@
   purple: rgb("#ac2df653"),
   green-blue: rgb("#2dab8cab"),
 )
+
+#let cb = (
+  "thm": ("Theorem", color.blue),
+  "def": ("Definition", color.green),
+  "prob": ("Problem", color.purple),
+  "prop": ("Proposition", color.purple-grey),
+  "ex": ("Example", color.green-blue),
+  "note": ("Note", color.grey),
+  "cau": ("⚠️", color.red),
+)
