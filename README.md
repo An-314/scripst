@@ -320,3 +320,4 @@ This project is licensed under the MIT License.
 ## 🎯 TODO
 
 * [ ] Add `beamer` template
+* [ ] Add more configuration options
