@@ -1,4 +1,4 @@
-#import "@local/scripst:1.1.0": *
+#import "@preview/scripst:1.1.0": *
 
 = 模板效果展示
 

@@ -69,6 +69,8 @@ Or refer to the [Typst official documentation](https://github.com/typst/typst) f
 
 ### Download Scripst Template
 
+Should you need to use the template locally, or should you need to make adjustments to the template, you can download the Scripst template manually.
+
 #### Method 1: Download Manually
 
 1. Visit the [Scripst GitHub repository](https://github.com/An-314/scripst)
@@ -100,30 +102,30 @@ If the template is stored in the `src/` directory, import it like this:
 You can manually download Scripst and store it in:
 
 ```
-~/.local/share/typst/packages/local/scripst/1.1.0                 # Linux
-%APPDATA%\typst\packages\local\scripst\1.1.0                      # Windows
-~/Library/Application Support/typst/packages/local/scripst/1.1.0  # macOS
+~/.local/share/typst/packages/preview/scripst/1.1.0                 # Linux
+%APPDATA%\typst\packages\preview\scripst\1.1.0                      # Windows
+~/Library/Application Support/typst/packages/preview/scripst/1.1.0  # macOS
 ```
 
 or using these commands:
 
 ```bash
-cd {data-dir}/typst/packages/local/scripst
-git clone https://github.com/An-314/scripst 1.1.0
+cd {data-dir}/typst/packages/preview/scripst
+git clone https://github.com/An-314/scripst.git 1.1.0
 ```
 
 Where `data-dir` refers to Typst's data directory, such as `~/.local/share/typst` for Linux, `%APPDATA%\typst` for Windows, and `~/Library/Application Support/typst` for macOS.
 
 Then import directly in your Typst file:
 ```typst
-#import "@local/scripst:1.1.0": *
+#import "@preview/scripst:1.1.0": *
 ```
 Now you can use the Scripst template.
 
 Use `typst init` to quickly create a project:
 
 ```bash
-typst init @local/scripst:1.1.0 project_name
+typst init @preview/scripst:1.1.0 project_name
 ```
 
 * * *
@@ -134,7 +136,7 @@ typst init @local/scripst:1.1.0 project_name
 
 Import the template at the beginning of your Typst file:
 ```typst
-#import "@local/scripst:1.1.0": *
+#import "@preview/scripst:1.1.0": *
 ```
 
 ### Create `article` Document

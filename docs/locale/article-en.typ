@@ -1,4 +1,4 @@
-#import "@local/scripst:1.1.0": *
+#import "@preview/scripst:1.1.0": *
 
 #show: scripst.with(
   title: [Scripst Documentation],
@@ -88,16 +88,22 @@ Of course, you don't have to worry about not being able to modify the template f
 
 For example, the template should be placed in
 ```
-~/.local/share/typst/packages/local/scripst/1.1.0  # in Linux
-%APPDATA%\typst\packages\local\scripst\1.1.0       # in Windows
+~/.local/share/typst/packages/preview/scripst/1.1.0               # in Linux
+%APPDATA%\typst\packages\preview\scripst\1.1.0                    # in Windows
+~/Library/Application Support/typst/packages/local/scripst/1.1.0  # macOS
+```
+You can execute the following command:
+```bash
+cd ~/.local/share/typst/packages/preview/scripst/1.1.0
+git clone https://github.com/An-314/scripst.git 1.1.0
 ```
 If the directory structure is like this, then the way to import the template files in the document should be:
 ```typst
-#import "@local/scripst:1.1.0": *
+#import "@preview/scripst:1.1.0": *
 ```
 The advantage of this is that you can directly use `typst init` to create a new project with the template:
 ```bash
-typst init @local/scripst:1.1.0 project_name
+typst init @preview/scripst:1.1.0 project_name
 ```
 #newpara()
 
@@ -108,6 +114,11 @@ We will submit it to the community as soon as possible so that you can directly 
 #import "@preview/scripst:1.1.0": *
 ```
 to import the Scripst templates in your document.
+
+You can also use `typst init` to create a new project with the template:
+```bash
+typst init @preview/scripst:1.1.0 project_name
+```
 
 This method does not require downloading the template files, just import them in the document.
 
@@ -615,9 +626,9 @@ The default countblocks include:
 
 These counters are already initialised, and you can use them directly.
 
-#note(count: false)[ 
-  Since Typst language functions do not have pointers or references, variables passed cannot be modified. We can only modify variables via explicit return values and pass them to the next function. Currently, the author has not found a better method. 
-  ]
+#note(count: false)[
+  Since Typst language functions do not have pointers or references, variables passed cannot be modified. We can only modify variables via explicit return values and pass them to the next function. Currently, the author has not found a better method.
+]
 
 #newpara()
 
@@ -632,7 +643,7 @@ You can also add (or overload) a counter using the `add_countblock` function and
 
 After that, you can use the countblock function to count this counter.
 
-#let cb = add_countblock("test", "This is a test", teal) 
+#let cb = add_countblock("test", "This is a test", teal)
 #show: register_countblock.with("test")
 
 === Using countblocks
@@ -664,7 +675,7 @@ Where `name` is the counter's name, `subname` is the entry's name, `count` indic
 #proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
 ```
 
-This will create a theorem block and count it: 
+This will create a theorem block and count it:
 #countblock("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
 
   No three $a, b, c in NN^+$ can satisfy the equation
@@ -679,9 +690,9 @@ Where `subname` is required as passed.
 Additionally, you can use the `lab` parameter to assign a label to this block, so you can reference it later in the text. For example, the `fermat` theorem block can be referenced as `@fermat`.
 
 ```typst
-Fermat did not provide a public proof for @fermat.
+Fermat did not provide proof publicly for @fermat.
 ```
-Fermat did not provide a public proof for @fermat.
+Fermat did not provide proof publicly for @fermat.
 
 You can also encapsulate it into another function:
 
@@ -727,36 +738,36 @@ Other default counters can also be used with the pre-packaged functions:
 
 #definition[
 
-This is a definition, please understand it. 
+  This is a definition, please understand it.
 ]
 
 #theorem(lab: "test")[
 
-This is a theorem, please use it. (Added a label to this countblock for referencing later) 
+  This is a theorem, please use it. (Added a label to this countblock for referencing later)
 ]
 
 #problem[
 
-This is a problem, please solve it. 
+  This is a problem, please solve it.
 ]
 
 #proposition[
 
-This is a proposition, please prove it. 
+  This is a proposition, please prove it.
 ]
 
 #note(count: false)[
 
-This is a note, please take note of it. 
+  This is a note, please take note of it.
 ]
 
-#caution(count: false)[ 
-  This is a reminder, please be cautious about it. 
+#caution(count: false)[
+  This is a reminder, please be cautious about it.
 ]
 
 #theorem[
 
-This is a test of referencing @test. 
+  This is a test of referencing @test.
 ]
 
 You can also have Typst list all countblocks:
@@ -768,9 +779,9 @@ You can also have Typst list all countblocks:
 
 #newpara()
 
-#note(count: false)[ 
-  The `kind` parameter here is the `name` specified when defining the countblock, which is the key string in the `cb` dictionary. 
-  ]
+#note(count: false)[
+  The `kind` parameter here is the `name` specified when defining the countblock, which is the key string in the `cb` dictionary.
+]
 
 The numbering logic for these counters is as follows:
 
