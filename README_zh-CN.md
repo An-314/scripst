@@ -224,7 +224,7 @@ Scripst 提供了几个默认的 `countblock` 模块，这些模块已经有预�
 | `name` | `str` | `""` | 模块名称 |
 | `subname` | `str` | `""` | 该次生成块的名称 |
 | `count` | `bool` | `true` | 是否计数 |
-| `cb` | `dict` | `cb` | countblock 的字典 |
+| `cb` | `dict` | `cb` | `countblock` 的字典 |
 | `lab` | `str`, `none` | `none` | 标签 |
 
 例如：
