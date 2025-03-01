@@ -1,27 +1,36 @@
-## Scripst
+<h1 align="center">
+Scripst
+</h1>
 
 **Scripst** is a template package based on **Typst**, offering a set of simple and efficient document templates suitable for everyday documents, assignments, notes, papers, and other scenarios.
 
-[简体中文](https://github.com/An-314/scripst/blob/main/README_zh-CN.md)
+<div align="center">
+
+![Version](https://img.shields.io/badge/version-1.1.0-limegreen.svg)
+![License](https://img.shields.io/badge/license-MIT-greenyellow.svg)
+[![Docs Online](https://img.shields.io/badge/docs-online-lawngreen.svg)](https://an-314.github.io/scripst/)
+
+[简体中文](https://github.com/An-314/scripst/blob/main/README_zh-CN.md) | English
+
+</div>
 
 ## 📑 Contents
 
-- [Scripst](#scripst)
 - [📑 Contents](#-contents)
 - [🚀 Features](#-features)
 - [📦 Installation](#-installation)
-    - [Install Typst](#install-typst)
-    - [Download Scripst Template](#download-scripst-template)
-        - [Method 1: Manual Download](#method-1-download-manually)
-        - [Method 2: Use Typst Local Package Management](#method-2-use-typst-local-package-management)
+  - [Install Typst](#install-typst)
+  - [Download Scripst Template](#download-scripst-template)
+    - [Method 1: Download Manually](#method-1-download-manually)
+    - [Method 2: Use Typst Local Package Management](#method-2-use-typst-local-package-management)
 - [📄 Using Scripst](#-using-scripst)
-    - [Import Scripst Template](#import-scripst-template)
-    - [Create `article` Document](#create-article-document)
+  - [Import Scripst Template](#import-scripst-template)
+  - [Create `article` Document](#create-article-document)
 - [🔧 Template Parameters](#-template-parameters)
 - [✨ Template Examples and Explanations](#-template-examples-and-explanations)
-    - [article Document](#article-document)
-    - [book Document](#book-document)
-    - [report Document](#report-document)
+  - [Article](#article)
+  - [Book](#book)
+  - [Report](#report)
 - [📜 Contributing](#-contributing)
 - [📌 Fonts](#-fonts)
 - [📦 Dependencies](#-dependencies)
