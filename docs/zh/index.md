@@ -1,10 +1,21 @@
-## Scripst
+<h1 align="center">
+Scripst
+</h1>
 
 **Scripst** 是一个基于 **Typst** 的模板包，提供了一套简约高效的文档模板，适用于日常文档、作业、笔记、论文等场景。
 
+<div align="center">
+
+![Version](https://img.shields.io/badge/version-1.1.0-limegreen.svg)
+![License](https://img.shields.io/badge/license-MIT-greenyellow.svg)
+[![Docs Online](https://img.shields.io/badge/docs-online-lawngreen.svg)](https://an-314.github.io/scripst/)
+
+简体中文 | [English](https://github.com/An-314/scripst/blob/main/README.md)
+
+</div>
+
 ## 📑 目录
 
-- [Scripst](#scripst)
 - [📑 目录](#-目录)
 - [🚀 特性](#-特性)
 - [📦 安装](#-安装)
@@ -54,6 +65,7 @@ brew install typst # macOS
 ### 下载 Scripst 模板
 
 #### 方法 1：手动下载
+
 1. 访问 [Scripst GitHub 仓库](https://github.com/An-314/scripst)
 2. 点击 `<> Code` 按钮
 3. 选择 `Download ZIP`
@@ -72,31 +84,39 @@ project/
 ├── chap2.typ
 ```
 若模板存放于 `src/` 目录下，引入方式：
+
 ```typst
 #import "src/main.typ": *
 ```
 
 #### 方法 2：使用 Typst 本地包管理
-将 Scripst 存放至：
+
+可手动下载 Scripst 并将其存放至：
 ```
 ~/.local/share/typst/packages/local/scripst/1.1.0                 # Linux
 %APPDATA%\typst\packages\local\scripst\1.1.0                      # Windows
 ~/Library/Application Support/typst/packages/local/scripst/1.1.0  # macOS
 ```
 
+或者运行如下命令：
+
 ```bash 
 cd {data-dir}/typst/packages/local/scripst
 git clone https://github.com/An-314/scripst 1.1.0
 ```
+
 其中`data-dir`为Typst的数据目录，如上述Linux系统中的`~/.local/share/typst`，Windows系统中的`%APPDATA%\typst`，macOS系统中的`~/Library/Application Support/typst`。
 
 然后在 Typst 文件中直接引入：
+
 ```typst
 #import "@local/scripst:1.1.0": *
 ```
+
 即可使用 Scripst 模板。
 
 使用 `typst init` 快速创建项目：
+
 ```bash
 typst init @local/scripst:1.1.0 project_name
 ```
@@ -106,12 +126,15 @@ typst init @local/scripst:1.1.0 project_name
 ## 📄 使用 Scripst
 
 ### 引入 Scripst 模板
+
 在 Typst 文件开头引入模板：
+
 ```typst
 #import "@local/scripst:1.1.0": *
 ```
 
 ### 创建 `article` 文档
+
 ```typst
 #show: scripst.with(
   title: [Scripst 的使用方法],
@@ -153,17 +176,17 @@ typst init @local/scripst:1.1.0 project_name
 
 ### article 文档
 
-![Article Page 1](./previews/article-1.png) ![Article Page 2](./previews/article-2.png)  
+![Article 第1页](./previews/article-1.png) ![Article 第2页](./previews/article-2.png)  
 [Aritcle 示例](./docs/builds/article.pdf)
 
 ### book 文档
 
-![Book Page 1](./previews/book-1.png) ![Book Page 2](./previews/book-2.png)  
+![Book 第1页](./previews/book-1.png) ![Book 第2页](./previews/book-2.png)  
 [Book 示例](./docs/builds/book.pdf)
 
 ### report 文档
 
-![Report Page 1](./previews/report-1.png) ![Report Page 2](./previews/report-2.png)  
+![Report 第1页](./previews/report-1.png) ![Report 第2页](./previews/report-2.png)  
 [Report 示例](./docs/builds/report.pdf)
 
 ## 📜 贡献
@@ -175,11 +198,13 @@ typst init @local/scripst:1.1.0 project_name
 
 ## 📌 字体
 
-本项目依赖以下字体：
+本项目默认使用以下字体：
+
 - 主要字体：[CMU Serif](https://en.wikipedia.org/wiki/Computer_Modern), [Consolas](https://en.wikipedia.org/wiki/Consolas)
 - 备选字体：[Linux Libertine](https://en.wikipedia.org/wiki/Linux_Libertine)
 - 以及SimSun, SimHei, KaiTi等中文字体
-请确保已安装该字体，或根据需要进行替换。
+
+使用默认字体前，请确保已安装该字体，或根据需要在`./src/configs.typ`中进行替换。
 
 ## 📦 依赖
 

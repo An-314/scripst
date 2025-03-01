@@ -1,0 +1,31 @@
+site_name: Scripst Documentation
+docs_dir: '../../docs/fr'
+site_dir: '../../generated/fr'
+site_url: https://an-314.github.io/scripst
+theme:
+    name: material
+    custom_dir: '../../overrides/'
+    language: fr
+extra:
+    alternate:
+        - name: English
+          link: /
+          lang: en
+        - name: 中文
+          link: /zh/
+          lang: zh
+        - name: español
+          link: /es/
+          lang: es
+        - name: français
+          link: /fr/
+          lang: fr
+        - name: 日本語
+          link: /ja/
+          lang: ja
+        - name: Deutsch
+          link: /de/
+          lang: de
+plugins:
+  - search:                                         
+      lang: fr
