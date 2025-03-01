@@ -1,0 +1,1026 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://an-314.github.io/scripst/">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.6">
+    
+    
+      
+        <title>Scripst Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="." title="Scripst Documentation" class="md-header__button md-logo" aria-label="Scripst Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Scripst Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="言語切り替え">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/scripst/ja/" hreflang="ja" class="md-select__link">
+              日本語
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/scripst/zh/" hreflang="zh" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/scripst/es/" hreflang="es" class="md-select__link">
+              español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/scripst/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/scripst/fr/" hreflang="fr" class="md-select__link">
+              français
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/scripst/de/" hreflang="de" class="md-select__link">
+              Deutsch
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/scripst/ko/" hreflang="ko" class="md-select__link">
+              한국어
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Scripst Documentation" class="md-nav__button md-logo" aria-label="Scripst Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Scripst Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📑 目次
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 特性
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 インストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 インストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#typst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typst のインストール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripst テンプレートのダウンロード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scripst テンプレートのダウンロード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法 1：手動ダウンロード
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2typst" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法 2：Typst ローカルパッケージ管理の使用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripst_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📄 Scripst の使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📄 Scripst の使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scripst_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripst テンプレートのインポート
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#article" class="md-nav__link">
+    <span class="md-ellipsis">
+      article ドキュメントの作成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 テンプレートパラメータ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✨ テンプレート効果の例と説明
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✨ テンプレート効果の例と説明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#article_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      article ドキュメント
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#book" class="md-nav__link">
+    <span class="md-ellipsis">
+      book ドキュメント
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report" class="md-nav__link">
+    <span class="md-ellipsis">
+      report ドキュメント
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📜 貢献
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 フォント
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 依存
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 TODO
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📑 目次
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 特性
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 インストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 インストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#typst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typst のインストール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripst テンプレートのダウンロード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scripst テンプレートのダウンロード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法 1：手動ダウンロード
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2typst" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法 2：Typst ローカルパッケージ管理の使用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripst_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📄 Scripst の使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📄 Scripst の使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scripst_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripst テンプレートのインポート
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#article" class="md-nav__link">
+    <span class="md-ellipsis">
+      article ドキュメントの作成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 テンプレートパラメータ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✨ テンプレート効果の例と説明
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✨ テンプレート効果の例と説明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#article_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      article ドキュメント
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#book" class="md-nav__link">
+    <span class="md-ellipsis">
+      book ドキュメント
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report" class="md-nav__link">
+    <span class="md-ellipsis">
+      report ドキュメント
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📜 貢献
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 フォント
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 依存
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 TODO
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 align="center">
+Scripst
+</h1>
+
+<p><strong>Scripst</strong> は、<strong>Typst</strong> を基盤としたテンプレートパッケージです。シンプルで効率的なドキュメントテンプレートを提供し、日常のドキュメント、課題、ノート、論文などさまざまなシーンに適しています。</p>
+<div align="center">
+  <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="Version">
+  <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="License">
+  <a href="https://an-314.github.io/scripst/">
+    <img src="https://img.shields.io/badge/docs-online-lawngreen.svg" alt="Docs Online">
+  </a>
+</div>
+
+<h2 id="_1">📑 目次</h2>
+<ul>
+<li><a href="#目次">📑 目次</a></li>
+<li><a href="#特性">🚀 特性</a></li>
+<li><a href="#インストール">📦 インストール</a></li>
+<li><a href="#typst-のインストール">Typst のインストール</a></li>
+<li><a href="#scripst-テンプレートのダウンロード">Scripst テンプレートのダウンロード</a><ul>
+<li><a href="#方法-1手動ダウンロード">方法 1：手動ダウンロード</a></li>
+<li><a href="#方法-2typst-ローカルパッケージ管理の使用">方法 2：Typst ローカルパッケージ管理の使用</a></li>
+</ul>
+</li>
+<li><a href="#scripst-の使用">📄 Scripst の使用</a></li>
+<li><a href="#scripst-テンプレートのインポート">Scripst テンプレートのインポート</a></li>
+<li><a href="#article-ドキュメントの作成"><code>article</code> ドキュメントの作成</a></li>
+<li><a href="#テンプレートパラメータ">🔧 テンプレートパラメータ</a></li>
+<li><a href="#テンプレート効果の例と説明">✨ テンプレート効果の例と説明</a></li>
+<li><a href="#article-ドキュメント"><code>article</code> ドキュメント</a></li>
+<li><a href="#book-ドキュメント"><code>book</code> ドキュメント</a></li>
+<li><a href="#report-ドキュメント"><code>report</code> ドキュメント</a></li>
+<li><a href="#貢献">📜 貢献</a></li>
+<li><a href="#フォント">📌 フォント</a></li>
+<li><a href="#依存">📦 依存</a></li>
+<li><a href="#todo">🎯 TODO</a></li>
+</ul>
+<hr />
+<h2 id="_2">🚀 特性</h2>
+<ul>
+<li>高拡張性：モジュール化された設計で、テンプレートの拡張が容易</li>
+<li>多言語対応：さまざまな言語に対応したローカライズ設計</li>
+<li>カスタムカウンターブロックのサポート：定理、問題など、さまざまなカウンターとスタイルを生成しやすい</li>
+</ul>
+<p><img alt="Demo0" src="previews/article-1.png" />
+<img alt="Demo1" src="previews/article-12.png" />
+<img alt="Demo2" src="previews/article-9.png" /></p>
+<h2 id="_3">📦 インストール</h2>
+<h3 id="typst">Typst のインストール</h3>
+<p>Typst がインストールされていることを確認してください。以下のコマンドを使用してインストールできます：</p>
+<pre><code class="language-bash">sudo apt install typst # Debian/Ubuntu
+sudo pacman -S typst # Arch Linux
+winget install --id Typst.Typst # Windows
+brew install typst # macOS
+</code></pre>
+<p>または、<a href="https://github.com/typst/typst">Typst 公式ドキュメント</a> を参照して更多信息を確認してください。</p>
+<h3 id="scripst">Scripst テンプレートのダウンロード</h3>
+<h4 id="1">方法 1：手動ダウンロード</h4>
+<ol>
+<li><a href="https://github.com/An-314/scripst">Scripst GitHub リポジトリ</a> にアクセス</li>
+<li><code>&lt;&gt; Code</code> ボタンをクリック</li>
+<li><code>Download ZIP</code> を選択</li>
+<li>解凍後、テンプレートファイルをプロジェクトディレクトリに配置</li>
+</ol>
+<p><strong>ディレクトリ構造の提案</strong></p>
+<pre><code class="language-plaintext">project/
+├── src/
+│   ├── main.typ
+│   ├── components.typ
+├── pic/
+│   ├── image.jpg
+├── main.typ
+├── chap1.typ
+├── chap2.typ
+</code></pre>
+<p>テンプレートが <code>src/</code> ディレクトリ内にある場合、インポート方法は次のとおりです：</p>
+<pre><code class="language-typst">#import &quot;src/main.typ&quot;: *
+</code></pre>
+<h4 id="2typst">方法 2：Typst ローカルパッケージ管理の使用</h4>
+<p>Scripst を手動でダウンロードし、次の場所に配置します：</p>
+<pre><code>~/.local/share/typst/packages/local/scripst/1.1.0                 # Linux
+%APPDATA%\typst\packages\local\scripst\1.1.0                      # Windows
+~/Library/Application Support/typst/packages/local/scripst/1.1.0  # macOS
+</code></pre>
+<p>または、次のコマンドを実行します：</p>
+<pre><code class="language-bash">cd {data-dir}/typst/packages/local/scripst
+git clone https://github.com/An-314/scripst 1.1.0
+</code></pre>
+<p>ここで、<code>data-dir</code> は Typst のデータディレクトリを指します。例えば、Linux 系统では <code>~/.local/share/typst</code>、Windows 系统では <code>%APPDATA%\typst</code>、macOS 系统では <code>~/Library/Application Support/typst</code> です。</p>
+<p>その後、Typst ファイル内で直接インポートします：</p>
+<pre><code class="language-typst">#import &quot;@local/scripst:1.1.0&quot;: *
+</code></pre>
+<p>これで Scripst テンプレートを使用できます。</p>
+<p><code>typst init</code> を使用してプロジェクトを迅速に作成します：</p>
+<pre><code class="language-bash">typst init @local/scripst:1.1.0 project_name
+</code></pre>
+<hr />
+<h2 id="scripst_1">📄 Scripst の使用</h2>
+<h3 id="scripst_2">Scripst テンプレートのインポート</h3>
+<p>Typst ファイルの先頭でテンプレートをインポートします：</p>
+<pre><code class="language-typst">#import &quot;@local/scripst:1.1.0&quot;: *
+</code></pre>
+<h3 id="article"><code>article</code> ドキュメントの作成</h3>
+<pre><code class="language-typst">#show: scripst.with(
+  title: [Scripst の使用方法],
+  info: [このテンプレートは記事用です],
+  author: (&quot;著者1&quot;, &quot;著者2&quot;, &quot;著者3&quot;),
+  time: datetime.today().display(),
+  abstract: [要約内容],
+  keywords: (&quot;キーワード1&quot;, &quot;キーワード2&quot;, &quot;キーワード3&quot;),
+  contents: true,
+  content_depth: 2,
+  matheq_depth: 2,
+  lang: &quot;zh&quot;,
+)
+</code></pre>
+<hr />
+<h2 id="_4">🔧 テンプレートパラメータ</h2>
+<table>
+<thead>
+<tr>
+<th>パラメータ</th>
+<th>型</th>
+<th>デフォルト値</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>template</code></td>
+<td><code>str</code></td>
+<td><code>"article"</code></td>
+<td>テンプレートを選択 (<code>"article"</code>, <code>"book"</code>, <code>"report"</code>)</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><code>content</code>, <code>str</code>, <code>none</code></td>
+<td><code>""</code></td>
+<td>ドキュメントタイトル</td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td><code>content</code>, <code>str</code>, <code>none</code></td>
+<td><code>""</code></td>
+<td>ドキュメントの副題または補足情報</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td><code>array</code></td>
+<td><code>()</code></td>
+<td>著者リスト</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td><code>content</code>, <code>str</code>, <code>none</code></td>
+<td><code>""</code></td>
+<td>ドキュメントの日付</td>
+</tr>
+<tr>
+<td><code>abstract</code></td>
+<td><code>content</code>, <code>str</code>, <code>none</code></td>
+<td><code>none</code></td>
+<td>ドキュメントの要約</td>
+</tr>
+<tr>
+<td><code>keywords</code></td>
+<td><code>array</code></td>
+<td><code>()</code></td>
+<td>キーワード</td>
+</tr>
+<tr>
+<td><code>preface</code></td>
+<td><code>content</code>, <code>str</code>, <code>none</code></td>
+<td><code>none</code></td>
+<td>序文</td>
+</tr>
+<tr>
+<td><code>font_size</code></td>
+<td><code>length</code></td>
+<td><code>11pt</code></td>
+<td>フォントサイズ</td>
+</tr>
+<tr>
+<td><code>contents</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>目次を生成するかどうか</td>
+</tr>
+<tr>
+<td><code>content_depth</code></td>
+<td><code>int</code></td>
+<td><code>2</code></td>
+<td>目次深度</td>
+</tr>
+<tr>
+<td><code>matheq_depth</code></td>
+<td><code>int</code></td>
+<td><code>2</code></td>
+<td>数式番号深度</td>
+</tr>
+<tr>
+<td><code>lang</code></td>
+<td><code>str</code></td>
+<td><code>"zh"</code></td>
+<td>言語 (<code>"zh"</code>, <code>"en"</code>, <code>"fr"</code> など)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_5">✨ テンプレート効果の例と説明</h2>
+<h3 id="article_1"><code>article</code> ドキュメント</h3>
+<p><img alt="Article 第1頁" src="previews/article-1.png" /> <img alt="Article 第2頁" src="previews/article-2.png" /><br />
+<a href="./docs/builds/article.pdf">Article 例</a></p>
+<h3 id="book"><code>book</code> ドキュメント</h3>
+<p><img alt="Book 第1頁" src="previews/book-1.png" /> <img alt="Book 第2頁" src="previews/book-2.png" /><br />
+<a href="./docs/builds/book.pdf">Book 例</a></p>
+<h3 id="report"><code>report</code> ドキュメント</h3>
+<p><img alt="Report 第1頁" src="previews/report-1.png" /> <img alt="Report 第2頁" src="previews/report-2.png" /><br />
+<a href="./docs/builds/report.pdf">Report 例</a></p>
+<h2 id="_6">📜 貢献</h2>
+<p>Issue または Pull Request を通じて参加を歓迎します！改善提案があれば、ぜひ議論に参加してください。</p>
+<ul>
+<li><strong>GitHub リポジトリ</strong>：<a href="https://github.com/An-314/scripst">Scripst</a></li>
+<li><strong>問題報告</strong>：Issue を作成して議論を開始</li>
+</ul>
+<h2 id="_7">📌 フォント</h2>
+<p>このプロジェクトでは、次のフォントをデフォルトで使用しています：</p>
+<ul>
+<li>主要フォント：<a href="https://en.wikipedia.org/wiki/Computer_Modern">CMU Serif</a>, <a href="https://en.wikipedia.org/wiki/Consolas">Consolas</a></li>
+<li>替代フォント：<a href="https://en.wikipedia.org/wiki/Linux_Libertine">Linux Libertine</a></li>
+<li>および SimSun, SimHei, KaiTi などの中文字体</li>
+</ul>
+<p>デフォルトのフォントを使用する前に、フォントがインストールされていることを確認し、必要に応じて <code>./src/configs.typ</code> で置換してください。</p>
+<h2 id="_8">📦 依存</h2>
+<p>一部の機能では、Scripst が次の Typst パッケージを参照しています：</p>
+<ul>
+<li><a href="https://typst.app/universe/package/tablem">tablem</a></li>
+<li><a href="https://typst.app/universe/package/physica">physica</a></li>
+</ul>
+<h2 id="todo">🎯 TODO</h2>
+<ul>
+<li>[ ] <code>beamer</code> テンプレートの追加
+```</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

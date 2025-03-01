@@ -1,0 +1,1025 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://an-314.github.io/scripst/">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.6">
+    
+    
+      
+        <title>Scripst Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="." title="Scripst Documentation" class="md-header__button md-logo" aria-label="Scripst Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Scripst Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="언어설정">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/scripst/ko/" hreflang="ko" class="md-select__link">
+              한국어
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/scripst/zh/" hreflang="zh" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/scripst/ja/" hreflang="ja" class="md-select__link">
+              日本語
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/scripst/es/" hreflang="es" class="md-select__link">
+              español
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/scripst/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/scripst/fr/" hreflang="fr" class="md-select__link">
+              français
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/scripst/de/" hreflang="de" class="md-select__link">
+              Deutsch
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Scripst Documentation" class="md-nav__button md-logo" aria-label="Scripst Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Scripst Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📑 목차
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 기능
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 설치
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 설치">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#typst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typst 설치
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripst 템플릿 다운로드
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scripst 템플릿 다운로드">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      방법 1: 수동 다운로드
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-typst" class="md-nav__link">
+    <span class="md-ellipsis">
+      방법 2: Typst 로컬 패키지 관리 사용
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripst_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📄 Scripst 사용
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📄 Scripst 사용">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scripst_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripst 템플릿 인포트
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#article" class="md-nav__link">
+    <span class="md-ellipsis">
+      article 문서 작성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 템플릿 파라미터
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✨ 템플릿 효과 예제 및 설명
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✨ 템플릿 효과 예제 및 설명">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#article_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      article 문서
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#book" class="md-nav__link">
+    <span class="md-ellipsis">
+      book 문서
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report" class="md-nav__link">
+    <span class="md-ellipsis">
+      report 문서
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📜 기여
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 폰트
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 종속성
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 TODO
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📑 목차
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 기능
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 설치
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 설치">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#typst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typst 설치
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripst 템플릿 다운로드
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scripst 템플릿 다운로드">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      방법 1: 수동 다운로드
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-typst" class="md-nav__link">
+    <span class="md-ellipsis">
+      방법 2: Typst 로컬 패키지 관리 사용
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripst_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📄 Scripst 사용
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📄 Scripst 사용">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scripst_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripst 템플릿 인포트
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#article" class="md-nav__link">
+    <span class="md-ellipsis">
+      article 문서 작성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 템플릿 파라미터
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✨ 템플릿 효과 예제 및 설명
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✨ 템플릿 효과 예제 및 설명">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#article_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      article 문서
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#book" class="md-nav__link">
+    <span class="md-ellipsis">
+      book 문서
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report" class="md-nav__link">
+    <span class="md-ellipsis">
+      report 문서
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📜 기여
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 폰트
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 종속성
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 TODO
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 align="center">
+Scripst
+</h1>
+
+<p><strong>Scripst</strong>는 <strong>Typst</strong>를 기반으로 한 템플릿 패키지입니다. 간결하고 효율적인 문서 템플릿을 제공하여 일상적인 문서, 과제, 노트, 논문 등 다양한 시나리오에 적합합니다.</p>
+<div align="center">
+  <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="버전">
+  <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="라이선스">
+  <a href="https://an-314.github.io/scripst/">
+    <img src="https://img.shields.io/badge/docs-온라인-lawngreen.svg" alt="온라인 문서">
+  </a>
+</div>
+
+<h2 id="_1">📑 목차</h2>
+<ul>
+<li><a href="#목차">📑 목차</a></li>
+<li><a href="#기능">🚀 기능</a></li>
+<li><a href="#설치">📦 설치</a></li>
+<li><a href="#typst-설치">Typst 설치</a></li>
+<li><a href="#scripst-템플릿-다운로드">Scripst 템플릿 다운로드</a><ul>
+<li><a href="#방법-1수동-다운로드">방법 1: 수동 다운로드</a></li>
+<li><a href="#방법-2typst-로컬-패키지-관리-사용">방법 2: Typst 로컬 패키지 관리 사용</a></li>
+</ul>
+</li>
+<li><a href="#scripst-사용">📄 Scripst 사용</a></li>
+<li><a href="#scripst-템플릿-인포트">Scripst 템플릿导入</a></li>
+<li><a href="#article-문서-작성"><code>article</code> 문서 작성</a></li>
+<li><a href="#템플릿-파라미터">🔧 템플릿 파라미터</a></li>
+<li><a href="#템플릿-효과-예제-및-설명">✨ 템플릿 효과 예제 및 설명</a></li>
+<li><a href="#article-문서"><code>article</code> 문서</a></li>
+<li><a href="#book-문서"><code>book</code> 문서</a></li>
+<li><a href="#report-문서"><code>report</code> 문서</a></li>
+<li><a href="#기여">📜 기여</a></li>
+<li><a href="#폰트">📌 폰트</a></li>
+<li><a href="#종속성">📦 종속성</a></li>
+<li><a href="#todo">🎯 TODO</a></li>
+</ul>
+<hr />
+<h2 id="_2">🚀 기능</h2>
+<ul>
+<li>고확장성: 모듈화된 설계로 템플릿 확장이 쉬움</li>
+<li>다국어 지원: 다양한 언어에 맞춘 로컬라이즈 설계</li>
+<li>사용자 정의 카운터 블록 지원: 정리, 문제 등 다양한 카운터 및 스타일 생성이 쉬움</li>
+</ul>
+<p><img alt="Demo0" src="previews/article-1.png" />
+<img alt="Demo1" src="previews/article-12.png" />
+<img alt="Demo2" src="previews/article-9.png" /></p>
+<h2 id="_3">📦 설치</h2>
+<h3 id="typst">Typst 설치</h3>
+<p>Typst가 설치되어 있는지 확인하세요. 설치를 위해 다음 명령을 사용할 수 있습니다:</p>
+<pre><code class="language-bash">sudo apt install typst # Debian/Ubuntu
+sudo pacman -S typst # Arch Linux
+winget install --id Typst.Typst # Windows
+brew install typst # macOS
+</code></pre>
+<p>또는 <a href="https://github.com/typst/typst">Typst 공식 문서</a>를 참조하여 더 많은 정보를 확인하세요.</p>
+<h3 id="scripst">Scripst 템플릿 다운로드</h3>
+<h4 id="1">방법 1: 수동 다운로드</h4>
+<ol>
+<li><a href="https://github.com/An-314/scripst">Scripst GitHub 저장소</a>에 방문</li>
+<li><code>&lt;&gt; Code</code> 버튼을 클릭</li>
+<li><code>Download ZIP</code>을 선택</li>
+<li>압축을 풀고, 템플릿 파일을 프로젝트 디렉토리에 배치</li>
+</ol>
+<p><strong>디렉토리 구조 제안</strong></p>
+<pre><code class="language-plaintext">project/
+├── src/
+│   ├── main.typ
+│   ├── components.typ
+├── pic/
+│   ├── image.jpg
+├── main.typ
+├── chap1.typ
+├── chap2.typ
+</code></pre>
+<p>템플릿이 <code>src/</code> 디렉토리에 있을 경우, 다음 방법으로 인포트합니다:</p>
+<pre><code class="language-typst">#import &quot;src/main.typ&quot;: *
+</code></pre>
+<h4 id="2-typst">방법 2: Typst 로컬 패키지 관리 사용</h4>
+<p>Scripst를 수동으로 다운로드하고 다음 위치에 배치합니다:</p>
+<pre><code>~/.local/share/typst/packages/local/scripst/1.1.0                 # Linux
+%APPDATA%\typst\packages\local\scripst\1.1.0                      # Windows
+~/Library/Application Support/typst/packages/local/scripst/1.1.0  # macOS
+</code></pre>
+<p>또는 다음 명령을 실행합니다:</p>
+<pre><code class="language-bash">cd {data-dir}/typst/packages/local/scripst
+git clone https://github.com/An-314/scripst 1.1.0
+</code></pre>
+<p>여기서 <code>data-dir</code>은 Typst의 데이터 디렉토리를 나타냅니다. 예를 들어, Linux에서는 <code>~/.local/share/typst</code>, Windows에서는 <code>%APPDATA%\typst</code>, macOS에서는 <code>~/Library/Application Support/typst</code>입니다.</p>
+<p>그 후, Typst 파일 내에서 직접 인포트합니다:</p>
+<pre><code class="language-typst">#import &quot;@local/scripst:1.1.0&quot;: *
+</code></pre>
+<p>이제 Scripst 템플릿을 사용할 수 있습니다.</p>
+<p><code>typst init</code>을 사용하여 프로젝트를 신속하게 생성합니다:</p>
+<pre><code class="language-bash">typst init @local/scripst:1.1.0 project_name
+</code></pre>
+<hr />
+<h2 id="scripst_1">📄 Scripst 사용</h2>
+<h3 id="scripst_2">Scripst 템플릿 인포트</h3>
+<p>Typst 파일의开头에서 템플릿을 인포트합니다:</p>
+<pre><code class="language-typst">#import &quot;@local/scripst:1.1.0&quot;: *
+</code></pre>
+<h3 id="article"><code>article</code> 문서 작성</h3>
+<pre><code class="language-typst">#show: scripst.with(
+  title: [Scripst의 사용 방법],
+  info: [이 템플릿은 기사용입니다],
+  author: (&quot;저자1&quot;, &quot;저자2&quot;, &quot;저자3&quot;),
+  time: datetime.today().display(),
+  abstract: [요약 내용],
+  keywords: (&quot;키워드1&quot;, &quot;키워드2&quot;, &quot;키워드3&quot;),
+  contents: true,
+  content_depth: 2,
+  matheq_depth: 2,
+  lang: &quot;zh&quot;,
+)
+</code></pre>
+<hr />
+<h2 id="_4">🔧 템플릿 파라미터</h2>
+<table>
+<thead>
+<tr>
+<th>파라미터</th>
+<th>유형</th>
+<th>기본값</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>template</code></td>
+<td><code>str</code></td>
+<td><code>"article"</code></td>
+<td>템플릿 선택 (<code>"article"</code>, <code>"book"</code>, <code>"report"</code>)</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><code>content</code>, <code>str</code>, <code>none</code></td>
+<td><code>""</code></td>
+<td>문서 제목</td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td><code>content</code>, <code>str</code>, <code>none</code></td>
+<td><code>""</code></td>
+<td>문서 부제목 또는 보충 정보</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td><code>array</code></td>
+<td><code>()</code></td>
+<td>저자 목록</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td><code>content</code>, <code>str</code>, <code>none</code></td>
+<td><code>""</code></td>
+<td>문서 시간</td>
+</tr>
+<tr>
+<td><code>abstract</code></td>
+<td><code>content</code>, <code>str</code>, <code>none</code></td>
+<td><code>none</code></td>
+<td>문서 요약</td>
+</tr>
+<tr>
+<td><code>keywords</code></td>
+<td><code>array</code></td>
+<td><code>()</code></td>
+<td>키워드</td>
+</tr>
+<tr>
+<td><code>preface</code></td>
+<td><code>content</code>, <code>str</code>, <code>none</code></td>
+<td><code>none</code></td>
+<td>서문</td>
+</tr>
+<tr>
+<td><code>font_size</code></td>
+<td><code>length</code></td>
+<td><code>11pt</code></td>
+<td>폰트 크기</td>
+</tr>
+<tr>
+<td><code>contents</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>목차 생성 여부</td>
+</tr>
+<tr>
+<td><code>content_depth</code></td>
+<td><code>int</code></td>
+<td><code>2</code></td>
+<td>목차 깊이</td>
+</tr>
+<tr>
+<td><code>matheq_depth</code></td>
+<td><code>int</code></td>
+<td><code>2</code></td>
+<td>수식 번호 깊이</td>
+</tr>
+<tr>
+<td><code>lang</code></td>
+<td><code>str</code></td>
+<td><code>"zh"</code></td>
+<td>언어 (<code>"zh"</code>, <code>"en"</code>, <code>"fr"</code> 등)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_5">✨ 템플릿 효과 예제 및 설명</h2>
+<h3 id="article_1"><code>article</code> 문서</h3>
+<p><img alt="문서 1페이지" src="previews/article-1.png" /> <img alt="문서 2페이지" src="previews/article-2.png" /><br />
+<a href="./docs/builds/article.pdf">기사 예제</a></p>
+<h3 id="book"><code>book</code> 문서</h3>
+<p><img alt="책 1페이지" src="previews/book-1.png" /> <img alt="책 2페이지" src="previews/book-2.png" /><br />
+<a href="./docs/builds/book.pdf">책 예제</a></p>
+<h3 id="report"><code>report</code> 문서</h3>
+<p><img alt="보고서 1페이지" src="previews/report-1.png" /> <img alt="보고서 2페이지" src="previews/report-2.png" /><br />
+<a href="./docs/builds/report.pdf">보고서 예제</a></p>
+<h2 id="_6">📜 기여</h2>
+<p>Issue 또는 Pull Request를 통해 참여를 환영합니다! 개선 제안이 있다면,ぜひ 토론에 참여해주세요.</p>
+<ul>
+<li><strong>GitHub 저장소</strong>: <a href="https://github.com/An-314/scripst">Scripst</a></li>
+<li><strong>문제 보고</strong>: Issue를 생성하여 토론을 시작</li>
+</ul>
+<h2 id="_7">📌 폰트</h2>
+<p>이 프로젝트에서는 다음 폰트를 기본으로 사용합니다:</p>
+<ul>
+<li>주 폰트: <a href="https://en.wikipedia.org/wiki/Computer_Modern">CMU Serif</a>, <a href="https://en.wikipedia.org/wiki/Consolas">Consolas</a></li>
+<li>대체 폰트: <a href="https://en.wikipedia.org/wiki/Linux_Libertine">Linux Libertine</a></li>
+<li>그리고 SimSun, SimHei, KaiTi 등 중문 폰트</li>
+</ul>
+<p>기본 폰트를 사용하기 전에 폰트가 설치되어 있는지 확인하고, 필요에 따라 <code>./src/configs.typ</code>에서 대체하세요.</p>
+<h2 id="_8">📦 종속성</h2>
+<p>일부 내용에서 Scripst는 다음 Typst 패키지를 참조합니다:</p>
+<ul>
+<li><a href="https://typst.app/universe/package/tablem">tablem</a></li>
+<li><a href="https://typst.app/universe/package/physica">physica</a></li>
+</ul>
+<h2 id="todo">🎯 TODO</h2>
+<ul>
+<li>[ ] <code>beamer</code> 템플릿 추가</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
