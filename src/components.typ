@@ -118,30 +118,49 @@
   body
 }
 
-#let countblock(name, subname: "", cb, count: true, body) = {
+#let countblock(name, subname: "", cb, count: true, lab: none, body) = {
   if count { counter(name).step() }
   if cb.at(name) == none { panic("countblock: block not registered") }
   let color = cb.at(name).at(1)
-  block(
+  show figure: it => align(left)[
+    #v(-4pt)
+    #it
+    #v(-4pt)
+  ]
+  let num = ""
+  let info = cb.at(name).at(0)
+  if count {
+    num = context {
+      if query(heading.where(level: 1)).len() != 0 {
+        " " + counter(heading.where(level: 1)).display() + "." + counter(name).display()
+      } else { " " + counter(name).display() }
+    }
+  }
+  let title = info + num + " " + subname
+  set text(font: font.countblock)
+  let countblock = block(
     fill: color.transparentize(60%),
     inset: 8pt,
     radius: 2pt,
     width: 100%,
     stroke: (left: (thickness: 4pt, paint: cb.at(name).at(1))),
-    {
-      let num = ""
-      let info = cb.at(name).at(0)
-      if count {
-        num = context {
-          if query(heading.where(level: 1)).len() != 0 {
-            " " + context counter(heading.where(level: 1)).display() + "." + context counter(name).display()
-          } else { " " + context counter(name).display() }
-        }
-      }
-      let title = info + num + " " + subname
-      [*#title* #h(0.75em) #body]
-    },
+    [#set text(font: font.countblock)
+      *#title* #h(0.75em) #body],
   )
+  [
+    #figure(
+      countblock,
+      caption: none,
+      kind: cb.at(name).at(0),
+      supplement: cb.at(name).at(0),
+      numbering: it => {
+        if query(heading.where(level: 1)).len() != 0 {
+          " " + counter(heading.where(level: 1)).display() + "." + counter(name).display()
+        } else { " " + counter(name).display() }
+      },
+    )
+    #if lab != none { label(lab) }
+  ]
 }
 
 #let definition = countblock.with("def", cb)

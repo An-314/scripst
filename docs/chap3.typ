@@ -247,13 +247,14 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
   subname,
   count: true,
   cb: cb,
+  lab: none,
 )[
   ...
 ]
 ```
 其中 `name` 是计数器的名称，`subname` 是创建该条目的名称，`count` 是是否计数，`cb` 是计数器的列表。例如
 ```typst
-#countblock("thm", subname: [_Fermat's Last Theorem_], cb)[
+#countblock("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
 
   No three $a, b, c in NN^+$ can satisfy the equation
   $
@@ -264,7 +265,7 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 #proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
 ```
 就会创建一个定理块，并且计数：
-#countblock("thm", subname: [_Fermat's Last Theorem_], cb)[
+#countblock("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
 
   No three $a, b, c in NN^+$ can satisfy the equation
   $
@@ -274,6 +275,13 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 ]
 #proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
 其中`subname`如传入，是需要指定的。
+
+此外，你可以使用 `lab` 参数来为这个块添加一个标签，以便在文中引用。例如刚才的`fermat`定理块，你可以使用`@fermat`来引用它。
+
+```typst
+Fermat 并没有对 @fermat 给出公开的证明。
+```
+Fermat 并没有对 @fermat 给出公开的证明。
 
 你也可以将其封装成另一个函数：
 ```typst
@@ -292,10 +300,14 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 ```
 #let test = countblock.with("test", cb)
 #countblock("test", cb)[
-  1 + 1 = 2
+  $
+    1 + 1 = 2
+  $
 ]
 #test[
-  1 + 2 = 3
+  $
+    1 + 2 = 3
+  $
 ]
 
 其余默认给定的计数器也可以使用，直接封装好的函数：
@@ -312,9 +324,9 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
   这是一个定义，请你理解它。
 ]
 
-#theorem[
+#theorem(lab: "test")[
 
-  这是一个定理，请你使用它。
+  这是一个定理，请你使用它。（我在该countblock中添加了标签，以在后文引用）
 ]
 
 #problem[
@@ -334,6 +346,11 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 
 #caution(count: false)[
   这是一个提醒，请你当心它。
+]
+
+#theorem[
+
+  这是对 @test 引用的测试。
 ]
 
 #newpara()
