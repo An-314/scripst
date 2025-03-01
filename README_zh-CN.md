@@ -1,12 +1,21 @@
-## Scripst
+<h1 align="center">
+Scripst
+</h1>
 
 **Scripst** 是一个基于 **Typst** 的模板包，提供了一套简约高效的文档模板，适用于日常文档、作业、笔记、论文等场景。
 
-[English](https://github.com/An-314/scripst/blob/main/README.md)
+<div align="center">
+
+![Version](https://img.shields.io/badge/version-1.1.0-limegreen.svg)
+![License](https://img.shields.io/badge/license-MIT-greenyellow.svg)
+[![Docs Online](https://img.shields.io/badge/docs-online-lawngreen.svg)](https://an-314.github.io/scripst/)
+
+简体中文 | [English](https://github.com/An-314/scripst/blob/main/README.md)
+
+</div>
 
 ## 📑 目录
 
-- [Scripst](#scripst)
 - [📑 目录](#-目录)
 - [🚀 特性](#-特性)
 - [📦 安装](#-安装)
