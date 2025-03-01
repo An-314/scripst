@@ -3,9 +3,11 @@
 **Scripst** es un paquete de plantillas basado en **Typst**, que ofrece un conjunto de plantillas simples y eficientes, adecuadas para documentos cotidianos, tareas, notas, trabajos académicos y otros escenarios.
 
 <div align="center">
-
-![Versión](https://img.shields.io/badge/version-1.1.0-limegreen.svg) ![Licencia](https://img.shields.io/badge/license-MIT-greenyellow.svg) [![Documentación Online](https://img.shields.io/badge/docs-online-lawngreen.svg)](https://an-314.github.io/scripst/)
-
+  <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="Version">
+  <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="License">
+  <a href="https://an-314.github.io/scripst/">
+    <img src="https://img.shields.io/badge/docs-online-lawngreen.svg" alt="Docs Online">
+  </a>
 </div>
 
 ## 📑 Contenido

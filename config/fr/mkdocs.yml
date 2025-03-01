@@ -8,24 +8,27 @@ theme:
     language: fr
 extra:
     alternate:
+        - name: français
+          link: /scripst/fr/
+          lang: fr
         - name: English
           link: /scripst/
           lang: en
-        - name: 中文
+        - name: 简体中文
           link: /scripst/zh/
           lang: zh
         - name: español
           link: /scripst/es/
           lang: es
-        - name: français
-          link: /scripst/fr/
-          lang: fr
-        - name: 日本語
-          link: /scripst/ja/
-          lang: ja
         - name: Deutsch
           link: /scripst/de/
           lang: de
+        - name: 日本語
+          link: /scripst/ja/
+          lang: ja
+        - name: 한국어
+          link: /scripst/ko/
+          lang: ko
 plugins:
     - search:
           lang: fr

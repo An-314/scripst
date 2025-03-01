@@ -1,34 +1,34 @@
 site_name: Scripst Documentation
-docs_dir: "../../docs/zh"
-site_dir: "../../scripst/zh"
+docs_dir: "../../docs/ko"
+site_dir: "../../scripst/ko"
 site_url: https://an-314.github.io/scripst/
 theme:
     name: material
     custom_dir: "../../overrides/"
-    language: zh
+    language: ko
 extra:
     alternate:
+        - name: 한국어
+          link: /scripst/ko/
+          lang: ko
         - name: 简体中文
           link: /scripst/zh/
           lang: zh
-        - name: English
-          link: /scripst/
-          lang: en
+        - name: 日本語
+          link: /scripst/ja/
+          lang: ja
         - name: español
           link: /scripst/es/
           lang: es
+        - name: English
+          link: /scripst/
+          lang: en
         - name: français
           link: /scripst/fr/
           lang: fr
         - name: Deutsch
           link: /scripst/de/
           lang: de
-        - name: 日本語
-          link: /scripst/ja/
-          lang: ja
-        - name: 한국어
-          link: /scripst/ko/
-          lang: ko
 plugins:
     - search:
-          lang: zh
+          lang: ko

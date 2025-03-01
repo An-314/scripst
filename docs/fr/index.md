@@ -3,9 +3,11 @@
 **Scripst** est un package de modèles basé sur **Typst**, offrant un ensemble de modèles simples et efficaces adaptés aux documents quotidiens, devoirs, notes, articles et autres scénarios.
 
 <div align="center">
-
-![Version](https://img.shields.io/badge/version-1.1.0-limegreen.svg) ![Licence](https://img.shields.io/badge/license-MIT-greenyellow.svg) [![Docs en ligne](https://img.shields.io/badge/docs-online-lawngreen.svg)](https://an-314.github.io/scripst/)
-
+  <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="Version">
+  <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="License">
+  <a href="https://an-314.github.io/scripst/">
+    <img src="https://img.shields.io/badge/docs-online-lawngreen.svg" alt="Docs Online">
+  </a>
 </div>
 
 ## 📑 Contenu

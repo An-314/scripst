@@ -15,7 +15,7 @@ Scripst
 
 ## 📑 Contents
 
-- [📑 Contents](#-contents)
+- [📑 Contents](#contents)
 - [🚀 Features](#-features)
 - [📦 Installation](#-installation)
   - [Install Typst](#install-typst)
