@@ -1,6 +1,6 @@
 site_name: Scripst Documentation
 docs_dir: "../../docs/es"
-site_dir: "../../generated/es"
+site_dir: "../../scripst/es"
 site_url: https://an-314.github.io/scripst/
 theme:
     name: material
@@ -9,22 +9,22 @@ theme:
 extra:
     alternate:
         - name: English
-          link: /
+          link: /scripst/
           lang: en
         - name: 中文
-          link: /zh/
+          link: /scripst/zh/
           lang: zh
         - name: español
-          link: /es/
+          link: /scripst/es/
           lang: es
         - name: français
-          link: /fr/
+          link: /scripst/fr/
           lang: fr
         - name: 日本語
-          link: /ja/
+          link: /scripst/ja/
           lang: ja
         - name: Deutsch
-          link: /de/
+          link: /scripst/de/
           lang: de
 plugins:
     - search:

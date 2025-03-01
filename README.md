@@ -20,7 +20,7 @@ project/
 │   ├── assets/
 │   ├── previews/
 │   ├── ...
-├── generated/
+├── scripst/
 │   ├── es/
 │   │   └── index.html
 │   ├── .../
@@ -35,13 +35,13 @@ To build the documentation for all languages, run:
 ```bash
 make all
 ```
-This will generate the documentation in the `generated` directory.
+This will generate the documentation in the `scripst` directory.
 
 To build documentation for a specific language, run:
 ```bash
 make es
 ```
-This will generate the documentation for the specified language in the `generated` directory.
+This will generate the documentation for the specified language in the `scripst` directory.
 
 To clean up the generated files, run:
 ```bash

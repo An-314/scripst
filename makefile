@@ -12,4 +12,4 @@ clean:
 
 deploy: all
 	@echo "Deploying to gh-pages branch..."
-	ghp-import -n -p -f generated
+	ghp-import -n -p -f scripst
