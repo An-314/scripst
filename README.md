@@ -1,46 +1,48 @@
 ## Scripst
 
-**Scripst** 是一个基于 **Typst** 的模板包，提供了一套简约高效的文档模板，适用于日常文档、作业、笔记、论文等场景。
+**Scripst** is a template package based on **Typst**, offering a set of simple and efficient document templates suitable for everyday documents, assignments, notes, papers, and other scenarios.
 
-## 📑 目录
+[简体中文](https://github.com/An-314/scripst/blob/main/README_zh-CN.md)
+
+## 📑 Contents
 
 - [Scripst](#scripst)
-- [📑 目录](#-目录)
-- [🚀 特性](#-特性)
-- [📦 安装](#-安装)
-  - [安装 Typst](#安装-typst)
-  - [下载 Scripst 模板](#下载-scripst-模板)
-    - [方法 1：手动下载](#方法-1手动下载)
-    - [方法 2：使用 Typst 本地包管理](#方法-2使用-typst-本地包管理)
-- [📄 使用 Scripst](#-使用-scripst)
-  - [引入 Scripst 模板](#引入-scripst-模板)
-  - [创建 `article` 文档](#创建-article-文档)
-- [🔧 模板参数](#-模板参数)
-- [✨ 模板效果示例与说明](#-模板效果示例与说明)
-  - [article 文档](#article-文档)
-  - [book 文档](#book-文档)
-  - [report 文档](#report-文档)
-- [📜 贡献](#-贡献)
-- [📌 字体](#-字体)
-- [📦 依赖](#-依赖)
+- [📑 Contents](#-contents)
+- [🚀 Features](#-features)
+- [📦 Installation](#-installation)
+    - [Install Typst](#install-typst)
+    - [Download Scripst Template](#download-scripst-template)
+        - [Method 1: Manual Download](#method-1-download-manually)
+        - [Method 2: Use Typst Local Package Management](#method-2-use-typst-local-package-management)
+- [📄 Using Scripst](#-using-scripst)
+    - [Import Scripst Template](#import-scripst-template)
+    - [Create `article` Document](#create-article-document)
+- [🔧 Template Parameters](#-template-parameters)
+- [✨ Template Examples and Explanations](#-template-examples-and-explanations)
+    - [article Document](#article-document)
+    - [book Document](#book-document)
+    - [report Document](#report-document)
+- [📜 Contributing](#-contributing)
+- [📌 Fonts](#-fonts)
+- [📦 Dependencies](#-dependencies)
 - [🎯 TODO](#-todo)
----
+* * *
 
-## 🚀 特性
+## 🚀 Features
 
-- 高扩展性：模块化设计，便于对模板进行扩展
-- 多语言设计：针对不同语言进行本地化设计
-- 支持自定义countblock：方便生成定理、题目等其他计数器以及样式
+* High Extensibility: Modular design, easy to extend the templates.
+* Multilingual Design: Localization for different languages.
+* Supports custom countblock: Convenient for generating theorems, problems, and other counters or styles.
 
 ![Demo0](./previews/article-1.png)
 ![Demo1](./previews/article-12.png)
 ![Demo2](./previews/article-9.png)
 
-## 📦 安装
+## 📦 Installation
 
-### 安装 Typst
+### Install Typst
 
-确保已安装 Typst，可以使用以下命令进行安装：
+Make sure Typst is installed. You can install it using the following commands:
 
 ```bash
 sudo apt install typst # Debian/Ubuntu
@@ -49,17 +51,18 @@ winget install --id Typst.Typst # Windows
 brew install typst # macOS
 ```
 
-或参考 [Typst 官方文档](https://github.com/typst/typst) 了解更多信息。
+Or refer to the [Typst official documentation](https://github.com/typst/typst) for more information.
 
-### 下载 Scripst 模板
+### Download Scripst Template
 
-#### 方法 1：手动下载
-1. 访问 [Scripst GitHub 仓库](https://github.com/An-314/scripst)
-2. 点击 `<> Code` 按钮
-3. 选择 `Download ZIP`
-4. 解压后，将模板文件放入你的项目目录
+#### Method 1: Download Manually
 
-**目录结构建议**
+1. Visit the [Scripst GitHub repository](https://github.com/An-314/scripst)
+2. Click the `<> Code` button
+3. Choose `Download ZIP`
+4. After extraction, place the template files into your project directory.
+
+**Suggested directory structure**
 ```plaintext
 project/
 ├── src/
@@ -71,123 +74,136 @@ project/
 ├── chap1.typ
 ├── chap2.typ
 ```
-若模板存放于 `src/` 目录下，引入方式：
+
+If the template is stored in the `src/` directory, import it like this:
+
 ```typst
 #import "src/main.typ": *
 ```
 
-#### 方法 2：使用 Typst 本地包管理
-将 Scripst 存放至：
+#### Method 2: Use Typst Local Package Management
+
+You can manually download Scripst and store it in:
+
 ```
 ~/.local/share/typst/packages/local/scripst/1.1.0                 # Linux
 %APPDATA%\typst\packages\local\scripst\1.1.0                      # Windows
 ~/Library/Application Support/typst/packages/local/scripst/1.1.0  # macOS
 ```
 
-```bash 
+or using these commands:
+
+```bash
 cd {data-dir}/typst/packages/local/scripst
 git clone https://github.com/An-314/scripst 1.1.0
 ```
-其中`data-dir`为Typst的数据目录，如上述Linux系统中的`~/.local/share/typst`，Windows系统中的`%APPDATA%\typst`，macOS系统中的`~/Library/Application Support/typst`。
 
-然后在 Typst 文件中直接引入：
+Where `data-dir` refers to Typst's data directory, such as `~/.local/share/typst` for Linux, `%APPDATA%\typst` for Windows, and `~/Library/Application Support/typst` for macOS.
+
+Then import directly in your Typst file:
 ```typst
 #import "@local/scripst:1.1.0": *
 ```
-即可使用 Scripst 模板。
+Now you can use the Scripst template.
 
-使用 `typst init` 快速创建项目：
+Use `typst init` to quickly create a project:
+
 ```bash
 typst init @local/scripst:1.1.0 project_name
 ```
 
----
+* * *
 
-## 📄 使用 Scripst
+## 📄 Using Scripst
 
-### 引入 Scripst 模板
-在 Typst 文件开头引入模板：
+### Import Scripst Template
+
+Import the template at the beginning of your Typst file:
 ```typst
 #import "@local/scripst:1.1.0": *
 ```
 
-### 创建 `article` 文档
+### Create `article` Document
+
 ```typst
 #show: scripst.with(
-  title: [Scripst 的使用方法],
-  info: [这是文章的模板],
-  author: ("作者1", "作者2", "作者3"),
+  title: [How to Use Scripst],
+  info: [This is an article template],
+  author: ("Author1", "Author2", "Author3"),
   time: datetime.today().display(),
-  abstract: [摘要内容],
-  keywords: ("关键词1", "关键词2", "关键词3"),
+  abstract: [Abstract content],
+  keywords: ("Keyword1", "Keyword2", "Keyword3"),
   contents: true,
   content_depth: 2,
   matheq_depth: 2,
-  lang: "zh",
+  lang: "en",
 )
 ```
 
----
+* * *
 
-## 🔧 模板参数
+## 🔧 Template Parameters
 
-| 参数 | 类型 | 默认值 | 说明 |
+| Parameter | Type | Default Value | Description |
 | --- | --- | --- | --- |
-| `template` | `str` | `"article"` | 选择模板 (`"article"`, `"book"`, `"report"`) |
-| `title` | `content`, `str`, `none` | `""` | 文档标题 |
-| `info` | `content`, `str`, `none` | `""` | 文档副标题或补充信息 |
-| `author` | `array` | `()` | 作者列表 |
-| `time` | `content`, `str`, `none` | `""` | 文档时间 |
-| `abstract` | `content`, `str`, `none` | `none` | 文档摘要 |
-| `keywords` | `array` | `()` | 关键词 |
-| `preface` | `content`, `str`, `none` | `none` | 前言 |
-| `font_size` | `length` | `11pt` | 字体大小 |
-| `contents` | `bool` | `false` | 是否生成目录 |
-| `content_depth` | `int` | `2` | 目录深度 |
-| `matheq_depth` | `int` | `2` | 数学公式编号深度 |
-| `lang` | `str` | `"zh"` | 语言 (`"zh"`, `"en"`, `"fr"` 等) |
+| `template` | `str` | `"article"` | Choose template (`"article"`, `"book"`, `"report"`) |
+| `title` | `content`, `str`, `none` | `""` | Document title |
+| `info` | `content`, `str`, `none` | `""` | Document subtitle or supplementary information |
+| `author` | `array` | `()` | List of authors |
+| `time` | `content`, `str`, `none` | `""` | Document date |
+| `abstract` | `content`, `str`, `none` | `none` | Document abstract |
+| `keywords` | `array` | `()` | Keywords |
+| `preface` | `content`, `str`, `none` | `none` | Preface |
+| `font_size` | `length` | `11pt` | Font size |
+| `contents` | `bool` | `false` | Whether to generate a table of contents |
+| `content_depth` | `int` | `2` | Table of contents depth |
+| `matheq_depth` | `int` | `2` | Math equation numbering depth |
+| `lang` | `str` | `"zh"` | Language (`"zh"`, `"en"`, `"fr"`, etc.) |
 
----
+* * *
 
-## ✨ 模板效果示例与说明
+## ✨ Template Examples and Explanations
 
-### article 文档
+### Article 
 
 ![Article Page 1](./previews/article-1.png) ![Article Page 2](./previews/article-2.png)  
-[Aritcle 示例](./docs/builds/article.pdf)
+[Aritcle Demo](./docs/locale/builds/article-en.pdf) 
 
-### book 文档
+### Book
 
 ![Book Page 1](./previews/book-1.png) ![Book Page 2](./previews/book-2.png)  
-[Book 示例](./docs/builds/book.pdf)
+[Book Demo](./docs/builds/book.pdf) *(Only in Simplified Chinese)*
 
-### report 文档
+
+### Report
 
 ![Report Page 1](./previews/report-1.png) ![Report Page 2](./previews/report-2.png)  
-[Report 示例](./docs/builds/report.pdf)
+[Report Demo](./docs/builds/report.pdf) *(Only in Simplified Chinese)*
 
-## 📜 贡献
+## 📜 Contributing
 
-欢迎提交 Issue 或 Pull Request！如果有改进建议，欢迎加入讨论。
+Feel free to submit issues or pull requests! If you have any improvement suggestions, join the discussion.
 
-- **GitHub 仓库**：[Scripst](https://github.com/An-314/scripst)
-- **问题反馈**：提交 Issue 进行讨论
+* **GitHub Repository**: [Scripst](https://github.com/An-314/scripst)
+* **Issue Feedback**: Submit an issue to discuss
 
-## 📌 字体
+## 📌 Fonts
 
-本项目依赖以下字体：
-- 主要字体：[CMU Serif](https://en.wikipedia.org/wiki/Computer_Modern), [Consolas](https://en.wikipedia.org/wiki/Consolas)
-- 备选字体：[Linux Libertine](https://en.wikipedia.org/wiki/Linux_Libertine)
-- 以及SimSun, SimHei, KaiTi等中文字体
-请确保已安装该字体，或根据需要进行替换。
+This project uses the following fonts by default:
 
-## 📦 依赖
+* Primary fonts: [CMU Serif](https://en.wikipedia.org/wiki/Computer_Modern), [Consolas](https://en.wikipedia.org/wiki/Consolas)
+* Alternative fonts: [Linux Libertine](https://en.wikipedia.org/wiki/Linux_Libertine)
+* Chinese fonts such as SimSun, SimHei, KaiTi, etc. 
 
-对于部分内容，Scripst 引用了以下 Typst 包：
+If using these default fonts, please make sure they are correctly installed. Otherwise, replace them if needed in `./src/configs.typ`.
 
-- [tablem](https://typst.app/universe/package/tablem)
-- [physica](https://typst.app/universe/package/physica)
+## 📦 Dependencies
+
+For certain content, Scripst uses the following Typst packages:
+
+* [tablem](https://typst.app/universe/package/tablem)
+* [physica](https://typst.app/universe/package/physica)
 
 ## 🎯 TODO
 
-- [ ] 利用locale进行多语言支持
+* [ ]  Implement multilingual support in locale
