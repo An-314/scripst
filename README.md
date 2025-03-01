@@ -2,6 +2,10 @@
 
 **Scripst** is a template package based on **Typst**, offering a set of simple and efficient document templates suitable for everyday documents, assignments, notes, papers, and other scenarios.
 
+![Version](https://img.shields.io/badge/version-1.1.0-limegreen.svg)
+![License](https://img.shields.io/badge/license-MIT-greenyellow.svg)
+[![Docs Online](https://img.shields.io/badge/docs-online-lawngreen.svg)](https://an-314.github.io/scripst/)
+
 [简体中文](https://github.com/An-314/scripst/blob/main/README_zh-CN.md)
 
 ## 📑 Contents
