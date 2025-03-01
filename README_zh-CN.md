@@ -69,6 +69,8 @@ brew install typst # macOS
 
 ### 下载 Scripst 模板
 
+如果希望在本地使用，或者需要对模板进行调整，可以手动下载 Scripst 模板。
+
 #### 方法 1：手动下载
 
 1. 访问 [Scripst GitHub 仓库](https://github.com/An-314/scripst)
@@ -98,16 +100,16 @@ project/
 
 可手动下载 Scripst 并将其存放至：
 ```
-~/.local/share/typst/packages/local/scripst/1.1.0                 # Linux
-%APPDATA%\typst\packages\local\scripst\1.1.0                      # Windows
-~/Library/Application Support/typst/packages/local/scripst/1.1.0  # macOS
+~/.local/share/typst/packages/preview/scripst/1.1.0                 # Linux
+%APPDATA%\typst\packages\preview\scripst\1.1.0                      # Windows
+~/Library/Application Support/typst/packages/preview/scripst/1.1.0  # macOS
 ```
 
 或者运行如下命令：
 
 ```bash 
-cd {data-dir}/typst/packages/local/scripst
-git clone https://github.com/An-314/scripst 1.1.0
+cd {data-dir}/typst/packages/preview/scripst
+git clone https://github.com/An-314/scripst.git 1.1.0
 ```
 
 其中`data-dir`为Typst的数据目录，如上述Linux系统中的`~/.local/share/typst`，Windows系统中的`%APPDATA%\typst`，macOS系统中的`~/Library/Application Support/typst`。

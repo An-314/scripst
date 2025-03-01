@@ -1,9 +1,9 @@
-#import "@local/scripst:1.1.0": *
+#import "@preview/scripst:1.1.0": *
 
 #show: scripst.with(
   template: "book",
   title: [Scripst 的使用方法],
-  info: [book模板],
+  info: [book样式],
   author: ("AnZrew",),
   time: datetime.today().display(),
   abstract: [Scripst 是一款简约易用的 Typst 语言模板，适用于日常文档、作业、笔记、论文等多种场景。],
