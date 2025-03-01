@@ -151,7 +151,7 @@
     #figure(
       countblock,
       caption: none,
-      kind: cb.at(name).at(0),
+      kind: name,
       supplement: cb.at(name).at(0),
       numbering: it => {
         if query(heading.where(level: 1)).len() != 0 {
