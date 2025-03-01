@@ -5,9 +5,9 @@ PDF_DIR_LOCALE = docs/locale/builds
 TYP_DIR = docs
 TYP_DIR_LOCALE = docs/locale
 PREVIEW_DIR = previews
-DENSITY = 200  # DPI 分辨率
-QUALITY = 90   # 输出质量
-SIZE = 300x    # 目标缩略图大小
+DENSITY = 250       # DPI 分辨率
+QUALITY = 100       # 输出质量
+SIZE = "1080x>"     # 目标缩略图大小
 
 PDF_FILES = article book report
 TEMPLATE_DOCS = $(foreach file, $(PDF_FILES), $(PDF_DIR)/$(file).pdf)
@@ -20,7 +20,7 @@ PREVIEW_EXTRA = $(PREVIEW_DIR)/article-12.png $(PREVIEW_DIR)/article-9.png
 
 PREVIEW_ALL = $(PREVIEW_IMAGES) $(PREVIEW_EXTRA)
 
-all: $(TEMPLATE_DOCS_ALL) $(PREVIEW_ALL)
+all: $(TEMPLATE_DOCS_ALL) $(PREVIEW_ALL) thumbnail.png
 
 doc: $(TEMPLATE_DOCS_ALL)
 
@@ -44,6 +44,10 @@ $(PREVIEW_DIR)/%-1.png $(PREVIEW_DIR)/%-2.png: $(PDF_DIR)/%.pdf | $(PREVIEW_DIR)
 $(PREVIEW_DIR)/article-12.png $(PREVIEW_DIR)/article-9.png: $(PDF_DIR)/article.pdf | $(PREVIEW_DIR)
 	magick convert -density $(DENSITY) $<[11] -quality $(QUALITY) -resize $(SIZE) -background white -alpha remove $(PREVIEW_DIR)/article-12.png
 	magick convert -density $(DENSITY) $<[8] -quality $(QUALITY) -resize $(SIZE) -background white -alpha remove $(PREVIEW_DIR)/article-9.png
+
+thumbnail.png: template/main.typ
+	typst compile template/main.typ previews/main.pdf
+	magick convert -density $(DENSITY) previews/main.pdf[0] -quality $(QUALITY) -resize $(SIZE) thumbnail.png
 
 clean:
 	rm -rf $(PREVIEW_DIR) $(TEMPLATE_DOCS)
