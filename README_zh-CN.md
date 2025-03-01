@@ -27,6 +27,10 @@ Scripst
   - [引入 Scripst 模板](#引入-scripst-模板)
   - [创建 `article` 文档](#创建-article-文档)
 - [🔧 模板参数](#-模板参数)
+- [🆕 `countblock`模块](#-countblock模块)
+  - [创建并注册 `countblock`](#创建并注册-countblock)
+  - [使用 `countblock`](#使用-countblock)
+  - [封装 `countblock` 模块](#封装-countblock-模块)
 - [✨ 模板效果示例与说明](#-模板效果示例与说明)
   - [article 文档](#article-文档)
   - [book 文档](#book-文档)
@@ -42,7 +46,7 @@ Scripst
 
 - 高扩展性：模块化设计，便于对模板进行扩展
 - 多语言设计：针对不同语言进行本地化设计
-- 支持自定义countblock：方便生成定理、题目等其他计数器以及样式
+- 新增模块`countblock`：这是一个可以自定义名称和颜色的模块，内置一个计数器，并且可以在文中随时引用；可以用来做定理、问题、注记等模块，更详细的内容见[🆕 `countblock`模块](#-countblock模块)
 
 ![Demo0](./previews/article-1.png)
 ![Demo1](./previews/article-12.png)
@@ -172,6 +176,83 @@ typst init @local/scripst:1.1.0 project_name
 | `lang` | `str` | `"zh"` | 语言 (`"zh"`, `"en"`, `"fr"` 等) |
 
 ---
+
+## 🆕 `countblock`模块
+
+`countblock` 是一个可以自定义名称和颜色的模块，内置一个计数器，并且可以在文中随时引用；可以用来做定理、问题、注记等模块。
+
+下图是一个 `countblock` 模块的示例：
+
+![countblock 示例](./previews/countblock.png)
+
+### 创建并注册 `countblock`
+
+Scripst 提供了几个默认的 `countblock` 模块，这些模块已经有预设的颜色和名称，并且已经注册了计数器：
+```typst
+#let cb = (
+  "thm": ("Theorem", color.blue),
+  "def": ("Definition", color.green),
+  "prob": ("Problem", color.purple),
+  "prop": ("Proposition", color.purple-grey),
+  "ex": ("Example", color.green-blue),
+  "note": ("Note", color.grey),
+  "cau": ("⚠️", color.red),
+)
+```
+也可以自己定义 `countblock` 模块
+```typst
+#let cb = add_countblock("test", "This is a test", teal) // 定义一个名称为 "test" 的 countblock
+#show: register_countblock.with("test") // 注册该 countblock
+```
+这样就可以在文中使用 `test` 模块了。
+
+### 使用 `countblock`
+
+在文中使用 `countblock` 模块：
+```typst
+#countblock(
+  name,
+  subname,
+  count: true,
+  cb: cb,
+  lab: none,
+)[...]
+```
+参数说明：
+| 参数 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `name` | `str` | `""` | 模块名称 |
+| `subname` | `str` | `""` | 该次生成块的名称 |
+| `count` | `bool` | `true` | 是否计数 |
+| `cb` | `dict` | `cb` | countblock 的字典 |
+| `lab` | `str`, `none` | `none` | 标签 |
+
+例如：
+```typst
+#countblock("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
+
+  No three $a, b, c in NN^+$ can satisfy the equation
+  $
+    a^n + b^n = c^n
+  $
+  for any integer value of $n$ greater than 2.
+]
+#proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
+Fermat 并没有对 @fermat 给出公开的证明。
+```
+就可以生成一个定理模块，并且在文中引用该模块。
+
+### 封装 `countblock` 模块
+
+可以将 `countblock` 模块封装成一个函数，以便在文中多次使用：
+```typst
+#let test = countblock.with("test", cb)
+```
+这样就可以在文中使用 `test` 函数了：
+```typst
+#test[...]
+```
+同时，Scripst 提供的默认 `countblock` 模块已经做过封装，可以直接 `#theorem`, `#definition`, `#problem`, `#proposition`, `#example`, `#note`, `#caution` 使用。
 
 ## ✨ 模板效果示例与说明
 
