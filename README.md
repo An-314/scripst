@@ -27,6 +27,10 @@ Scripst
   - [Import Scripst Template](#import-scripst-template)
   - [Create `article` Document](#create-article-document)
 - [🔧 Template Parameters](#-template-parameters)
+- [🆕 `countblock` Module](#-countblock-module)
+  - [Creating and Registering a `countblock`](#creating-and-registering-a-countblock)
+  - [Using `countblock`](#using-countblock)
+  - [Encapsulating the `countblock` Module](#encapsulating-the-countblock-module)
 - [✨ Template Examples and Explanations](#-template-examples-and-explanations)
   - [Article](#article)
   - [Book](#book)
@@ -169,6 +173,99 @@ Import the template at the beginning of your Typst file:
 | `content_depth` | `int` | `2` | Table of contents depth |
 | `matheq_depth` | `int` | `2` | Math equation numbering depth |
 | `lang` | `str` | `"zh"` | Language (`"zh"`, `"en"`, `"fr"`, etc.) |
+
+* * *
+
+## 🆕 `countblock` Module
+
+The `countblock` module is a customizable module where you can set the name and color, and it comes with a built-in counter that can be referenced anywhere in the document. It can be used to create blocks for theorems, definitions, problems, notes, and more.
+
+Below is an example of a `countblock` module:
+
+![countblock example](./previews/countblock.png)
+
+### Creating and Registering a `countblock`
+
+Scripst provides several default `countblock` modules, which already have preset names, colors, and registered counters:
+
+```typst
+#let cb = (
+  "thm": ("Theorem", color.blue),
+  "def": ("Definition", color.green),
+  "prob": ("Problem", color.purple),
+  "prop": ("Proposition", color.purple-grey),
+  "ex": ("Example", color.green-blue),
+  "note": ("Note", color.grey),
+  "cau": ("⚠️", color.red),
+)
+```
+
+You can also define your own `countblock` modules:
+
+```typst
+#let cb = add_countblock("test", "This is a test", teal) // Define a "test" countblock
+#show: register_countblock.with("test") // Register the countblock
+```
+
+This allows you to use the `test` module in your document.
+
+### Using `countblock`
+
+You can use the `countblock` module in the document as follows:
+
+```typst
+#countblock(
+  name,
+  subname,
+  count: true,
+  cb: cb,
+  lab: none,
+)[...]
+```
+
+Parameter descriptions:
+
+| Parameter | Type | Default Value | Description |
+| --- | --- | --- | --- |
+| `name` | `str` | `""` | Name of the module |
+| `subname` | `str` | `""` | The name of the specific block |
+| `count` | `bool` | `true` | Whether to count or not |
+| `cb` | `dict` | `cb` | The `countblock` dictionary |
+| `lab` | `str`, `none` | `none` | Label |
+
+For example:
+
+```typst
+#countblock("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
+
+  No three $a, b, c \in \mathbb{N}^+$ can satisfy the equation
+  $
+    a^n + b^n = c^n
+  $
+  for any integer value of $n$ greater than 2.
+]
+#proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
+Fermat did not provide a public proof for @fermat.
+```
+
+This will create a theorem block and allow it to be referenced in the document.
+
+### Encapsulating the `countblock` Module
+
+You can encapsulate the `countblock` module into a function for repeated use in the document:
+
+```typst
+#let test = countblock.with("test", cb)
+```
+
+This allows you to use the `test` function in the document:
+
+```typst
+#test[...]
+```
+
+Additionally, the default `countblock` modules provided by Scripst have already been encapsulated, allowing you to use them directly as `#theorem`, `#definition`, `#problem`, `#proposition`, `#example`, `#note`, and `#caution`.
+
 
 * * *
 
