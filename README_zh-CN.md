@@ -8,7 +8,7 @@ Scripst
 
 ![Version](https://img.shields.io/badge/version-1.1.0-limegreen.svg)
 ![License](https://img.shields.io/badge/license-MIT-greenyellow.svg)
-[![Docs Online](https://img.shields.io/badge/docs-online-lawngreen.svg)](https://an-314.github.io/scripst/)
+[![Docs Online](https://img.shields.io/badge/docs-online-lawngreen.svg)](https://an-314.github.io/scripst/zh)
 
 简体中文 | [English](https://github.com/An-314/scripst/blob/main/README.md)
 
@@ -33,7 +33,8 @@ Scripst
   - [report 文档](#report-文档)
 - [📜 贡献](#-贡献)
 - [📌 字体](#-字体)
-- [📦 依赖](#-依赖)
+- [🔗 依赖](#-依赖)
+- [📝 许可证协议](#-许可证协议)
 - [🎯 TODO](#-todo)
 ---
 
@@ -206,12 +207,16 @@ typst init @local/scripst:1.1.0 project_name
 
 使用默认字体前，请确保已安装该字体，或根据需要在`./src/configs.typ`中进行替换。
 
-## 📦 依赖
+## 🔗 依赖
 
 对于部分内容，Scripst 引用了以下 Typst 包：
 
 - [tablem](https://typst.app/universe/package/tablem)
 - [physica](https://typst.app/universe/package/physica)
+
+## 📝 许可证协议
+
+本项目使用 MIT 许可证协议。
 
 ## 🎯 TODO
 
