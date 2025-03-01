@@ -33,7 +33,8 @@ Scripst
   - [Report](#report)
 - [📜 Contributing](#-contributing)
 - [📌 Fonts](#-fonts)
-- [📦 Dependencies](#-dependencies)
+- [🔗 Dependencies](#-dependencies)
+- [📝 License](#-license)
 - [🎯 TODO](#-todo)
 * * *
 
@@ -206,12 +207,16 @@ This project uses the following fonts by default:
 
 If using these default fonts, please make sure they are correctly installed. Otherwise, replace them if needed in `./src/configs.typ`.
 
-## 📦 Dependencies
+## 🔗 Dependencies
 
 For certain content, Scripst uses the following Typst packages:
 
 * [tablem](https://typst.app/universe/package/tablem)
 * [physica](https://typst.app/universe/package/physica)
+
+## 📝 License
+
+This project is licensed under the MIT License.
 
 ## 🎯 TODO
 
