@@ -1,10 +1,10 @@
 site_name: Scripst Documentation
-docs_dir: '../../docs/es'
-site_dir: '../../generated/es'
-site_url: https://an-314.github.io/scripst
+docs_dir: "../../docs/es"
+site_dir: "../../generated/es"
+site_url: https://an-314.github.io/scripst/
 theme:
     name: material
-    custom_dir: '../../overrides/'
+    custom_dir: "../../overrides/"
     language: es
 extra:
     alternate:
@@ -27,5 +27,5 @@ extra:
           link: /de/
           lang: de
 plugins:
-  - search:                                         
-      lang: es
+    - search:
+          lang: es

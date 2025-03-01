@@ -9,3 +9,7 @@ $(LANGUAGES):
 clean:
 	@echo "Cleaning up..."
 	rm -rf site
+
+deploy: all
+	@echo "Deploying to gh-pages branch..."
+	ghp-import -n -p -f generated
