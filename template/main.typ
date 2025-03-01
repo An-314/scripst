@@ -1,29 +1,61 @@
-#import "@local/scripst:1.1.0": *
+#import "@preview/scripst:1.1.0": *
 
-#let abstract = [Scripst 是一款简约易用的 Typst 语言模板，适用于日常文档、作业、笔记、论文等多种场景]
-#let preface =  [
-    Typst 是一种简单的文档生成语言，它的语法类似于 Markdown 的轻量级标记，利用合适的 `set` 和 `show` 指令，可以高自由度地定制文档的样式。
+#let abstract = [
+  Scripst is a simple and easy-to-use Typst language template, suitable for various scenarios such as daily documents, assignments, notes, papers, etc.
+]
+#let preface = [
+  Typst is a simple document generation language with syntax similar to lightweight Markdown markup. Using appropriate `set` and `show` commands, you can highly customise the style of your documents.
 
-    Scripst 是一款简约易用的 Typst 语言模板，适用于日常文档、作业、笔记、论文等多种场景。
-  ]
+  Scripst is a simple and easy-to-use Typst language template, suitable for various scenarios such as daily documents, assignments, notes, papers, etc.
+]
 
 #show: scripst.with(
-  template: "report",
-  title: [Scripst 的使用方法],
-  info: [article样式],
+  template: "article",
+  title: [Scripst Documentation],
+  info: [Article Style Set],
   author: ("AnZrew",),
   time: datetime.today().display(),
   abstract: abstract,
   keywords: (
     "Scripst",
     "Typst",
-    "模板",
+    "template",
   ),
-  preface = preface, 
-  /* 当template选择'article'时不支持设定preface参数*/
+  preface: preface,
   /* preface parameter not available if template sets to 'article'*/
   contents: true,
   content_depth: 3,
   matheq_depth: 2,
-  lang: "zh",
+  lang: "fr",
 )
+
+= #lorem(2)
+
+#countblock("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
+
+  No three $a, b, c in NN^+$ can satisfy the equation
+  $
+    a^n + b^n = c^n
+  $
+  for any integer value of $n$ greater than 2.
+]
+#proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
+Fermat did not provide proof publicly for @fermat.
+
+== #lorem(3)
+
+#grid(columns: (1fr,) * 2)[
+  #figure(
+    three-line-table[
+      | Name | Age | Gender |
+      | --- | --- | --- |
+      | Jane | 18 | Male |
+      | Doe | 19 | Female |
+    ],
+    caption: [`three-line-table` table example],
+  )
+][
+  $
+    i hbar dv(,t) ket(Psi(t)) = hat(H) ket(Psi(t))
+  $
+]
