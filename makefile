@@ -10,6 +10,11 @@ clean:
 	@echo "Cleaning up..."
 	rm -rf site
 
-deploy: all
+upload:
 	@echo "Deploying to gh-pages branch..."
 	ghp-import -n -p -f scripst
+
+deploy:
+    all
+    @echo "Deploying to gh-pages branch..."
+    ghp-import -n -p -f site
