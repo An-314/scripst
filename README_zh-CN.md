@@ -151,8 +151,8 @@ typst init @local/scripst:1.1.0 project_name
   abstract: [摘要内容],
   keywords: ("关键词1", "关键词2", "关键词3"),
   contents: true,
-  content_depth: 2,
-  matheq_depth: 2,
+  content-depth: 2,
+  matheq-depth: 2,
   lang: "zh",
 )
 ```
@@ -171,10 +171,10 @@ typst init @local/scripst:1.1.0 project_name
 | `abstract` | `content`, `str`, `none` | `none` | 文档摘要 |
 | `keywords` | `array` | `()` | 关键词 |
 | `preface` | `content`, `str`, `none` | `none` | 前言 |
-| `font_size` | `length` | `11pt` | 字体大小 |
+| `font-size` | `length` | `11pt` | 字体大小 |
 | `contents` | `bool` | `false` | 是否生成目录 |
-| `content_depth` | `int` | `2` | 目录深度 |
-| `matheq_depth` | `int` | `2` | 数学公式编号深度 |
+| `content-depth` | `int` | `2` | 目录深度 |
+| `matheq-depth` | `int` | `2` | 数学公式编号深度 |
 | `lang` | `str` | `"zh"` | 语言 (`"zh"`, `"en"`, `"fr"` 等) |
 
 ---
@@ -203,8 +203,8 @@ Scripst 提供了几个默认的 `countblock` 模块，这些模块已经有预�
 ```
 也可以自己定义 `countblock` 模块
 ```typst
-#let cb = add_countblock("test", "This is a test", teal) // 定义一个名称为 "test" 的 countblock
-#show: register_countblock.with("test") // 注册该 countblock
+#let cb = add-countblock("test", "This is a test", teal) // 定义一个名称为 "test" 的 countblock
+#show: register-countblock.with("test") // 注册该 countblock
 ```
 这样就可以在文中使用 `test` 模块了。
 

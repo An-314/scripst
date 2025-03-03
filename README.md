@@ -150,8 +150,8 @@ Import the template at the beginning of your Typst file:
   abstract: [Abstract content],
   keywords: ("Keyword1", "Keyword2", "Keyword3"),
   contents: true,
-  content_depth: 2,
-  matheq_depth: 2,
+  content-depth: 2,
+  matheq-depth: 2,
   lang: "en",
 )
 ```
@@ -170,10 +170,10 @@ Import the template at the beginning of your Typst file:
 | `abstract` | `content`, `str`, `none` | `none` | Document abstract |
 | `keywords` | `array` | `()` | Keywords |
 | `preface` | `content`, `str`, `none` | `none` | Preface |
-| `font_size` | `length` | `11pt` | Font size |
+| `font-size` | `length` | `11pt` | Font size |
 | `contents` | `bool` | `false` | Whether to generate a table of contents |
-| `content_depth` | `int` | `2` | Table of contents depth |
-| `matheq_depth` | `int` | `2` | Math equation numbering depth |
+| `content-depth` | `int` | `2` | Table of contents depth |
+| `matheq-depth` | `int` | `2` | Math equation numbering depth |
 | `lang` | `str` | `"zh"` | Language (`"zh"`, `"en"`, `"fr"`, etc.) |
 
 * * *
@@ -205,8 +205,8 @@ Scripst provides several default `countblock` modules, which already have preset
 You can also define your own `countblock` modules:
 
 ```typst
-#let cb = add_countblock("test", "This is a test", teal) // Define a "test" countblock
-#show: register_countblock.with("test") // Register the countblock
+#let cb = add-countblock("test", "This is a test", teal) // Define a "test" countblock
+#show: register-countblock.with("test") // Register the countblock
 ```
 
 This allows you to use the `test` module in your document.
