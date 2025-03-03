@@ -15,5 +15,5 @@ upload:
 	ghp-import -n -p -f scripst
 
 deploy: all
-    @echo "Deploying to gh-pages branch..."
+	@echo "Deploying to gh-pages branch..."
     ghp-import -n -p -f scripst
