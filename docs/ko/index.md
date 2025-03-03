@@ -7,7 +7,7 @@ Scripst
 <div align="center">
   <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="버전">
   <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="라이선스">
-  <a href="https://an-314.github.io/scripst/">
+  <a href="https://an-314.github.io/scripst/ko">
     <img src="https://img.shields.io/badge/docs-온라인-lawngreen.svg" alt="온라인 문서">
   </a>
 </div>

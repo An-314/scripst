@@ -5,10 +5,10 @@ Scripst
 **Scripst** 是一个基于 **Typst** 的模板包，提供了一套简约高效的文档模板，适用于日常文档、作业、笔记、论文等场景。
 
 <div align="center">
-  <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="Version">
-  <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="License">
-  <a href="https://an-314.github.io/scripst/">
-    <img src="https://img.shields.io/badge/docs-online-lawngreen.svg" alt="Docs Online">
+  <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="版本">
+  <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="许可证">
+  <a href="https://an-314.github.io/scripst/zh">
+    <img src="https://img.shields.io/badge/docs-online-lawngreen.svg" alt="在线文档">
   </a>
 </div>
 

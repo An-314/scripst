@@ -7,7 +7,7 @@ Scripst
 <div align="center">
   <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="Lizenz">
-  <a href="https://an-314.github.io/scripst/">
+  <a href="https://an-314.github.io/scripst/de">
     <img src="https://img.shields.io/badge/docs-online-lawngreen.svg" alt="Dokumentation online">
   </a>
 </div>
