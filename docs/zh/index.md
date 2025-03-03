@@ -152,17 +152,17 @@ typst init @local/scripst:1.1.0 project_name
 ### article 文档
 
 ![Article 第1页](./previews/article-1.png) ![Article 第2页](./previews/article-2.png)  
-[Aritcle 示例](./docs/builds/article.pdf)
+[Aritcle 示例](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)
 
 ### book 文档
 
 ![Book 第1页](./previews/book-1.png) ![Book 第2页](./previews/book-2.png)  
-[Book 示例](./docs/builds/book.pdf)
+[Book 示例](https://github.com/An-314/scripst/tree/main/docs/builds/book.pdf)
 
 ### report 文档
 
 ![Report 第1页](./previews/report-1.png) ![Report 第2页](./previews/report-2.png)  
-[Report 示例](./docs/builds/report.pdf)
+[Report 示例](https://github.com/An-314/scripst/tree/main/docs/builds/report.pdf)
 
 ## 📜 贡献
 
