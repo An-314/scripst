@@ -153,7 +153,7 @@ Importez le modèle au début de votre fichier Typst :
 ### Article
 
 ![Article Page 1](./previews/article-1.png) ![Article Page 2](./previews/article-2.png)  
-[Démo d'article _(en anglais)_](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf)
+[Démo d'article _(en anglais)_](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf)\
 [Démo d'article _(en chinois simplifié_)](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)
 
 ### Livre

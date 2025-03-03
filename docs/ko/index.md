@@ -131,21 +131,21 @@ Typst 파일의开头에서 템플릿을 인포트합니다:
 
 ## 🔧 템플릿 파라미터
 
-| 파라미터 | 유형 | 기본값 | 설명 |
-| --- | --- | --- | --- |
+| 파라미터 | 유형 | 기본값 | 설명                                         |
+| --- | --- | --- |--------------------------------------------|
 | `template` | `str` | `"article"` | 템플릿 선택 (`"article"`, `"book"`, `"report"`) |
-| `title` | `content`, `str`, `none` | `""` | 문서 제목 |
-| `info` | `content`, `str`, `none` | `""` | 문서 부제목 또는 보충 정보 |
-| `author` | `array` | `()` | 저자 목록 |
-| `time` | `content`, `str`, `none` | `""` | 문서 시간 |
-| `abstract` | `content`, `str`, `none` | `none` | 문서 요약 |
-| `keywords` | `array` | `()` | 키워드 |
-| `preface` | `content`, `str`, `none` | `none` | 서문 |
-| `font_size` | `length` | `11pt` | 폰트 크기 |
-| `contents` | `bool` | `false` | 목차 생성 여부 |
-| `content_depth` | `int` | `2` | 목차 깊이 |
-| `matheq_depth` | `int` | `2` | 수식 번호 깊이 |
-| `lang` | `str` | `"zh"` | 언어 (`"zh"`, `"en"`, `"fr"` 등) |
+| `title` | `content`, `str`, `none` | `""` | 문서 제목                                      |
+| `info` | `content`, `str`, `none` | `""` | 문서 부제목 또는 보충 정보                            |
+| `author` | `array` | `()` | 저자 목록                                      |
+| `time` | `content`, `str`, `none` | `""` | 문서 시간                                      |
+| `abstract` | `content`, `str`, `none` | `none` | 문서 요약                                      |
+| `keywords` | `array` | `()` | 키워드                                        |
+| `preface` | `content`, `str`, `none` | `none` | 서문                                         |
+| `font_size` | `length` | `11pt` | 폰트 크기                                      |
+| `contents` | `bool` | `false` | 목차 생성 여부                                   |
+| `content_depth` | `int` | `2` | 목차 깊이                                      |
+| `matheq_depth` | `int` | `2` | 수식 번호 깊이                                   |
+| `lang` | `str` | `"zh"` | 언어 (`"zh"`, `"en"`, `"ko"` 등)              |
 
 ---
 
@@ -154,7 +154,7 @@ Typst 파일의开头에서 템플릿을 인포트합니다:
 ### `article` 문서
 
 ![문서 1페이지](./previews/article-1.png) ![문서 2페이지](./previews/article-2.png)  
-[기사 예제 (중국어 버전)](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)
+[기사 예제 (중국어 버전)](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)\
 [기사 예제 (영어 버전)](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf)
 
 ### `book` 문서

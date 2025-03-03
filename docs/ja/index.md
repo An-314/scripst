@@ -131,21 +131,21 @@ Typst ファイルの先頭でテンプレートをインポートします：
 
 ## 🔧 テンプレートパラメータ
 
-| パラメータ | 型 | デフォルト値 | 説明 |
-| --- | --- | --- | --- |
+| パラメータ | 型 | デフォルト値 | 説明                                            |
+| --- | --- | --- |-----------------------------------------------|
 | `template` | `str` | `"article"` | テンプレートを選択 (`"article"`, `"book"`, `"report"`) |
-| `title` | `content`, `str`, `none` | `""` | ドキュメントタイトル |
-| `info` | `content`, `str`, `none` | `""` | ドキュメントの副題または補足情報 |
-| `author` | `array` | `()` | 著者リスト |
-| `time` | `content`, `str`, `none` | `""` | ドキュメントの日付 |
-| `abstract` | `content`, `str`, `none` | `none` | ドキュメントの要約 |
-| `keywords` | `array` | `()` | キーワード |
-| `preface` | `content`, `str`, `none` | `none` | 序文 |
-| `font_size` | `length` | `11pt` | フォントサイズ |
-| `contents` | `bool` | `false` | 目次を生成するかどうか |
-| `content_depth` | `int` | `2` | 目次深度 |
-| `matheq_depth` | `int` | `2` | 数式番号深度 |
-| `lang` | `str` | `"zh"` | 言語 (`"zh"`, `"en"`, `"fr"` など) |
+| `title` | `content`, `str`, `none` | `""` | ドキュメントタイトル                                    |
+| `info` | `content`, `str`, `none` | `""` | ドキュメントの副題または補足情報                              |
+| `author` | `array` | `()` | 著者リスト                                         |
+| `time` | `content`, `str`, `none` | `""` | ドキュメントの日付                                     |
+| `abstract` | `content`, `str`, `none` | `none` | ドキュメントの要約                                     |
+| `keywords` | `array` | `()` | キーワード                                         |
+| `preface` | `content`, `str`, `none` | `none` | 序文                                            |
+| `font_size` | `length` | `11pt` | フォントサイズ                                       |
+| `contents` | `bool` | `false` | 目次を生成するかどうか                                   |
+| `content_depth` | `int` | `2` | 目次深度                                          |
+| `matheq_depth` | `int` | `2` | 数式番号深度                                        |
+| `lang` | `str` | `"zh"` | 言語 (`"zh"`, `"en"`, `"ja"` など)                |
 
 ---
 
@@ -154,7 +154,7 @@ Typst ファイルの先頭でテンプレートをインポートします：
 ### `article` ドキュメント
 
 ![Article 第1頁](./previews/article-1.png) ![Article 第2頁](./previews/article-2.png)  
-[Article 例 (中国語版)](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)
+[Article 例 (中国語版)](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)\
 [Article 例 (英語版)](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf)
 
 ### `book` ドキュメント

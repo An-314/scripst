@@ -128,21 +128,21 @@ Importieren Sie die Vorlage am Anfang Ihrer Typst-Datei:
 
 ## 🔧 Vorlagenparameter
 
-| Parameter | Typ | Standardwert | Beschreibung |
-| --- | --- | --- | --- |
+| Parameter | Typ | Standardwert | Beschreibung                                           |
+| --- | --- | --- |--------------------------------------------------------|
 | `template` | `str` | `"article"` | Wählen Sie Vorlage (`"article"`, `"book"`, `"report"`) |
-| `title` | `content`, `str`, `none` | `""` | Dokumenttitel |
-| `info` | `content`, `str`, `none` | `""` | Dokumentuntertitel oder zusätzliche Informationen |
-| `author` | `array` | `()` | Liste der Autoren |
-| `time` | `content`, `str`, `none` | `""` | Dokumentdatum |
-| `abstract` | `content`, `str`, `none` | `none` | Dokumentzusammenfassung |
-| `keywords` | `array` | `()` | Stichworte |
-| `preface` | `content`, `str`, `none` | `none` | Einleitung |
-| `font_size` | `length` | `11pt` | Schriftgröße |
-| `contents` | `bool` | `false` | Ob ein Inhaltsverzeichnis generiert werden soll |
-| `content_depth` | `int` | `2` | Tiefe des Inhaltsverzeichnisses |
-| `matheq_depth` | `int` | `2` | Tiefe der Mathematikgleichungsnummerierung |
-| `lang` | `str` | `"zh"` | Sprache (`"zh"`, `"en"`, `"fr"`, usw.) |
+| `title` | `content`, `str`, `none` | `""` | Dokumenttitel                                          |
+| `info` | `content`, `str`, `none` | `""` | Dokumentuntertitel oder zusätzliche Informationen      |
+| `author` | `array` | `()` | Liste der Autoren                                      |
+| `time` | `content`, `str`, `none` | `""` | Dokumentdatum                                          |
+| `abstract` | `content`, `str`, `none` | `none` | Dokumentzusammenfassung                                |
+| `keywords` | `array` | `()` | Stichworte                                             |
+| `preface` | `content`, `str`, `none` | `none` | Einleitung                                             |
+| `font_size` | `length` | `11pt` | Schriftgröße                                           |
+| `contents` | `bool` | `false` | Ob ein Inhaltsverzeichnis generiert werden soll        |
+| `content_depth` | `int` | `2` | Tiefe des Inhaltsverzeichnisses                        |
+| `matheq_depth` | `int` | `2` | Tiefe der Mathematikgleichungsnummerierung             |
+| `lang` | `str` | `"zh"` | Sprache (`"zh"`, `"en"`, `"de"`, usw.)                 |
 
 * * *
 
