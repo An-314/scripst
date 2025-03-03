@@ -154,7 +154,7 @@ Typst ファイルの先頭でテンプレートをインポートします：
 ### `article` ドキュメント
 
 ![Article 第1頁](./previews/article-1.png) ![Article 第2頁](./previews/article-2.png)  
-[Article 例 (中国語版)](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)\
+[Article 例 (中国語版)](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)  
 [Article 例 (英語版)](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf)
 
 ### `book` ドキュメント

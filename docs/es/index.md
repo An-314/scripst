@@ -153,7 +153,7 @@ Importa la plantilla al inicio de tu archivo Typst:
 ### Artículo
 
 ![Artículo Página 1](./previews/article-1.png) ![Artículo Página 2](./previews/article-2.png)  
-[Demo de Artículo _(en inglés)_](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf)\
+[Demo de Artículo _(en inglés)_](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf)  
 [Demo de Artículo _(en chino simplificado)_](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)
 
 ### Libro

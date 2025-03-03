@@ -151,7 +151,7 @@ Importieren Sie die Vorlage am Anfang Ihrer Typst-Datei:
 ### Artikel 
 
 ![Artikel Seite 1](./previews/article-1.png) ![Artikel Seite 2](./previews/article-2.png)  
-[Artikel-Demo _(in Englisch)_](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf) 
+[Artikel-Demo _(in Englisch)_](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf)  
 [Artikel-Demo _(in Chinesisch)_](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)
 
 ### Buch
