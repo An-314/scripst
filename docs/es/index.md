@@ -3,36 +3,12 @@
 **Scripst** es un paquete de plantillas basado en **Typst**, que ofrece un conjunto de plantillas simples y eficientes, adecuadas para documentos cotidianos, tareas, notas, trabajos académicos y otros escenarios.
 
 <div align="center">
-  <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="Version">
-  <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="License">
-  <a href="https://an-314.github.io/scripst/">
-    <img src="https://img.shields.io/badge/docs-online-lawngreen.svg" alt="Docs Online">
+  <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="Versión">
+  <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="Licencia">
+  <a href="https://an-314.github.io/scripst/es">
+    <img src="https://img.shields.io/badge/docs-online-lawngreen.svg" alt="Docs en línea">
   </a>
 </div>
-
-## 📑 Contenido
-
-* 📑 Contenido
-* 🚀 Características
-* 📦 Instalación
-    * Instalar Typst
-    * Descargar la Plantilla Scripst
-        * Método 1: Descargar Manualmente
-        * Método 2: Usar la Gestión Local de Paquetes de Typst
-* 📄 Usar Scripst
-    * Importar la Plantilla Scripst
-    * Crear un Documento `artículo`
-* 🔧 Parámetros de la Plantilla
-* ✨ Ejemplos de Plantillas y Explicaciones
-    * Artículo
-    * Libro
-    * Informe
-* 📜 Contribuir
-* 📌 Fuentes
-* 📦 Dependencias
-* 🎯 TODO
-
-* * *
 
 ## 🚀 Características
 

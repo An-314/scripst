@@ -4,35 +4,11 @@
 
 <div align="center">
   <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="Version">
-  <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="License">
-  <a href="https://an-314.github.io/scripst/">
-    <img src="https://img.shields.io/badge/docs-online-lawngreen.svg" alt="Docs Online">
+  <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="Licence">
+  <a href="https://an-314.github.io/scripst/fr">
+    <img src="https://img.shields.io/badge/docs-online-lawngreen.svg" alt="Docs en ligne">
   </a>
 </div>
-
-## 📑 Contenu
-
-* 📑 Contenu
-* 🚀 Fonctionnalités
-* 📦 Installation
-    * Installer Typst
-    * Télécharger le modèle Scripst
-        * Méthode 1 : Télécharger manuellement
-        * Méthode 2 : Utiliser la gestion locale des packages Typst
-* 📄 Utiliser Scripst
-    * Importer le modèle Scripst
-    * Créer un document `article`
-* 🔧 Paramètres du modèle
-* ✨ Exemples de modèles et explications
-    * Article
-    * Livre
-    * Rapport
-* 📜 Contribuer
-* 📌 Polices
-* 📦 Dépendances
-* 🎯 TODO
-
-* * *
 
 ## 🚀 Fonctionnalités
 

@@ -7,33 +7,10 @@ Scripst
 <div align="center">
   <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="버전">
   <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="라이선스">
-  <a href="https://an-314.github.io/scripst/">
+  <a href="https://an-314.github.io/scripst/ko">
     <img src="https://img.shields.io/badge/docs-온라인-lawngreen.svg" alt="온라인 문서">
   </a>
 </div>
-
-## 📑 목차
-
-- [📑 목차](#목차)
-- [🚀 기능](#기능)
-- [📦 설치](#설치)
-  - [Typst 설치](#typst-설치)
-  - [Scripst 템플릿 다운로드](#scripst-템플릿-다운로드)
-    - [방법 1: 수동 다운로드](#방법-1수동-다운로드)
-    - [방법 2: Typst 로컬 패키지 관리 사용](#방법-2typst-로컬-패키지-관리-사용)
-- [📄 Scripst 사용](#scripst-사용)
-  - [Scripst 템플릿导入](#scripst-템플릿-인포트)
-  - [`article` 문서 작성](#article-문서-작성)
-- [🔧 템플릿 파라미터](#템플릿-파라미터)
-- [✨ 템플릿 효과 예제 및 설명](#템플릿-효과-예제-및-설명)
-  - [`article` 문서](#article-문서)
-  - [`book` 문서](#book-문서)
-  - [`report` 문서](#report-문서)
-- [📜 기여](#기여)
-- [📌 폰트](#폰트)
-- [📦 종속성](#종속성)
-- [🎯 TODO](#todo)
----
 
 ## 🚀 기능
 

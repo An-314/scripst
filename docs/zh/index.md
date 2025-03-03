@@ -5,35 +5,12 @@ Scripst
 **Scripst** 是一个基于 **Typst** 的模板包，提供了一套简约高效的文档模板，适用于日常文档、作业、笔记、论文等场景。
 
 <div align="center">
-  <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="Version">
-  <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="License">
-  <a href="https://an-314.github.io/scripst/">
-    <img src="https://img.shields.io/badge/docs-online-lawngreen.svg" alt="Docs Online">
+  <img src="https://img.shields.io/badge/version-1.1.0-limegreen.svg" alt="版本">
+  <img src="https://img.shields.io/badge/license-MIT-greenyellow.svg" alt="许可证">
+  <a href="https://an-314.github.io/scripst/zh">
+    <img src="https://img.shields.io/badge/docs-online-lawngreen.svg" alt="在线文档">
   </a>
 </div>
-
-## 📑 目录
-
-- [📑 目录](#目录)
-- [🚀 特性](#特性)
-- [📦 安装](#安装)
-  - [安装 Typst](#安装-typst)
-  - [下载 Scripst 模板](#下载-scripst-模板)
-    - [方法 1：手动下载](#方法-1手动下载)
-    - [方法 2：使用 Typst 本地包管理](#方法-2使用-typst-本地包管理)
-- [📄 使用 Scripst](#使用-scripst)
-  - [引入 Scripst 模板](#引入-scripst-模板)
-  - [创建 `article` 文档](#创建-article-文档)
-- [🔧 模板参数](#模板参数)
-- [✨ 模板效果示例与说明](#模板效果示例与说明)
-  - [article 文档](#article-文档)
-  - [book 文档](#book-文档)
-  - [report 文档](#report-文档)
-- [📜 贡献](#贡献)
-- [📌 字体](#字体)
-- [📦 依赖](#依赖)
-- [🎯 TODO](#todo)
----
 
 ## 🚀 特性
 
