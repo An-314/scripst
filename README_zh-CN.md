@@ -6,9 +6,10 @@ Scripst
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.1.0-limegreen.svg)
-![License](https://img.shields.io/badge/license-MIT-greenyellow.svg)
-[![Docs Online](https://img.shields.io/badge/docs-online-lawngreen.svg)](https://an-314.github.io/scripst/zh)
+[![Current Version](https://img.shields.io/badge/version-v1.1.0-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.0)
+[![License](https://img.shields.io/badge/license-MIT-turquoise.svg)](https://github.com/An-314/scripst/blob/main/LICENSE)
+[![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst/zh)
+[![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
 
 简体中文 | [English](https://github.com/An-314/scripst/blob/main/README.md)
 
