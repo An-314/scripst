@@ -6,6 +6,8 @@ theme:
     name: material
     custom_dir: "../../overrides/"
     language: ko
+repo_url: https://github.com/an-314/scripst
+repo_name: Scripst
 extra:
     alternate:
         - name: 한국어
