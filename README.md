@@ -46,7 +46,7 @@ Scripst
 
 * High Extensibility: Modular design, easy to extend the templates.
 * Multilingual Design: Localization for different languages.
-* Supports custom countblock: Convenient for generating theorems, problems, and other counters or styles.
+* Supports module `countblock`, which allows custom names and colors, includes a built-in counter, and can be referenced anywhere in the document. It can be used for theorems, problems, notes, etc. For more details, see [🆕 `countblock` Module](#-countblock-module).
 
 ![Demo0](./previews/article-1.png)
 ![Demo1](./previews/article-12.png)
