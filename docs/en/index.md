@@ -151,18 +151,18 @@ Import the template at the beginning of your Typst file:
 ### Article 
 
 ![Article Page 1](./previews/article-1.png) ![Article Page 2](./previews/article-2.png)  
-[Aritcle Demo](./docs/locale/builds/article-en.pdf) 
+[Article Demo](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf) 
 
 ### Book
 
 ![Book Page 1](./previews/book-1.png) ![Book Page 2](./previews/book-2.png)  
-[Book Demo](./docs/builds/book.pdf) *(Only in Simplified Chinese)*
+[Book Demo](https://github.com/An-314/scripst/tree/main/docs/builds/book.pdf) *(Only in Simplified Chinese)*
 
 
 ### Report
 
 ![Report Page 1](./previews/report-1.png) ![Report Page 2](./previews/report-2.png)  
-[Report Demo](./docs/builds/report.pdf) *(Only in Simplified Chinese)*
+[Report Demo](https://github.com/An-314/scripst/tree/main/docs/builds/report.pdf) *(Only in Simplified Chinese)*
 
 ## 📜 Contributing
 

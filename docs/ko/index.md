@@ -154,17 +154,18 @@ Typst 파일의开头에서 템플릿을 인포트합니다:
 ### `article` 문서
 
 ![문서 1페이지](./previews/article-1.png) ![문서 2페이지](./previews/article-2.png)  
-[기사 예제](./docs/builds/article.pdf)
+[기사 예제 (중국어 버전)](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)
+[기사 예제 (영어 버전)](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf)
 
 ### `book` 문서
 
 ![책 1페이지](./previews/book-1.png) ![책 2페이지](./previews/book-2.png)  
-[책 예제](./docs/builds/book.pdf)
+[책 예제](https://github.com/An-314/scripst/tree/main/docs/builds/book.pdf) (중국어 버전)
 
 ### `report` 문서
 
 ![보고서 1페이지](./previews/report-1.png) ![보고서 2페이지](./previews/report-2.png)  
-[보고서 예제](./docs/builds/report.pdf)
+[보고서 예제](https://github.com/An-314/scripst/tree/main/docs/builds/report.pdf) (중국어 버전)
 
 ## 📜 기여
 

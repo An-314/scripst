@@ -154,17 +154,18 @@ Typst ファイルの先頭でテンプレートをインポートします：
 ### `article` ドキュメント
 
 ![Article 第1頁](./previews/article-1.png) ![Article 第2頁](./previews/article-2.png)  
-[Article 例](./docs/builds/article.pdf)
+[Article 例 (中国語版)](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)
+[Article 例 (英語版)](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf)
 
 ### `book` ドキュメント
 
 ![Book 第1頁](./previews/book-1.png) ![Book 第2頁](./previews/book-2.png)  
-[Book 例](./docs/builds/book.pdf)
+[Book 例](https://github.com/An-314/scripst/tree/main/docs/builds/book.pdf) (中国語版のみ)
 
 ### `report` ドキュメント
 
 ![Report 第1頁](./previews/report-1.png) ![Report 第2頁](./previews/report-2.png)  
-[Report 例](./docs/builds/report.pdf)
+[Report 例](https://github.com/An-314/scripst/tree/main/docs/builds/report.pdf) (中国語版のみ)
 
 ## 📜 貢献
 

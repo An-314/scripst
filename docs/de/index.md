@@ -151,18 +151,19 @@ Importieren Sie die Vorlage am Anfang Ihrer Typst-Datei:
 ### Artikel 
 
 ![Artikel Seite 1](./previews/article-1.png) ![Artikel Seite 2](./previews/article-2.png)  
-[Artikel-Demo](./docs/locale/builds/article-en.pdf) 
+[Artikel-Demo _(in Englisch)_](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf) 
+[Artikel-Demo _(in Chinesisch)_](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)
 
 ### Buch
 
 ![Buch Seite 1](./previews/book-1.png) ![Buch Seite 2](./previews/book-2.png)  
-[Buch-Demo](./docs/builds/book.pdf) *(nur in vereinfachtem Chinesisch)*
+[Buch-Demo](https://github.com/An-314/scripst/tree/main/docs/builds/book.pdf) *(nur in vereinfachtem Chinesisch)*
 
 
 ### Bericht
 
 ![Bericht Seite 1](./previews/report-1.png) ![Bericht Seite 2](./previews/report-2.png)  
-[Bericht-Demo](./docs/builds/report.pdf) *(nur in vereinfachtem Chinesisch)*
+[Bericht-Demo](https://github.com/An-314/scripst/tree/main/docs/builds/report.pdf) *(nur in vereinfachtem Chinesisch)*
 
 ## 📜 Mitwirkung
 

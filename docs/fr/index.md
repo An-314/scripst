@@ -16,6 +16,10 @@
 * Conception multilingue : Localisation pour différentes langues.
 * Support des blocs de comptage personnalisés : Idéal pour générer des théorèmes, problèmes et autres compteurs ou styles.
 
+![Demo0](./previews/article-1.png)
+![Demo1](./previews/article-12.png)
+![Demo2](./previews/article-9.png)
+
 ## 📦 Installation
 
 ### Installer Typst
@@ -148,18 +152,19 @@ Importez le modèle au début de votre fichier Typst :
 
 ### Article
 
-  
-Démo d'article
+![Article Page 1](./previews/article-1.png) ![Article Page 2](./previews/article-2.png)  
+[Démo d'article _(en anglais)_](https://github.com/An-314/scripst/tree/main/docs/locale/builds/article-en.pdf)
+[Démo d'article _(en chinois simplifié_)](https://github.com/An-314/scripst/tree/main/docs/builds/article.pdf)
 
 ### Livre
 
-  
-Démo de livre _(Uniquement en chinois simplifié)_
+![Livre Page 1](./previews/book-1.png) ![Book Page 2](./previews/book-2.png)  
+[Démo de livre](https://github.com/An-314/scripst/tree/main/docs/builds/book.pdf) _(Uniquement en chinois simplifié)_
 
 ### Rapport
 
-  
-Démo de rapport _(Uniquement en chinois simplifié)_
+![Rapport Page 1](./previews/report-1.png) ![Rapport Page 2](./previews/report-2.png)  
+[Démo de rapport](https://github.com/An-314/scripst/tree/main/docs/builds/report.pdf) _(Uniquement en chinois simplifié)_
 
 ## 📜 Contribuer
 
