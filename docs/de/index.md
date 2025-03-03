@@ -12,30 +12,6 @@ Scripst
   </a>
 </div>
 
-
-## 📑 Inhalt
-
-- [📑 Inhalt](#inhalt)
-- [🚀 Funktionen](#funktionen)
-- [📦 Installation](#installation)
-  - [Installieren Sie Typst](#installieren-sie-typst)
-  - [Scripst-Vorlage herunterladen](#scripst-vorlage-herunterladen)
-    - [Methode 1: Manuelles Herunterladen](#methode-1-manuelles-herkunft)
-    - [Methode 2: Verwenden der lokalen Paketverwaltung von Typst](#methode-2-verwenden-der-lokalen-paketverwaltung-von-typst)
-- [📄 Scripst verwenden](#scripst-verwenden)
-  - [Scripst-Vorlage importieren](#scripst-vorlage-importieren)
-  - [Dokument vom Typ `article` erstellen](#dokument-vom-typ-article-erstellen)
-- [🔧 Vorlagenparameter](#vorlagenparameter)
-- [✨ Vorlagenbeispiele und Erläuterungen](#vorlagenbeispiele-und-erläuterungen)
-  - [Artikel](#artikel)
-  - [Buch](#buch)
-  - [Bericht](#bericht)
-- [📜 Mitwirkung](#mitwirkung)
-- [📌 Schriftarten](#schriftarten)
-- [📦 Abhängigkeiten](#abhängigkeit)
-- [🎯 TODO](#todo)
-* * *
-
 ## 🚀 Funktionen
 
 * Hochgradig erweiterbar: Modulare Design, einfach erweiterbar.

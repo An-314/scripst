@@ -8,12 +8,13 @@ $(LANGUAGES):
 
 clean:
 	@echo "Cleaning up..."
-	rm -rf site
+	rm -rf scripst
+
+deploy: all
+	@echo "Deploying to gh-pages branch..."
+	cp ./seo/googlef1a72f236b809021.html ./scripst/
+	ghp-import -n -p -f scripst
 
 upload:
 	@echo "Deploying to gh-pages branch..."
 	ghp-import -n -p -f scripst
-
-deploy: all
-    @echo "Deploying to gh-pages branch..."
-    ghp-import -n -p -f site

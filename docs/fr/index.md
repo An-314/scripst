@@ -10,30 +10,6 @@
   </a>
 </div>
 
-## 📑 Contenu
-
-* 📑 Contenu
-* 🚀 Fonctionnalités
-* 📦 Installation
-    * Installer Typst
-    * Télécharger le modèle Scripst
-        * Méthode 1 : Télécharger manuellement
-        * Méthode 2 : Utiliser la gestion locale des packages Typst
-* 📄 Utiliser Scripst
-    * Importer le modèle Scripst
-    * Créer un document `article`
-* 🔧 Paramètres du modèle
-* ✨ Exemples de modèles et explications
-    * Article
-    * Livre
-    * Rapport
-* 📜 Contribuer
-* 📌 Polices
-* 📦 Dépendances
-* 🎯 TODO
-
-* * *
-
 ## 🚀 Fonctionnalités
 
 * Grande extensibilité : Conception modulaire, facile à étendre avec de nouveaux modèles.

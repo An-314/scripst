@@ -10,30 +10,6 @@
   </a>
 </div>
 
-## 📑 Contenido
-
-* 📑 Contenido
-* 🚀 Características
-* 📦 Instalación
-    * Instalar Typst
-    * Descargar la Plantilla Scripst
-        * Método 1: Descargar Manualmente
-        * Método 2: Usar la Gestión Local de Paquetes de Typst
-* 📄 Usar Scripst
-    * Importar la Plantilla Scripst
-    * Crear un Documento `artículo`
-* 🔧 Parámetros de la Plantilla
-* ✨ Ejemplos de Plantillas y Explicaciones
-    * Artículo
-    * Libro
-    * Informe
-* 📜 Contribuir
-* 📌 Fuentes
-* 📦 Dependencias
-* 🎯 TODO
-
-* * *
-
 ## 🚀 Características
 
 * Alta Extensibilidad: Diseño modular, fácil de extender con nuevas plantillas.

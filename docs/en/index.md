@@ -12,30 +12,6 @@ Scripst
   </a>
 </div>
 
-
-## 📑 Contents
-
-- [📑 Contents](#contents)
-- [🚀 Features](#features)
-- [📦 Installation](#installation)
-  - [Install Typst](#install-typst)
-  - [Download Scripst Template](#download-scripst-template)
-    - [Method 1: Download Manually](#method-1-download-manually)
-    - [Method 2: Use Typst Local Package Management](#method-2-use-typst-local-package-management)
-- [📄 Using Scripst](#using-scripst)
-  - [Import Scripst Template](#import-scripst-template)
-  - [Create `article` Document](#create-article-document)
-- [🔧 Template Parameters](#template-parameters)
-- [✨ Template Examples and Explanations](#template-examples-and-explanations)
-  - [Article](#article)
-  - [Book](#book)
-  - [Report](#report)
-- [📜 Contributing](#contributing)
-- [📌 Fonts](#fonts)
-- [📦 Dependencies](#dependencies)
-- [🎯 TODO](#todo)
-* * *
-
 ## 🚀 Features
 
 * High Extensibility: Modular design, easy to extend the templates.
