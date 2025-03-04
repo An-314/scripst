@@ -49,9 +49,11 @@ Scripst
 * Multilingual Design: Localization for different languages.
 * Supports module `countblock`, which allows custom names and colors, includes a built-in counter, and can be referenced anywhere in the document. It can be used for theorems, problems, notes, etc. For more details, see [🆕 `countblock` Module](#-countblock-module).
 
-![Demo0](./previews/article-1.png)
-![Demo1](./previews/article-12.png)
-![Demo2](./previews/article-9.png)
+<p align="center">
+  <img src="./previews/article-1.png" alt="Demo0" width="30%" />
+  <img src="./previews/article-12.png" alt="Demo1" width="30%" />
+  <img src="./previews/article-9.png" alt="Demo2" width="30%" />
+</p>
 
 ## 📦 Installation
 
@@ -276,18 +278,31 @@ Additionally, the default `countblock` modules provided by Scripst have already 
 
 ### Article 
 
-![Article Page 1](./previews/article-1.png) ![Article Page 2](./previews/article-2.png)  
+<p align="center">
+  <img src="./previews/article-1.png" alt="Article Page 1" width="30%" />
+  <img src="./previews/article-2.png" alt="Article Page 2" width="30%" />
+</p>
+
 [Aritcle Demo](./docs/locale/builds/article-en.pdf) 
 
 ### Book
 
-![Book Page 1](./previews/book-1.png) ![Book Page 2](./previews/book-2.png)  
+<p align="center">
+  <img src="./previews/book-1.png" alt="Book Page 1" width="30%" />
+  <img src="./previews/book-2.png" alt="Book Page 2" width="30%" />
+</p>
+
 [Book Demo](./docs/builds/book.pdf) *(Only in Simplified Chinese)*
 
 
 ### Report
 
-![Report Page 1](./previews/report-1.png) ![Report Page 2](./previews/report-2.png)  
+
+<p align="center">
+  <img src="./previews/report-1.png" alt="Report Page 1" width="30%" />
+  <img src="./previews/report-2.png" alt="Report Page 2" width="30%" />
+</p>
+
 [Report Demo](./docs/builds/report.pdf) *(Only in Simplified Chinese)*
 
 ## 📜 Contributing

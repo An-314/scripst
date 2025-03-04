@@ -49,9 +49,11 @@ Scripst
 - 多语言设计：针对不同语言进行本地化设计
 - 新增模块`countblock`：这是一个可以自定义名称和颜色的模块，内置一个计数器，并且可以在文中随时引用；可以用来做定理、问题、注记等模块，更详细的内容见[🆕 `countblock`模块](#-countblock模块)
 
-![Demo0](./previews/article-1.png)
-![Demo1](./previews/article-12.png)
-![Demo2](./previews/article-9.png)
+<p align="center">
+  <img src="./previews/article-1.png" alt="Demo0" width="30%" />
+  <img src="./previews/article-12.png" alt="Demo1" width="30%" />
+  <img src="./previews/article-9.png" alt="Demo2" width="30%" />
+</p>
 
 ## 📦 安装
 
@@ -261,17 +263,29 @@ Fermat 并没有对 @fermat 给出公开的证明。
 
 ### article 文档
 
-![Article 第1页](./previews/article-1.png) ![Article 第2页](./previews/article-2.png)  
+<p align="center">
+  <img src="./previews/article-1.png" alt="Article Page 1" width="30%" />
+  <img src="./previews/article-2.png" alt="Article Page 2" width="30%" />
+</p>
+
 [Aritcle 示例](./docs/builds/article.pdf)
 
 ### book 文档
 
-![Book 第1页](./previews/book-1.png) ![Book 第2页](./previews/book-2.png)  
+<p align="center">
+  <img src="./previews/book-1.png" alt="Book Page 1" width="30%" />
+  <img src="./previews/book-2.png" alt="Book Page 2" width="30%" />
+</p>
+  
 [Book 示例](./docs/builds/book.pdf)
 
 ### report 文档
 
-![Report 第1页](./previews/report-1.png) ![Report 第2页](./previews/report-2.png)  
+<p align="center">
+  <img src="./previews/report-1.png" alt="Report Page 1" width="30%" />
+  <img src="./previews/report-2.png" alt="Report Page 2" width="30%" />
+</p>
+
 [Report 示例](./docs/builds/report.pdf)
 
 ## 📜 贡献
