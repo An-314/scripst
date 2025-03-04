@@ -216,3 +216,31 @@
   par()[#text(size: 0.0em)[#h(0.0em)]]
   v(-12pt)
 }
+
+// colors = (black,gray,silver,white,navy,blue,aqua,teal,eastern,purple,fuchsia,maroon,red,orange,yellow,olive,green,lime,)
+
+#let labelset(body) = {
+  show label("eq.c"): set math.equation(numbering: none)
+  show label("hd.c"): set heading(numbering: none)
+  show label("hd.x"): set heading(numbering: none, outlined: false)
+  show label("text.black"): set text(fill: black)
+  show label("text.gray"): set text(fill: gray)
+  show label("text.silver"): set text(fill: silver)
+  show label("text.white"): set text(fill: white)
+  show label("text.navy"): set text(fill: navy)
+  show label("text.blue"): set text(fill: blue)
+  show label("text.aqua"): set text(fill: aqua)
+  show label("text.teal"): set text(fill: teal)
+  show label("text.eastern"): set text(fill: eastern)
+  show label("text.purple"): set text(fill: purple)
+  show label("text.fuchsia"): set text(fill: fuchsia)
+  show label("text.maroon"): set text(fill: maroon)
+  show label("text.red"): set text(fill: red)
+  show label("text.orange"): set text(fill: orange)
+  show label("text.yellow"): set text(fill: yellow)
+  show label("text.olive"): set text(fill: olive)
+  show label("text.green"): set text(fill: green)
+  show label("text.lime"): set text(fill: lime)
+  body
+}
+

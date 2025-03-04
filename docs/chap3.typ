@@ -200,6 +200,67 @@ typst 为列举提供了简单的环境，如所示：
 
 只要你觉得需要换行，就可以使用`#newpara()`函数。
 
+== labelset
+
+得益于 typst 中的 `label` 函数，除了给这种类型添加标签外，还可以通过 label 方便地为所引用的对象设置样式。
+
+因此，Scripst内置了一些常用的设置，你可以通过直接添加label来设置样式。
+
+```typst
+== Schrödinger equation <hd.x>
+
+下面是 Schrödinger 方程：
+$
+  i hbar dv(,t) ket(Psi(t)) = hat(H) ket(Psi(t))
+$ <text.blue>
+其中
+$
+  ket(Psi(t)) = sum_n c_n ket(phi_n)
+$ <eq.c>
+是波函数。由此可以得到定态的 Schrödinger 方程：
+$
+  hat(H) ket(Psi(t)) = E ket(Psi(t))
+$
+<text.teal>
+其中 $E$<text.red> 是#[能量]<text.lime>。
+```
+
+#newpara()
+
+== Schrödinger equation <hd.x>
+
+下面是 Schrödinger 方程：
+$
+  i hbar dv(,t) ket(Psi(t)) = hat(H) ket(Psi(t))
+$ <text.blue>
+其中
+$
+  ket(Psi(t)) = sum_n c_n ket(phi_n)
+$ <eq.c>
+是波函数。由此可以得到定态的 Schrödinger 方程：
+$
+  hat(H) ket(Psi(t)) = E ket(Psi(t))
+$
+<text.teal>
+其中 $E$<text.red> 是#[能量]<text.lime>。
+
+目前 Scripst 提供了以下的设置：
+#figure(
+  three-line-table[
+    | 标签 | 功能 |
+    | --- | --- |
+    | `eq.c` | 给数学环境的公式取消编号 |
+    | `hd.c` | 给标题取消编号，但还在目录中显示 |
+    | `hd.x` | 给标题取消编号，且不在目录中显示 |
+    | `text.{color}` | 给文本设置颜色 \ `color in (black, gray, silver, white, navy, blue, aqua, teal, eastern, purple, fuchsia, maroon, red, orange, yellow, olive, green, lime,)` |
+  ],
+  caption: [Label Set],
+)
+
+#caution(count: false)[
+  注意上面的字符串已经被用于样式设置，你可以对其的样式设置进行重载，但不要在使用abel 和 refrence 时使用这些字符串。
+]
+
 == countblock
 
 countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某些可以计数的内容进行计数。
