@@ -38,6 +38,7 @@
   show: stylink
   show: stymatheq.with(eq-depth: matheq-depth)
   show: styheader.with(title, info)
+  show: register-default-countblock
   if template == "article" {
     mkarticle(title, info, author, time, abstract, keywords, contents, content-depth, lang, body)
   } else if template == "book" {

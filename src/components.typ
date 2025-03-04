@@ -161,6 +161,17 @@
 #let note = countblock.with("note", cb)
 #let caution = countblock.with("cau", cb)
 
+#let register-default-countblock(body) = {
+  show: register-countblock.with("def")
+  show: register-countblock.with("thm")
+  show: register-countblock.with("prop")
+  show: register-countblock.with("prob")
+  show: register-countblock.with("ex")
+  show: register-countblock.with("note")
+  show: register-countblock.with("cau")
+  body
+}
+
 #let proof(body) = {
   set enum(numbering: "(1)")
   block(
