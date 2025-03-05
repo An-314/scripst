@@ -15,6 +15,9 @@
   content-depth: 3,
   matheq-depth: 2,
   lang: "en",
+  par-indent: 0em,
+  par-leading: 0.6em,
+  par-spacing: 0.8em,
 )
 
 Typst is a simple document generation language with syntax similar to lightweight Markdown markup. Using appropriate `set` and `show` commands, you can highly customise the style of your documents.
@@ -123,7 +126,7 @@ typst init @preview/scripst:1.1.0 project_name
 This method does not require downloading the template files, just import them in the document.
 
 
----------------------------------------------------------------------------------------------------------------------
+#separator
 
 After importing the template, create an `article` file in this way:
 
