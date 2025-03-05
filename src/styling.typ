@@ -22,8 +22,8 @@
   body
 }
 
-#let stypar(first-line-indent: 2em, leading: 1.1em, body) = {
-  set par(first-line-indent: first-line-indent, leading: leading)
+#let stypar(par-indent: 2em, leading: 1em, spacing: 1.1em, body) = {
+  set par(first-line-indent: par-indent, leading: leading, spacing: spacing)
   body
 }
 
@@ -45,21 +45,20 @@
 #let styheading(lang: "zh", font: font.heading, counter-depth: 2, matheq-depth: 2, body) = {
   // layout styling
   set heading(numbering: "1.1")
-  show heading: it => box(width: 100%)[
+  show heading: it => [
     #set text(font: font)
-    #v(-0.8em)
+    #set par(first-line-indent: 0em)
+    #v(1em)
     #if it.numbering != none { counter(heading).display() }
     #h(0.2em)
     #it.body
     #v(0.5em)
   ]
-  show heading.where(level: 1): it => {
-    box(width: 100%)[
-      #v(0.3em)
-      #set heading(numbering: { localize("number_format", lang: lang) })
-      #it
-    ]
-  }
+  show heading.where(level: 1): it => [
+    #v(0.5em)
+    #set heading(numbering: { localize("number_format", lang: lang) })
+    #it
+  ]
   // counter initialization
   show heading.where(level: 1, outlined: true): it => {
     if matheq-depth == 2 or matheq-depth == 3 { counter(math.equation).update(0) }

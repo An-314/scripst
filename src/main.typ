@@ -21,10 +21,13 @@
   cb-counter-depth: 2,
   header: true,
   lang: "zh",
+  par-indent: 2em,
+  par-leading: 1em,
+  par-spacing: 1.1em,
   body,
 ) = {
   show: stydoc.with(title, author)
-  show: stypar
+  show: stypar.with(par-indent: par-indent, leading: par-leading, spacing: par-spacing)
   show: stytext.with(lang: lang, size: font-size)
   show: stystrong
   show: styemph
