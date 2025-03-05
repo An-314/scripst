@@ -17,11 +17,15 @@
       top: 0.5em,
       bottom: 0.5em,
       x: 2em,
-      grid(
-        columns: (1fr,) * calc.min(3, list.len()),
-        gutter: 1em,
-        ..list.map(list => align(center, text(font: font, size: size, list))),
-      ),
+      if type(list) == array {
+        grid(
+          columns: (1fr,) * calc.min(3, list.len()),
+          gutter: 1em,
+          ..list.map(list => align(center, text(font: font, size: size, list))),
+        )
+      } else {
+        align(center, text(font: font, size: size, list))
+      },
     )
     #v(vdown)
   ]
