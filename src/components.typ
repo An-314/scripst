@@ -112,7 +112,7 @@
   if count { counter(name).step() }
   if cb.at(name) == none { panic("countblock: block not registered") }
   let color = cb.at(name).at(1)
-  show figure: it => align(left)[
+  show figure: it => [
     #v(-4pt)
     #it
     #v(-4pt)
@@ -134,8 +134,11 @@
     radius: 2pt,
     width: 100%,
     stroke: (left: (thickness: 4pt, paint: cb.at(name).at(1))),
-    [#set text(font: font.countblock)
-      *#title* #h(0.75em) #body],
+    [
+      #set text(font: font.countblock)
+      #set align(left)
+      *#title* #h(0.75em) #body
+    ],
   )
   [
     #figure(
@@ -144,9 +147,11 @@
       kind: name,
       supplement: cb.at(name).at(0),
       numbering: it => {
-        if query(heading.where(level: 1)).len() != 0 {
-          counter(heading.where(level: 1)).display() + "." + counter(name).display()
-        } else { counter(name).display() }
+        if count {
+          if query(heading.where(level: 1)).len() != 0 {
+            counter(heading.where(level: 1)).display() + "." + counter(name).display()
+          } else { counter(name).display() }
+        } else { none }
       },
     )
     #if lab != none { label(lab) }
