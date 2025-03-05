@@ -189,4 +189,41 @@
   )[_Proof._ #h(0.75em) #body
     #align(right)[$qed$]
   ]
+  newpara()
+}
+
+#let solution(body) = {
+  set enum(numbering: "(1)")
+  block(
+    inset: 8pt,
+    width: 100%,
+  )[_Solution._ #h(0.75em) #body
+  ]
+  newpara()
+}
+
+#let blankblock(color: color.orange, body) = {
+  block(
+    fill: color.transparentize(60%),
+    inset: 8pt,
+    radius: 2pt,
+    width: 100%,
+    stroke: (left: (thickness: 4pt, paint: color)),
+    [
+      #set text(font: font.countblock)
+      #set align(left)
+      #newpara()
+      #body
+    ],
+  )
+  newpara()
+}
+
+#let separator = {
+  block(
+    inset: 0pt,
+    width: 100%,
+    stroke: (top: (thickness: 1pt, paint: color.grey)),
+  )[]
+  newpara()
 }
