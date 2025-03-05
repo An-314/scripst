@@ -37,12 +37,15 @@
     #v(0.5em)
   ]
   show heading.where(level: 1): it => {
-    counter(math.equation).update(0)
     box(width: 100%)[
       #v(0.3em)
       #set heading(numbering: { localize("number_format", lang: lang) })
       #it
     ]
+  }
+  show heading.where(level: 1, outlined: true): it => {
+    counter(math.equation).update(0)
+    it
   }
   body
 }
