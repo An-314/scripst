@@ -36,17 +36,17 @@
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | author | `array`| `()` | 文档作者 |
+    | author | `str`, `content`, `array`| `()` | 文档作者 |
   ],
   numbering: none,
 )
 
 #newpara()
 
-文档的作者。要传入`str`或者`content`的列表。
+文档的作者。要传入`str`或者`content`的列表，或者直接的`str`或者`content`对象。
 
-#caution(count: false)[
-  注意，如果是一个作者的情况，请不要传入`str`或者`content`，而是传入一个`str`或者`content`的列表，例如：`author: ("作者",)`
+#note(count: false)[
+  注意，如果是一个作者的情况，可以只传入`str`或者`content`，在多个作者的时候传入一个`str`或者`content`的列表，例如：`author: ("作者",)`
 ]
 
 #newpara()
