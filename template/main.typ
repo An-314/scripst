@@ -13,7 +13,8 @@
   template: "article",
   title: [Scripst Documentation],
   info: [Article Style Set],
-  author: ("AnZrew",),
+  author: "AnZrew",
+  // author: ("AnZrew", "AnZrew"),
   time: datetime.today().display(),
   abstract: abstract,
   keywords: (
