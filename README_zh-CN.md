@@ -167,7 +167,7 @@ typst init @local/scripst:1.1.0 project_name
 | `template` | `str` | `"article"` | 选择模板 (`"article"`, `"book"`, `"report"`) |
 | `title` | `content`, `str`, `none` | `""` | 文档标题 |
 | `info` | `content`, `str`, `none` | `""` | 文档副标题或补充信息 |
-| `author` | `array` | `()` | 作者列表 |
+| `author` | `content`, `str`, `array` | `()` | 作者列表 |
 | `time` | `content`, `str`, `none` | `""` | 文档时间 |
 | `abstract` | `content`, `str`, `none` | `none` | 文档摘要 |
 | `keywords` | `array` | `()` | 关键词 |
