@@ -22,7 +22,13 @@
   body
 }
 
-#let stypar(par-indent: 2em, leading: 1em, spacing: 1.1em, body) = {
+#let stypar(lang: "zh", par-indent: 2em, leading: 1em, spacing: 1.1em, body) = {
+  if leading == none {
+    leading = locale-settings.at(lang).at("par-leading")
+  }
+  if spacing == none {
+    spacing = locale-settings.at(lang).at("par-spacing")
+  }
   set par(first-line-indent: par-indent, leading: leading, spacing: spacing)
   body
 }

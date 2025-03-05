@@ -22,12 +22,12 @@
   header: true,
   lang: "zh",
   par-indent: 2em,
-  par-leading: 1em,
-  par-spacing: 1.1em,
+  par-leading: none,
+  par-spacing: none,
   body,
 ) = {
   show: stydoc.with(title, author)
-  show: stypar.with(par-indent: par-indent, leading: par-leading, spacing: par-spacing)
+  show: stypar.with(lang: lang, par-indent: par-indent, leading: par-leading, spacing: par-spacing)
   show: stytext.with(lang: lang, size: font-size)
   show: stystrong
   show: styemph
