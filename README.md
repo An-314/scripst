@@ -166,7 +166,7 @@ Import the template at the beginning of your Typst file:
 | `template` | `str` | `"article"` | Choose template (`"article"`, `"book"`, `"report"`) |
 | `title` | `content`, `str`, `none` | `""` | Document title |
 | `info` | `content`, `str`, `none` | `""` | Document subtitle or supplementary information |
-| `author` | `array` | `()` | List of authors |
+| `author` | `content`, `str`, `array` | `()` | List of authors |
 | `time` | `content`, `str`, `none` | `""` | Document date |
 | `abstract` | `content`, `str`, `none` | `none` | Document abstract |
 | `keywords` | `array` | `()` | Keywords |
