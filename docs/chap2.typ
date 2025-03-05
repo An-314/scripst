@@ -255,6 +255,59 @@ datetime.today().display()
 
 接受#link("https://en.wikipedia.org/wiki/ISO_639-1")[ISO_639-1]编码格式传入，如`"zh"`、`"en"`、`"fr"`等。
 
+== par-indent
+
+#figure(
+  three-line-table[
+    | 参数 | 类型 | 默认值 | 说明 |
+    | --- | --- | --- | --- |
+    | par-indent | `length`| `2em` | 段落首行缩进 |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+段落首行缩进。默认为`2em`。如果调节成`0em`，则为不缩进。
+
+== par-leading
+
+#figure(
+  three-line-table[
+    | 参数 | 类型 | 默认值 | 说明 |
+    | --- | --- | --- | --- |
+    | par-leading | `length`| 跟随`lang`设置 | 段落内间距 |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+段落内间距。在中文文档中默认是`1em`。
+
+#note(count: false)[
+  一般情况下，段落内间距在中文文档中是`1em`，在英文文档中是`0.6em`为宜。这些默认值会随着语言的选择而变化。
+]
+
+== par-spacing
+
+#figure(
+  three-line-table[
+    | 参数 | 类型 | 默认值 | 说明 |
+    | --- | --- | --- | --- |
+    | par-spacing | `length`| 跟随`lang`设置 | 段落间距 |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+段落间距。在中文文档中默认是`1.1em`。
+
+#note(count: false)[
+  一般情况下，段落间距在中文文档中是`1.1em`，在英文文档中是`0.8em`为宜。这些默认值会随着语言的选择而变化。
+]
+
 == body
 
 在使用 `#show: scripst.with(...)` 时，`body` 参数是不用手动传入的，typst 会自动将剩余的文档内容传入 `body` 参数。
