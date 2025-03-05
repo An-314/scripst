@@ -26,6 +26,7 @@
   purple-grey: rgb("#6f68abab"),
   purple: rgb("#ac2df653"),
   green-blue: rgb("#2dab8cab"),
+  orange: rgb("#ff851b"),
 )
 
 #let cb = (
