@@ -18,6 +18,7 @@
   content-depth: 2,
   matheq-depth: 2,
   counter-depth: 2,
+  header: true,
   lang: "zh",
   body,
 ) = {
@@ -38,7 +39,7 @@
   show: styref
   show: stylink
   show: stymatheq.with(eq-depth: matheq-depth)
-  show: styheader.with(title, info)
+  show: styheader.with(header: header, title, info)
   show: register-default-countblock
   show: labelset
   if template == "article" {

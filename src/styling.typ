@@ -192,51 +192,55 @@
   body
 }
 
-#let styheader(font: font.header, title, info, body) = {
-  set page(
-    header: {
-      set text(font: font)
-      context {
-        if here().position().page == 1 { return }
-        let secs = query(heading.where(level: 1))
-        let sec = ()
-        for s in secs.rev() {
-          if s.location().page() <= here().position().page {
-            sec = s
-            break
+#let styheader(header: true, font: font.header, title, info, body) = {
+  if header {
+    set page(
+      header: {
+        set text(font: font)
+        context {
+          if here().position().page == 1 { return }
+          let secs = query(heading.where(level: 1))
+          let sec = ()
+          for s in secs.rev() {
+            if s.location().page() <= here().position().page {
+              sec = s
+              break
+            }
           }
-        }
 
-        let mksec = sec => {
-          let loc = sec.location()
-          let text = smallcaps(sec.body.text)
-          let num = counter(heading).at(loc).map(str).join("")
-          let secnum = num + " " + text
-          return secnum
-        }
+          let mksec = sec => {
+            let loc = sec.location()
+            let text = smallcaps(sec.body.text)
+            let num = counter(heading).at(loc).map(str).join("")
+            let secnum = num + " " + text
+            return secnum
+          }
 
-        if sec != none and sec != () {
-          let secnum = mksec(sec)
-          if info != "" and info != none {
-            return grid(columns: (1fr,) * 3, align: (left, center, right))[#smallcaps(title)][#info][#secnum]
-          } else if title != "" and title != none {
-            return grid(columns: (1fr,) * 2, align: (left, right))[#smallcaps(title)][#secnum]
+          if sec != none and sec != () {
+            let secnum = mksec(sec)
+            if info != "" and info != none {
+              return grid(columns: (1fr,) * 3, align: (left, center, right))[#smallcaps(title)][#info][#secnum]
+            } else if title != "" and title != none {
+              return grid(columns: (1fr,) * 2, align: (left, right))[#smallcaps(title)][#secnum]
+            } else {
+              return align(right)[#secnum]
+            }
           } else {
-            return align(right)[#secnum]
-          }
-        } else {
-          if info != "" and info != none {
-            return grid(columns: (1fr,) * 2, align: (left, right))[#smallcaps(title)][#info]
-          } else if title != "" and title != none {
-            return align(lest)[#smallcaps(title)]
-          } else {
-            return none
+            if info != "" and info != none {
+              return grid(columns: (1fr,) * 2, align: (left, right))[#smallcaps(title)][#info]
+            } else if title != "" and title != none {
+              return align(left)[#smallcaps(title)]
+            } else {
+              return none
+            }
           }
         }
-      }
-    },
-  )
-  body
+      },
+    )
+    body
+  } else {
+    body
+  }
 }
 
 #let newpara() = {
