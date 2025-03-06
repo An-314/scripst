@@ -265,7 +265,7 @@ $
 
 countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某些可以计数的内容进行计数。
 
-全局变量 `cb` 记录着所有可以使用的计数器，你可以通过 `add-countblock` 函数来添加一个计数器。
+全局变量 `cb` 记录着所有可以使用的计数器，你可以通过 `addcountblock` 函数来添加一个计数器。
 
 默认的countblock有
 ```typst
@@ -289,15 +289,15 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 
 === countblock 的新建与注册
 
-同时，你可以通过 `add-countblock` 函数来添加（或重载）一个计数器，再通过 `register-countblock` 函数来注册这个计数器。
+同时，你可以通过 `addcountblock` 函数来添加（或重载）一个计数器，再通过 `regcountblock` 函数来注册这个计数器。
 ```typst
-#let cb = add-countblock("test", "This is a test", teal)
-#show: register-countblock.with("test")
+#let cb = addcountblock("test", "This is a test", teal)
+#show: regcountblock.with("test")
 ```
 此后你就可以使用 `countblock` 函数来对这个计数器进行计数。
 
-#let cb = add-countblock("test", "This is a test", teal)
-#show: register-countblock.with("test")
+#let cb = addcountblock("test", "This is a test", teal)
+#show: regcountblock.with("test")
 
 === countblock 的使用
 

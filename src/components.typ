@@ -99,38 +99,41 @@
   mkcontent: mkcontent(0em, 0em),
 )
 
-#let add-countblock(cb: cb, name, info, color) = {
-  cb.insert(name, (info, color))
+#let set-cb-counter-depth(depth) = {
+  cb.insert("cb-counter-depth", depth)
   return cb
 }
 
-#let register-countblock(name, body) = {
-  show heading.where(level: 1): it => {
-    counter(name).update(0)
+#let addcountblock(cb: cb, name, info, color, counter-name: none) = {
+  if counter-name == none { counter-name = name }
+  cb.insert(name, (info, color, counter-name))
+  return cb
+}
+
+#let regcountblock(counter-name, cb-counter-depth: cb.at("cb-counter-depth"), body) = {
+  show heading.where(level: 1, outlined: true): it => {
+    if cb-counter-depth == 2 or cb-counter-depth == 3 { counter(counter-name).update(0) }
+    it
+  }
+  show heading.where(level: 2, outlined: true): it => {
+    if cb-counter-depth == 3 { counter(counter-name).update(0) }
     it
   }
   body
 }
 
-#let countblock(name, subname: "", cb, count: true, lab: none, body) = {
-  if count { counter(name).step() }
+#let countblock(name, cb, cb-counter-depth: cb.at("cb-counter-depth"), subname: "", count: true, lab: none, body) = {
+  let (info, color, counter-name) = cb.at(name)
+  if count { counter(counter-name).step() }
   if cb.at(name) == none { panic("countblock: block not registered") }
-  let color = cb.at(name).at(1)
   show figure: it => [
     #v(-4pt)
     #it
     #v(-4pt)
   ]
   let num = ""
-  let info = cb.at(name).at(0)
-  if count {
-    num = context {
-      if query(heading.where(level: 1)).len() != 0 {
-        " " + counter(heading.where(level: 1)).display() + "." + counter(name).display()
-      } else { " " + counter(name).display() }
-    }
-  }
-  let title = info + num + " " + subname
+  if count { num = generate-counter(cb-counter-depth, context counter(counter-name).display()) }
+  let title = info + " " + num + " " + subname
   set text(font: font.countblock)
   let countblock = block(
     fill: color.transparentize(60%),
@@ -151,11 +154,7 @@
       kind: name,
       supplement: cb.at(name).at(0),
       numbering: it => {
-        if count {
-          if query(heading.where(level: 1)).len() != 0 {
-            counter(heading.where(level: 1)).display() + "." + counter(name).display()
-          } else { counter(name).display() }
-        } else { none }
+        if count { generate-counter(cb-counter-depth, counter(counter-name).display()) } else { none }
       },
     )
     #if lab != none { label(lab) }
@@ -165,19 +164,25 @@
 #let definition = countblock.with("def", cb)
 #let theorem = countblock.with("thm", cb)
 #let proposition = countblock.with("prop", cb)
+#let lamma = countblock.with("lamma", cb)
+#let corollary = countblock.with("cor", cb)
+#let remark = countblock.with("rmk", cb)
+#let claim = countblock.with("clm", cb)
+#let exercise = countblock.with("ex", cb)
 #let problem = countblock.with("prob", cb)
-#let example = countblock.with("ex", cb)
+#let example = countblock.with("eg", cb)
 #let note = countblock.with("note", cb)
 #let caution = countblock.with("cau", cb)
 
-#let register-default-countblock(body) = {
-  show: register-countblock.with("def")
-  show: register-countblock.with("thm")
-  show: register-countblock.with("prop")
-  show: register-countblock.with("prob")
-  show: register-countblock.with("ex")
-  show: register-countblock.with("note")
-  show: register-countblock.with("cau")
+#let register-default-countblock(cb-counter-depth: cb.at("cb-counter-depth"), body) = {
+  show: regcountblock.with("def", cb-counter-depth: cb-counter-depth)
+  show: regcountblock.with("thm", cb-counter-depth: cb-counter-depth)
+  show: regcountblock.with("prop", cb-counter-depth: cb-counter-depth)
+  show: regcountblock.with("ex", cb-counter-depth: cb-counter-depth)
+  show: regcountblock.with("prob", cb-counter-depth: cb-counter-depth)
+  show: regcountblock.with("eg", cb-counter-depth: cb-counter-depth)
+  show: regcountblock.with("note", cb-counter-depth: cb-counter-depth)
+  show: regcountblock.with("cau", cb-counter-depth: cb-counter-depth)
   body
 }
 
@@ -223,7 +228,7 @@
   block(
     inset: 0pt,
     width: 100%,
-    stroke: (top: (thickness: 1pt, paint: color.grey)),
+    stroke: (top: (thickness: 1pt, paint: mycolor.grey)),
   )[]
   newpara()
 }
