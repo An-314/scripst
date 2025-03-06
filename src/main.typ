@@ -26,8 +26,8 @@
   show: stytext.with(lang: lang, size: font-size)
   show: stystrong
   show: styemph
-  show: styheading.with(lang: lang, counter-depth: matheq-depth)
-  show: styfigure
+  show: styheading.with(lang: lang, counter-depth: counter-depth, matheq-depth: matheq-depth)
+  show: styfigure.with(counter-depth: counter-depth)
   show: styimage
   show: stytable
   show: styenum
