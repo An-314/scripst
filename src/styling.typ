@@ -1,6 +1,20 @@
 #import "configs.typ": *
 #import "locale.typ": *
 
+#let extract-heading(depth) = { counter(heading).get().slice(0, depth).map(it => str(it)).join(".") }
+
+#let generate-counter(counter-depth, it) = {
+  let has-heading1 = query(heading.where(level: 1)).len() != 0
+  let has-heading2 = query(heading.where(level: 2)).len() != 0
+  return context {
+    if has-heading1 and has-heading2 and counter-depth == 3 { extract-heading(2) + "." + str(it) } else if (
+      has-heading1 and (counter-depth == 3 or counter-depth == 2)
+    ) {
+      extract-heading(1) + "." + str(it)
+    } else { str(it) }
+  }
+}
+
 #let stydoc(title, author, body) = {
   set document(title: title, author: author)
   body
@@ -26,7 +40,8 @@
   body
 }
 
-#let styheading(lang: "zh", font: font.heading, counter-depth: 2, body) = {
+#let styheading(lang: "zh", font: font.heading, counter-depth: 2, matheq-depth: 2, body) = {
+  // layout styling
   set heading(numbering: "1.1")
   show heading: it => box(width: 100%)[
     #set text(font: font)
@@ -43,12 +58,23 @@
       #it
     ]
   }
+  // counter initialization
   show heading.where(level: 1, outlined: true): it => {
-    if counter-depth == 2 or counter-depth == 3 { counter(math.equation).update(0) }
+    if matheq-depth == 2 or matheq-depth == 3 { counter(math.equation).update(0) }
+    if counter-depth == 2 or counter-depth == 3 {
+      counter(figure.where(kind: table)).update(0)
+      counter(figure.where(kind: image)).update(0)
+      counter(figure.where(kind: raw)).update(0)
+    }
     it
   }
   show heading.where(level: 2, outlined: true): it => {
-    if counter-depth == 3 { counter(math.equation).update(0) }
+    if matheq-depth == 3 { counter(math.equation).update(0) }
+    if counter-depth == 3 {
+      counter(figure.where(kind: table)).update(0)
+      counter(figure.where(kind: image)).update(0)
+      counter(figure.where(kind: raw)).update(0)
+    }
     it
   }
   body
@@ -65,6 +91,9 @@
 
 #let styfigure(counter-depth: 2, font: font.caption, body) = {
   set figure(gap: 0.5cm)
+  show figure.where(kind: image): set figure(numbering: it => generate-counter(counter-depth, it))
+  show figure.where(kind: table): set figure(numbering: it => generate-counter(counter-depth, it))
+  show figure.where(kind: raw): set figure(numbering: it => generate-counter(counter-depth, it))
   show figure: it => [
     #v(2pt)
     #set text(font: font)
@@ -154,22 +183,7 @@
 }
 
 #let stymatheq(eq-depth: 2, body) = {
-  set math.equation(
-    numbering: it => {
-      let has-heading1 = query(heading.where(level: 1)).len() != 0
-      let has-heading2 = query(heading.where(level: 2)).len() != 0
-      let extract(depth: 1, args) = { args.slice(0, depth).map(it => str(it)).join(".") }
-      context {
-        if has-heading1 and has-heading2 and eq-depth == 3 {
-          (
-            "(" + extract(counter(heading).get(), depth: 2) + "." + str(it) + ")"
-          )
-        } else if has-heading1 and (eq-depth == 3 or eq-depth == 2) {
-          "(" + extract(counter(heading).get(), depth: 1) + "." + str(it) + ")"
-        } else { "(" + str(it) + ")" }
-      }
-    },
-  )
+  set math.equation(numbering: it => { "(" + generate-counter(eq-depth, it) + ")" })
   body
 }
 
