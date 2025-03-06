@@ -672,7 +672,7 @@ Scripst 提供了一种简单的计数器模块，你可以通过 `add-countbloc
 ]
 
 
-=== 证明与证明结束
+=== 证明与$qed$（证明结束）
 
 ```typst
 #proof[
