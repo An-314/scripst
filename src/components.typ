@@ -39,7 +39,7 @@
     *#localize("abstract", lang: lang): *#abstract
     #v(1pt)
     #if keywords != () [
-      *#localize("keywords", lang: lang): * #text(font: kai, keywords.join(localize("keywords_separator", lang: lang)+" "))
+      *#localize("keywords", lang: lang): * #text(font: kai, keywords.join(localize("keywords-separator", lang: lang)+" "))
     ]
     #v(vdown)
   ]
