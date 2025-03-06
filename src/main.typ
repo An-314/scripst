@@ -18,6 +18,7 @@
   content-depth: 2,
   matheq-depth: 2,
   counter-depth: 2,
+  cb-counter-depth: 2,
   header: true,
   lang: "zh",
   body,
@@ -40,7 +41,7 @@
   show: stylink
   show: stymatheq.with(eq-depth: matheq-depth)
   show: styheader.with(header: header, title, info)
-  show: register-default-countblock
+  show: register-default-countblock.with(cb-counter-depth: cb-counter-depth)
   show: labelset
   if template == "article" {
     mkarticle(title, info, author, time, abstract, keywords, contents, content-depth, lang, body)
