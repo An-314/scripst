@@ -4,14 +4,16 @@
 #let extract-heading(depth) = { counter(heading).get().slice(0, depth).map(it => str(it)).join(".") }
 
 #let generate-counter(counter-depth, it) = {
-  let has-heading1 = query(heading.where(level: 1)).len() != 0
-  let has-heading2 = query(heading.where(level: 2)).len() != 0
-  return context {
-    if has-heading1 and has-heading2 and counter-depth == 3 { extract-heading(2) + "." + str(it) } else if (
+  context {
+    let has-heading1 = query(heading.where(level: 1)).len() != 0
+    let has-heading2 = query(heading.where(level: 2)).len() != 0
+    let strit = ""
+    if type(it) != str and type(it) != content { strit = str(it) } else { strit = it }
+    if has-heading1 and has-heading2 and counter-depth == 3 { extract-heading(2) + "." + strit } else if (
       has-heading1 and (counter-depth == 3 or counter-depth == 2)
     ) {
-      extract-heading(1) + "." + str(it)
-    } else { str(it) }
+      extract-heading(1) + "." + strit
+    } else { strit }
   }
 }
 
