@@ -17,6 +17,7 @@
   contents: false,
   content-depth: 2,
   matheq-depth: 2,
+  counter-depth: 2,
   lang: "zh",
   body,
 ) = {
@@ -25,7 +26,7 @@
   show: stytext.with(lang: lang, size: font-size)
   show: stystrong
   show: styemph
-  show: styheading.with(lang: lang)
+  show: styheading.with(lang: lang, counter-depth: matheq-depth)
   show: styfigure
   show: styimage
   show: stytable
