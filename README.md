@@ -208,8 +208,8 @@ Scripst provides several default `countblock` modules, which already have preset
 You can also define your own `countblock` modules:
 
 ```typst
-#let cb = add-countblock("test", "This is a test", teal) // Define a "test" countblock
-#show: register-countblock.with("test") // Register the countblock
+#let cb = addcountblock("test", "This is a test", teal) // Define a "test" countblock
+#show: regcountblock.with("test") // Register the countblock
 ```
 
 This allows you to use the `test` module in your document.

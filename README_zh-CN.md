@@ -206,8 +206,8 @@ Scripst 提供了几个默认的 `countblock` 模块，这些模块已经有预�
 ```
 也可以自己定义 `countblock` 模块
 ```typst
-#let cb = add-countblock("test", "This is a test", teal) // 定义一个名称为 "test" 的 countblock
-#show: register-countblock.with("test") // 注册该 countblock
+#let cb = addcountblock("test", "This is a test", teal) // 定义一个名称为 "test" 的 countblock
+#show: regcountblock.with("test") // 注册该 countblock
 ```
 这样就可以在文中使用 `test` 模块了。
 
