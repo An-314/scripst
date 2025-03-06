@@ -46,7 +46,7 @@
 文档的作者。要传入`str`或者`content`的列表，或者直接的`str`或者`content`对象。
 
 #note(count: false)[
-  注意，如果是一个作者的情况，可以只传入`str`或者`content`，在多个作者的时候传入一个`str`或者`content`的列表，例如：`author: ("作者",)`
+  注意，如果是一个作者的情况，可以只传入`str`或者`content`，在多个作者的时候传入一个`str`或者`content`的列表，例如：`author: ("作者1", "作者2")`
 ]
 
 #newpara()
