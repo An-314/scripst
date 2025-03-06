@@ -56,7 +56,7 @@
   show heading.where(level: 1): it => {
     box(width: 100%)[
       #v(0.3em)
-      #set heading(numbering: { localize("number_format", lang: lang) })
+      #set heading(numbering: { localize("number-format", lang: lang) })
       #it
     ]
   }
