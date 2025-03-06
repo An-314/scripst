@@ -61,7 +61,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
   template: "book",  // str: ("article", "book", "report")
   title: "",            // str, content, none
   info: "",             // str, content, none
-  author: (),           // array
+  author: (),           // str, content, array, none
   time: "",             // str, content, none
   abstract: none,       // str, content, none
   keywords: (),         // array

@@ -36,7 +36,7 @@
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | author | `str`, `content`, `array` | `()` | 文档作者 |
+    | author | `str`, `content`, `array`, `none` | `()` | 文档作者 |
   ],
   numbering: none,
 )
