@@ -15,6 +15,7 @@
   contents: true,
   content-depth: 3,
   matheq-depth: 3,
+  counter-depth: 3,
   lang: "zh",
 )
 
