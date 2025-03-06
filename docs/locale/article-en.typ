@@ -4,6 +4,7 @@
   title: [Scripst Documentation],
   info: [Article Style Set],
   author: ("AnZrew", "AnZreww", "AnZrewww"),
+  // author: "Anzrew"
   time: datetime.today().display(),
   abstract: [Scripst is a simple and easy-to-use Typst language template, suitable for various scenarios such as daily documents, assignments, notes, papers, etc.],
   keywords: (
@@ -52,7 +53,25 @@ You can also find more information in the #link("https://github.com/typst/typst"
 
 Based on Typst, Scripst provides some simple templates for convenient daily document generation.
 
-=== Using Extracted Files
+=== Online Usage
+
+#link("https://typst.app/universe/package/scripst")[Scripst Package] has already been submitted to the community. If network available, you can directly use
+
+```typst
+#import "@preview/scripst:1.1.0": *
+```
+to import the Scripst templates in your document.
+
+You can also use `typst init` to create a new project with the template:
+```bash
+typst init @preview/scripst:1.1.0 project_name
+```
+
+This method does not require downloading the template files, just import them in the document.
+
+=== Offline Usage
+
+/ Using extracted files:
 
 You can find and download the Scripst templates in the #link("https://github.com/An-314/scripst")[Scripst GitHub repository].
 
@@ -81,7 +100,7 @@ You can choose `<> code` $->$ `Download ZIP` to download the Scripst templates. 
 
 The advantage of this method is that you can adjust some parameters in the template at any time. Since the template is designed modularly, you can easily find and modify the parts you need to change.
 
-=== Local Package Management
+/ Local package management:
 
 *A better way is* to refer to the official #link("https://github.com/typst/packages?tab=readme-ov-file#local-packages")[local package management documentation] and place the template files in the local package management directory `{data-dir}/typst/packages/{namespace}/{name}/{version}`, so you can use the Scripst templates anywhere.
 
@@ -107,22 +126,6 @@ The advantage of this is that you can directly use `typst init` to create a new 
 typst init @preview/scripst:1.1.0 project_name
 ```
 #newpara()
-
-=== Online Package Management
-
-We will submit it to the community as soon as possible so that you can directly use
-```typst
-#import "@preview/scripst:1.1.0": *
-```
-to import the Scripst templates in your document.
-
-You can also use `typst init` to create a new project with the template:
-```bash
-typst init @preview/scripst:1.1.0 project_name
-```
-
-This method does not require downloading the template files, just import them in the document.
-
 
 #separator
 
@@ -232,17 +235,17 @@ The information of the document. (If not empty) it will appear at the beginning 
   three-line-table[
     | Parameter | Type | Default Value | Description |
     | --- | --- | --- | --- |
-    | author | `array`| `()` | Document authors |
+    | author | `str`, `content`, `array`, `none`| `()` | Document authors |
   ],
   numbering: none,
 )
 
 #newpara()
 
-The authors of the document. Pass a list of `str` or `content`.
+The authors of the document. Pass a list of `str` or `content`. Or, simply pass a `str` or `content` object.
 
-#caution(count: false)[
-  Note, if there is only one author, do not pass a `str` or `content`, but pass a list of one `str` or `content`, for example: `author: ("Author",)`
+#note(count: false)[
+  Note, if there is only one author, you can simply pass a `str` or `content`, and for multiple authors, a list of one `str` or `content`, for example: `author: ("Author I", "Author II")`
 ]
 
 #newpara()
@@ -606,6 +609,66 @@ Unlike the official `#parbreak()` function, the `#newpara()` function inserts a 
 
 Whenever you feel the need to wrap, you can use the `#newpara()` function.
 
+== labelset
+
+Thanks to the `label` function in Typst, in addition to adding labels to this type, you can conveniently set styles for referenced objects using `label`.
+
+Therefore, Scripst provides some commonly used settings, and you can set styles by simply adding a label.
+
+```typst
+== Schrödinger equation <hd.x>
+The Schrödinger equation is as follows:
+$
+  i hbar dv(,t) ket(Psi(t)) = hat(H) ket(Psi(t))
+$ <text.blue>
+where
+$
+  ket(Psi(t)) = sum_n c_n ket(phi_n)
+$ <eq.c>
+is the wave function. From this, we can derive the time-independent Schrödinger equation:
+$
+  hat(H) ket(Psi(t)) = E ket(Psi(t))
+$
+<text.teal>
+where $E$<text.red> is #[energy]<text.lime>.
+```
+
+#newpara()
+
+== Schrödinger equation <hd.x>
+
+The Schrödinger equation is as follows:
+$
+  i hbar dv(,t) ket(Psi(t)) = hat(H) ket(Psi(t))
+$ <text.blue>
+where
+$
+  ket(Psi(t)) = sum_n c_n ket(phi_n)
+$ <eq.c>
+is the wave function. From this, we can derive the time-independent Schrödinger equation:
+$
+  hat(H) ket(Psi(t)) = E ket(Psi(t))
+$
+<text.teal>
+where $E$<text.red> is #[energy]<text.lime>.
+
+Currently, Scripst provides the following settings:
+#figure(
+  three-line-table[
+    | Label | Function |
+    | --- | --- |
+    | `eq.c` | Removes numbering from equations in math environments |
+    | `hd.c` | Removes numbering from headings but still displays them in the table of contents |
+    | `hd.x` | Removes numbering from headings and hides them in the table of contents |
+    | `text.{color}` | Sets the text color \ `color in (black, gray, silver, white, navy, blue, aqua, teal, eastern, purple, fuchsia, maroon, red, orange, yellow, olive, green, lime,)` |
+  ],
+  caption: [Label Set],
+)
+
+#caution(count: false)[
+  Note that the strings above have been used for styling settings. You can override their styles, but do not use these strings when working with labels and references.
+]
+
 == Countblock
 
 Countblock is a counter module provided by Scripst for counting certain countable content in the document.
@@ -790,6 +853,68 @@ The numbering logic for these counters is as follows:
 - If there are sections, the counter number will be *section number. number of this type of block within the section up to this point*
 
 *Thus, you can register and use any number of counters.*
+
+== Some Other Blocks
+
+=== Blank Block
+
+#blankblock[
+
+  Additionally, Scripst provides this type of block without a title, and you can use it by customizing the color.
+
+  For example:
+
+  ```typst
+  #blankblock(color: color.red)[
+    This is a red block.
+  ]
+  ```
+  #blankblock(color: color.red)[
+    This is a red block.
+  ]
+]
+
+=== Proof and $qed$ (Quod Erat Demonstrandum)
+
+```typst
+#proof[
+  This is a proof.
+]
+```
+
+#proof[
+
+  This is a proof.
+]
+
+This provides a simple proof environment along with a tombstone symbol.
+
+=== Solution
+
+```typst
+#solution[
+  This is a solution.
+]
+```
+
+#solution[
+
+  This is a solution.
+]
+
+This provides a simple solution environment.
+
+=== Separator
+
+```typst
+#separator
+```
+
+You can use the `#separator` function to insert a separator.
+
+#separator
+
+#newpara()
 
 = Conclusion
 
