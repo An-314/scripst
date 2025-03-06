@@ -26,7 +26,7 @@
   body
 }
 
-#let styheading(lang: "zh", font: font.heading, body) = {
+#let styheading(lang: "zh", font: font.heading, counter-depth: 2, body) = {
   set heading(numbering: "1.1")
   show heading: it => box(width: 100%)[
     #set text(font: font)
@@ -44,7 +44,11 @@
     ]
   }
   show heading.where(level: 1, outlined: true): it => {
-    counter(math.equation).update(0)
+    if counter-depth == 2 or counter-depth == 3 { counter(math.equation).update(0) }
+    it
+  }
+  show heading.where(level: 2, outlined: true): it => {
+    if counter-depth == 3 { counter(math.equation).update(0) }
     it
   }
   body
@@ -59,11 +63,11 @@
   body
 }
 
-#let styfigure(body) = {
+#let styfigure(counter-depth: 2, font: font.caption, body) = {
   set figure(gap: 0.5cm)
   show figure: it => [
     #v(2pt)
-    #set text(font: font.caption)
+    #set text(font: font)
     #it
     #v(-2em)
     #par()[#text(size: 0.0em)[#h(0.0em)]]
@@ -152,11 +156,17 @@
 #let stymatheq(eq-depth: 2, body) = {
   set math.equation(
     numbering: it => {
-      let section = query(heading.where(level: 1, outlined: true).before(here())).len()
-      if eq-depth == 2 {
-        numbering("(1.1)", section, it)
-      } else {
-        numbering("(1)", it)
+      let has-heading1 = query(heading.where(level: 1)).len() != 0
+      let has-heading2 = query(heading.where(level: 2)).len() != 0
+      let extract(depth: 1, args) = { args.slice(0, depth).map(it => str(it)).join(".") }
+      context {
+        if has-heading1 and has-heading2 and eq-depth == 3 {
+          (
+            "(" + extract(counter(heading).get(), depth: 2) + "." + str(it) + ")"
+          )
+        } else if has-heading1 and (eq-depth == 3 or eq-depth == 2) {
+          "(" + extract(counter(heading).get(), depth: 1) + "." + str(it) + ")"
+        } else { "(" + str(it) + ")" }
       }
     },
   )
