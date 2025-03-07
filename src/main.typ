@@ -41,7 +41,7 @@
   show: stylink
   show: stymatheq.with(eq-depth: matheq-depth)
   show: styheader.with(header: header, title, info)
-  show: register-default-countblock.with(cb-counter-depth: cb-counter-depth)
+  show: reg-default-countblock.with(cb-counter-depth: cb-counter-depth)
   show: labelset
   if template == "article" {
     mkarticle(title, info, author, time, abstract, keywords, contents, content-depth, lang, body)

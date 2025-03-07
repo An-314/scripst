@@ -99,18 +99,13 @@
   mkcontent: mkcontent(0em, 0em),
 )
 
-#let set-cb-counter-depth(depth) = {
-  cb.insert("cb-counter-depth", depth)
-  return cb
-}
-
-#let addcountblock(cb: cb, name, info, color, counter-name: none) = {
+#let add-countblock(cb, name, info, color, counter-name: none) = {
   if counter-name == none { counter-name = name }
   cb.insert(name, (info, color, counter-name))
   return cb
 }
 
-#let regcountblock(counter-name, cb-counter-depth: cb.at("cb-counter-depth"), body) = {
+#let reg-countblock(counter-name, cb-counter-depth: cb.at("cb-counter-depth"), body) = {
   show heading.where(level: 1, outlined: true): it => {
     if cb-counter-depth == 2 or cb-counter-depth == 3 { counter(counter-name).update(0) }
     it
@@ -171,18 +166,18 @@
 #let exercise = countblock.with("ex", cb)
 #let problem = countblock.with("prob", cb)
 #let example = countblock.with("eg", cb)
-#let note = countblock.with("note", cb)
-#let caution = countblock.with("cau", cb)
+#let note = countblock.with("note", cb, count: false)
+#let caution = countblock.with("cau", cb, count: false)
 
-#let register-default-countblock(cb-counter-depth: cb.at("cb-counter-depth"), body) = {
-  show: regcountblock.with("def", cb-counter-depth: cb-counter-depth)
-  show: regcountblock.with("thm", cb-counter-depth: cb-counter-depth)
-  show: regcountblock.with("prop", cb-counter-depth: cb-counter-depth)
-  show: regcountblock.with("ex", cb-counter-depth: cb-counter-depth)
-  show: regcountblock.with("prob", cb-counter-depth: cb-counter-depth)
-  show: regcountblock.with("eg", cb-counter-depth: cb-counter-depth)
-  show: regcountblock.with("note", cb-counter-depth: cb-counter-depth)
-  show: regcountblock.with("cau", cb-counter-depth: cb-counter-depth)
+#let reg-default-countblock(cb-counter-depth: cb.at("cb-counter-depth"), body) = {
+  show: reg-countblock.with("def", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("thm", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("prop", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("ex", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("prob", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("eg", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("note", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("cau", cb-counter-depth: cb-counter-depth)
   body
 }
 
