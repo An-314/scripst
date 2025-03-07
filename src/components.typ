@@ -164,7 +164,7 @@
 #let definition = countblock.with("def", cb)
 #let theorem = countblock.with("thm", cb)
 #let proposition = countblock.with("prop", cb)
-#let lamma = countblock.with("lamma", cb)
+#let lemma = countblock.with("lem", cb)
 #let corollary = countblock.with("cor", cb)
 #let remark = countblock.with("rmk", cb)
 #let claim = countblock.with("clm", cb)
