@@ -263,59 +263,53 @@ $
 
 == countblock
 
-countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某些可以计数的内容进行计数。
+#definition(subname: [countblock])[
 
-全局变量 `cb` 记录着所有可以使用的计数器，你可以通过 `addcountblock` 函数来添加一个计数器。
+  Countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某些可以计数的内容进行计数。
 
-默认的countblock有
-```typst
-#let cb = (
-  "thm": ("Theorem", color.blue),
-  "def": ("Definition", color.green),
-  "prob": ("Problem", color.purple),
-  "prop": ("Proposition", color.purple-grey),
-  "ex": ("Example", color.green-blue),
-  "note": ("Note", color.grey),
-  "cau": ("⚠️", color.red),
-)
-```
-这些计数器已经初始化，你可以直接使用。
-
-#note(count: false)[
-  由于 typst 语言的函数不存在指针或引用，传入的变量不能修改，我们只能通过显示的返回值来修改变量。并且将其传入下一个函数。目前作者没有找到更好的方法。
+  现在你看到的就是一个 `definition` 块，它是一个计数器模块的例子。
 ]
 
-#newpara()
+=== 默认提供的 countblock
 
-=== countblock 的新建与注册
+Scripst 默认提供了一些计数器，你可以直接使用。分别是：
 
-同时，你可以通过 `addcountblock` 函数来添加（或重载）一个计数器，再通过 `regcountblock` 函数来注册这个计数器。
+- 定义：`#definition`
+- 定理：`#theorem`
+- 命题：`#proposition`
+- 引理：`#lamma`
+- 推论：`#corollary`
+- 评论：`#remark`
+- 断言：`#claim`
+- 练习：`#exercise`
+- 问题：`#problem`
+- 例子：`#example`
+- 注记：`#note`
+- 提醒：`#caution`
+
+这些函数的参数和效果是一样的，只是计数器的名称不同。
 ```typst
-#let cb = addcountblock("test", "This is a test", teal)
-#show: regcountblock.with("test")
-```
-此后你就可以使用 `countblock` 函数来对这个计数器进行计数。
-
-#let cb = addcountblock("test", "This is a test", teal)
-#show: regcountblock.with("test")
-
-=== countblock 的使用
-
-采用 `countblock` 函数来创建一个块：
-```typst
-#countblock(
-  name,
-  subname,
+#definition(
+  subname: [],
   count: true,
-  cb: cb,
   lab: none,
+  cb-counter-depth: 2,
 )[
   ...
 ]
 ```
-其中 `name` 是计数器的名称，`subname` 是创建该条目的名称，`count` 是是否计数，`cb` 是计数器的列表。例如
+参数说明如下
+#three-line-table[
+  | 参数 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | `subname` | `array` | `[]` | 该条目的名称 |
+  | `count` | `bool` | `true` | 是否计数 |
+  | `lab` | `str` | `none` | 该条目的标签 |
+  | `cb-counter-depth` | `int` | `2` | 计数器的深度 |
+]
+下面是一个示例：
 ```typst
-#countblock("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
+#theorem(subname: [_Fermat's Last Theorem_], lab: "fermat")[
 
   No three $a, b, c in NN^+$ can satisfy the equation
   $
@@ -326,7 +320,7 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
 #proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
 ```
 就会创建一个定理块，并且计数：
-#countblock("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
+#theorem(subname: [_Fermat's Last Theorem_], lab: "fermat")[
 
   No three $a, b, c in NN^+$ can satisfy the equation
   $
@@ -335,7 +329,12 @@ countblock 是 Scripst 提供的一个计数器模块，用来对文档中的某
   for any integer value of $n$ greater than 2.
 ]
 #proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
-其中`subname`如传入，是需要指定的。
+
+==== `subname` 参数
+
+`subname` 是会显示在计数器后的信息，例如定理名称等。在上述例子中是“Fermat's Last Theorem”。
+
+==== `lab` 参数
 
 此外，你可以使用 `lab` 参数来为这个块添加一个标签，以便在文中引用。例如刚才的`fermat`定理块，你可以使用`@fermat`来引用它。
 
@@ -344,55 +343,11 @@ Fermat 并没有对 @fermat 给出公开的证明。
 ```
 Fermat 并没有对 @fermat 给出公开的证明。
 
-你也可以将其封装成另一个函数：
-```typst
-#let test = countblock.with("test", cb)
-```
-对于刚才创建的`test`计数器，你可以使用`countblock`函数来计数：
+另外，我们需要说明，在提供的这些默认封装好的函数中，`proposition`, `lemma`, `corollary`, `remark`, `claim`, 是共用同一个计数器的，效果如下：
 
-```typst
-#countblock("test", cb)[
-  1 + 1 = 2
-]
+#lemma[
 
-#test[
-  1 + 2 = 3
-]
-```
-#let test = countblock.with("test", cb)
-#countblock("test", cb)[
-  $
-    1 + 1 = 2
-  $
-]
-#test[
-  $
-    1 + 2 = 3
-  $
-]
-
-其余默认给定的计数器也可以使用，直接封装好的函数：
-```typst
-#definition(subname: [...])[]
-#theorem(subname: [...])[]
-#proposition(subname: [...])[]
-#problem(subname: [...])[]
-#note(count: false)[]
-#caution(count: false)[]
-```
-#definition[
-
-  这是一个定义，请你理解它。
-]
-
-#theorem(lab: "test")[
-
-  这是一个定理，请你使用它。（在该countblock中添加了标签，以在后文引用）
-]
-
-#problem[
-
-  这是一个问题，请你解决它。
+  这是一个引理，请你证明它。
 ]
 
 #proposition[
@@ -400,38 +355,302 @@ Fermat 并没有对 @fermat 给出公开的证明。
   这是一个命题，请你证明它。
 ]
 
-#note(count: false)[
+#corollary[
+
+  这是一个推论，请你证明它。
+]
+
+#remark[
+
+  这是一个评论，请你注意它。
+]
+
+#claim[
+
+  这是一个断言，请你证明它。
+]
+
+而其余的计数器是互相独立的。
+
+==== `count` 参数
+
+此外，对于`count`参数，如果你不想计数，可以将其设置为`false`。`note`和`caution`默认不计数。如果你想要计数，可以将其设置为`true`。
+
+```typst
+#note(count: true)[
 
   这是一个注记，请你注意它。
 ]
 
-#caution(count: false)[
-  这是一个提醒，请你当心它。
+#note[
+
+  这是一个注记，请你注意它。
 ]
-
-#theorem[
-
-  这是对 @test 引用的测试。
-]
-
-你也可以让typst给出countblock的列表：
-
-```typst
-#outline(title: [List of Thms], target: figure.where(kind: "thm"))
 ```
-#outline(title: [List of Thms], target: figure.where(kind: "thm"))
+
+#note(count: true)[
+
+  这是一个注记，请你注意它。
+]
+
+#note[
+
+  这是一个注记，请你注意它。
+]
+
+==== `cb-counter-depth` 参数
+
+对于该参数的详细解释见 @cb-counter。
+
+=== `cb` 全局变量 <cb>
+
+Scripst 通过全局变量 `cb` 记录着所有可以使用的计数器，以及全局的计数器深度 `cb-counter-depth`。
+
+Scripst 中默认的`cb`是这样的：
+```typst
+#let cb = (
+  "def": ("Definition", mycolor.green, "def"),
+  "thm": ("Theorem", mycolor.blue, "thm"),
+  "prop": ("Proposition", mycolor.violet, "prop"),
+  "lem": ("Lemma", mycolor.violet-light, "prop"),
+  "cor": ("Corollary", mycolor.violet-dark, "prop"),
+  "rmk": ("Remark", mycolor.violet-darker, "prop"),
+  "clm": ("Claim", mycolor.violet-deep, "prop"),
+  "ex": ("Exercise", mycolor.purple, "ex"),
+  "prob": ("Problem", mycolor.orange, "prob"),
+  "eg": ("Example", mycolor.cyan, "eg"),
+  "note": ("Note", mycolor.grey, "note"),
+  "cau": ("⚠️", mycolor.red, "cau"),
+  "cb-counter-depth": 2,
+)
+```
 
 #newpara()
 
-#note(count: false)[
-  这里`kind`的参数值是在定义该countblock时指定的`name`，即`cb`字典中的键的字符串。
+=== countblock 的新建与注册 <new-cb>
+
+Scripst 提供了 `add-countblock` 函数来添加（或重载）一个计数器，以及 `reg-countblock` 函数来注册这个计数器。你可以通过在文档开头
+```typst
+#let cb = add-countblock(cb, "test", "This is a test", teal)
+#show: reg-countblock.with("test")
+```
+来创建一个countblock。
+#note[
+  上面的代码意味着我们先更新了`cb`，再将其的计数器加入整个文档中。
 ]
 
-这些计数器编号的逻辑是：
-- 如果没有章节，那么只有一个计数器编号；
-- 如果有章节，那么计数器编号是*章节号.本章节内截至此块出现过的该种块的数量*
+==== 函数 `add-countblock`
 
-*如此，你可以注册和使用任意数量的计数器。*
+函数 `add-countblock` 的参数如下
+```typst
+#add-countblock(cb, name, info, color, counter-name: none) {return cb}
+```
+参数说明如下
+#three-line-table[
+  | 参数 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | `cb` | `dict` | `` | 计数器字典 |
+  | `name` | `str` | `` | 计数器的名称 |
+  | `info` | `str` | `` | 计数器的信息 |
+  | `color` | `color` | `` | 计数器的颜色 |
+  | `counter-name` | `str` | `none` | 计数器的编号 |
+]
+- `cb`是一个字典，其格式如@cb 所示。该函数的作用就是将`cb`更新，在使用时需要按照显示赋值。
+  #note(count: false)[
+    由于 typst 语言的函数不存在指针或引用，传入的变量不能修改，我们只能通过显示的返回值来修改变量。并且将其传入下一个函数。目前作者没有找到更好的方法。
+  ]
+- `name: (info, color, counter-name)`是一个计数器的基本信息。在渲染时，计数器的左上角会显示`info counter(counter-name)`例如`Theorem 1.1`作为该计数器的编号；颜色会是`color`颜色的。
+- `counter-name`是计数器的编号，如果没有指定，那么会使用`name`作为编号。
+
+==== 函数 `reg-countblock`
+
+函数 `reg-countblock` 的参数如下
+```typst
+#show reg-countblock.with(name, cb-counter-depth: 2)
+```
+参数说明如下
+#three-line-table[
+  | 参数 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | `counter-name` | `str` | `` | 计数器的编号 |
+  | `cb-counter-depth` | `int` | `2` | 计数器的深度 |
+]
+- `counter-name`是计数器的编号，也就是在 `add-countblock` 中（未指定是`name`）显示指定的参数。例如默认提供的`clm`的计数器是`prop`。
+- `cb-counter-depth`是你该计数器的深度，你可以指定为`1, 2, 3`。
+
+#separator
+
+此后你就可以使用 `countblock` 函数来使用这个计数器。
+
+#let cb = add-countblock(cb, "test", "This is a test", teal)
+#show: reg-countblock.with("test")
+
+=== countblock 的计数器 <cb-counter>
+
+前面并没有提到`cb-counter-depth`参数，在这一章我们详细讲解这个参数，以及其实现方式。
+
+全局变量 `cb` 中的 `cb-counter-depth` 默认值是2。所以默认提供的 countblock 函数的计数器深度是2。
+
+#note[
+  如果你直接更改全局变量里的 `cb-counter-depth`，默认提供的计数器是不会改变的。这是因为在创建计数器时，会将原先的 `cb.at("cb-counter-depth")` 作为默认值传入。当更新 `cb` 时，原先的 `cb-counter-depth` 不会改变。所以你需要重新注册这个计数器。
+]
+
+计数器的逻辑与 @counter 的相同。
+
+*如果你需要注册一个深度为3的计数器，你可以这样做：*
+```typst
+#let cb = add-countblock(cb, "test1", "This is a test1", green)
+#show: reg-countblock.with("test1", cb-counter-depth: 3)
+```
+#let cb = add-countblock(cb, "test1", "This is a test1", green)
+#show: reg-countblock.with("test1", cb-counter-depth: 3)
+
+#newpara()
+
+此外你可以通过`reg-default-countblock`函数来注册默认的计数器。例如你*希望所有的默认的计数器都是深度为3的*，你可以这样做：
+```typst
+#show: reg-default-countblock.with(cb-counter-depth: 3)
+```
+#show: reg-default-countblock.with(cb-counter-depth: 3)
+当然，如果你仅仅这么做还不够，因为封装好的计数器还是以2为默认值。如果你直接调用
+```typst
+#definition[
+  这是一个定义，请你理解它。
+]
+```
+那么这个计数器的深度还是2。
+#definition[
+  这是一个定义，请你理解它。
+]
+所以你需要指定深度为3：
+```typst
+#definition(cb-counter-depth: 3)[
+  这是一个定义，请你理解它。
+]
+```
+#definition(cb-counter-depth: 3)[
+  这是一个定义，请你理解它。
+]
+当然，你可以直接*进一步对其进行封装*：
+```typst
+#let definition = definition.with(cb-counter-depth: 3)
+```
+#let definition = definition.with(cb-counter-depth: 3)
+之后再使用`definition`函数就会默认使用深度为3的计数器
+```typst
+#definition[
+  这是一个定义，请你理解它。
+]
+```
+#definition[
+  这是一个定义，请你理解它。
+]
+
+
+=== countblock 的使用
+
+在定义并且注册一个块之后，就可以使用 `countblock` 函数来创建一个块：
+```typst
+#countblock(
+  name,
+  cb,
+  cb-counter-depth: cb.at("cb-counter-depth"), // default: 2
+  subname: "",
+  count: true,
+  lab: none
+)[
+  ...
+]
+```
+参数说明如下
+#three-line-table[
+  | 参数 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | `name` | `str` | `` | 计数器的名称 |
+  | `cb` | `dict` | `` | 计数器字典 |
+  | `cb-counter-depth` | `int` | `cb.at("cb-counter-depth")` | 计数器的深度 |
+  | `subname` | `str` | `` | 该条目的名称 |
+  | `count` | `bool` | `true` | 是否计数 |
+  | `lab` | `str` | `none` | 该条目的标签 |
+]
+- `name`是计数器的名称，也就是在 `add-countblock` 中显示指定的参数。
+- `cb`是一个字典，其格式如@cb 所示。注意，你需要传含有该计数器的（最新的）`cb`，所以一定需要先更新`cb`，再传入。
+- `cb-counter-depth`是你该计数器的深度，你可以指定为`1, 2, 3`。
+- `subname`是会显示在计数器后的信息，例如定理名称等。
+- `count`是一个布尔值，如果你不想计数，可以将其设置为`false`。
+- `lab`是一个字符串，如果你想要为这个块添加一个标签，以便在文中引用，可以使用这个参数。
+
+例如，我想使用我在 @new-cb 中创建的`test`计数器：
+```typst
+#countblock("test", cb)[
+  1 + 1 = 2
+]
+```
+#countblock("test", cb)[
+  1 + 1 = 2
+]
+
+当然也可以将其封装成另一个函数：
+```typst
+#let test = countblock.with("test", cb)
+```
+然后使用`test`函数：
+```typst
+#test[
+  1 + 1 = 2
+]
+```
+#let test = countblock.with("test", cb)
+#test[
+  1 + 1 = 2
+]
+
+当然，对于在 @cb-counter 中注册的深度为3的`test1`计数器，我们需要在使用时指定深度：
+```typst
+#countblock("test1", cb, cb-counter-depth: 3)[
+  1 + 1 = 2
+]
+#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)
+#test1[
+  1 + 1 = 2
+]
+```
+#countblock("test1", cb, cb-counter-depth: 3)[
+  1 + 1 = 2
+]
+#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)
+#test1[
+  1 + 1 = 2
+]
+
+=== 总结
+
+Scripst 提供了一种简单的计数器模块，你可以通过 `add-countblock` 函数来添加一个计数器，通过 `reg-countblock` 函数来注册这个计数器，然后通过 `countblock` 函数来使用这个计数器。
+
+对于默认的计数器，其深度为2，你可以通过 `reg-default-countblock` 函数来注册默认的计数器。
+
+如果你希望所有 countblock 的深度为2，那么在你注册和使用的时候不必在意深度。
+
+如果你希望所有 countblock 的深度为3，那么你需要在注册和使用的时候指定深度。
+
+#example(count: false)[
+
+  下面给出一个例子：使用者希望包括默认的所有 countblock 的计数器深度都是3，但希望 `remark` 与先前默认绑定的 `proposition`, `lemma`, `corollary`, `claim` 的计数器独立出来。再创建一个深度为 3 的 `algorithm` 计数器。
+
+  ```typst
+  #let cb = add-countblock(cb, "rmk", "Remark", mycolor.violet-darker)
+  #let cb = add-countblock(cb, "algorithm", "Algorithm", mycolor.yellow)
+  #show: reg-default-countblock.with(cb-counter-depth: 3)
+  #show: reg-countblock.with("rmk", cb-counter-depth: 3)
+  #show: reg-countblock.with("algorithm", cb-counter-depth: 3)
+  #let definition = definition.with(cb-counter-depth: 3)
+  #let theorem = theorem.with(cb-counter-depth: 3)
+  // ...
+  #let remark = countblock.with("rmk", cb, cb-counter-depth: 3) // 这里需要重新封装是因为其计数器改变了
+  #let algorithm = countblock.with("algorithm", cb, cb-counter-depth: 3)
+  ```
+  放在文档的开头，`#script` 之后即可。
+]
 
 == 一些其他的块
 
