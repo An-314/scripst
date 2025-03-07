@@ -24,10 +24,10 @@
 
 #let stypar(lang: "zh", par-indent: 2em, leading: 1em, spacing: 1.1em, body) = {
   if leading == none {
-    leading = locale-settings.at(lang).at("par-leading")
+    leading = localize("par-leading", lang: lang)
   }
   if spacing == none {
-    spacing = locale-settings.at(lang).at("par-spacing")
+    spacing = localize("par-spacing", lang: lang)
   }
   set par(first-line-indent: par-indent, leading: leading, spacing: spacing)
   body
@@ -62,7 +62,7 @@
   ]
   show heading.where(level: 1): it => [
     #v(0.5em)
-    #set heading(numbering: { localize("number_format", lang: lang) })
+    #set heading(numbering: { localize("number-format", lang: lang) })
     #it
   ]
   // counter initialization
