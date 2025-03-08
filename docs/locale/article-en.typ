@@ -15,6 +15,8 @@
   contents: true,
   content-depth: 3,
   matheq-depth: 2,
+  counter-depth: 3,
+  header: true,
   lang: "en",
   par-indent: 0em,
 )
@@ -140,8 +142,10 @@ After importing the template, create an `article` file in this way:
   abstract: [Abstract],
   keywords: ("Keyword1", "Keyword2", "Keyword3"),
   contents: true,
-  content-depth: 2,
+  content-depth: 3,
   matheq-depth: 2,
+  counter-depth: 3,
+  header: true,
   lang: "en",
 )
 ```
@@ -152,7 +156,7 @@ Then you can start writing your document.
 
 = Template Parameter Description <para>
 
-The Scripst template provides some parameters to customise the style of the document.
+Scripst template provides some parameters to customise the style of the document.
 
 ```typst
 #let scripst(
@@ -166,7 +170,9 @@ The Scripst template provides some parameters to customise the style of the docu
   font-size: 11pt,      // length
   contents: false,      // bool
   content-depth: 2,     // int
-  matheq-depth: 2,      // int: (1, 2)
+  matheq-depth: 2,      // int: (1, 2, 3)
+  counter-depth: 3,     // int: (1, 2, 3)
+  header: true,         // bool
   lang: "en",           // str: ("zh", "en", "fr", ...)
   body,
 ) = {
@@ -376,7 +382,7 @@ The depth of the table of contents. The default is `2`.
   three-line-table[
     | Parameter | Type | Optional Values | Default Value | Description |
     | --- | --- | --- | --- | --- |
-    | matheq-depth | `int`| `1`, `2` | `2` | Depth of math equation numbering |
+    | matheq-depth | `int`| `1`, `2`, `3` | `2` | Depth of math equation numbering |
   ],
   numbering: none,
 )
@@ -385,7 +391,59 @@ The depth of the table of contents. The default is `2`.
 
 The depth of math equation numbering. The default is `2`.
 
-Generally, use `1` when there are no chapters, and use `2` when there are chapters.
+#note(count: false)[ For detailed behavior of counters, see @counter. ]
+
+== counter-depth <counter>
+
+#figure(
+  three-line-table[
+    | Parameter | Type | Optional Values | Default | Description |
+    | --- | --- | --- | --- | --- |
+    | counter-depth | `int` | `1`, `2`, `3` | `2` | Counter depth |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+The counter depth for images (`image`), tables (`table`), and code blocks (`raw`) within `figure` environments. Default is `2`.
+
+#note(count: false, subname: [Counter Details])[
+
+  When a counter has depth `1`, its numbering will be global and unaffected by chapters/sections, i.e., `1`, `2`, `3`, ...
+
+  When a counter has depth `2`, its numbering will follow level-1 headings, i.e., `1.1`, `1.2`, `2.1`, `2.2`, ... However, if the document contains no level-1 headings, Scripst will automatically treat it as depth `1`.
+
+  When a counter has depth `3`, its numbering will follow level-1 and level-2 headings, i.e., `1.1.1`, `1.1.2`, `1.2.1`, `1.2.2`, `2.1.1`, ... However:
+  • If the document has level-1 headings but no level-2 headings, Scripst will treat it as depth `2`.
+  • If the document has no level-1 headings, Scripst will treat it as depth `1`.
+]
+
+== header
+
+#figure(
+  three-line-table[
+    | Parameter | Type | Default | Description |
+    | --- | --- | --- | --- |
+    | header | `bool` | `true` | Enable header |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+Whether to generate headers. Default is `true`.
+
+#note(count: false)[
+
+  The header displays the document title, metadata, and current chapter/section title:
+  • If all three exist, they will be displayed in the header in three equal parts.
+  • If the document has no metadata, the header will show the title on the left and chapter title on the right.
+    ◦ If the document also lacks a title, only the chapter title will appear on the right.
+  • If the document has no level-1 headings, the header will show the title on the left and metadata on the right.
+    ◦ If there's no metadata, only the title will appear on the left.
+  • If none of these elements exist, the header will remain empty.
+]
 
 == lang
 
