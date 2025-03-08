@@ -727,66 +727,55 @@ Currently, Scripst provides the following settings:
   Note that the strings above have been used for styling settings. You can override their styles, but do not use these strings when working with labels and references.
 ]
 
-== Countblock
+== countblock
 
-Countblock is a counter module provided by Scripst for counting certain countable content in the document.
+#definition(subname: [countblock])[
 
-The global variable `cb` records all available counters, and you can add a counter using the `add-countblock` function.
+  Countblock is a counter module provided by Scripst for numbering countable elements in documents.
 
-The default countblocks include:
-```typst
-#let cb = (
-  "thm": ("Theorem", color.blue),
-  "def": ("Definition", color.green),
-  "prob": ("Problem", color.purple),
-  "prop": ("Proposition", color.purple-grey),
-  "ex": ("Example", color.green-blue),
-  "note": ("Note", color.grey),
-  "cau": ("⚠️", color.red),
-)
-```
-
-These counters are already initialised, and you can use them directly.
-
-#note(count: false)[
-  Since Typst language functions do not have pointers or references, variables passed cannot be modified. We can only modify variables via explicit return values and pass them to the next function. Currently, the author has not found a better method.
+  What you're seeing now is a `definition` block, which serves as an example of a counter module.
 ]
 
-#newpara()
+=== Default Countblocks
 
-=== Creating and Registering countblocks
+Scripst provides several default counters ready for use:
 
-You can also add (or overload) a counter using the `add-countblock` function and register it using the `register-countblock` function:
+• Definition: `#definition`
+• Theorem: `#theorem`
+• Proposition: `#proposition`
+• Lemma: `#lemma`
+• Corollary: `#corollary`
+• Remark: `#remark`
+• Claim: `#claim`
+• Exercise: `#exercise`
+• Problem: `#problem`
+• Example: `#example`
+• Note: `#note`
+• Caution: `#caution`
 
+These functions share identical parameters and effects, differing only in counter names.
 ```typst
-#let cb = add-countblock("test", "This is a test", teal)
-#show: register-countblock.with("test")
-```
-
-After that, you can use the countblock function to count this counter.
-
-#let cb = add-countblock("test", "This is a test", teal)
-#show: register-countblock.with("test")
-
-=== Using countblocks
-
-Use the `countblock` function to create a block:
-
-```typst
-#countblock(
-  name,
-  subname,
+#definition(
+  subname: [],
   count: true,
-  cb: cb,
   lab: none,
+  cb-counter-depth: 2,
 )[
   ...
 ]
 ```
-Where `name` is the counter's name, `subname` is the entry's name, `count` indicates whether it should be counted, and `cb` is the counter's list. For example:
-
+Parameter specifications:
+#three-line-table[
+  | Parameter | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `subname` | `array` | `[]` | Entry name |
+  | `count` | `bool` | `true` | Enable numbering |
+  | `lab` | `str` | `none` | Entry label |
+  | `cb-counter-depth` | `int` | `2` | Counter depth |
+]
+Example usage:
 ```typst
-#countblock("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
+#theorem(subname: [_Fermat's Last Theorem_], lab: "fermat")[
 
   No three $a, b, c in NN^+$ can satisfy the equation
   $
@@ -796,9 +785,8 @@ Where `name` is the counter's name, `subname` is the entry's name, `count` indic
 ]
 #proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
 ```
-
-This will create a theorem block and count it:
-#countblock("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
+This creates a numbered theorem block:
+#theorem(subname: [_Fermat's Last Theorem_], lab: "fermat")[
 
   No three $a, b, c in NN^+$ can satisfy the equation
   $
@@ -807,110 +795,278 @@ This will create a theorem block and count it:
   for any integer value of $n$ greater than 2.
 ]
 #proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
-Where `subname` is required as passed.
 
-Additionally, you can use the `lab` parameter to assign a label to this block, so you can reference it later in the text. For example, the `fermat` theorem block can be referenced as `@fermat`.
+==== `subname` Parameter
 
+`subname` displays supplemental information after the counter, such as theorem names. In the example above, it shows "Fermat's Last Theorem".
+
+==== `lab` Parameter
+
+Use the `lab` parameter to create cross-references. For instance, reference the `fermat` theorem using `@fermat`:
 ```typst
-Fermat did not provide proof publicly for @fermat.
+Fermat never publicly proved @fermat.
 ```
-Fermat did not provide proof publicly for @fermat.
+Fermat never publicly proved @fermat.
 
-You can also encapsulate it into another function:
+Note that `proposition`, `lemma`, `corollary`, `remark`, and `claim` share the same counter:
+#lemma[
 
-```typst
-#let test = countblock.with("test", cb)
-```
-
-For the previously created `test` counter, you can use the `countblock` function to count:
-
-```typst
-#countblock("test", cb)[
-  1 + 1 = 2
-]
-
-#test[
-  1 + 2 = 3
-]
-```
-
-#let test = countblock.with("test", cb)
-#countblock("test", cb)[
-  $
-    1 + 1 = 2
-  $
-]
-#test[
-  $
-    1 + 2 = 3
-  $
-]
-
-
-Other default counters can also be used with the pre-packaged functions:
-
-```typst
-#definition(subname: [...])[]
-#theorem(subname: [...])[]
-#proposition(subname: [...])[]
-#problem(subname: [...])[]
-#note(count: false)[]
-#caution(count: false)[]
-```
-
-#definition[
-
-  This is a definition, please understand it.
-]
-
-#theorem(lab: "test")[
-
-  This is a theorem, please use it. (Added a label to this countblock for referencing later)
-]
-
-#problem[
-
-  This is a problem, please solve it.
+  This is a lemma. Please prove it.
 ]
 
 #proposition[
 
-  This is a proposition, please prove it.
+  This is a proposition. Please prove it.
 ]
 
-#note(count: false)[
+#corollary[
 
-  This is a note, please take note of it.
+  This is a corollary. Please prove it.
 ]
 
-#caution(count: false)[
-  This is a reminder, please be cautious about it.
+#remark[
+
+  This is a remark. Please note it.
 ]
 
-#theorem[
+#claim[
 
-  This is a test of referencing @test.
+  This is a claim. Please prove it.
 ]
 
-You can also have Typst list all countblocks:
+Other counters operate independently.
 
+==== `count` Parameter
+
+Set `count: false` to disable numbering. `note` and `caution` default to `count: false`.
 ```typst
-#outline(title: [List of Thms], target: figure.where(kind: "thm"))
+#note(count: true)[
+
+  This is a numbered note.
+]
+
+#note[
+
+  This is an unnumbered note.
+]
 ```
-#outline(title: [List of Thms], target: figure.where(kind: "thm"))
+
+#note(count: true)[
+
+  This is a numbered note.
+]
+
+#note[
+
+  This is an unnumbered note.
+]
+
+==== `cb-counter-depth` Parameter
+
+Detailed explanation in @cb-counter.
+
+=== Global `cb` Variable <cb>
+
+Scripst tracks all counters through the global `cb` variable, which includes default counter depth `cb-counter-depth`.
+
+Default `cb` structure:
+```typst
+#let cb = (
+  "def": ("Definition", mycolor.green, "def"),
+  "thm": ("Theorem", mycolor.blue, "thm"),
+  "prop": ("Proposition", mycolor.violet, "prop"),
+  "lem": ("Lemma", mycolor.violet-light, "prop"),
+  "cor": ("Corollary", mycolor.violet-dark, "prop"),
+  "rmk": ("Remark", mycolor.violet-darker, "prop"),
+  "clm": ("Claim", mycolor.violet-deep, "prop"),
+  "ex": ("Exercise", mycolor.purple, "ex"),
+  "prob": ("Problem", mycolor.orange, "prob"),
+  "eg": ("Example", mycolor.cyan, "eg"),
+  "note": ("Note", mycolor.grey, "note"),
+  "cau": ("⚠️", mycolor.red, "cau"),
+  "cb-counter-depth": 2,
+)
+```
 
 #newpara()
 
-#note(count: false)[
-  The `kind` parameter here is the `name` specified when defining the countblock, which is the key string in the `cb` dictionary.
+=== Creating & Registering Countblocks <new-cb>
+
+Use `add-countblock` to create counters and `reg-countblock` to register them. Add this at document start:
+```typst
+#let cb = add-countblock(cb, "test", "This is a test", teal)
+#show: reg-countblock.with("test")
+```
+#note[
+  This code first updates `cb`, then registers the counter.
 ]
 
-The numbering logic for these counters is as follows:
+==== `add-countblock` Function
 
-- If there is no section, there will be only one counter number;
-- If there are sections, the counter number will be *section number. number of this type of block within the section up to this point*
+Parameters for `add-countblock`:
+```typst
+#add-countblock(cb, name, info, color, counter-name: none) {return cb}
+```
+#three-line-table[
+  | Parameter | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `cb` | `dict` | `` | Counter dictionary |
+  | `name` | `str` | `` | Counter name |
+  | `info` | `str` | `` | Display text |
+  | `color` | `color` | `` | Header color |
+  | `counter-name` | `str` | `none` | Counter ID |
+]
+• Updates `cb` dictionary (explicit assignment required due to Typst's value semantics)
+• Format: `name: (info, color, counter-name)`
+• `counter-name` defaults to `name` if unspecified
 
-*Thus, you can register and use any number of counters.*
+==== `reg-countblock` Function
+
+Parameters for `reg-countblock`:
+```typst
+#show reg-countblock.with(name, cb-counter-depth: 2)
+```
+#three-line-table[
+  | Parameter | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `counter-name` | `str` | `` | Counter ID |
+  | `cb-counter-depth` | `int` | `2` | Counter depth |
+]
+
+#separator
+
+After registration, use `countblock` to implement:
+```typst
+#countblock("test", cb)[
+  1 + 1 = 2
+]
+```
+#countblock("test", cb)[
+  1 + 1 = 2
+]
+
+Or create a wrapper function:
+```typst
+#let test = countblock.with("test", cb)
+#test[
+  1 + 1 = 2
+]
+```
+#let test = countblock.with("test", cb)
+#test[
+  1 + 1 = 2
+]
+
+=== Counter Depth Management <cb-counter>
+
+The global `cb-counter-depth` defaults to 2. To modify:
+
+```typst
+#let cb = add-countblock(cb, "test1", "This is a test1", green)
+#show: reg-countblock.with("test1", cb-counter-depth: 3)
+```
+#let cb = add-countblock(cb, "test1", "This is a test1", green)
+#show: reg-countblock.with("test1", cb-counter-depth: 3)
+
+Use `reg-default-countblock` for default counters:
+```typst
+#show: reg-default-countblock.with(cb-counter-depth: 3)
+```
+#show: reg-default-countblock.with(cb-counter-depth: 3)
+
+For existing counters, explicitly specify depth:
+```typst
+#definition(cb-counter-depth: 3)[
+  This is a definition. Please understand it.
+]
+```
+#definition(cb-counter-depth: 3)[
+  This is a definition. Please understand it.
+]
+
+Or create a custom wrapper:
+```typst
+#let definition = definition.with(cb-counter-depth: 3)
+#definition[
+  This is a definition. Please understand it.
+]
+```
+#let definition = definition.with(cb-counter-depth: 3)
+#definition[
+  This is a definition. Please understand it.
+]
+
+=== Using Countblocks
+
+Implementation template:
+```typst
+#countblock(
+  name,
+  cb,
+  cb-counter-depth: cb.at("cb-counter-depth"), // default: 2
+  subname: "",
+  count: true,
+  lab: none
+)[
+  ...
+]
+```
+#three-line-table[
+  | Parameter | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `name` | `str` | `` | Counter name |
+  | `cb` | `dict` | `` | Counter dict |
+  | `cb-counter-depth` | `int` | `cb.at("cb-counter-depth")` | Depth |
+  | `subname` | `str` | `` | Entry name |
+  | `count` | `bool` | `true` | Enable numbering |
+  | `lab` | `str` | `none` | Reference label |
+]
+
+Example with custom depth:
+```typst
+#countblock("test1", cb, cb-counter-depth: 3)[
+  1 + 1 = 2
+]
+#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)
+#test1[
+  1 + 1 = 2
+]
+```
+#countblock("test1", cb, cb-counter-depth: 3)[
+  1 + 1 = 2
+]
+#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)
+#test1[
+  1 + 1 = 2
+]
+
+=== Summary
+
+Scripst provides a simple counter module system. You can use the `add-countblock` function to create counters, `reg-countblock` to register them, and `countblock` to implement them.  
+
+By default, all counters have a depth of 2. Use `reg-default-countblock` to configure default counters.  
+
+• If you want all countblocks to use depth 2, no special configuration is needed.  
+• If you want all countblocks to use depth 3, specify the depth during registration and usage.  
+
+#example(count: false)[  
+  Example: A user wants all default countblocks to use depth 3, while making `remark` independent from the shared counter for `proposition`, `lemma`, `corollary`, and `claim`. Also create a depth-3 `algorithm` counter.  
+
+  ```typst  
+  #let cb = add-countblock(cb, "rmk", "Remark", mycolor.violet-darker)  
+  #let cb = add-countblock(cb, "algorithm", "Algorithm", mycolor.yellow)  
+  #show: reg-default-countblock.with(cb-counter-depth: 3)  
+  #show: reg-countblock.with("rmk", cb-counter-depth: 3)  
+  #show: reg-countblock.with("algorithm", cb-counter-depth: 3)  
+  #let definition = definition.with(cb-counter-depth: 3)  
+  #let theorem = theorem.with(cb-counter-depth: 3)  
+  // ...  
+  #let remark = countblock.with("rmk", cb, cb-counter-depth: 3) // Re-encapsulate due to counter changes  
+  #let algorithm = countblock.with("algorithm", cb, cb-counter-depth: 3)  
+  ```  
+  Place this code at the beginning of the document, after `#script`.  
+]
+
 
 == Some Other Blocks
 
