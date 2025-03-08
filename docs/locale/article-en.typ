@@ -916,128 +916,171 @@ Parameters for `add-countblock`:
   | `color` | `color` | `` | Header color |
   | `counter-name` | `str` | `none` | Counter ID |
 ]
-• Updates `cb` dictionary (explicit assignment required due to Typst's value semantics)
-• Format: `name: (info, color, counter-name)`
-• `counter-name` defaults to `name` if unspecified
 
-==== `reg-countblock` Function
+- `cb` is a dictionary with the format shown in @cb. The function's purpose is to update `cb`, which requires explicit assignment during use.
+#note(count: false)[
+Since Typst's functions lack pointers or references, passed variables cannot be directly modified. We can only modify variables by explicitly returning values and passing them to subsequent functions. The author has not yet found a better approach.
+]
+- `name: (info, color, counter-name)` represents a counter's basic information. During rendering, the counter's top-left corner will display `info counter(counter-name)` (e.g., `Theorem 1.1`) as its identifier, with the color set to `color`.
+- `counter-name` is the counter's identifier. If unspecified, it defaults to using `name` as the identifier.
 
-Parameters for `reg-countblock`:
-```typst
-#show reg-countblock.with(name, cb-counter-depth: 2)
-```
-#three-line-table[
-  | Parameter | Type | Default | Description |
-  | --- | --- | --- | --- |
-  | `counter-name` | `str` | `` | Counter ID |
-  | `cb-counter-depth` | `int` | `2` | Counter depth |
-]
+==== `reg-countblock` Function  
 
-#separator
+The parameters of the `reg-countblock` function are as follows:  
+```typst  
+#show reg-countblock.with(name, cb-counter-depth: 2)  
+```  
+Parameter specifications:  
+#three-line-table[  
+  | Parameter | Type | Default | Description |  
+  | --- | --- | --- | --- |  
+  | `counter-name` | `str` | `` | Counter identifier |  
+  | `cb-counter-depth` | `int` | `2` | Counter depth |  
+]  
+• `counter-name` is the counter identifier, explicitly specified in `add-countblock` (uses `name` if unspecified). For example, the default `clm` counter uses `prop`.  
+• `cb-counter-depth` defines the counter depth, which can be `1`, `2`, or `3`.  
 
-After registration, use `countblock` to implement:
-```typst
-#countblock("test", cb)[
-  1 + 1 = 2
-]
-```
-#countblock("test", cb)[
-  1 + 1 = 2
-]
+#separator  
 
-Or create a wrapper function:
-```typst
-#let test = countblock.with("test", cb)
-#test[
-  1 + 1 = 2
-]
-```
-#let test = countblock.with("test", cb)
-#test[
-  1 + 1 = 2
-]
+After this, you can use the `countblock` function to implement the counter:  
 
-=== Counter Depth Management <cb-counter>
+```typst  
+#let cb = add-countblock(cb, "test", "This is a test", teal)  
+#show: reg-countblock.with("test")  
+```  
 
-The global `cb-counter-depth` defaults to 2. To modify:
+=== Counter Depth for countblock <cb-counter>  
 
-```typst
-#let cb = add-countblock(cb, "test1", "This is a test1", green)
-#show: reg-countblock.with("test1", cb-counter-depth: 3)
-```
-#let cb = add-countblock(cb, "test1", "This is a test1", green)
-#show: reg-countblock.with("test1", cb-counter-depth: 3)
+This section details the `cb-counter-depth` parameter and its implementation, not previously mentioned.  
 
-Use `reg-default-countblock` for default counters:
-```typst
-#show: reg-default-countblock.with(cb-counter-depth: 3)
-```
-#show: reg-default-countblock.with(cb-counter-depth: 3)
+The global variable `cb` has a default `cb-counter-depth` value of 2. Thus, default countblocks use depth 2.  
 
-For existing counters, explicitly specify depth:
-```typst
-#definition(cb-counter-depth: 3)[
-  This is a definition. Please understand it.
-]
-```
-#definition(cb-counter-depth: 3)[
-  This is a definition. Please understand it.
-]
+#note[  
+  Directly modifying `cb-counter-depth` in the global variable will NOT affect existing counters. This is because counter creation uses the original `cb.at("cb-counter-depth")` as the default value. Updating `cb` does not retroactively change this value. You must re-register counters.  
+]  
 
-Or create a custom wrapper:
-```typst
-#let definition = definition.with(cb-counter-depth: 3)
-#definition[
-  This is a definition. Please understand it.
-]
-```
-#let definition = definition.with(cb-counter-depth: 3)
-#definition[
-  This is a definition. Please understand it.
-]
+Counter logic aligns with @counter.  
 
-=== Using Countblocks
+*To register a depth-3 counter:*  
+```typst  
+#let cb = add-countblock(cb, "test1", "This is a test1", green)  
+#show: reg-countblock.with("test1", cb-counter-depth: 3)  
+```  
+#let cb = add-countblock(cb, "test1", "This is a test1", green)  
+#show: reg-countblock.with("test1", cb-counter-depth: 3)  
 
-Implementation template:
-```typst
-#countblock(
-  name,
-  cb,
-  cb-counter-depth: cb.at("cb-counter-depth"), // default: 2
-  subname: "",
-  count: true,
-  lab: none
-)[
-  ...
-]
-```
-#three-line-table[
-  | Parameter | Type | Default | Description |
-  | --- | --- | --- | --- |
-  | `name` | `str` | `` | Counter name |
-  | `cb` | `dict` | `` | Counter dict |
-  | `cb-counter-depth` | `int` | `cb.at("cb-counter-depth")` | Depth |
-  | `subname` | `str` | `` | Entry name |
-  | `count` | `bool` | `true` | Enable numbering |
-  | `lab` | `str` | `none` | Reference label |
-]
+#newpara()  
 
-Example with custom depth:
-```typst
-#countblock("test1", cb, cb-counter-depth: 3)[
-  1 + 1 = 2
-]
-#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)
-#test1[
-  1 + 1 = 2
-]
-```
-#countblock("test1", cb, cb-counter-depth: 3)[
-  1 + 1 = 2
-]
-#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)
-#test1[
-  1 + 1 = 2
+Use `reg-default-countblock` to set default counters. For example, to *set all default counters to depth 3*:  
+```typst  
+#show: reg-default-countblock.with(cb-counter-depth: 3)  
+```  
+#show: reg-default-countblock.with(cb-counter-depth: 3)  
+However, this alone is insufficient because the pre-packaged counters still default to depth 2. If you directly call:  
+```typst  
+#definition[  
+  This is a definition. Please understand it.  
+]  
+```  
+the counter depth remains 2:  
+#definition[  
+  This is a definition. Please understand it.  
+]  
+Explicitly specify depth 3:  
+```typst  
+#definition(cb-counter-depth: 3)[  
+  This is a definition. Please understand it.  
+]  
+```  
+#definition(cb-counter-depth: 3)[  
+  This is a definition. Please understand it.  
+]  
+Alternatively, *create a custom wrapper*:  
+```typst  
+#let definition = definition.with(cb-counter-depth: 3)  
+```  
+#let definition = definition.with(cb-counter-depth: 3)  
+Subsequent uses of `definition` will default to depth 3:  
+```typst  
+#definition[  
+  This is a definition. Please understand it.  
+]  
+```  
+#definition[  
+  This is a definition. Please understand it.  
+]  
+
+=== Using countblock  
+
+After defining and registering a counter, use the `countblock` function to create a block:  
+```typst  
+#countblock(  
+  name,  
+  cb,  
+  cb-counter-depth: cb.at("cb-counter-depth"), // default: 2  
+  subname: "",  
+  count: true,  
+  lab: none  
+)[  
+  ...  
+]  
+```  
+Parameter specifications:  
+#three-line-table[  
+  | Parameter | Type | Default | Description |  
+  | --- | --- | --- | --- |  
+  | `name` | `str` | `` | Counter name |  
+  | `cb` | `dict` | `` | Counter dictionary |  
+  | `cb-counter-depth` | `int` | `cb.at("cb-counter-depth")` | Counter depth |  
+  | `subname` | `str` | `` | Entry name |  
+  | `count` | `bool` | `true` | Enable numbering |  
+  | `lab` | `str` | `none` | Reference label |  
+]  
+• `name`: Counter name, as specified in `add-countblock`.  
+• `cb`: Dictionary formatted as @cb. Ensure it contains the latest counter by updating `cb` first.  
+• `cb-counter-depth`: Counter depth (`1`, `2`, or `3`).  
+• `subname`: Supplemental text displayed after the counter (e.g., theorem name).  
+• `count`: Set `false` to disable numbering.  
+• `lab`: Label for cross-referencing with `@lab`.  
+
+Example using the `test` counter created in @new-cb:  
+```typst  
+#countblock("test", cb)[  
+  1 + 1 = 2  
+]  
+```  
+#countblock("test", cb)[  
+  1 + 1 = 2  
+]  
+
+Alternatively, create a wrapper function:  
+```typst  
+#let test = countblock.with("test", cb)  
+#test[  
+  1 + 1 = 2  
+]  
+```  
+#let test = countblock.with("test", cb)  
+#test[  
+  1 + 1 = 2  
+]  
+
+For the `test1` counter (depth 3 registered in @cb-counter), specify depth during use:  
+```typst  
+#countblock("test1", cb, cb-counter-depth: 3)[  
+  1 + 1 = 2  
+]  
+#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)  
+#test1[  
+  1 + 1 = 2  
+]  
+```  
+#countblock("test1", cb, cb-counter-depth: 3)[  
+  1 + 1 = 2  
+]  
+#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)  
+#test1[  
+  1 + 1 = 2  
 ]
 
 === Summary
