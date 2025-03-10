@@ -6,7 +6,7 @@
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | title | `content`, `str`, `none`| `""` | 文档标题 |
+    | title | `content`, `str`, `none` | `""` | 文档标题 |
   ],
   numbering: none,
 )
@@ -21,7 +21,7 @@
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | info | `content`, `str`, `none`| `""` | 文档信息 |
+    | info | `content`, `str`, `none` | `""` | 文档信息 |
   ],
   numbering: none,
 )
@@ -36,7 +36,7 @@
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | author | `str`, `content`, `array`| `()` | 文档作者 |
+    | author | `str`, `content`, `array` | `()` | 文档作者 |
   ],
   numbering: none,
 )
@@ -59,7 +59,7 @@
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | time | `content`, `str`, `none`| `""` | 文档时间 |
+    | time | `content`, `str`, `none` | `""` | 文档时间 |
   ],
   numbering: none,
 )
@@ -81,7 +81,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | abstract | `content`, `str`, `none`| `none` | 文档摘要 |
+    | abstract | `content`, `str`, `none` | `none` | 文档摘要 |
   ],
   numbering: none,
 )
@@ -111,7 +111,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | keywords | `array`| `()` | 文档关键词 |
+    | keywords | `array` | `()` | 文档关键词 |
   ],
   numbering: none,
 )
@@ -130,7 +130,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | font-size | `length`| `11pt` | 文档字体大小 |
+    | font-size | `length` | `11pt` | 文档字体大小 |
   ],
   numbering: none,
 )
@@ -147,7 +147,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | contents | `bool`| `false` | 是否生成目录 |
+    | contents | `bool` | `false` | 是否生成目录 |
   ],
   numbering: none,
 )
@@ -162,7 +162,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | content-depth | `int`| `2` | 目录的深度 |
+    | content-depth | `int` | `2` | 目录的深度 |
   ],
   numbering: none,
 )
@@ -177,7 +177,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 可选值 | 默认值 | 说明 |
     | --- | --- | --- | --- | --- |
-    | matheq-depth | `int`| `1`, `2`, `3` | `2` | 数学公式的深度 |
+    | matheq-depth | `int` | `1`, `2`, `3` | `2` | 数学公式的深度 |
   ],
   numbering: none,
 )
@@ -194,7 +194,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 可选值 | 默认值 | 说明 |
     | --- | --- | --- | --- | --- |
-    | counter-depth | `int`| `1`, `2`, `3` | `2` | 计数器的深度 |
+    | counter-depth | `int` | `1`, `2`, `3` | `2` | 计数器的深度 |
   ],
   numbering: none,
 )
@@ -218,7 +218,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | header | `bool`| `true` | 页眉 |
+    | header | `bool` | `true` | 页眉 |
   ],
   numbering: none,
 )
@@ -244,7 +244,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | lang | `str`| `"zh"` | 文档语言 |
+    | lang | `str` | `"zh"` | 文档语言 |
   ],
   numbering: none,
 )
@@ -261,7 +261,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | par-indent | `length`| `2em` | 段落首行缩进 |
+    | par-indent | `length` | `2em` | 段落首行缩进 |
   ],
   numbering: none,
 )
@@ -276,7 +276,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | par-leading | `length`| 跟随`lang`设置 | 段落内间距 |
+    | par-leading | `length` | 跟随`lang`设置 | 段落内的行间距 |
   ],
   numbering: none,
 )
@@ -286,16 +286,17 @@ datetime.today().display()
 段落内间距。在中文文档中默认是`1em`。
 
 #note(count: false)[
-  一般情况下，段落内间距在中文文档中是`1em`，在英文文档中是`0.6em`为宜。这些默认值会随着语言的选择而变化。
+  默认值会随着语言的选择而变化，具体情况见下表
+  #three-line-table[
+    | 语言类型 | 默认值 |
+    | --- | --- |
+    | 东亚文字（汉语、韩语、日语等） | 1em |
+    | 阿拉伯文字（阿拉伯语,波斯语等） | 0.75em |
+    | 斯拉夫文字（俄语，保加利亚语等） | 0.7em |
+    | 南亚、东南亚、阿姆哈拉文字（泰语、越南语、缅甸语、印地语、阿姆哈拉语等） | 0.85em |
+    | 其他文字 | 0.6em |
+  ],
 ]
-
-#three-line-table[
-  | 参数 | 类型 | 默认值 | 说明 |
-  | --- | --- | --- | --- |
-  | par-spacing | `length`| 跟随`lang`设置 | 段落间距 |
-]
-
-#newpara()
 
 == par-spacing
 
@@ -303,18 +304,28 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | par-spacing | `length`| 跟随`lang`设置 | 段落间距 |
+    | par-spacing | `length` | 跟随`lang`设置 | 段落间距 |
   ],
   numbering: none,
 )
 
 #newpara()
 
-段落间距。在中文文档中默认是`1.1em`。
+段落间距。在中文文档中默认是`1.2em`。
 
 #note(count: false)[
-  一般情况下，段落间距在中文文档中是`1.1em`，在英文文档中是`0.8em`为宜。这些默认值会随着语言的选择而变化。
+  默认值会随着语言的选择而变化，具体情况见下表
+  #three-line-table[
+    | 语言类型 | 默认值 |
+    | --- | --- |
+    | 东亚文字（汉语、韩语、日语等） | 1.2em |
+    | 阿拉伯文字（阿拉伯语,波斯语等） | 1.25em |
+    | 斯拉夫文字（俄语，保加利亚语等） | 1.2em |
+    | 南亚、东南亚、阿姆哈拉文字（泰语、越南语、缅甸语、印地语、阿姆哈拉语等） | 1.3em |
+    | 其他文字 | 1em |
+  ],
 ]
+
 
 == body
 
