@@ -205,6 +205,8 @@ $
 where $E$<text.red> is #[energy]<text.lime>。
 ```
 
+![labelset example](./previews/labelset.jpg)
+
 ### `newpara` function
 
 ```typst

@@ -211,6 +211,8 @@ $
 其中 $E$<text.red> 是#[能量]<text.lime>。
 ```
 
+![labelset 示例](./previews/labelset.jpg)
+
 ### `newpara` 函数
 
 ```typst
