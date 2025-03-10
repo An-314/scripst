@@ -289,6 +289,14 @@ datetime.today().display()
   一般情况下，段落内间距在中文文档中是`1em`，在英文文档中是`0.6em`为宜。这些默认值会随着语言的选择而变化。
 ]
 
+#three-line-table[
+  | 参数 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | par-spacing | `length`| 跟随`lang`设置 | 段落间距 |
+]
+
+#newpara()
+
 == par-spacing
 
 #figure(
