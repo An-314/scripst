@@ -254,7 +254,6 @@ The authors of the document. Pass a list of `str` or `content`. Or, simply pass 
   Note, if there is only one author, you can simply pass a `str` or `content`, and for multiple authors, a list of one `str` or `content`, for example: `author: ("Author I", "Author II")`
 ]
 
-#newpara()
 
 It will be displayed at the beginning of the article with $min(\#"authors", 3)$ authors per line.
 
@@ -393,6 +392,8 @@ The depth of math equation numbering. The default is `2`.
 
 #note(count: false)[ For detailed behavior of counters, see @counter. ]
 
+#newpara()
+
 == counter-depth <counter>
 
 #figure(
@@ -415,9 +416,11 @@ The counter depth for images (`image`), tables (`table`), and code blocks (`raw`
   When a counter has depth `2`, its numbering will follow level-1 headings, i.e., `1.1`, `1.2`, `2.1`, `2.2`, ... However, if the document contains no level-1 headings, Scripst will automatically treat it as depth `1`.
 
   When a counter has depth `3`, its numbering will follow level-1 and level-2 headings, i.e., `1.1.1`, `1.1.2`, `1.2.1`, `1.2.2`, `2.1.1`, ... However:
-  • If the document has level-1 headings but no level-2 headings, Scripst will treat it as depth `2`.
-  • If the document has no level-1 headings, Scripst will treat it as depth `1`.
+  - If the document has level-1 headings but no level-2 headings, Scripst will treat it as depth `2`.
+  - If the document has no level-1 headings, Scripst will treat it as depth `1`.
 ]
+
+#newpara()
 
 == header
 
@@ -437,13 +440,15 @@ Whether to generate headers. Default is `true`.
 #note(count: false)[
 
   The header displays the document title, metadata, and current chapter/section title:
-  • If all three exist, they will be displayed in the header in three equal parts.
-  • If the document has no metadata, the header will show the title on the left and chapter title on the right.
-    ◦ If the document also lacks a title, only the chapter title will appear on the right.
-  • If the document has no level-1 headings, the header will show the title on the left and metadata on the right.
-    ◦ If there's no metadata, only the title will appear on the left.
-  • If none of these elements exist, the header will remain empty.
+  - If all three exist, they will be displayed in the header in three equal parts.
+  - If the document has no metadata, the header will show the title on the left and chapter title on the right.
+    - If the document also lacks a title, only the chapter title will appear on the right.
+  - If the document has no level-1 headings, the header will show the title on the left and metadata on the right.
+    - If there's no metadata, only the title will appear on the left.
+  - If none of these elements exist, the header will remain empty.
 ]
+
+#newpara()
 
 == lang
 
@@ -727,6 +732,8 @@ Currently, Scripst provides the following settings:
   Note that the strings above have been used for styling settings. You can override their styles, but do not use these strings when working with labels and references.
 ]
 
+#newpara()
+
 == countblock
 
 #definition(subname: [countblock])[
@@ -736,22 +743,24 @@ Currently, Scripst provides the following settings:
   What you're seeing now is a `definition` block, which serves as an example of a counter module.
 ]
 
+#newpara()
+
 === Default Countblocks
 
 Scripst provides several default counters ready for use:
 
-• Definition: `#definition`
-• Theorem: `#theorem`
-• Proposition: `#proposition`
-• Lemma: `#lemma`
-• Corollary: `#corollary`
-• Remark: `#remark`
-• Claim: `#claim`
-• Exercise: `#exercise`
-• Problem: `#problem`
-• Example: `#example`
-• Note: `#note`
-• Caution: `#caution`
+- Definition: `#definition`
+- Theorem: `#theorem`
+- Proposition: `#proposition`
+- Lemma: `#lemma`
+- Corollary: `#corollary`
+- Remark: `#remark`
+- Claim: `#claim`
+- Exercise: `#exercise`
+- Problem: `#problem`
+- Example: `#example`
+- Note: `#note`
+- Caution: `#caution`
 
 These functions share identical parameters and effects, differing only in counter names.
 ```typst
@@ -861,6 +870,8 @@ Set `count: false` to disable numbering. `note` and `caution` default to `count:
   This is an unnumbered note.
 ]
 
+#newpara()
+
 ==== `cb-counter-depth` Parameter
 
 Detailed explanation in @cb-counter.
@@ -901,6 +912,11 @@ Use `add-countblock` to create counters and `reg-countblock` to register them. A
   This code first updates `cb`, then registers the counter.
 ]
 
+#let cb = add-countblock(cb, "test", "This is a test", teal)
+#show: reg-countblock.with("test")
+
+#newpara()
+
 ==== `add-countblock` Function
 
 Parameters for `add-countblock`:
@@ -918,198 +934,200 @@ Parameters for `add-countblock`:
 ]
 
 - `cb` is a dictionary with the format shown in @cb. The function's purpose is to update `cb`, which requires explicit assignment during use.
-#note(count: false)[
-Since Typst's functions lack pointers or references, passed variables cannot be directly modified. We can only modify variables by explicitly returning values and passing them to subsequent functions. The author has not yet found a better approach.
-]
+  #note(count: false)[
+    Since Typst's functions lack pointers or references, passed variables cannot be directly modified. We can only modify variables by explicitly returning values and passing them to subsequent functions. The author has not yet found a better approach.
+  ]
 - `name: (info, color, counter-name)` represents a counter's basic information. During rendering, the counter's top-left corner will display `info counter(counter-name)` (e.g., `Theorem 1.1`) as its identifier, with the color set to `color`.
 - `counter-name` is the counter's identifier. If unspecified, it defaults to using `name` as the identifier.
 
-==== `reg-countblock` Function  
+==== `reg-countblock` Function
 
-The parameters of the `reg-countblock` function are as follows:  
-```typst  
-#show reg-countblock.with(name, cb-counter-depth: 2)  
-```  
-Parameter specifications:  
-#three-line-table[  
-  | Parameter | Type | Default | Description |  
-  | --- | --- | --- | --- |  
-  | `counter-name` | `str` | `` | Counter identifier |  
-  | `cb-counter-depth` | `int` | `2` | Counter depth |  
-]  
-• `counter-name` is the counter identifier, explicitly specified in `add-countblock` (uses `name` if unspecified). For example, the default `clm` counter uses `prop`.  
-• `cb-counter-depth` defines the counter depth, which can be `1`, `2`, or `3`.  
-
-#separator  
-
-After this, you can use the `countblock` function to implement the counter:  
-
-```typst  
-#let cb = add-countblock(cb, "test", "This is a test", teal)  
-#show: reg-countblock.with("test")  
-```  
-
-=== Counter Depth for countblock <cb-counter>  
-
-This section details the `cb-counter-depth` parameter and its implementation, not previously mentioned.  
-
-The global variable `cb` has a default `cb-counter-depth` value of 2. Thus, default countblocks use depth 2.  
-
-#note[  
-  Directly modifying `cb-counter-depth` in the global variable will NOT affect existing counters. This is because counter creation uses the original `cb.at("cb-counter-depth")` as the default value. Updating `cb` does not retroactively change this value. You must re-register counters.  
-]  
-
-Counter logic aligns with @counter.  
-
-*To register a depth-3 counter:*  
-```typst  
-#let cb = add-countblock(cb, "test1", "This is a test1", green)  
-#show: reg-countblock.with("test1", cb-counter-depth: 3)  
-```  
-#let cb = add-countblock(cb, "test1", "This is a test1", green)  
-#show: reg-countblock.with("test1", cb-counter-depth: 3)  
-
-#newpara()  
-
-Use `reg-default-countblock` to set default counters. For example, to *set all default counters to depth 3*:  
-```typst  
-#show: reg-default-countblock.with(cb-counter-depth: 3)  
-```  
-#show: reg-default-countblock.with(cb-counter-depth: 3)  
-However, this alone is insufficient because the pre-packaged counters still default to depth 2. If you directly call:  
-```typst  
-#definition[  
-  This is a definition. Please understand it.  
-]  
-```  
-the counter depth remains 2:  
-#definition[  
-  This is a definition. Please understand it.  
-]  
-Explicitly specify depth 3:  
-```typst  
-#definition(cb-counter-depth: 3)[  
-  This is a definition. Please understand it.  
-]  
-```  
-#definition(cb-counter-depth: 3)[  
-  This is a definition. Please understand it.  
-]  
-Alternatively, *create a custom wrapper*:  
-```typst  
-#let definition = definition.with(cb-counter-depth: 3)  
-```  
-#let definition = definition.with(cb-counter-depth: 3)  
-Subsequent uses of `definition` will default to depth 3:  
-```typst  
-#definition[  
-  This is a definition. Please understand it.  
-]  
-```  
-#definition[  
-  This is a definition. Please understand it.  
-]  
-
-=== Using countblock  
-
-After defining and registering a counter, use the `countblock` function to create a block:  
-```typst  
-#countblock(  
-  name,  
-  cb,  
-  cb-counter-depth: cb.at("cb-counter-depth"), // default: 2  
-  subname: "",  
-  count: true,  
-  lab: none  
-)[  
-  ...  
-]  
-```  
-Parameter specifications:  
-#three-line-table[  
-  | Parameter | Type | Default | Description |  
-  | --- | --- | --- | --- |  
-  | `name` | `str` | `` | Counter name |  
-  | `cb` | `dict` | `` | Counter dictionary |  
-  | `cb-counter-depth` | `int` | `cb.at("cb-counter-depth")` | Counter depth |  
-  | `subname` | `str` | `` | Entry name |  
-  | `count` | `bool` | `true` | Enable numbering |  
-  | `lab` | `str` | `none` | Reference label |  
-]  
-• `name`: Counter name, as specified in `add-countblock`.  
-• `cb`: Dictionary formatted as @cb. Ensure it contains the latest counter by updating `cb` first.  
-• `cb-counter-depth`: Counter depth (`1`, `2`, or `3`).  
-• `subname`: Supplemental text displayed after the counter (e.g., theorem name).  
-• `count`: Set `false` to disable numbering.  
-• `lab`: Label for cross-referencing with `@lab`.  
-
-Example using the `test` counter created in @new-cb:  
-```typst  
-#countblock("test", cb)[  
-  1 + 1 = 2  
-]  
-```  
-#countblock("test", cb)[  
-  1 + 1 = 2  
-]  
-
-Alternatively, create a wrapper function:  
-```typst  
-#let test = countblock.with("test", cb)  
-#test[  
-  1 + 1 = 2  
-]  
-```  
-#let test = countblock.with("test", cb)  
-#test[  
-  1 + 1 = 2  
-]  
-
-For the `test1` counter (depth 3 registered in @cb-counter), specify depth during use:  
-```typst  
-#countblock("test1", cb, cb-counter-depth: 3)[  
-  1 + 1 = 2  
-]  
-#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)  
-#test1[  
-  1 + 1 = 2  
-]  
-```  
-#countblock("test1", cb, cb-counter-depth: 3)[  
-  1 + 1 = 2  
-]  
-#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)  
-#test1[  
-  1 + 1 = 2  
+The parameters of the `reg-countblock` function are as follows:
+```typst
+#show reg-countblock.with(name, cb-counter-depth: 2)
+```
+Parameter specifications:
+#three-line-table[
+  | Parameter | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `counter-name` | `str` | `` | Counter identifier |
+  | `cb-counter-depth` | `int` | `2` | Counter depth |
 ]
+- `counter-name` is the counter identifier, explicitly specified in `add-countblock` (uses `name` if unspecified). For example, the default `clm` counter uses `prop`.
+- `cb-counter-depth` defines the counter depth, which can be `1`, `2`, or `3`.
+
+#separator
+
+After this, you can use the `countblock` function to implement the counter.
+
+=== Counter Depth for countblock <cb-counter>
+
+This section details the `cb-counter-depth` parameter and its implementation, not previously mentioned.
+
+The global variable `cb` has a default `cb-counter-depth` value of 2. Thus, default countblocks use depth 2.
+
+#note[
+  Directly modifying `cb-counter-depth` in the global variable will NOT affect existing counters. This is because counter creation uses the original `cb.at("cb-counter-depth")` as the default value. Updating `cb` does not retroactively change this value. You must re-register counters.
+]
+
+Counter logic aligns with @counter.
+
+*To register a depth-3 counter:*
+```typst
+#let cb = add-countblock(cb, "test1", "This is a test1", green)
+#show: reg-countblock.with("test1", cb-counter-depth: 3)
+```
+#let cb = add-countblock(cb, "test1", "This is a test1", green)
+#show: reg-countblock.with("test1", cb-counter-depth: 3)
+
+#newpara()
+
+Use `reg-default-countblock` to set default counters. For example, to *set all default counters to depth 3*:
+```typst
+#show: reg-default-countblock.with(cb-counter-depth: 3)
+```
+#show: reg-default-countblock.with(cb-counter-depth: 3)
+However, this alone is insufficient because the pre-packaged counters still default to depth 2. If you directly call:
+```typst
+#definition[
+  This is a definition. Please understand it.
+]
+```
+the counter depth remains 2:
+#definition[
+  This is a definition. Please understand it.
+]
+Explicitly specify depth 3:
+```typst
+#definition(cb-counter-depth: 3)[
+  This is a definition. Please understand it.
+]
+```
+#definition(cb-counter-depth: 3)[
+  This is a definition. Please understand it.
+]
+Alternatively, *create a custom wrapper*:
+```typst
+#let definition = definition.with(cb-counter-depth: 3)
+```
+#let definition = definition.with(cb-counter-depth: 3)
+Subsequent uses of `definition` will default to depth 3:
+```typst
+#definition[
+  This is a definition. Please understand it.
+]
+```
+#definition[
+  This is a definition. Please understand it.
+]
+
+#newpara()
+
+=== Using countblock
+
+After defining and registering a counter, use the `countblock` function to create a block:
+```typst
+#countblock(
+  name,
+  cb,
+  cb-counter-depth: cb.at("cb-counter-depth"), // default: 2
+  subname: "",
+  count: true,
+  lab: none
+)[
+  ...
+]
+```
+Parameter specifications:
+#three-line-table[
+  | Parameter | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `name` | `str` | `` | Counter name |
+  | `cb` | `dict` | `` | Counter dictionary |
+  | `cb-counter-depth` | `int` | `cb.at("cb-counter-depth")` | Counter depth |
+  | `subname` | `str` | `` | Entry name |
+  | `count` | `bool` | `true` | Enable numbering |
+  | `lab` | `str` | `none` | Reference label |
+]
+- `name`: Counter name, as specified in `add-countblock`.
+- `cb`: Dictionary formatted as @cb. Ensure it contains the latest counter by updating `cb` first.
+- `cb-counter-depth`: Counter depth (`1`, `2`, or `3`).
+- `subname`: Supplemental text displayed after the counter (e.g., theorem name).
+- `count`: Set `false` to disable numbering.
+- `lab`: Label for cross-referencing with `@lab`.
+
+Example using the `test` counter created in @new-cb:
+```typst
+#countblock("test", cb)[
+  1 + 1 = 2
+]
+```
+#countblock("test", cb)[
+  1 + 1 = 2
+]
+
+Alternatively, create a wrapper function:
+```typst
+#let test = countblock.with("test", cb)
+#test[
+  1 + 1 = 2
+]
+```
+#let test = countblock.with("test", cb)
+#test[
+  1 + 1 = 2
+]
+
+#newpara()
+
+For the `test1` counter (depth 3 registered in @cb-counter), specify depth during use:
+```typst
+#countblock("test1", cb, cb-counter-depth: 3)[
+  1 + 1 = 2
+]
+#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)
+#test1[
+  1 + 1 = 2
+]
+```
+#countblock("test1", cb, cb-counter-depth: 3)[
+  1 + 1 = 2
+]
+#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)
+#test1[
+  1 + 1 = 2
+]
+
+#newpara()
 
 === Summary
 
-Scripst provides a simple counter module system. You can use the `add-countblock` function to create counters, `reg-countblock` to register them, and `countblock` to implement them.  
+Scripst provides a simple counter module system. You can use the `add-countblock` function to create counters, `reg-countblock` to register them, and `countblock` to implement them.
 
-By default, all counters have a depth of 2. Use `reg-default-countblock` to configure default counters.  
+By default, all counters have a depth of 2. Use `reg-default-countblock` to configure default counters.
 
-• If you want all countblocks to use depth 2, no special configuration is needed.  
-• If you want all countblocks to use depth 3, specify the depth during registration and usage.  
+- If you want all countblocks to use depth 2, no special configuration is needed.
+- If you want all countblocks to use depth 3, specify the depth during registration and usage.
 
-#example(count: false)[  
-  Example: A user wants all default countblocks to use depth 3, while making `remark` independent from the shared counter for `proposition`, `lemma`, `corollary`, and `claim`. Also create a depth-3 `algorithm` counter.  
+#example(count: false)[
+  Example: A user wants all default countblocks to use depth 3, while making `remark` independent from the shared counter for `proposition`, `lemma`, `corollary`, and `claim`. Also create a depth-3 `algorithm` counter.
 
-  ```typst  
-  #let cb = add-countblock(cb, "rmk", "Remark", mycolor.violet-darker)  
-  #let cb = add-countblock(cb, "algorithm", "Algorithm", mycolor.yellow)  
-  #show: reg-default-countblock.with(cb-counter-depth: 3)  
-  #show: reg-countblock.with("rmk", cb-counter-depth: 3)  
-  #show: reg-countblock.with("algorithm", cb-counter-depth: 3)  
-  #let definition = definition.with(cb-counter-depth: 3)  
-  #let theorem = theorem.with(cb-counter-depth: 3)  
-  // ...  
-  #let remark = countblock.with("rmk", cb, cb-counter-depth: 3) // Re-encapsulate due to counter changes  
-  #let algorithm = countblock.with("algorithm", cb, cb-counter-depth: 3)  
-  ```  
-  Place this code at the beginning of the document, after `#script`.  
+  ```typst
+  #let cb = add-countblock(cb, "rmk", "Remark", mycolor.violet-darker)
+  #let cb = add-countblock(cb, "algorithm", "Algorithm", mycolor.yellow)
+  #show: reg-default-countblock.with(cb-counter-depth: 3)
+  #show: reg-countblock.with("rmk", cb-counter-depth: 3)
+  #show: reg-countblock.with("algorithm", cb-counter-depth: 3)
+  #let definition = definition.with(cb-counter-depth: 3)
+  #let theorem = theorem.with(cb-counter-depth: 3)
+  // ...
+  #let remark = countblock.with("rmk", cb, cb-counter-depth: 3) // Re-encapsulate due to counter changes
+  #let algorithm = countblock.with("algorithm", cb, cb-counter-depth: 3)
+  ```
+  Place this code at the beginning of the document, after `#script`.
 ]
 
+#newpara()
 
 == Some Other Blocks
 

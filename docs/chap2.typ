@@ -49,8 +49,6 @@
   注意，如果是一个作者的情况，可以只传入`str`或者`content`，在多个作者的时候传入一个`str`或者`content`的列表，例如：`author: ("作者1", "作者2")`
 ]
 
-#newpara()
-
 会在文章的开头以 $min(\#"authors", 3)$ 个作为一行显示。
 
 == time
@@ -188,6 +186,8 @@ datetime.today().display()
 
 #note(count: false)[ 计数器的详细表现见 @counter 。 ]
 
+#newpara()
+
 == counter-depth <counter>
 
 #figure(
@@ -211,6 +211,7 @@ datetime.today().display()
 
   一个计数器的深度为`3`时，计数器的编号会受到一级标题和二级标题的影响，即`1.1.1`, `1.1.2`, `1.2.1`, `1.2.2`, `2.1.1`, ...。但如果此时整个文档没有二级标题但有一级标题，Scripst 会自动将其转化为深度为`2`的情况；如果没有一级标题，Scripst 会自动将其转化为深度为`1`的情况。
 ]
+#newpara()
 
 == header
 
@@ -237,6 +238,8 @@ datetime.today().display()
     - 进而如果文档没有信息，页眉仅会在最左侧显示文档的题目。
   - 如果什么都没有，页眉将不会显示。
 ]
+
+#newpara()
 
 == lang
 

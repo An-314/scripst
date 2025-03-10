@@ -261,6 +261,8 @@ $
   注意上面的字符串已经被用于样式设置，你可以对其的样式设置进行重载，但不要在使用abel 和 refrence 时使用这些字符串。
 ]
 
+#newpara()
+
 == countblock
 
 #definition(subname: [countblock])[
@@ -269,6 +271,8 @@ $
 
   现在你看到的就是一个 `definition` 块，它是一个计数器模块的例子。
 ]
+
+#newpara()
 
 === 默认提供的 countblock
 
@@ -328,6 +332,9 @@ Scripst 默认提供了一些计数器，你可以直接使用。分别是：
   $
   for any integer value of $n$ greater than 2.
 ]
+
+#newpara()
+
 #proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
 
 ==== `subname` 参数
@@ -398,6 +405,8 @@ Fermat 并没有对 @fermat 给出公开的证明。
   这是一个注记，请你注意它。
 ]
 
+#newpara()
+
 ==== `cb-counter-depth` 参数
 
 对于该参数的详细解释见 @cb-counter。
@@ -438,6 +447,8 @@ Scripst 提供了 `add-countblock` 函数来添加（或重载）一个计数器
 #note[
   上面的代码意味着我们先更新了`cb`，再将其的计数器加入整个文档中。
 ]
+
+#newpara()
 
 ==== 函数 `add-countblock`
 
@@ -546,6 +557,7 @@ Scripst 提供了 `add-countblock` 函数来添加（或重载）一个计数器
   这是一个定义，请你理解它。
 ]
 
+#newpara()
 
 === countblock 的使用
 
@@ -605,6 +617,8 @@ Scripst 提供了 `add-countblock` 函数来添加（或重载）一个计数器
   1 + 1 = 2
 ]
 
+#newpara()
+
 当然，对于在 @cb-counter 中注册的深度为3的`test1`计数器，我们需要在使用时指定深度：
 ```typst
 #countblock("test1", cb, cb-counter-depth: 3)[
@@ -651,6 +665,8 @@ Scripst 提供了一种简单的计数器模块，你可以通过 `add-countbloc
   ```
   放在文档的开头，`#script` 之后即可。
 ]
+
+#newpara()
 
 == 一些其他的块
 
