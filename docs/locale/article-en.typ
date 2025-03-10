@@ -485,6 +485,78 @@ The document language. The default is `"zh"`.
 
 Accepts #link("https://en.wikipedia.org/wiki/ISO_639-1")[ISO_639-1] encoding format, such as `"zh"`, `"en"`, `"fr"`, etc.
 
+
+== par-indent
+
+#figure(
+  three-line-table[
+    | Parameter | Type | Default | Description |
+    | --- | --- | --- | --- |
+    | par-indent | `length` | `2em` | First-line paragraph indentation |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+Controls first-line paragraph indentation. Default: `2em`. Set to `0em` to disable indentation.
+
+== par-leading
+
+#figure(
+  three-line-table[
+    | Parameter | Type | Default | Description |
+    | --- | --- | --- | --- |
+    | par-leading | `length` | Language-dependent | Line spacing within paragraphs |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+Adjusts line spacing within paragraphs. Defaults to `1em` for Chinese documents.
+
+#note(count: false)[
+  Default values changes according to language script type, with details shown below:
+  #three-line-table[
+    | Script Category | Default |
+    | --- | --- |
+    | East Asian (Chinese/Japanese/Korean) | 1em |
+    | Arabic Scripts (Arabic/Persian/etc.) | 0.75em |
+    | Cyrillic Scripts (Russian/Bulgarian/etc.) | 0.7em |
+    | South/Southeast Asian/Amharic (Thai/Hindi/etc.) | 0.85em |
+    | Other Languages | 0.6em |
+  ],
+]
+
+== par-spacing
+
+#figure(
+  three-line-table[
+    | Parameter | Type | Default | Description |
+    | --- | --- | --- | --- |
+    | par-spacing | `length` | Language-dependent | Vertical spacing between paragraphs |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+Sets vertical spacing between paragraphs. Defaults to `1.2em` for Chinese documents.
+
+#note(count: false)[
+  Default values changes according to language script type, with details shown below:
+  #three-line-table[
+    | Script Category | Default |
+    | --- | --- |
+    | East Asian (Chinese/Japanese/Korean) | 1.2em |
+    | Arabic Scripts (Arabic/Persian/etc.) | 1.25em |
+    | Cyrillic Scripts (Russian/Bulgarian/etc.) | 1.2em |
+    | South/Southeast Asian/Amharic (Thai/Hindi/etc.) | 1.3em |
+    | Other Languages | 1em |
+  ],
+]
+
 == body
 
 When using `#show: scripst.with(...)`, the `body` parameter does not need to be passed manually. Typst will automatically pass the remaining document content to the `body` parameter.
