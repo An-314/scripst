@@ -5,8 +5,8 @@
     preface: "Preface",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.15em,
-    par-spacing: 1em
+    par-leading: "0.6em",
+    par-spacing: "1.0em"
   ),
 
   "zh" : (
@@ -15,8 +15,8 @@
     preface: "前言",
     number-format: "一",
     keywords-separator: "；",
-    par-leading: 1.2em,
-    par-spacing: 1.2em
+    par-leading: "1em",
+    par-spacing: "1.2em"
   ),
 
   "fr" : (
@@ -25,8 +25,8 @@
     preface: "Préface",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.15em,
-    par-spacing: 0.6em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "es" : (
@@ -35,8 +35,8 @@
     preface: "Prólogo",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.15em,
-    par-spacing: 0.6em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "ja" : (
@@ -45,8 +45,8 @@
     preface: "序文",
     number-format: "あ",
     keywords-separator: "、",
-    par-leading: 1.4em,
-    par-spacing: 0.9em
+    par-leading: "1em",
+    par-spacing: "1.2em"
   ),
 
   "de" : (
@@ -55,8 +55,8 @@
     preface: "Vorwort",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "it" : (
@@ -65,8 +65,8 @@
     preface: "Prefazione",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "pt" : (
@@ -75,8 +75,8 @@
     preface: "Prólogo",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "ru" : (
@@ -85,8 +85,8 @@
     preface: "Предисловие",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.2em,
-    par-spacing: 0.7em
+    par-leading: "0.7em",
+    par-spacing: "1.2em"
   ),
 
   "ko" : (
@@ -95,8 +95,8 @@
     preface: "서문",
     number-format: "가",
     keywords-separator: ",",
-    par-leading: 1.4em,
-    par-spacing: 0.9em
+    par-leading: "1em",
+    par-spacing: "1.2em"
   ),
 
   "ar" : (
@@ -105,8 +105,8 @@
     preface: "مقدمة",
     number-format: "١",
     keywords-separator: ",",
-    par-leading: 1.25em,
-    par-spacing: 0.75em
+    par-leading: "0.75em",
+    par-spacing: "1.25em"
   ),
 
   "hi" : (
@@ -115,8 +115,8 @@
     preface: "प्रस्तावना",
     number-format: "१",
     keywords-separator: ",",
-    par-leading: 1.35em,
-    par-spacing: 1.0em
+    par-leading: "0.85em",
+    par-spacing: "1.3em"
   ),
 
   "tr" : (
@@ -125,8 +125,8 @@
     preface: "Önsöz",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.2em,
-    par-spacing: 0.7em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "nl" : (
@@ -135,8 +135,8 @@
     preface: "Voorwoord",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "sv" : (
@@ -145,8 +145,8 @@
     preface: "Förord",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "fi" : (
@@ -155,8 +155,8 @@
     preface: "Esipuhe",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "da" : (
@@ -165,8 +165,8 @@
     preface: "Forord",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "no" : (
@@ -175,8 +175,8 @@
     preface: "Innledning",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "pl" : (
@@ -185,8 +185,8 @@
     preface: "Wstęp",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "gr" : (
@@ -195,8 +195,8 @@
     preface: "Εισαγωγή",
     number-format: "Α",
     keywords-separator: ",",
-    par-leading: 1.25em,
-    par-spacing: 0.75em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "th" : (
@@ -205,8 +205,8 @@
     preface: "คำนำ",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.3em,
-    par-spacing: 0.85em
+    par-leading: "0.85em",
+    par-spacing: "1.3em"
   ),
 
   "vi" : (
@@ -215,8 +215,8 @@
     preface: "Lờipreface",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.3em,
-    par-spacing: 0.85em
+    par-leading: "0.85em",
+    par-spacing: "1.3em"
   ),
 
   "id" : (
@@ -225,8 +225,8 @@
     preface: "Pendahuluan",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.3em,
-    par-spacing: 0.85em
+    par-leading: "0.85em",
+    par-spacing: "1.3em"
   ),
 
   "ms" : (
@@ -235,8 +235,8 @@
     preface: "Perkataan awal",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.3em,
-    par-spacing: 0.85em
+    par-leading: "0.85em",
+    par-spacing: "1.3em"
   ),
 
   "my" : (
@@ -245,8 +245,8 @@
     preface: "စတင်ခေါ်",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.3em,
-    par-spacing: 0.85em
+    par-leading: "0.85em",
+    par-spacing: "1.3em"
   ),
 
   "ph" : (
@@ -255,8 +255,8 @@
     preface: "Preludio",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.3em,
-    par-spacing: 0.85em
+    par-leading: "0.85em",
+    par-spacing: "1.3em"
   ),
 
   "sk" : (
@@ -265,8 +265,8 @@
     preface: "Predmluva",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "ro" : (
@@ -275,8 +275,8 @@
     preface: "Introducere",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "bg" : (
@@ -285,8 +285,8 @@
     preface: "Въведение",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.2em,
-    par-spacing: 0.7em
+    par-leading: "0.7em",
+    par-spacing: "1.2em"
   ),
 
   "hr" : (
@@ -295,8 +295,8 @@
     preface: "Predgovor",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.2em,
-    par-spacing: 0.7em
+    par-leading: "0.7em",
+    par-spacing: "1.2em"
   ),
 
   "lt" : (
@@ -305,8 +305,8 @@
     preface: "Įvadas",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "lv" : (
@@ -315,8 +315,8 @@
     preface: "Ievads",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "et" : (
@@ -325,8 +325,8 @@
     preface: "Esimesed sõnad",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "is" : (
@@ -335,8 +335,8 @@
     preface: "Fyrirbæ",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "fa" : (
@@ -345,8 +345,8 @@
     preface: "مقدمه",
     number-format: "۱",
     keywords-separator: ",",
-    par-leading: 1.25em,
-    par-spacing: 0.75em
+    par-leading: "0.75em",
+    par-spacing: "1.25em"
   ),
 
   "he" : (
@@ -355,8 +355,8 @@
     preface: "מבוא",
     number-format: "א",
     keywords-separator: ",",
-    par-leading: 1.25em,
-    par-spacing: 0.75em
+    par-leading: "0.75em",
+    par-spacing: "1.25em"
   ),
 
   "ur" : (
@@ -365,8 +365,8 @@
     preface: "مقدمہ",
     number-format: "۱",
     keywords-separator: ",",
-    par-leading: 1.25em,
-    par-spacing: 0.75em
+    par-leading: "0.75em",
+    par-spacing: "1.25em"
   ),
 
   "ku" : (
@@ -375,8 +375,8 @@
     preface: "Pêşkû",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.25em,
-    par-spacing: 0.75em
+    par-leading: "0.75em",
+    par-spacing: "1.25em"
   ),
 
   "sw" : (
@@ -385,8 +385,8 @@
     preface: "Mfano",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "am" : (
@@ -395,8 +395,8 @@
     preface: "Preface",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.25em,
-    par-spacing: 0.75em
+    par-leading: "0.85em",
+    par-spacing: "1.3em"
   ),
 
   "ha" : (
@@ -405,8 +405,8 @@
     preface: "Kwala",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "yo" : (
@@ -415,8 +415,8 @@
     preface: "Ibiyip",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "ig" : (
@@ -425,8 +425,8 @@
     preface: "Igwe",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
   "zu" : (
@@ -435,8 +435,8 @@
     preface: "Umgqo",
     number-format: "I",
     keywords-separator: ",",
-    par-leading: 1.1em,
-    par-spacing: 0.55em
+    par-leading: "0.6em",
+    par-spacing: "1em"
   ),
 
 )
