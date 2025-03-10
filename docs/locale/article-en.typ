@@ -116,7 +116,7 @@ For example, the template should be placed in
 ```
 You can execute the following command:
 ```bash
-cd ~/.local/share/typst/packages/preview/scripst/1.1.1
+cd ~/.local/share/typst/packages/preview/scripst/
 git clone https://github.com/An-314/scripst.git 1.1.1
 ```
 If the directory structure is like this, then the way to import the template files in the document should be:
@@ -144,8 +144,6 @@ After importing the template, create an `article` file in this way:
   contents: true,
   content-depth: 3,
   matheq-depth: 2,
-  counter-depth: 3,
-  header: true,
   lang: "en",
 )
 ```
@@ -175,6 +173,9 @@ Scripst template provides some parameters to customise the style of the document
   cb-counter-depth: 2,  // int: (1, 2, 3)
   header: true,         // bool
   lang: "en",           // str: ("zh", "en", "fr", ...)
+  par-indent: 0em,      // length
+  par-leading: none,    // length
+  par-spacing: none,    // length
   body,
 ) = {
   ...
@@ -256,7 +257,7 @@ The authors of the document. Pass a list of `str` or `content`. Or, simply pass 
 ]
 
 
-It will be displayed at the beginning of the article with $min(\#"authors", 3)$ authors per line.
+It will be displayed at the beginning of the article with $min(\#"authors", 3)$ authors in a line.
 
 == time
 
@@ -429,7 +430,7 @@ The counter depth for images (`image`), tables (`table`), and code blocks (`raw`
   three-line-table[
     | Parameter | Type | Optional Values | Default | Description |
     | --- | --- | --- | --- | --- |
-    | cb-counter-depth | `int` | `1`, `2`, `3` | `2` | Counter depth for countable elements |
+    | cb-counter-depth | `int` | `1`, `2`, `3` | `2` | Counter depth for `countblock` |
   ],
   numbering: none,
 )
@@ -518,13 +519,14 @@ Adjusts line spacing within paragraphs. Defaults to `1em` for Chinese documents.
 
 #note(count: false)[
   Default values changes according to language script type, with details shown below:
+  #set align(center)
   #three-line-table[
     | Script Category | Default |
     | --- | --- |
     | East Asian (Chinese/Japanese/Korean) | 1em |
+    | South/Southeast Asian/Amharic (Thai/Hindi/etc.) | 0.85em |
     | Arabic Scripts (Arabic/Persian/etc.) | 0.75em |
     | Cyrillic Scripts (Russian/Bulgarian/etc.) | 0.7em |
-    | South/Southeast Asian/Amharic (Thai/Hindi/etc.) | 0.85em |
     | Other Languages | 0.6em |
   ],
 ]
@@ -546,13 +548,14 @@ Sets vertical spacing between paragraphs. Defaults to `1.2em` for Chinese docume
 
 #note(count: false)[
   Default values changes according to language script type, with details shown below:
+  #set align(center)
   #three-line-table[
     | Script Category | Default |
     | --- | --- |
     | East Asian (Chinese/Japanese/Korean) | 1.2em |
+    | South/Southeast Asian/Amharic (Thai/Hindi/etc.) | 1.3em |
     | Arabic Scripts (Arabic/Persian/etc.) | 1.25em |
     | Cyrillic Scripts (Russian/Bulgarian/etc.) | 1.2em |
-    | South/Southeast Asian/Amharic (Thai/Hindi/etc.) | 1.3em |
     | Other Languages | 1em |
   ],
 ]
