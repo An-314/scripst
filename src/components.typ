@@ -139,21 +139,22 @@
     [
       #set text(font: font.countblock)
       #set align(left)
-      *#title* #h(0.75em) #body
+      *#title* #h(0.75em)
+      #figure(
+        [],
+        caption: none,
+        kind: name,
+        supplement: cb.at(name).at(0),
+        numbering: it => {
+          if count { generate-counter(cb-counter-depth, counter(counter-name).display()) } else { none }
+        },
+      )
+      #if lab != none { label(lab) }
+      #v(-1em)
+      #body
     ],
   )
-  [
-    #figure(
-      countblock,
-      caption: none,
-      kind: name,
-      supplement: cb.at(name).at(0),
-      numbering: it => {
-        if count { generate-counter(cb-counter-depth, counter(counter-name).display()) } else { none }
-      },
-    )
-    #if lab != none { label(lab) }
-  ]
+  countblock
 }
 
 #let definition = countblock.with("def", cb)
