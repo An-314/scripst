@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+    - name: 使用 Bug Report 模板
+      url: https://github.com/an-314/scripst/issues/new?template=bug-report.md
+      about: 如果你发现了一个 Bug，请使用此模板反馈。
+    - name: 使用 Feature Request 模板
+      url: https://github.com/an-314/scripst/issues/new?template=feature-request.md
+      about: 如果你有新的功能需求，请使用此模板。
