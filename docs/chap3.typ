@@ -106,7 +106,7 @@ $
 $
 是拥有编号的。
 
-得益于 `physica` 包，typst本身简单的数学输入方式得到了极大的扩展，并且仍然保留简介的特性：
+得益于 `physica` 包，typst本身简单的数学输入方式得到了极大的扩展，并且仍然保留简洁的特性：
 $
   &div vb(E) &=& rho / epsilon_0 \
   &div vb(B) &=& 0 \
@@ -163,12 +163,12 @@ typst 为列举提供了简单的环境，如所示：
 #grid(columns: (1fr, 1fr), align: (horizon, horizon))[
   ```typst
   #quote(attribution: "爱因斯坦", block: true)[
-    God does not play dice with the universe.
+    上帝不会掷骰子。
   ]
   ```
 ][
   #quote(attribution: "爱因斯坦", block: true)[
-    God does not play dice with the universe.
+    上帝不会掷骰子。
   ]
 ]
 
@@ -258,7 +258,7 @@ $
 )
 
 #caution(count: false)[
-  注意上面的字符串已经被用于样式设置，你可以对其的样式设置进行重载，但不要在使用abel 和 refrence 时使用这些字符串。
+  上述字符串已关联特定样式，允许进行样式覆盖，但在调用`label` 和 `reference` 方法时，请保留这些字符串的原始定义。
 ]
 
 #newpara()
@@ -350,7 +350,7 @@ Fermat 并没有对 @fermat 给出公开的证明。
 ```
 Fermat 并没有对 @fermat 给出公开的证明。
 
-另外，我们需要说明，在提供的这些默认封装好的函数中，`proposition`, `lemma`, `corollary`, `remark`, `claim`, 是共用同一个计数器的，效果如下：
+在默认提供的这些块中，`proposition`, `lemma`, `corollary`, `remark`, `claim`, 是共用同一个计数器的，效果如下：
 
 #lemma[
 
@@ -468,7 +468,7 @@ Scripst 提供了 `add-countblock` 函数来添加（或重载）一个计数器
 ]
 - `cb`是一个字典，其格式如@cb 所示。该函数的作用就是将`cb`更新，在使用时需要按照显示赋值。
   #note(count: false)[
-    由于 typst 语言的函数不存在指针或引用，传入的变量不能修改，我们只能通过显示的返回值来修改变量。并且将其传入下一个函数。目前作者没有找到更好的方法。
+    由于 typst 语言的函数不存在指针或引用，传入的变量不能修改，我们只能通过显式的返回值来修改变量。并且将其传入下一个函数。目前作者没有找到更好的方法。
   ]
 - `name: (info, color, counter-name)`是一个计数器的基本信息。在渲染时，计数器的左上角会显示`info counter(counter-name)`例如`Theorem 1.1`作为该计数器的编号；颜色会是`color`颜色的。
 - `counter-name`是计数器的编号，如果没有指定，那么会使用`name`作为编号。
@@ -647,13 +647,13 @@ Scripst 提供了一种简单的计数器模块，你可以通过 `add-countbloc
 
 对于默认的计数器，其深度为2，你可以通过 `reg-default-countblock` 函数来注册默认的计数器。
 
-如果你希望所有 countblock 的深度为2，那么在你注册和使用的时候不必在意深度。
+如果你希望所有 `countblock` 的深度为2，那么在你注册和使用的时候不必在意深度。
 
-如果你希望所有 countblock 的深度为3，那么你需要在注册和使用的时候指定深度。
+如果你希望所有 `countblock` 的深度为3，那么你需要在注册和使用的时候指定深度。
 
 #example(count: false)[
 
-  下面给出一个例子：使用者希望包括默认的所有 countblock 的计数器深度都是3，但希望 `remark` 与先前默认绑定的 `proposition`, `lemma`, `corollary`, `claim` 的计数器独立出来。再创建一个深度为 3 的 `algorithm` 计数器。
+  下面给出一个例子：使用者希望包括默认的所有 `countblock` 的计数器深度都是3，但希望 `remark` 与先前默认绑定的 `proposition`, `lemma`, `corollary`, `claim` 的计数器独立出来。再创建一个深度为 3 的 `algorithm` 计数器。
 
   ```typst
   #show: scripst.with(

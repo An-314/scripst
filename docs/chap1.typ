@@ -13,7 +13,7 @@ Typst 是使用起来比 LaTeX 更轻量的语言，一旦模板编写完成，�
 - 更简单的数学公式输入
 - ...
 
-所以，Typst 非常适合轻量级日常文档的编写。只需要花费撰写 Markdown 的时间成本，就能得到甚至好于 LaTeX 的排版效果。
+所以，Typst 非常适合轻量级日常文档的编写。只需要花费撰写 Markdown 的时间成本，就能获得甚至比 LaTeX 还要好的排版效果。
 
 可以通过下面的方式安装 Typst：
 
@@ -90,7 +90,7 @@ typst init @preview/scripst:1.1.1 project_name
 ```
 你可以执行指令
 ```bash
-cd ~/.local/share/typst/packages/preview/scripst/1.1.1
+cd ~/.local/share/typst/packages/preview/scripst
 git clone https://github.com/An-314/scripst.git 1.1.1
 ```
 如果是这样的目录结构，那么在文档中引入模板文件的方式应该是：
