@@ -30,6 +30,7 @@ Scripst
 - [🆕 Feature Demonstration](#-feature-demonstration)
   - [`countblock` Module](#countblock-module)
   - [Quick setting by using lable](#quick-setting-by-using-lable)
+  - [`newpara` function](#newpara-function)
 - [✨ Template Examples and Explanations](#-template-examples-and-explanations)
   - [Article](#article)
   - [Book](#book)
@@ -204,6 +205,18 @@ $
 where $E$<text.red> is #[energy]<text.lime>。
 ```
 
+### `newpara` function
+
+```typst
+#newpara()
+```
+Some of the text after the environment will not be automatically line-breaked, such as math equations, code blocks, `countblock`, etc., because some explanation of the above may be needed.
+
+But if you need line breaks, you can use the `#newpara()` function. The newly opened natural paragraph will be indented automatically and the line spacing will be adjusted automatically.
+
+This function allows you to create new natural paragraphs in all scenarios without worrying about layout!
+
+So when you think the layout between paragraphs is not pretty enough, try using the `#newpara()` function.
 
 * * *
 
