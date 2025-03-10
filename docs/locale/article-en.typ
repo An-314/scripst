@@ -172,6 +172,7 @@ Scripst template provides some parameters to customise the style of the document
   content-depth: 2,     // int
   matheq-depth: 2,      // int: (1, 2, 3)
   counter-depth: 3,     // int: (1, 2, 3)
+  cb-counter-depth: 2,  // int: (1, 2, 3)
   header: true,         // bool
   lang: "en",           // str: ("zh", "en", "fr", ...)
   body,
@@ -421,6 +422,23 @@ The counter depth for images (`image`), tables (`table`), and code blocks (`raw`
 ]
 
 #newpara()
+
+== cb-counter-depth
+
+#figure(
+  three-line-table[
+    | Parameter | Type | Optional Values | Default | Description |
+    | --- | --- | --- | --- | --- |
+    | cb-counter-depth | `int` | `1`, `2`, `3` | `2` | Counter depth for countable elements |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+The counter depth for countable elements. Default is `2`.
+
+If you change the default depth of the `countblock` counter, you will also need to specify the changed depth when using it, or rewrap the function. See @cb-counter for details.
 
 == header
 
@@ -1021,6 +1039,10 @@ Subsequent uses of `definition` will default to depth 3:
   This is a definition. Please understand it.
 ]
 
+#note[
+  In fact, the `cb-counter-depth` parameter mentioned earlier is set by calling the `reg-default-countblock` function when the document is initialized.
+]
+
 #newpara()
 
 === Using countblock
@@ -1113,9 +1135,12 @@ By default, all counters have a depth of 2. Use `reg-default-countblock` to conf
   Example: A user wants all default countblocks to use depth 3, while making `remark` independent from the shared counter for `proposition`, `lemma`, `corollary`, and `claim`. Also create a depth-3 `algorithm` counter.
 
   ```typst
+  #show: scripst.with(
+    // ...
+    cb-counter-depth: 3,
+  )
   #let cb = add-countblock(cb, "rmk", "Remark", mycolor.violet-darker)
   #let cb = add-countblock(cb, "algorithm", "Algorithm", mycolor.yellow)
-  #show: reg-default-countblock.with(cb-counter-depth: 3)
   #show: reg-countblock.with("rmk", cb-counter-depth: 3)
   #show: reg-countblock.with("algorithm", cb-counter-depth: 3)
   #let definition = definition.with(cb-counter-depth: 3)

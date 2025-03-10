@@ -128,6 +128,7 @@ typst init @local/scripst:1.1.1 project_name
   content-depth: 2,
   matheq-depth: 2,
   counter-depth: 2,
+  cb-counter-depth: 2,
   header: true,
   lang: "zh",
   par-indent: 2em,
@@ -153,6 +154,7 @@ typst init @local/scripst:1.1.1 project_name
 | `content-depth` | `int` | `2` | 目录深度 |
 | `matheq-depth` | `int` | `2` | 数学公式编号深度 |
 | `counter-depth` | `int` | `2` | 全局的计数器编号深度 |
+| `cb-counter-depth` | `int` | `2` | `countblock` 模块的计数器编号深度 |
 | `header` | `bool` | `true` | 是否生成页眉 |
 | `lang` | `str` | `"zh"` | 语言 (`"zh"`, `"en"`, `"fr"` 等) |
 | `par-indent` | `length` | `2em` | 段落首行缩进 |
@@ -162,6 +164,8 @@ typst init @local/scripst:1.1.1 project_name
 ---
 
 ## 🆕 特性展示
+
+该部分的具体使用方法请参见 [Scripst 文档](./docs/builds/article.pdf)。
 
 ### `countblock`模块
 

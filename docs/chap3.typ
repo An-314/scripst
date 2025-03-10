@@ -557,6 +557,10 @@ Scripst 提供了 `add-countblock` 函数来添加（或重载）一个计数器
   这是一个定义，请你理解它。
 ]
 
+#note[
+  事实上，前文提到的 `cb-counter-depth` 参数就是在文档初始化的时候调用 `reg-default-countblock` 函数来设置的。
+]
+
 #newpara()
 
 === countblock 的使用
@@ -652,9 +656,12 @@ Scripst 提供了一种简单的计数器模块，你可以通过 `add-countbloc
   下面给出一个例子：使用者希望包括默认的所有 countblock 的计数器深度都是3，但希望 `remark` 与先前默认绑定的 `proposition`, `lemma`, `corollary`, `claim` 的计数器独立出来。再创建一个深度为 3 的 `algorithm` 计数器。
 
   ```typst
+  #show: scripst.with(
+    // ...
+    cb-counter-depth: 3,
+  )
   #let cb = add-countblock(cb, "rmk", "Remark", mycolor.violet-darker)
   #let cb = add-countblock(cb, "algorithm", "Algorithm", mycolor.yellow)
-  #show: reg-default-countblock.with(cb-counter-depth: 3)
   #show: reg-countblock.with("rmk", cb-counter-depth: 3)
   #show: reg-countblock.with("algorithm", cb-counter-depth: 3)
   #let definition = definition.with(cb-counter-depth: 3)

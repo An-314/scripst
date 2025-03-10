@@ -213,6 +213,23 @@ datetime.today().display()
 ]
 #newpara()
 
+== cb-counter-depth
+
+#figure(
+  three-line-table[
+    | 参数 | 类型 | 可选值 | 默认值 | 说明 |
+    | --- | --- | --- | --- | --- |
+    | cb-counter-depth | `int`| `1`, `2`, `3` | `2` | `countblock` 的计数器深度 |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+`countblock` 环境中的计数器深度。默认为`2`。
+
+如果改变了`countblock`计数器的默认深度，你在使用时候还需要指定改变了的深度，或者重新封装函数。详情见 @cb-counter 。
+
 == header
 
 #figure(

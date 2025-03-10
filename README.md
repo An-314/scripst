@@ -126,6 +126,7 @@ typst init @preview/scripst:1.1.0 project_name
   content-depth: 2,
   matheq-depth: 2,
   counter-depth: 2,
+  cb-counter-depth: 2,
   header: true,
   lang: "en",
 )
@@ -149,12 +150,15 @@ typst init @preview/scripst:1.1.0 project_name
 | `content-depth` | `int` | `2` | Table of contents depth |
 | `matheq-depth` | `int` | `2` | Math equation numbering depth |
 | `counter-depth` | `int` | `2` | Overall counter numbering depth |
+| `cb-counter-depth` | `int` | `2` | `countblock` module counter numbering depth |
 | `header` | `bool` | `true` | Enable header |
 | `lang` | `str` | `"zh"` | Language (`"zh"`, `"en"`, `"fr"`, etc.) |
 
 * * *
 
 ## 🆕 Feature Demonstration
+
+The specific use of this section is described in [Scripst Documentation](. /docs/builds/article.pdf).
 
 ### `countblock` Module
 

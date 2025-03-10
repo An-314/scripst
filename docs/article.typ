@@ -67,6 +67,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
   content-depth: 2,     // int
   matheq-depth: 2,      // int: (1, 2, 3)
   counter-depth: 2,     // int: (1, 2, 3)
+  cb-counter-depth: 2,  // int: (1, 2, 3)
   header: true          // bool
   lang: "zh",           // str: ("zh", "en", "fr", ...)
   par-indent: 2em,      // length
