@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.0": *
+#import "@preview/scripst:1.1.1": *
 
 #show: scripst.with(
   title: [Scripst 的使用方法],

@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.0": *
+#import "@preview/scripst:1.1.1": *
 
 #show: scripst.with(
   title: [Scripst Documentation],
@@ -60,13 +60,13 @@ Based on Typst, Scripst provides some simple templates for convenient daily docu
 #link("https://typst.app/universe/package/scripst")[Scripst Package] has already been submitted to the community. If network available, you can directly use
 
 ```typst
-#import "@preview/scripst:1.1.0": *
+#import "@preview/scripst:1.1.1": *
 ```
 to import the Scripst templates in your document.
 
 You can also use `typst init` to create a new project with the template:
 ```bash
-typst init @preview/scripst:1.1.0 project_name
+typst init @preview/scripst:1.1.1 project_name
 ```
 
 This method does not require downloading the template files, just import them in the document.
@@ -110,22 +110,22 @@ Of course, you don't have to worry about not being able to modify the template f
 
 For example, the template should be placed in
 ```
-~/.local/share/typst/packages/preview/scripst/1.1.0               # in Linux
-%APPDATA%\typst\packages\preview\scripst\1.1.0                    # in Windows
-~/Library/Application Support/typst/packages/local/scripst/1.1.0  # macOS
+~/.local/share/typst/packages/preview/scripst/1.1.1               # in Linux
+%APPDATA%\typst\packages\preview\scripst\1.1.1                    # in Windows
+~/Library/Application Support/typst/packages/local/scripst/1.1.1  # macOS
 ```
 You can execute the following command:
 ```bash
-cd ~/.local/share/typst/packages/preview/scripst/1.1.0
-git clone https://github.com/An-314/scripst.git 1.1.0
+cd ~/.local/share/typst/packages/preview/scripst/1.1.1
+git clone https://github.com/An-314/scripst.git 1.1.1
 ```
 If the directory structure is like this, then the way to import the template files in the document should be:
 ```typst
-#import "@preview/scripst:1.1.0": *
+#import "@preview/scripst:1.1.1": *
 ```
 The advantage of this is that you can directly use `typst init` to create a new project with the template:
 ```bash
-typst init @preview/scripst:1.1.0 project_name
+typst init @preview/scripst:1.1.1 project_name
 ```
 #newpara()
 
