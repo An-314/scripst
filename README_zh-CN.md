@@ -319,7 +319,7 @@ cd {data-dir}/typst/packages/preview/scripst
 git clone https://github.com/An-314/scripst.git 1.1.1
 ```
 
-其中`data-dir`为Typst的数据目录，如上述Linux系统中的`~/.local/share/typst`，Windows系统中的`%APPDATA%\typst`，macOS系统中的`~/Library/Application Support/typst`。
+其中`data-dir`为Typst的数据目录，如上述Linux系统中的`~/.local/share/`，Windows系统中的`%APPDATA%\`，macOS系统中的`~/Library/Application Support/`。
 
 然后在 Typst 文件中直接引入：
 

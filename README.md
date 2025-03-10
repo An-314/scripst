@@ -311,7 +311,7 @@ Alternatively, run the following command:
 cd {data-dir}/typst/packages/preview/scripst  
 git clone https://github.com/An-314/scripst.git 1.1.1  
 ```  
-Here, `data-dir` refers to Typst's data directory (e.g., `~/.local/share/typst` on Linux, `%APPDATA%\typst` on Windows, or `~/Library/Application Support/typst` on macOS).  
+Here, `data-dir` refers to Typst's data directory (e.g., `~/.local/share/` on Linux, `%APPDATA%\` on Windows, or `~/Library/Application Support/` on macOS).  
 
 Then import the template directly in your Typst file:  
 ```typst  
