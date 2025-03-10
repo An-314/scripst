@@ -157,6 +157,9 @@ typst init @local/scripst:1.1.0 project_name
   content-depth: 2,
   matheq-depth: 2,
   lang: "zh",
+  par-indent: 2em,
+  par-leading: 1em,
+  par-spacing: 1em,
 )
 ```
 
@@ -179,6 +182,9 @@ typst init @local/scripst:1.1.0 project_name
 | `content-depth` | `int` | `2` | 目录深度 |
 | `matheq-depth` | `int` | `2` | 数学公式编号深度 |
 | `lang` | `str` | `"zh"` | 语言 (`"zh"`, `"en"`, `"fr"` 等) |
+| `par-indent` | `length` | `2em` | 段落缩进 |
+| `par-leading` | `length` | 跟随语言 | 段落首行缩进 |
+| `par-spacing` | `length` | 跟随语言 | 段落间距 |
 
 ---
 
