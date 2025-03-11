@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.0": *
+#import "@preview/scripst:1.1.1": *
 
 #let abstract = [
   Scripst is a simple and easy-to-use Typst language template, suitable for various scenarios such as daily documents, assignments, notes, papers, etc.
@@ -13,7 +13,8 @@
   template: "article",
   title: [Scripst Documentation],
   info: [Article Style Set],
-  author: ("AnZrew",),
+  author: "AnZrew",
+  // author: ("AnZrew", "AnZrew"),
   time: datetime.today().display(),
   abstract: abstract,
   keywords: (

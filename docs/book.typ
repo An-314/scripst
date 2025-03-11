@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.0": *
+#import "@preview/scripst:1.1.1": *
 
 #show: scripst.with(
   template: "book",
@@ -25,7 +25,7 @@
 
 #include "chap1.typ"
 
----------------------------------------------------------------------------------------------------------------------
+#separator
 
 在引入模板后通过这样的方式创建一个`book`文件：
 
@@ -61,7 +61,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
   template: "book",  // str: ("article", "book", "report")
   title: "",            // str, content, none
   info: "",             // str, content, none
-  author: (),           // array
+  author: (),           // str, content, array, none
   time: "",             // str, content, none
   abstract: none,       // str, content, none
   keywords: (),         // array

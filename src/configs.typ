@@ -18,22 +18,33 @@
   raw: code,
 )
 
-#let color = (
-  red: rgb("#f62d2d53"),
-  green: rgb("#72ab68ab"),
-  blue: rgb("#817ffab7"),
-  grey: rgb("#c2c2c2ad"),
-  purple-grey: rgb("#6f68abab"),
-  purple: rgb("#ac2df653"),
-  green-blue: rgb("#2dab8cab"),
+#let mycolor = (
+  red: rgb("#f44336a0"),
+  green: rgb("#4caf50a0"),
+  blue: rgb("#2196f3a0"),
+  grey: rgb("#9e9e9ea0"),
+  purple: rgb("#9c27b0a0"),
+  cyan: rgb("#00bcd4a0"),
+  orange: rgb("#ff9800a0"),
+  violet-light: rgb("#b39ddbaf"),
+  violet: rgb("#9575cdb0"),
+  violet-dark: rgb("#7e57c2b0"),
+  violet-darker: rgb("#673ab7b0"),
+  violet-deep: rgb("#5e35b1b0"),
 )
 
 #let cb = (
-  "thm": ("Theorem", color.blue),
-  "def": ("Definition", color.green),
-  "prob": ("Problem", color.purple),
-  "prop": ("Proposition", color.purple-grey),
-  "ex": ("Example", color.green-blue),
-  "note": ("Note", color.grey),
-  "cau": ("⚠️", color.red),
+  "def": ("Definition", mycolor.green, "def"),
+  "thm": ("Theorem", mycolor.blue, "thm"),
+  "prop": ("Proposition", mycolor.violet, "prop"),
+  "lem": ("Lemma", mycolor.violet-light, "prop"),
+  "cor": ("Corollary", mycolor.violet-dark, "prop"),
+  "rmk": ("Remark", mycolor.violet-darker, "prop"),
+  "clm": ("Claim", mycolor.violet-deep, "prop"),
+  "ex": ("Exercise", mycolor.purple, "ex"),
+  "prob": ("Problem", mycolor.orange, "prob"),
+  "eg": ("Example", mycolor.cyan, "eg"),
+  "note": ("Note", mycolor.grey, "note"),
+  "cau": ("⚠️", mycolor.red, "cau"),
+  "cb-counter-depth": 2,
 )

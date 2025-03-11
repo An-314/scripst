@@ -17,11 +17,15 @@
       top: 0.5em,
       bottom: 0.5em,
       x: 2em,
-      grid(
-        columns: (1fr,) * calc.min(3, list.len()),
-        gutter: 1em,
-        ..list.map(list => align(center, text(font: font, size: size, list))),
-      ),
+      if type(list) == array {
+        grid(
+          columns: (1fr,) * calc.min(3, list.len()),
+          gutter: 1em,
+          ..list.map(list => align(center, text(font: font, size: size, list))),
+        )
+      } else {
+        align(center, text(font: font, size: size, list))
+      },
     )
     #v(vdown)
   ]
@@ -35,7 +39,7 @@
     *#localize("abstract", lang: lang): *#abstract
     #v(1pt)
     #if keywords != () [
-      *#localize("keywords", lang: lang): * #text(font: kai, keywords.join(localize("keywords_separator", lang: lang)+" "))
+      *#localize("keywords", lang: lang): * #text(font: kai, keywords.join(localize("keywords-separator", lang: lang)+" "))
     ]
     #v(vdown)
   ]
@@ -95,38 +99,36 @@
   mkcontent: mkcontent(0em, 0em),
 )
 
-#let add-countblock(cb: cb, name, info, color) = {
-  cb.insert(name, (info, color))
+#let add-countblock(cb, name, info, color, counter-name: none) = {
+  if counter-name == none { counter-name = name }
+  cb.insert(name, (info, color, counter-name))
   return cb
 }
 
-#let register-countblock(name, body) = {
-  show heading.where(level: 1): it => {
-    counter(name).update(0)
+#let reg-countblock(counter-name, cb-counter-depth: cb.at("cb-counter-depth"), body) = {
+  show heading.where(level: 1, outlined: true): it => {
+    if cb-counter-depth == 2 or cb-counter-depth == 3 { counter(counter-name).update(0) }
+    it
+  }
+  show heading.where(level: 2, outlined: true): it => {
+    if cb-counter-depth == 3 { counter(counter-name).update(0) }
     it
   }
   body
 }
 
-#let countblock(name, subname: "", cb, count: true, lab: none, body) = {
-  if count { counter(name).step() }
+#let countblock(name, cb, cb-counter-depth: cb.at("cb-counter-depth"), subname: "", count: true, lab: none, body) = {
+  let (info, color, counter-name) = cb.at(name)
+  if count { counter(counter-name).step() }
   if cb.at(name) == none { panic("countblock: block not registered") }
-  let color = cb.at(name).at(1)
-  show figure: it => align(left)[
+  show figure: it => [
     #v(-4pt)
     #it
     #v(-4pt)
   ]
   let num = ""
-  let info = cb.at(name).at(0)
-  if count {
-    num = context {
-      if query(heading.where(level: 1)).len() != 0 {
-        " " + counter(heading.where(level: 1)).display() + "." + counter(name).display()
-      } else { " " + counter(name).display() }
-    }
-  }
-  let title = info + num + " " + subname
+  if count { num = generate-counter(cb-counter-depth, context counter(counter-name).display()) }
+  let title = info + " " + num + " " + subname
   set text(font: font.countblock)
   let countblock = block(
     fill: color.transparentize(60%),
@@ -134,32 +136,51 @@
     radius: 2pt,
     width: 100%,
     stroke: (left: (thickness: 4pt, paint: cb.at(name).at(1))),
-    [#set text(font: font.countblock)
-      *#title* #h(0.75em) #body],
+    [
+      #set text(font: font.countblock)
+      #set align(left)
+      *#title* #h(0.75em)
+      #figure(
+        [],
+        caption: none,
+        kind: name,
+        supplement: cb.at(name).at(0),
+        numbering: it => {
+          if count { generate-counter(cb-counter-depth, counter(counter-name).display()) } else { none }
+        },
+      )
+      #if lab != none { label(lab) }
+      #v(-1em)
+      #body
+    ],
   )
-  [
-    #figure(
-      countblock,
-      caption: none,
-      kind: name,
-      supplement: cb.at(name).at(0),
-      numbering: it => {
-        if query(heading.where(level: 1)).len() != 0 {
-          counter(heading.where(level: 1)).display() + "." + counter(name).display()
-        } else { counter(name).display() }
-      },
-    )
-    #if lab != none { label(lab) }
-  ]
+  countblock
 }
 
 #let definition = countblock.with("def", cb)
 #let theorem = countblock.with("thm", cb)
 #let proposition = countblock.with("prop", cb)
+#let lemma = countblock.with("lem", cb)
+#let corollary = countblock.with("cor", cb)
+#let remark = countblock.with("rmk", cb)
+#let claim = countblock.with("clm", cb)
+#let exercise = countblock.with("ex", cb)
 #let problem = countblock.with("prob", cb)
-#let example = countblock.with("ex", cb)
-#let note = countblock.with("note", cb)
-#let caution = countblock.with("cau", cb)
+#let example = countblock.with("eg", cb)
+#let note = countblock.with("note", cb, count: false)
+#let caution = countblock.with("cau", cb, count: false)
+
+#let reg-default-countblock(cb-counter-depth: cb.at("cb-counter-depth"), body) = {
+  show: reg-countblock.with("def", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("thm", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("prop", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("ex", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("prob", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("eg", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("note", cb-counter-depth: cb-counter-depth)
+  show: reg-countblock.with("cau", cb-counter-depth: cb-counter-depth)
+  body
+}
 
 #let proof(body) = {
   set enum(numbering: "(1)")
@@ -169,4 +190,41 @@
   )[_Proof._ #h(0.75em) #body
     #align(right)[$qed$]
   ]
+  newpara()
+}
+
+#let solution(body) = {
+  set enum(numbering: "(1)")
+  block(
+    inset: 8pt,
+    width: 100%,
+  )[_Solution._ #h(0.75em) #body
+  ]
+  newpara()
+}
+
+#let blankblock(color: color.orange, body) = {
+  block(
+    fill: color.transparentize(60%),
+    inset: 8pt,
+    radius: 2pt,
+    width: 100%,
+    stroke: (left: (thickness: 4pt, paint: color)),
+    [
+      #set text(font: font.countblock)
+      #set align(left)
+      #newpara()
+      #body
+    ],
+  )
+  newpara()
+}
+
+#let separator = {
+  block(
+    inset: 0pt,
+    width: 100%,
+    stroke: (top: (thickness: 1pt, paint: mycolor.grey)),
+  )[]
+  newpara()
 }

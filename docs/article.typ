@@ -1,9 +1,10 @@
-#import "@preview/scripst:1.1.0": *
+#import "@preview/scripst:1.1.1": *
 
 #show: scripst.with(
   title: [Scripst 的使用方法],
   info: [article样式],
   author: ("AnZrew", "AnZreww", "AnZrewww"),
+  // author: "Anzrew",
   time: datetime.today().display(),
   abstract: [Scripst 是一款简约易用的 Typst 语言模板，适用于日常文档、作业、笔记、论文等多种场景],
   keywords: (
@@ -13,7 +14,9 @@
   ),
   contents: true,
   content-depth: 3,
-  matheq-depth: 2,
+  matheq-depth: 3,
+  counter-depth: 3,
+  header: true,
   lang: "zh",
 )
 
@@ -23,7 +26,7 @@ Scripst 是一款简约易用的 Typst 语言模板，适用于日常文档、�
 
 #include "chap1.typ"
 
----------------------------------------------------------------------------------------------------------------------
+#separator
 
 在引入模板后通过这样的方式创建一个`article`文件：
 
@@ -55,15 +58,21 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
   template: "article",  // str: ("article", "book", "report")
   title: "",            // str, content, none
   info: "",             // str, content, none
-  author: (),           // array
+  author: (),           // str, content, array, none
   time: "",             // str, content, none
   abstract: none,       // str, content, none
   keywords: (),         // array
   font-size: 11pt,      // length
   contents: false,      // bool
   content-depth: 2,     // int
-  matheq-depth: 2,      // int: (1, 2)
+  matheq-depth: 2,      // int: (1, 2, 3)
+  counter-depth: 2,     // int: (1, 2, 3)
+  cb-counter-depth: 2,  // int: (1, 2, 3)
+  header: true          // bool
   lang: "zh",           // str: ("zh", "en", "fr", ...)
+  par-indent: 2em,      // length
+  par-leading: none,    // length
+  par-spacing: none,    // length
   body,
 ) = {
   ...
