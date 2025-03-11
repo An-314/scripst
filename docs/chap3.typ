@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.0": *
+#import "@preview/scripst:1.1.1": *
 
 = 模板效果展示
 
@@ -106,7 +106,7 @@ $
 $
 是拥有编号的。
 
-得益于 `physica` 包，typst本身简单的数学输入方式得到了极大的扩展，并且仍然保留简介的特性：
+得益于 `physica` 包，typst本身简单的数学输入方式得到了极大的扩展，并且仍然保留简洁的特性：
 $
   &div vb(E) &=& rho / epsilon_0 \
   &div vb(B) &=& 0 \
@@ -148,7 +148,7 @@ typst 为列举提供了简单的环境，如所示：
   ```typst
   / 第一项: 1
   / 第二项: 2
-  / 第三项: 23
+  / 第三项: 3
   ```
 ][
   / 第一项: 1
@@ -163,12 +163,12 @@ typst 为列举提供了简单的环境，如所示：
 #grid(columns: (1fr, 1fr), align: (horizon, horizon))[
   ```typst
   #quote(attribution: "爱因斯坦", block: true)[
-    God does not play dice with the universe.
+    上帝不会掷骰子。
   ]
   ```
 ][
   #quote(attribution: "爱因斯坦", block: true)[
-    God does not play dice with the universe.
+    上帝不会掷骰子。
   ]
 ]
 
@@ -258,8 +258,10 @@ $
 )
 
 #caution(count: false)[
-  注意上面的字符串已经被用于样式设置，你可以对其的样式设置进行重载，但不要在使用abel 和 refrence 时使用这些字符串。
+  上述字符串已关联特定样式，允许进行样式覆盖，但在调用`label` 和 `reference` 方法时，请保留这些字符串的原始定义。
 ]
+
+#newpara()
 
 == countblock
 
@@ -269,6 +271,8 @@ $
 
   现在你看到的就是一个 `definition` 块，它是一个计数器模块的例子。
 ]
+
+#newpara()
 
 === 默认提供的 countblock
 
@@ -328,6 +332,9 @@ Scripst 默认提供了一些计数器，你可以直接使用。分别是：
   $
   for any integer value of $n$ greater than 2.
 ]
+
+#newpara()
+
 #proof[Cuius rei demonstrationem mirabilem sane detexi. Hanc marginis exiguitas non caperet.]
 
 ==== `subname` 参数
@@ -343,7 +350,7 @@ Fermat 并没有对 @fermat 给出公开的证明。
 ```
 Fermat 并没有对 @fermat 给出公开的证明。
 
-另外，我们需要说明，在提供的这些默认封装好的函数中，`proposition`, `lemma`, `corollary`, `remark`, `claim`, 是共用同一个计数器的，效果如下：
+在默认提供的这些块中，`proposition`, `lemma`, `corollary`, `remark`, `claim`, 是共用同一个计数器的，效果如下：
 
 #lemma[
 
@@ -398,6 +405,8 @@ Fermat 并没有对 @fermat 给出公开的证明。
   这是一个注记，请你注意它。
 ]
 
+#newpara()
+
 ==== `cb-counter-depth` 参数
 
 对于该参数的详细解释见 @cb-counter。
@@ -439,6 +448,8 @@ Scripst 提供了 `add-countblock` 函数来添加（或重载）一个计数器
   上面的代码意味着我们先更新了`cb`，再将其的计数器加入整个文档中。
 ]
 
+#newpara()
+
 ==== 函数 `add-countblock`
 
 函数 `add-countblock` 的参数如下
@@ -457,7 +468,7 @@ Scripst 提供了 `add-countblock` 函数来添加（或重载）一个计数器
 ]
 - `cb`是一个字典，其格式如@cb 所示。该函数的作用就是将`cb`更新，在使用时需要按照显示赋值。
   #note(count: false)[
-    由于 typst 语言的函数不存在指针或引用，传入的变量不能修改，我们只能通过显示的返回值来修改变量。并且将其传入下一个函数。目前作者没有找到更好的方法。
+    由于 typst 语言的函数不存在指针或引用，传入的变量不能修改，我们只能通过显式的返回值来修改变量。并且将其传入下一个函数。目前作者没有找到更好的方法。
   ]
 - `name: (info, color, counter-name)`是一个计数器的基本信息。在渲染时，计数器的左上角会显示`info counter(counter-name)`例如`Theorem 1.1`作为该计数器的编号；颜色会是`color`颜色的。
 - `counter-name`是计数器的编号，如果没有指定，那么会使用`name`作为编号。
@@ -546,6 +557,11 @@ Scripst 提供了 `add-countblock` 函数来添加（或重载）一个计数器
   这是一个定义，请你理解它。
 ]
 
+#note[
+  事实上，前文提到的 `cb-counter-depth` 参数就是在文档初始化的时候调用 `reg-default-countblock` 函数来设置的。
+]
+
+#newpara()
 
 === countblock 的使用
 
@@ -605,6 +621,8 @@ Scripst 提供了 `add-countblock` 函数来添加（或重载）一个计数器
   1 + 1 = 2
 ]
 
+#newpara()
+
 当然，对于在 @cb-counter 中注册的深度为3的`test1`计数器，我们需要在使用时指定深度：
 ```typst
 #countblock("test1", cb, cb-counter-depth: 3)[
@@ -629,18 +647,21 @@ Scripst 提供了一种简单的计数器模块，你可以通过 `add-countbloc
 
 对于默认的计数器，其深度为2，你可以通过 `reg-default-countblock` 函数来注册默认的计数器。
 
-如果你希望所有 countblock 的深度为2，那么在你注册和使用的时候不必在意深度。
+如果你希望所有 `countblock` 的深度为2，那么在你注册和使用的时候不必在意深度。
 
-如果你希望所有 countblock 的深度为3，那么你需要在注册和使用的时候指定深度。
+如果你希望所有 `countblock` 的深度为3，那么你需要在注册和使用的时候指定深度。
 
 #example(count: false)[
 
-  下面给出一个例子：使用者希望包括默认的所有 countblock 的计数器深度都是3，但希望 `remark` 与先前默认绑定的 `proposition`, `lemma`, `corollary`, `claim` 的计数器独立出来。再创建一个深度为 3 的 `algorithm` 计数器。
+  下面给出一个例子：使用者希望包括默认的所有 `countblock` 的计数器深度都是3，但希望 `remark` 与先前默认绑定的 `proposition`, `lemma`, `corollary`, `claim` 的计数器独立出来。再创建一个深度为 3 的 `algorithm` 计数器。
 
   ```typst
+  #show: scripst.with(
+    // ...
+    cb-counter-depth: 3,
+  )
   #let cb = add-countblock(cb, "rmk", "Remark", mycolor.violet-darker)
   #let cb = add-countblock(cb, "algorithm", "Algorithm", mycolor.yellow)
-  #show: reg-default-countblock.with(cb-counter-depth: 3)
   #show: reg-countblock.with("rmk", cb-counter-depth: 3)
   #show: reg-countblock.with("algorithm", cb-counter-depth: 3)
   #let definition = definition.with(cb-counter-depth: 3)
@@ -651,6 +672,8 @@ Scripst 提供了一种简单的计数器模块，你可以通过 `add-countbloc
   ```
   放在文档的开头，`#script` 之后即可。
 ]
+
+#newpara()
 
 == 一些其他的块
 
@@ -672,7 +695,7 @@ Scripst 提供了一种简单的计数器模块，你可以通过 `add-countbloc
 ]
 
 
-=== 证明与证明结束
+=== 证明与$qed$（证明结束）
 
 ```typst
 #proof[

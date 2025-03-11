@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.0": *
+#import "@preview/scripst:1.1.1": *
 
 #show: scripst.with(
   title: [Scripst 的使用方法],
@@ -58,14 +58,17 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
   template: "article",  // str: ("article", "book", "report")
   title: "",            // str, content, none
   info: "",             // str, content, none
-  author: (),           // array
+  author: (),           // str, content, array, none
   time: "",             // str, content, none
   abstract: none,       // str, content, none
   keywords: (),         // array
   font-size: 11pt,      // length
   contents: false,      // bool
   content-depth: 2,     // int
-  matheq-depth: 2,      // int: (1, 2)
+  matheq-depth: 2,      // int: (1, 2, 3)
+  counter-depth: 2,     // int: (1, 2, 3)
+  cb-counter-depth: 2,  // int: (1, 2, 3)
+  header: true          // bool
   lang: "zh",           // str: ("zh", "en", "fr", ...)
   par-indent: 2em,      // length
   par-leading: none,    // length
