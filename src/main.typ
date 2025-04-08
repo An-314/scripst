@@ -22,5 +22,5 @@
   separator,
 )
 #import "configs.typ": font, mycolor, cb
-#import "styling.typ": newpara
+#import "styling.typ": newpara, cases
 #import "package.typ": *
