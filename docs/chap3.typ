@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.1": *
+#import "@preview/scripst:1.1.2": *
 
 = 模板效果展示
 
@@ -735,3 +735,67 @@ Scripst 提供了一种简单的计数器模块，你可以通过 `add-countbloc
 #separator
 
 #newpara()
+
+== 其他格式调整
+
+=== 数学公式相关
+
+==== 引用编号
+
+为数学公式调节了引用
+
+$
+  laplacian = pdv(,x,2) + pdv(,y,2) + pdv(,z,2)
+$<laplacian>
+
+对 @laplacian 的引用，格式不再是 #["式 @laplacian"]<text.red> 而是括号的形式。
+
+
+==== `cases` 环境下的数学公式
+
+`typst`原本的`cases`环境在数学公式中使用时，所有公式会显示成行内公式的形式。这有时候会导致美观性的问题。
+
+$
+  u(x,t) = #math.cases(
+  $sum_(i=1)^oo 4/(n pi) sin((n pi x)/L) e^(-((n pi)/L)^2 alpha t) "  "& 0<x<L$,
+  $0 "  " &"otherwise"$,
+  gap: 1em
+)
+$
+
+`scripst`提供了一个新的`cases`环境，可以在数学公式中使用。它的用法与原本的`cases`环境相同，如下所示：
+
+```typst
+$
+  u(x,t) = cases(
+    gap: #1em,
+    sum_(i=1)^oo 4/(n pi) sin((n pi x)/L) e^(-((n pi)/L)^2 alpha t) "  "& 0<x<L,
+    0 "  " &"otherwise"
+  )
+$
+
+```
+
+$
+  u(x,t) = cases(
+    gap: #1em,
+    sum_(i=1)^oo 4/(n pi) sin((n pi x)/L) e^(-((n pi)/L)^2 alpha t) "  "& 0<x<L,
+    0 "  " &"otherwise"
+  )
+$
+
+这是鉴于使用时，通常都需要展示比较详细的公式，所以在`cases`环境中，`scripst`默认会将所有的公式都显示成行间公式的形式。
+
+#note[
+  如果你还想使用原来的`math.cases`，可以使用
+  ```typst
+  $
+    u(x,t) = #math.cases(
+    $sum_(i=1)^oo 4/(n pi) sin((n pi x)/L) e^(-((n pi)/L)^2 alpha t) "  "& 0<x<L$,
+    $0 "  " &"otherwise"$,
+    gap: 1em
+  )
+  $
+  ```
+  来使用。
+]
