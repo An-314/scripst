@@ -169,6 +169,23 @@
 
 #let styref(color: red, body) = {
   show ref: set text(color)
+  // // https://typst.app/docs/reference/model/ref/
+  // // replace by `set math.equation(supplement: [])`
+  // show ref: it => {
+  //   let eq = math.equation
+  //   let el = it.element
+  //   if el != none and el.func() == eq {
+  //     link(
+  //       el.location(),
+  //       numbering(
+  //         el.numbering,
+  //         ..counter(eq).at(el.location()),
+  //       ),
+  //     )
+  //   } else {
+  //     it
+  //   }
+  // }
   body
 }
 
@@ -191,6 +208,15 @@
 
 #let stymatheq(eq-depth: 2, body) = {
   set math.equation(numbering: it => { "(" + generate-counter(eq-depth, it) + ")" })
+  set math.equation(supplement: [])
+  // Manipulating math.equation.body using show: https://github.com/typst/typst/discussions/2242
+  // show math.equation.where(block: false): it => {
+  //   if it.has("label") and it.label == <stop-equation-recursion> {
+  //     it
+  //   } else {
+  //     [$display(it)$ <stop-equation-recursion>]
+  //   }
+  // }
   body
 }
 
@@ -254,6 +280,12 @@
   par()[#text(size: 0.0em)[#h(0.0em)]]
   v(-12pt)
 }
+
+#let cases(delim: "{", reverse: false, gap: 0.5em, ..ls) = {
+  ls = ls.pos().map(it => math.display(it))
+  return math.cases(..ls, delim: delim, reverse: reverse, gap: gap)
+}
+
 
 // colors = (black,gray,silver,white,navy,blue,aqua,teal,eastern,purple,fuchsia,maroon,red,orange,yellow,olive,green,lime,)
 
