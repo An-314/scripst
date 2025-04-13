@@ -48,9 +48,24 @@
   body
 }
 
-#let styheading(lang: "zh", font: font.heading, counter-depth: 2, matheq-depth: 2, body) = {
+#let styheading(
+  lang: "zh",
+  font: font.heading,
+  counter-depth: 2,
+  matheq-depth: 2,
+  numbering-format: none,
+  chapter-numbering-format: none,
+  offset: 0,
+  body,
+) = {
   // layout styling
-  set heading(numbering: "1.1")
+  if numbering-format == none {
+    numbering-format = "1.1"
+  }
+  set heading(numbering: (n, ..it) => numbering(numbering-format, n - offset, ..it)) if (
+    type(numbering-format) == str
+  )
+  set heading(numbering: numbering-format) if type(numbering-format) == function
   show heading: it => [
     #set text(font: font)
     #set par(first-line-indent: 0em)
@@ -62,7 +77,13 @@
   ]
   show heading.where(level: 1): it => [
     #v(0.5em)
-    #set heading(numbering: { localize("number-format", lang: lang) })
+    #if chapter-numbering-format == none {
+      chapter-numbering-format = localize("number-format", lang: lang)
+    }
+    #set heading(numbering: (n, ..it) => numbering(chapter-numbering-format, n - offset, ..it)) if (
+      type(chapter-numbering-format) == str
+    )
+    #set heading(numbering: chapter-numbering-format) if type(chapter-numbering-format) == function
     #it
   ]
   // counter initialization
