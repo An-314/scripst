@@ -23,6 +23,9 @@
   par-indent: 2em,
   par-leading: none,
   par-spacing: none,
+  numbering-format: none,
+  chapter-numbering-format: none,
+  offset: 0,
   body,
 ) = {
   show: stydoc.with(title, author)
@@ -30,7 +33,14 @@
   show: stytext.with(lang: lang, size: font-size)
   show: stystrong
   show: styemph
-  show: styheading.with(lang: lang, counter-depth: counter-depth, matheq-depth: matheq-depth)
+  show: styheading.with(
+    lang: lang,
+    counter-depth: counter-depth,
+    matheq-depth: matheq-depth,
+    numbering-format: numbering-format,
+    chapter-numbering-format: chapter-numbering-format,
+    offset: offset,
+  )
   show: styfigure.with(counter-depth: counter-depth)
   show: styimage
   show: stytable
