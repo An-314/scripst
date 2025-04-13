@@ -343,9 +343,70 @@ datetime.today().display()
     | 阿拉伯文字（阿拉伯语、波斯语等） | 1.25em |
     | 斯拉夫文字（俄语、保加利亚语等） | 1.2em |
     | 其他文字 | 1em |
-  ],
+  ]
 ]
 
+== numbering-format
+
+#figure(
+  three-line-table[
+    | 参数 | 类型 | 默认值 | 说明 |
+    | --- | --- | --- | --- |
+    | numbering-format | `str`, `function` | `"1.1"` | 章节标题的编号格式 |
+  ],
+  numbering: none,
+)
+#newpara()
+
+章节标题的编号格式。默认为`"1.1"`，即`1.1`、`2.1`、`3.1`等。
+
+你可以传入一个函数来实现自定义的编号格式，例如：
+
+```typst
+#let numbering = (n, ..it) => "Chapter" + str(n) + "" + numbering("1.1", ..it)
+```
+
+#note[
+  - 如果传入字符串，则会以其为pattern来格式化章节标题的编号，并且根据 `offset` 设置标题编号的偏移。
+  - 如果传入函数，则会忽略掉 `offset` 的设置，一切按照函数的逻辑来进行编号。
+]
+
+== chapter-numbering-format
+
+#figure(
+  three-line-table[
+    | 参数 | 类型 | 默认值 | 说明 |
+    | --- | --- | --- | --- |
+    | chapter-numbering-format | `str`, `function` | 根据语言而定 | 章节标题的编号格式 |
+  ],
+  numbering: none,
+)
+
+#note[
+  目前 typst 如下的bug，当你以字符串的形式传入 `chapter-numbering-format` 时，如果字符串内含`"i"`，typst 会自动匹配当成罗马数字的格式来处理，例如`"i"`、`"ii"`、`"iii"`等。这个问题无法通过转义来解决。
+
+  所以当你需要传入含有 `i` 的pattern时，建议使用函数的方式来传入，例如：
+  ```typst
+  #let numbering = (n, ..it) => "Unit" + str(n)
+  ```
+  这样就可以避免 typst 的 bug 了。
+]
+
+#newpara()
+
+== offset
+
+#figure(
+  three-line-table[
+    | 参数 | 类型 | 默认值 | 说明 |
+    | --- | --- | --- | --- |
+    | offset | `int` | `0` | 章节标题的偏移 |
+  ],
+  numbering: none,
+)
+#newpara()
+
+章节标题的偏移。默认为`0`。文档内的第一节会以 `1 + offset` 开始编号。所以 `offset` 的最小值为`-1`， 此时文档的第一节的编号是`0`。
 
 == body
 

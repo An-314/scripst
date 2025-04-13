@@ -18,6 +18,9 @@
   counter-depth: 3,
   header: true,
   lang: "zh",
+  numbering-format: "1.1",
+  chapter-numbering-format: "壹",
+  offset: 0,
 )
 
 Typst 是一种简单的文档生成语言，它的语法类似于 Markdown 的轻量级标记，利用合适的 `set` 和 `show` 指令，可以高自由度地定制文档的样式。
@@ -55,24 +58,27 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 
 ```typst
 #let scripst(
-  template: "article",  // str: ("article", "book", "report")
-  title: "",            // str, content, none
-  info: "",             // str, content, none
-  author: (),           // str, content, array, none
-  time: "",             // str, content, none
-  abstract: none,       // str, content, none
-  keywords: (),         // array
-  font-size: 11pt,      // length
-  contents: false,      // bool
-  content-depth: 2,     // int
-  matheq-depth: 2,      // int: (1, 2, 3)
-  counter-depth: 2,     // int: (1, 2, 3)
-  cb-counter-depth: 2,  // int: (1, 2, 3)
-  header: true          // bool
-  lang: "zh",           // str: ("zh", "en", "fr", ...)
-  par-indent: 2em,      // length
-  par-leading: none,    // length
-  par-spacing: none,    // length
+  template: "article",           // str: ("article", "book", "report")
+  title: "",                     // str, content, none
+  info: "",                      // str, content, none
+  author: (),                    // str, content, array, none
+  time: "",                      // str, content, none
+  abstract: none,                // str, content, none
+  keywords: (),                  // array
+  font-size: 11pt,               // length
+  contents: false,               // bool
+  content-depth: 2,              // int
+  matheq-depth: 2,               // int: (1, 2, 3)
+  counter-depth: 2,              // int: (1, 2, 3)
+  cb-counter-depth: 2,           // int: (1, 2, 3)
+  header: true                   // bool
+  lang: "zh",                    // str: ("zh", "en", "fr", ...)
+  par-indent: 2em,               // length
+  par-leading: none,             // length
+  par-spacing: none,             // length
+  numbering-format: "I.1",       // str, function
+  chapter-numbering-format: "I", // str, function
+  offset: 0,                     // int
   body,
 ) = {
   ...
