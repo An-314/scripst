@@ -37,7 +37,7 @@ _这是斜体的文本。_ _This is an italic text._
 #figure(
   image("pic/pic.jpg", width: 50%),
   caption: "散宝",
-)
+)<pic>
 
 ==== 表格
 

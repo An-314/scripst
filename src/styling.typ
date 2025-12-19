@@ -1,20 +1,66 @@
 #import "configs.typ": *
 #import "locale.typ": *
 
-#let extract-heading(depth) = { counter(heading).get().slice(0, depth).map(it => str(it)).join(".") }
+#let chap-counter = counter("chap-counter")
+#let _last(arr) = arr.at(arr.len() - 1)
 
-#let generate-counter(counter-depth, it) = {
-  context {
-    let has-heading1 = query(heading.where(level: 1)).len() != 0
-    let has-heading2 = query(heading.where(level: 2)).len() != 0
-    let strit = ""
-    if type(it) != str and type(it) != content { strit = str(it) } else { strit = it }
-    if has-heading1 and has-heading2 and counter-depth == 3 { extract-heading(2) + "." + strit } else if (
-      has-heading1 and (counter-depth == 3 or counter-depth == 2)
-    ) {
-      extract-heading(1) + "." + strit
-    } else { strit }
+#let extract-heading(depth, counter-outline, loc: none) = context {
+  let loc = if loc == none { here() } else { loc }
+  numbering(counter-outline, ..chap-counter.at(loc).slice(0, depth))
+}
+
+#let generate-counter(counter-depth, counter-outline: "1.1", loc: none, it) = context {
+  let has-heading1 = query(heading.where(level: 1)).len() != 0
+  let has-heading2 = query(heading.where(level: 2)).len() != 0
+
+  let strit = if type(it) != str and type(it) != content { str(it) } else { it }
+
+  if has-heading1 and has-heading2 and counter-depth == 3 {
+    extract-heading(2, counter-outline, loc: loc) + "." + strit
+  } else if has-heading1 and (counter-depth == 3 or counter-depth == 2) {
+    extract-heading(1, counter-outline, loc: loc) + "." + strit
+  } else {
+    strit
   }
+}
+
+#let _resolve-supplement(r, el) = {
+  if r.supplement == none or r.supplement == auto { [#r.element.supplement] } else if type(r.supplement) == function {
+    r.supplement(el)
+  } else { r.supplement }
+}
+
+#let fix-numbered-refs(
+  fig-depth: 2,
+  fig-color: blue,
+  fig-outline: "1.1",
+  eq-depth: 2,
+  eq-color: red,
+  eq-outline: "1.1",
+  body,
+) = {
+  show ref: r => context {
+    let el = r.element
+    if el == none { return r }
+    let loc = el.location()
+
+    if el.func() == math.equation {
+      let n = _last(counter(math.equation).at(el.location()))
+      let num = generate-counter(eq-depth, counter-outline: eq-outline, n, loc: loc)
+      return link(el.location(), text("(" + num + ")", fill: eq-color))
+    }
+
+    if el.func() == figure {
+      let n = _last(el.counter.at(el.location()))
+      let num = generate-counter(fig-depth, counter-outline: fig-outline, n, loc: el.location())
+      let sup = _resolve-supplement(r, el)
+      return link(el.location(), if sup == [] { text(num, fill: fig-color) } else {
+        text(fill: fig-color)[#sup #h(0.15em) #num]
+      })
+    }
+    r
+  }
+  body
 }
 
 #let stydoc(title, author, body) = {
@@ -62,9 +108,10 @@
   if numbering-format == none {
     numbering-format = "1.1"
   }
-  set heading(numbering: (n, ..it) => numbering(numbering-format, n - offset, ..it)) if (
+  set heading(numbering: (n, ..it) => numbering(numbering-format, n + offset, ..it)) if (
     type(numbering-format) == str
   )
+  counter("chap-counter").update((x, ..y) => (offset, 0, 0))
   set heading(numbering: numbering-format) if type(numbering-format) == function
   show heading: it => [
     #set text(font: font)
@@ -80,7 +127,7 @@
     #if chapter-numbering-format == none {
       chapter-numbering-format = localize("number-format", lang: lang)
     }
-    #set heading(numbering: (n, ..it) => numbering(chapter-numbering-format, n - offset, ..it)) if (
+    #set heading(numbering: (n, ..it) => numbering(chapter-numbering-format, n + offset, ..it)) if (
       type(chapter-numbering-format) == str
     )
     #set heading(numbering: chapter-numbering-format) if type(chapter-numbering-format) == function
@@ -94,6 +141,8 @@
       counter(figure.where(kind: image)).update(0)
       counter(figure.where(kind: raw)).update(0)
     }
+    counter("chap-counter").step(level: 1)
+    counter("chap-counter").update((x, ..y) => (x, 0, 0))
     it
   }
   show heading.where(level: 2, outlined: true): it => {
@@ -103,6 +152,12 @@
       counter(figure.where(kind: image)).update(0)
       counter(figure.where(kind: raw)).update(0)
     }
+    counter("chap-counter").step(level: 2)
+    counter("chap-counter").update((x, y, ..z) => (x, y, 0))
+    it
+  }
+  show heading.where(level: 3, outlined: true): it => {
+    counter("chap-counter").step(level: 3)
     it
   }
   body
@@ -248,49 +303,47 @@
 
 #let styheader(header: true, font: font.header, title, info, body) = {
   if header {
-    set page(
-      header: {
-        set text(font: font)
-        context {
-          if here().position().page == 1 { return }
-          let secs = query(heading.where(level: 1))
-          let sec = ()
-          for s in secs.rev() {
-            if s.location().page() <= here().position().page {
-              sec = s
-              break
-            }
-          }
-
-          let mksec = sec => {
-            let loc = sec.location()
-            let text = smallcaps(sec.body.text)
-            let num = counter(heading).at(loc).map(str).join("")
-            let secnum = num + " " + text
-            return secnum
-          }
-
-          if sec != none and sec != () {
-            let secnum = mksec(sec)
-            if info != "" and info != none {
-              return grid(columns: (1fr,) * 3, align: (left, center, right))[#smallcaps(title)][#info][#secnum]
-            } else if title != "" and title != none {
-              return grid(columns: (1fr,) * 2, align: (left, right))[#smallcaps(title)][#secnum]
-            } else {
-              return align(right)[#secnum]
-            }
-          } else {
-            if info != "" and info != none {
-              return grid(columns: (1fr,) * 2, align: (left, right))[#smallcaps(title)][#info]
-            } else if title != "" and title != none {
-              return align(left)[#smallcaps(title)]
-            } else {
-              return none
-            }
+    set page(header: {
+      set text(font: font)
+      context {
+        if here().position().page == 1 { return }
+        let secs = query(heading.where(level: 1))
+        let sec = ()
+        for s in secs.rev() {
+          if s.location().page() <= here().position().page {
+            sec = s
+            break
           }
         }
-      },
-    )
+
+        let mksec = sec => {
+          let loc = sec.location()
+          let text = smallcaps(sec.body.text)
+          let num = counter(heading).at(loc).map(str).join("")
+          let secnum = num + " " + text
+          return secnum
+        }
+
+        if sec != none and sec != () {
+          let secnum = mksec(sec)
+          if info != "" and info != none {
+            return grid(columns: (1fr,) * 3, align: (left, center, right))[#smallcaps(title)][#info][#secnum]
+          } else if title != "" and title != none {
+            return grid(columns: (1fr,) * 2, align: (left, right))[#smallcaps(title)][#secnum]
+          } else {
+            return align(right)[#secnum]
+          }
+        } else {
+          if info != "" and info != none {
+            return grid(columns: (1fr,) * 2, align: (left, right))[#smallcaps(title)][#info]
+          } else if title != "" and title != none {
+            return align(left)[#smallcaps(title)]
+          } else {
+            return none
+          }
+        }
+      }
+    })
     body
   } else {
     body
