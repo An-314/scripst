@@ -18,6 +18,10 @@
   matheq-depth: 2,
   counter-depth: 2,
   cb-counter-depth: 2,
+  matheq-outline: "1.1",
+  counter-outline: "1.1",
+  matheq-color: red,
+  counter-color: blue,
   header: true,
   lang: "zh",
   par-indent: 2em,
@@ -28,6 +32,14 @@
   offset: 0,
   body,
 ) = {
+  show: fix-numbered-refs.with(
+    fig-depth: counter-depth,
+    eq-depth: matheq-depth,
+    fig-outline: counter-outline,
+    eq-outline: matheq-outline,
+    fig-color: blue,
+    eq-color: red,
+  )
   show: stydoc.with(title, author)
   show: stypar.with(lang: lang, par-indent: par-indent, leading: par-leading, spacing: par-spacing)
   show: stytext.with(lang: lang, size: font-size)

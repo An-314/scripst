@@ -18,7 +18,7 @@
   counter-depth: 3,
   header: true,
   lang: "zh",
-  numbering-format: "1.1",
+  numbering-format: "I.1",
   chapter-numbering-format: "壹",
   offset: 0,
 )
