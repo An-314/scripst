@@ -2,6 +2,7 @@
 #import "styling.typ": *
 #import "components.typ": *
 #import "template.typ": *
+#import "countblock.typ": *
 
 #let scripst(
   template: "article",
