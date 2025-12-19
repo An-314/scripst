@@ -230,6 +230,66 @@ datetime.today().display()
 
 如果改变了`countblock`计数器的默认深度，你在使用时候还需要指定改变了的深度，或者重新封装函数。详情见 @cb-counter 。
 
+== matheq-outline
+
+#figure(
+  three-line-table[
+    | 参数 | 类型 | 可选值 | 默认值 | 说明 |
+    | --- | --- | --- | --- | --- |
+    | matheq-outline | `str`, `func` | `1.1`, `A.1`, ... | `1.1` | 数学公式的编号格式 |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+公式编号的编号格式。默认为`"1.1"`，即`1.1`、`1.2`、`2.1`、`2.2`等。
+
+== counter-outline
+
+#figure(
+  three-line-table[
+    | 参数 | 类型 | 可选值 | 默认值 | 说明 |
+    | --- | --- | --- | --- | --- |
+    | counter-outline | `str`, `func` | `1.1`, `A.1`, ... | `1.1` | 计数器的编号格式 |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+文中`figure`环境中的图片`image`，表格`table`，以及代码`raw`的编号格式。默认为`"1.1"`，即`1.1`、`1.2`、`2.1`、`2.2`等。
+
+== matheq-color
+
+#figure(
+  three-line-table[
+    | 参数 | 类型 | 可选值 | 默认值 | 说明 |
+    | --- | --- | --- | --- | --- |
+    | matheq-color | `color` | `black`, `blue`, `red`, ... | `red` | 数学公式引用的颜色 |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+数学公式引用的颜色。默认为`"red"`。
+
+== counter-color
+
+#figure(
+  three-line-table[
+    | 参数 | 类型 | 可选值 | 默认值 | 说明 |
+    | --- | --- | --- | --- | --- |
+    | counter-color | `color` | `black`, `blue`, `red`, ... | `blue` | 计数器引用的颜色 |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+计数器引用的颜色。默认为`"blue"`。
+
 == header
 
 #figure(
