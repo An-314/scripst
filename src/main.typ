@@ -1,26 +1,9 @@
 #import "scripst.typ": scripst
-#import "components.typ": (
-  add-countblock,
-  reg-countblock,
-  countblock,
-  reg-default-countblock,
-  definition,
-  theorem,
-  proposition,
-  lemma,
-  corollary,
-  remark,
-  claim,
-  exercise,
-  problem,
-  example,
-  note,
-  caution,
-  proof,
-  solution,
-  blankblock,
-  separator,
+#import "components.typ": blankblock, proof, separator, solution
+#import "countblock.typ": (
+  add-countblock, caution, claim, corollary, countblock, definition, example, exercise, lemma, note, problem,
+  proposition, reg-countblock, reg-default-countblock, remark, theorem,
 )
-#import "configs.typ": font, mycolor, cb
-#import "styling.typ": newpara, cases
+#import "configs.typ": cb, font, mycolor
+#import "styling.typ": cases, newpara
 #import "package.typ": *
