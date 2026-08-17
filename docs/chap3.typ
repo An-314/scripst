@@ -649,16 +649,15 @@ Scripst 通过 `add-countblock` 扩展字典，通过 `countblocks` 将整个字
 
 #blankblock[
 
-  此外，Scripst还提供了这样的无标题的块，你可以自定义颜色来使用。
+  此外，Scripst还提供了这样的无标题的块，你可以自定义颜色来使用。这样的块的样式和 countblock 一致。
 
-  例如
   ```typst
   #blankblock(color: color.red)[
-    这是一个红色的块。
+    #h(-1em)这是一个红色的块。
   ]
   ```
   #blankblock(color: color.red)[
-    这是一个红色的块。
+    #h(-1em)这是一个红色的块。
   ]
 ]
 
