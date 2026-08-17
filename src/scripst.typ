@@ -25,6 +25,8 @@
   counter-outline: "1.1",
   matheq-color: red,
   counter-color: blue,
+  link-color: blue,
+  ref-color: red,
   header: true,
   lang: "zh",
   par-indent: 2em,
@@ -61,8 +63,8 @@
   show: stytermlist
   show: styquote
   show: styraw
-  show: styref
-  show: stylink
+  show: styref.with(color: ref-color)
+  show: stylink.with(color: link-color)
   show: stymatheq.with(eq-depth: matheq-depth)
   show: styheader.with(header: header, title, info)
   show: ratchet.with(
