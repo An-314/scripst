@@ -3,6 +3,7 @@
 #import "components.typ": *
 #import "template.typ": *
 #import "countblock.typ": *
+#import "@preview/ratchet:0.0.3": ratchet
 
 #let scripst(
   template: "article",
@@ -19,7 +20,8 @@
   matheq-depth: 2,
   counter-depth: 2,
   cb-counter-depth: 2,
-  matheq-outline: "1.1",
+  countblocks: cb,
+  matheq-outline: "(1.1)",
   counter-outline: "1.1",
   matheq-color: red,
   counter-color: blue,
@@ -33,14 +35,11 @@
   offset: 0,
   body,
 ) = {
-  show: fix-numbered-refs.with(
-    fig-depth: counter-depth,
-    eq-depth: matheq-depth,
-    fig-outline: counter-outline,
-    eq-outline: matheq-outline,
-    fig-color: blue,
-    eq-color: red,
-  )
+  // Ratchet installs a contextual state anchor before rendering the body.
+  // Configure article pages first so that changing page settings afterwards
+  // does not leave the anchor on an otherwise blank first page.
+  set page(numbering: "1", number-align: center) if template == "article"
+
   show: stydoc.with(title, author)
   show: stypar.with(lang: lang, par-indent: par-indent, leading: par-leading, spacing: par-spacing)
   show: stytext.with(lang: lang, size: font-size)
@@ -66,7 +65,20 @@
   show: stylink
   show: stymatheq.with(eq-depth: matheq-depth)
   show: styheader.with(header: header, title, info)
-  show: reg-default-countblock.with(cb-counter-depth: cb-counter-depth)
+  show: ratchet.with(
+    eq-depth: matheq-depth,
+    eq-outline: matheq-outline,
+    eq-color: matheq-color,
+    fig-depth: counter-depth,
+    fig-outline: counter-outline,
+    fig-color: counter-color,
+    figure-groups: countblock-figure-groups(
+      countblocks,
+      default-depth: cb-counter-depth,
+      outline: counter-outline,
+      color: counter-color,
+    ),
+  )
   show: labelset
   if template == "article" {
     mkarticle(title, info, author, time, abstract, keywords, contents, content-depth, lang, body)

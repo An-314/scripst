@@ -3,7 +3,6 @@
 #import "components.typ": *
 
 #let mkarticle(title, info, author, time, abstract, keywords, contents, content-depth, lang, body) = {
-  show: stynumbering.with(numbering: "1")
   if title != none and title != "" { (article.mktitle)(title) }
   if info != none and info != "" { (article.mkinfo)(info) }
   if author != none and author != () { (article.mkauthor)(author) }

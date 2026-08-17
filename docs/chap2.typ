@@ -226,9 +226,11 @@ datetime.today().display()
 
 #newpara()
 
-`countblock` 环境中的计数器深度。默认为`2`。
+通过 `countblocks` 传入的 countblock 的默认编号深度，默认为 `2`。使用 `set-countblock-depth` 或 `add-countblock(depth: ...)` 指定的个别深度优先于该默认值。详情见 @cb-counter。
 
-如果改变了`countblock`计数器的默认深度，你在使用时候还需要指定改变了的深度，或者重新封装函数。详情见 @cb-counter 。
+== countblocks
+
+模板使用的 countblock 字典，默认为 `cb`。创建自定义 countblock 后，应当在 `#show: scripst.with(...)` 中通过该参数传入更新后的字典，以便 Ratchet 配置其编号和引用。
 
 == matheq-outline
 
@@ -236,14 +238,14 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 可选值 | 默认值 | 说明 |
     | --- | --- | --- | --- | --- |
-    | matheq-outline | `str`, `func` | `1.1`, `A.1`, ... | `1.1` | 数学公式的编号格式 |
+    | matheq-outline | `str`, `func` | `(1.1)`, `(A.1)`, ... | `(1.1)` | 数学公式的编号格式 |
   ],
   numbering: none,
 )
 
 #newpara()
 
-公式编号的编号格式。默认为`"1.1"`，即`1.1`、`1.2`、`2.1`、`2.2`等。
+公式编号的编号格式。默认为 `"(1.1)"`，即 `(1.1)`、`(1.2)`、`(2.1)`、`(2.2)` 等。
 
 == counter-outline
 

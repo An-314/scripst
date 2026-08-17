@@ -1,5 +1,5 @@
 #import "@preview/tablem:0.2.0": tablem, three-line-table
-#import "@preview/physica:0.9.4": *
+#import "@preview/physica:0.9.8": *
 
 #let three-line-table = tablem.with(
   render: (columns: auto, ..args) => {
