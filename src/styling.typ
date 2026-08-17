@@ -1,6 +1,5 @@
 #import "configs.typ": *
 #import "locale.typ": *
-#import "numbering/lib.typ": *
 
 #let stydoc(title, author, body) = {
   set document(title: title, author: author)
@@ -43,11 +42,17 @@
   offset: 0,
   body,
 ) = {
+  let heading-numbering = if numbering-format == none { "1.1" } else { numbering-format }
+  let chapter-numbering = if chapter-numbering-format == none {
+    localize("number-format", lang: lang)
+  } else {
+    chapter-numbering-format
+  }
   // layout styling
-  set heading(numbering: (n, ..it) => numbering(numbering-format, n + offset, ..it)) if (
-    type(numbering-format) == str
+  set heading(numbering: (n, ..it) => numbering(heading-numbering, n + offset, ..it)) if (
+    type(heading-numbering) == str
   )
-  set heading(numbering: numbering-format) if type(numbering-format) == function
+  set heading(numbering: heading-numbering) if type(heading-numbering) == function
   show heading: it => [
     #set text(font: font)
     #set par(first-line-indent: 0em)
@@ -59,21 +64,12 @@
   ]
   show heading.where(level: 1): it => [
     #v(0.5em)
-    #if chapter-numbering-format == none {
-      chapter-numbering-format = localize("number-format", lang: lang)
-    }
-    #set heading(numbering: (n, ..it) => numbering(chapter-numbering-format, n + offset, ..it)) if (
-      type(chapter-numbering-format) == str
+    #set heading(numbering: (n, ..it) => numbering(chapter-numbering, n + offset, ..it)) if (
+      type(chapter-numbering) == str
     )
-    #set heading(numbering: chapter-numbering-format) if type(chapter-numbering-format) == function
+    #set heading(numbering: chapter-numbering) if type(chapter-numbering) == function
     #it
   ]
-  // counter initialization
-  show: heading-counters.with(
-    counter-depth: counter-depth,
-    matheq-depth: matheq-depth,
-    offset: offset,
-  )
   body
 }
 
@@ -88,9 +84,6 @@
 
 #let styfigure(counter-depth: 2, font: font.caption, body) = {
   set figure(gap: 0.5cm)
-  show figure.where(kind: image): set figure(numbering: it => generate-counter(counter-depth, it))
-  show figure.where(kind: table): set figure(numbering: it => generate-counter(counter-depth, it))
-  show figure.where(kind: raw): set figure(numbering: it => generate-counter(counter-depth, it))
   show figure: it => [
     #v(2pt)
     #set text(font: font)
@@ -197,7 +190,6 @@
 }
 
 #let stymatheq(eq-depth: 2, body) = {
-  set math.equation(numbering: it => { "(" + generate-counter(eq-depth, it) + ")" })
   set math.equation(supplement: [])
   // Manipulating math.equation.body using show: https://github.com/typst/typst/discussions/2242
   // show math.equation.where(block: false): it => {
@@ -301,4 +293,3 @@
   show label("text.lime"): set text(fill: lime)
   body
 }
-

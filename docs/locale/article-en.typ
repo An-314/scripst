@@ -1,4 +1,6 @@
-#import "@preview/scripst:1.1.1": *
+#import "@preview/scripst:1.1.2": *
+
+#let doc-countblocks = add-countblock(cb, "test", "This is a test", teal)
 
 #show: scripst.with(
   title: [Scripst Documentation],
@@ -16,6 +18,7 @@
   content-depth: 3,
   matheq-depth: 2,
   counter-depth: 3,
+  countblocks: doc-countblocks,
   header: true,
   lang: "en",
   par-indent: 0em,
@@ -60,13 +63,13 @@ Based on Typst, Scripst provides some simple templates for convenient daily docu
 #link("https://typst.app/universe/package/scripst")[Scripst Package] has already been submitted to the community. If network available, you can directly use
 
 ```typst
-#import "@preview/scripst:1.1.1": *
+#import "@preview/scripst:1.1.2": *
 ```
 to import the Scripst templates in your document.
 
 You can also use `typst init` to create a new project with the template:
 ```bash
-typst init @preview/scripst:1.1.1 project_name
+typst init @preview/scripst:1.1.2 project_name
 ```
 
 This method does not require downloading the template files, just import them in the document.
@@ -110,22 +113,22 @@ Of course, you don't have to worry about not being able to modify the template f
 
 For example, the template should be placed in
 ```
-~/.local/share/typst/packages/preview/scripst/1.1.1               # in Linux
-%APPDATA%\typst\packages\preview\scripst\1.1.1                    # in Windows
-~/Library/Application Support/typst/packages/local/scripst/1.1.1  # macOS
+~/.local/share/typst/packages/preview/scripst/1.1.2               # in Linux
+%APPDATA%\typst\packages\preview\scripst\1.1.2                    # in Windows
+~/Library/Application Support/typst/packages/local/scripst/1.1.2  # macOS
 ```
 You can execute the following command:
 ```bash
 cd ~/.local/share/typst/packages/preview/scripst/
-git clone https://github.com/An-314/scripst.git 1.1.1
+git clone https://github.com/An-314/scripst.git 1.1.2
 ```
 If the directory structure is like this, then the way to import the template files in the document should be:
 ```typst
-#import "@preview/scripst:1.1.1": *
+#import "@preview/scripst:1.1.2": *
 ```
 The advantage of this is that you can directly use `typst init` to create a new project with the template:
 ```bash
-typst init @preview/scripst:1.1.1 project_name
+typst init @preview/scripst:1.1.2 project_name
 ```
 #newpara()
 
@@ -171,6 +174,9 @@ Scripst template provides some parameters to customise the style of the document
   matheq-depth: 2,      // int: (1, 2, 3)
   counter-depth: 3,     // int: (1, 2, 3)
   cb-counter-depth: 2,  // int: (1, 2, 3)
+  countblocks: cb,      // dict
+  matheq-outline: "(1.1)", // str, function
+  counter-outline: "1.1", // str, function
   header: true,         // bool
   lang: "en",           // str: ("zh", "en", "fr", ...)
   par-indent: 0em,      // length
@@ -437,9 +443,15 @@ The counter depth for images (`image`), tables (`table`), and code blocks (`raw`
 
 #newpara()
 
-The counter depth for countable elements. Default is `2`.
+The default numbering depth for entries passed through `countblocks`. Per-counter depths configured with `set-countblock-depth` or `add-countblock(depth: ...)` take precedence. See @cb-counter for details.
 
-If you change the default depth of the `countblock` counter, you will also need to specify the changed depth when using it, or rewrap the function. See @cb-counter for details.
+== countblocks
+
+The countblock registry used by the template. It defaults to `cb`. Pass an updated registry here before using custom countblocks so Ratchet can configure their numbering and references.
+
+== matheq-outline
+
+The equation numbering pattern. It defaults to `"(1.1)"`, so displayed equations and their references include parentheses.
 
 == header
 
@@ -840,20 +852,32 @@ Currently, Scripst provides the following settings:
 
 === Default Countblocks
 
-Scripst provides several default counters ready for use:
+Scripst provides the following countblocks. Depth `2` means numbering follows level-1 headings; every entry initially inherits `cb-counter-depth: 2`.
 
-- Definition: `#definition`
-- Theorem: `#theorem`
-- Proposition: `#proposition`
-- Lemma: `#lemma`
-- Corollary: `#corollary`
-- Remark: `#remark`
-- Claim: `#claim`
-- Exercise: `#exercise`
-- Problem: `#problem`
-- Example: `#example`
-- Note: `#note`
-- Caution: `#caution`
+#pagebreak()
+
+#figure(
+  three-line-table[
+    | Block | `cb` name | `counter-name` | Default depth | Color | Function |
+    | --- | --- | --- | --- | --- | --- |
+    | Definition | `def` | `def` | `2` | `mycolor.green` | `#definition` |
+    | Theorem | `thm` | `thm` | `2` | `mycolor.blue` | `#theorem` |
+    | Proposition | `prop` | `prop` | `2` | `mycolor.violet` | `#proposition` |
+    | Lemma | `lem` | `prop` | `2` | `mycolor.violet-light` | `#lemma` |
+    | Corollary | `cor` | `prop` | `2` | `mycolor.violet-dark` | `#corollary` |
+    | Remark | `rmk` | `prop` | `2` | `mycolor.violet-darker` | `#remark` |
+    | Claim | `clm` | `prop` | `2` | `mycolor.violet-deep` | `#claim` |
+    | Exercise | `ex` | `ex` | `2` | `mycolor.purple` | `#exercise` |
+    | Problem | `prob` | `prob` | `2` | `mycolor.orange` | `#problem` |
+    | Example | `eg` | `eg` | `2` | `mycolor.cyan` | `#example` |
+    | Note | `note` | `note` | `2` (unnumbered by default) | `mycolor.grey` | `#note` |
+    | Caution | `cau` | `cau` | `2` (unnumbered by default) | `mycolor.red` | `#caution` |
+  ],
+  caption: [Default Scripst countblock configuration],
+  numbering: none,
+)
+
+`proposition`, `lemma`, `corollary`, `remark`, and `claim` use the same `counter-name`, `"prop"`. They therefore share one number sequence and reset depth, while retaining separate titles and colors.
 
 These functions share identical parameters and effects, differing only in counter names.
 ```typst
@@ -861,7 +885,6 @@ These functions share identical parameters and effects, differing only in counte
   subname: [],
   count: true,
   lab: none,
-  cb-counter-depth: 2,
 )[
   ...
 ]
@@ -873,7 +896,6 @@ Parameter specifications:
   | `subname` | `array` | `[]` | Entry name |
   | `count` | `bool` | `true` | Enable numbering |
   | `lab` | `str` | `none` | Entry label |
-  | `cb-counter-depth` | `int` | `2` | Counter depth |
 ]
 Example usage:
 ```typst
@@ -965,169 +987,156 @@ Set `count: false` to disable numbering. `note` and `caution` default to `count:
 
 #newpara()
 
-==== `cb-counter-depth` Parameter
+=== Changing the depth of all countblocks <cb-counter>
 
-Detailed explanation in @cb-counter.
+`cb-counter-depth` is the global default and accepts `1`, `2`, or `3`:
 
-=== Global `cb` Variable <cb>
+- `1`: continuous document-wide numbering;
+- `2`: reset at level-1 headings;
+- `3`: reset at level-1 and level-2 headings.
 
-Scripst tracks all counters through the global `cb` variable, which includes default counter depth `cb-counter-depth`.
+```typst
+#show: scripst.with(
+  countblocks: cb,
+  cb-counter-depth: 3,
+)
+```
 
-Default `cb` structure:
+This changes every countblock that has no explicit depth. Per-counter overrides in `countblocks` take precedence.
+
+=== Changing an individual countblock depth
+
+Use `set-countblock-depth` to override one counter family:
+
+```typst
+#let blocks = set-countblock-depth(cb, "thm", 3)
+
+#show: scripst.with(
+  countblocks: blocks,
+  cb-counter-depth: 2,
+)
+```
+
+Only the theorem counter uses depth `3`; other independent counters inherit depth `2`.
+
+```typst
+#set-countblock-depth(cb, name, depth, detach: false)
+```
+
+#three-line-table[
+  | Parameter | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `cb` | `dict` |  | Original registry |
+  | `name` | `str` |  | `cb` entry to configure |
+  | `depth` | `int` |  | New depth: `1`, `2`, or `3` |
+  | `detach` | `bool` | `false` | Detach this block from a shared counter |
+]
+
+==== Shared counter families
+
+Because `proposition`, `lemma`, `corollary`, `remark`, and `claim` all use `counter-name: "prop"`, the following changes the entire shared family:
+
+```typst
+#let blocks = set-countblock-depth(cb, "lem", 3)
+```
+
+Blocks sharing one counter must reset together and therefore cannot use different depths.
+
+==== Detaching one block
+
+To make only `lemma` use global depth `1` while the remaining `prop` family stays at depth `2`:
+
+```typst
+#let blocks = set-countblock-depth(cb, "lem", 1, detach: true)
+#let lemma = countblock.with("lem", blocks)
+
+#show: scripst.with(
+  countblocks: blocks,
+  cb-counter-depth: 2,
+)
+```
+
+`detach: true` changes the lemma counter from `"prop"` to `"lem"`. Rewrap the function with the updated registry whenever its counter identity changes. A depth-only change to an already independent block such as `theorem` does not require rewrapping.
+
+=== Adding a new countblock <new-cb>
+
+Use `add-countblock`, then pass the updated registry through `countblocks`:
+
+```typst
+#let blocks = add-countblock(
+  cb,
+  "alg",
+  "Algorithm",
+  yellow,
+  depth: 3,
+)
+#let algorithm = countblock.with("alg", blocks)
+
+#show: scripst.with(
+  countblocks: blocks,
+  cb-counter-depth: 2,
+)
+```
+
+`algorithm` now has an independent depth-3 counter while existing blocks retain the global depth.
+
+```typst
+#add-countblock(cb, name, info, color, counter-name: none, depth: none)
+```
+
+#three-line-table[
+  | Parameter | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `cb` | `dict` |  | Original registry |
+  | `name` | `str` |  | New registry key |
+  | `info` | `str` or `content` |  | Displayed block title |
+  | `color` | `color` |  | Background and left-border color |
+  | `counter-name` | `str` | `none` | Actual counter kind; defaults to `name` |
+  | `depth` | `int` or `none` | `none` | Explicit depth; `none` inherits `cb-counter-depth` |
+]
+
+A new block can share an existing sequence by using the same `counter-name`:
+
+```typst
+#let blocks = add-countblock(
+  cb,
+  "asm",
+  "Assumption",
+  aqua,
+  counter-name: "thm",
+)
+#let assumption = countblock.with("asm", blocks)
+```
+
+All entries sharing a `counter-name` must resolve to the same depth. Scripst reports an error for conflicting configurations.
+
+=== The `cb` registry structure <cb>
+
+Each entry is `(info, color, counter-name, depth)`. The fourth field may be omitted or set to `none` to inherit `cb-counter-depth`:
+
 ```typst
 #let cb = (
-  "def": ("Definition", mycolor.green, "def"),
-  "thm": ("Theorem", mycolor.blue, "thm"),
-  "prop": ("Proposition", mycolor.violet, "prop"),
-  "lem": ("Lemma", mycolor.violet-light, "prop"),
-  "cor": ("Corollary", mycolor.violet-dark, "prop"),
-  "rmk": ("Remark", mycolor.violet-darker, "prop"),
-  "clm": ("Claim", mycolor.violet-deep, "prop"),
-  "ex": ("Exercise", mycolor.purple, "ex"),
-  "prob": ("Problem", mycolor.orange, "prob"),
-  "eg": ("Example", mycolor.cyan, "eg"),
-  "note": ("Note", mycolor.grey, "note"),
-  "cau": ("⚠️", mycolor.red, "cau"),
+  "def": ("Definition", mycolor.green, "def", none),
+  "thm": ("Theorem", mycolor.blue, "thm", none),
+  "prop": ("Proposition", mycolor.violet, "prop", none),
+  "lem": ("Lemma", mycolor.violet-light, "prop", none),
+  // ...
   "cb-counter-depth": 2,
 )
 ```
 
-#newpara()
-
-=== Creating & Registering Countblocks <new-cb>
-
-Use `add-countblock` to create counters and `reg-countblock` to register them. Add this at document start:
-```typst
-#let cb = add-countblock(cb, "test", "This is a test", teal)
-#show: reg-countblock.with("test")
-```
-#note[
-  This code first updates `cb`, then registers the counter.
-]
-
-#let cb = add-countblock(cb, "test", "This is a test", teal)
-#show: reg-countblock.with("test")
-
-#newpara()
-
-==== `add-countblock` Function
-
-Parameters for `add-countblock`:
-```typst
-#add-countblock(cb, name, info, color, counter-name: none) {return cb}
-```
-#three-line-table[
-  | Parameter | Type | Default | Description |
-  | --- | --- | --- | --- |
-  | `cb` | `dict` | `` | Counter dictionary |
-  | `name` | `str` | `` | Counter name |
-  | `info` | `str` | `` | Display text |
-  | `color` | `color` | `` | Header color |
-  | `counter-name` | `str` | `none` | Counter ID |
-]
-
-- `cb` is a dictionary with the format shown in @cb. The function's purpose is to update `cb`, which requires explicit assignment during use.
-  #note(count: false)[
-    Since Typst's functions lack pointers or references, passed variables cannot be directly modified. We can only modify variables by explicitly returning values and passing them to subsequent functions. The author has not yet found a better approach.
-  ]
-- `name: (info, color, counter-name)` represents a counter's basic information. During rendering, the counter's top-left corner will display `info counter(counter-name)` (e.g., `Theorem 1.1`) as its identifier, with the color set to `color`.
-- `counter-name` is the counter's identifier. If unspecified, it defaults to using `name` as the identifier.
-
-==== `reg-countblock` Function
-
-The parameters of the `reg-countblock` function are as follows:
-```typst
-#show reg-countblock.with(name, cb-counter-depth: 2)
-```
-Parameter specifications:
-#three-line-table[
-  | Parameter | Type | Default | Description |
-  | --- | --- | --- | --- |
-  | `counter-name` | `str` | `` | Counter identifier |
-  | `cb-counter-depth` | `int` | `2` | Counter depth |
-]
-- `counter-name` is the counter identifier, explicitly specified in `add-countblock` (uses `name` if unspecified). For example, the default `clm` counter uses `prop`.
-- `cb-counter-depth` defines the counter depth, which can be `1`, `2`, or `3`.
-
-#separator
-
-After this, you can use the `countblock` function to implement the counter.
-
-=== Counter Depth for countblock <cb-counter>
-
-This section details the `cb-counter-depth` parameter and its implementation, not previously mentioned.
-
-The global variable `cb` has a default `cb-counter-depth` value of 2. Thus, default countblocks use depth 2.
-
-#note[
-  Directly modifying `cb-counter-depth` in the global variable will NOT affect existing counters. This is because counter creation uses the original `cb.at("cb-counter-depth")` as the default value. Updating `cb` does not retroactively change this value. You must re-register counters.
-]
-
-Counter logic aligns with @counter.
-
-*To register a depth-3 counter:*
-```typst
-#let cb = add-countblock(cb, "test1", "This is a test1", green)
-#show: reg-countblock.with("test1", cb-counter-depth: 3)
-```
-#let cb = add-countblock(cb, "test1", "This is a test1", green)
-#show: reg-countblock.with("test1", cb-counter-depth: 3)
-
-#newpara()
-
-Use `reg-default-countblock` to set default counters. For example, to *set all default counters to depth 3*:
-```typst
-#show: reg-default-countblock.with(cb-counter-depth: 3)
-```
-#show: reg-default-countblock.with(cb-counter-depth: 3)
-However, this alone is insufficient because the pre-packaged counters still default to depth 2. If you directly call:
-```typst
-#definition[
-  This is a definition. Please understand it.
-]
-```
-the counter depth remains 2:
-#definition[
-  This is a definition. Please understand it.
-]
-Explicitly specify depth 3:
-```typst
-#definition(cb-counter-depth: 3)[
-  This is a definition. Please understand it.
-]
-```
-#definition(cb-counter-depth: 3)[
-  This is a definition. Please understand it.
-]
-Alternatively, *create a custom wrapper*:
-```typst
-#let definition = definition.with(cb-counter-depth: 3)
-```
-#let definition = definition.with(cb-counter-depth: 3)
-Subsequent uses of `definition` will default to depth 3:
-```typst
-#definition[
-  This is a definition. Please understand it.
-]
-```
-#definition[
-  This is a definition. Please understand it.
-]
-
-#note[
-  In fact, the `cb-counter-depth` parameter mentioned earlier is set by calling the `reg-default-countblock` function when the document is initialized.
-]
+#let blocks = add-countblock(cb, "test", "This is a test", teal)
+#let test = countblock.with("test", blocks)
 
 #newpara()
 
 === Using countblock
 
-After defining and registering a counter, use the `countblock` function to create a block:
+After defining a block, use the `countblock` function to create it:
 ```typst
 #countblock(
   name,
   cb,
-  cb-counter-depth: cb.at("cb-counter-depth"), // default: 2
   subname: "",
   count: true,
   lab: none
@@ -1141,57 +1150,34 @@ Parameter specifications:
   | --- | --- | --- | --- |
   | `name` | `str` | `` | Counter name |
   | `cb` | `dict` | `` | Counter dictionary |
-  | `cb-counter-depth` | `int` | `cb.at("cb-counter-depth")` | Counter depth |
   | `subname` | `str` | `` | Entry name |
   | `count` | `bool` | `true` | Enable numbering |
   | `lab` | `str` | `none` | Reference label |
 ]
 - `name`: Counter name, as specified in `add-countblock`.
 - `cb`: Dictionary formatted as @cb. Ensure it contains the latest counter by updating `cb` first.
-- `cb-counter-depth`: Counter depth (`1`, `2`, or `3`).
 - `subname`: Supplemental text displayed after the counter (e.g., theorem name).
 - `count`: Set `false` to disable numbering.
 - `lab`: Label for cross-referencing with `@lab`.
 
 Example using the `test` counter created in @new-cb:
 ```typst
-#countblock("test", cb)[
+#countblock("test", blocks)[
   1 + 1 = 2
 ]
 ```
-#countblock("test", cb)[
+#test[
   1 + 1 = 2
 ]
 
 Alternatively, create a wrapper function:
 ```typst
-#let test = countblock.with("test", cb)
+#let test = countblock.with("test", blocks)
 #test[
   1 + 1 = 2
 ]
 ```
-#let test = countblock.with("test", cb)
 #test[
-  1 + 1 = 2
-]
-
-#newpara()
-
-For the `test1` counter (depth 3 registered in @cb-counter), specify depth during use:
-```typst
-#countblock("test1", cb, cb-counter-depth: 3)[
-  1 + 1 = 2
-]
-#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)
-#test1[
-  1 + 1 = 2
-]
-```
-#countblock("test1", cb, cb-counter-depth: 3)[
-  1 + 1 = 2
-]
-#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)
-#test1[
   1 + 1 = 2
 ]
 
@@ -1199,32 +1185,24 @@ For the `test1` counter (depth 3 registered in @cb-counter), specify depth durin
 
 === Summary
 
-Scripst provides a simple counter module system. You can use the `add-countblock` function to create counters, `reg-countblock` to register them, and `countblock` to implement them.
-
-By default, all counters have a depth of 2. Use `reg-default-countblock` to configure default counters.
-
-- If you want all countblocks to use depth 2, no special configuration is needed.
-- If you want all countblocks to use depth 3, specify the depth during registration and usage.
+Use `add-countblock` to extend the registry, pass the entire registry to the template with `countblocks`, and use `countblock` to create individual blocks. Ratchet manages numbering, resets, and references.
 
 #example(count: false)[
-  Example: A user wants all default countblocks to use depth 3, while making `remark` independent from the shared counter for `proposition`, `lemma`, `corollary`, and `claim`. Also create a depth-3 `algorithm` counter.
+  Combined example: default blocks use depth `3`, `remark` is detached from the `prop` family with depth `1`, and a new `algorithm` uses depth `2`.
 
   ```typst
+  #let blocks = set-countblock-depth(cb, "rmk", 1, detach: true)
+  #let blocks = add-countblock(blocks, "alg", "Algorithm", yellow, depth: 2)
+  #let remark = countblock.with("rmk", blocks)
+  #let algorithm = countblock.with("alg", blocks)
+
   #show: scripst.with(
     // ...
+    countblocks: blocks,
     cb-counter-depth: 3,
   )
-  #let cb = add-countblock(cb, "rmk", "Remark", mycolor.violet-darker)
-  #let cb = add-countblock(cb, "algorithm", "Algorithm", mycolor.yellow)
-  #show: reg-countblock.with("rmk", cb-counter-depth: 3)
-  #show: reg-countblock.with("algorithm", cb-counter-depth: 3)
-  #let definition = definition.with(cb-counter-depth: 3)
-  #let theorem = theorem.with(cb-counter-depth: 3)
-  // ...
-  #let remark = countblock.with("rmk", cb, cb-counter-depth: 3) // Re-encapsulate due to counter changes
-  #let algorithm = countblock.with("algorithm", cb, cb-counter-depth: 3)
   ```
-  Place this code at the beginning of the document, after `#script`.
+  Put the registry and wrapper definitions before `#show: scripst.with(...)`.
 ]
 
 #newpara()

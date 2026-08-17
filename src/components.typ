@@ -122,9 +122,9 @@
 
 #let blankblock(color: color.orange, body) = {
   block(
-    fill: color.transparentize(60%),
-    inset: 8pt,
-    radius: 2pt,
+    fill: color.transparentize(70%),
+    inset: 10pt,
+    radius: 4pt,
     width: 100%,
     stroke: (left: (thickness: 4pt, paint: color)),
     [

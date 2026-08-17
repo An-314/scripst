@@ -108,10 +108,10 @@ $
 
 得益于 `physica` 包，typst本身简单的数学输入方式得到了极大的扩展，并且仍然保留简洁的特性：
 $
-  &div vb(E) &=& rho / epsilon_0 \
-  &div vb(B) &=& 0 \
-  &curl vb(E) &=& -pdv(vb(B),t) \
-  &curl vb(B) &=& mu_0 (vb(J) + epsilon_0 pdv(vb(E),t))
+  & div vb(E)  & = & rho / epsilon_0 \
+  & div vb(B)  & = & 0 \
+  & curl vb(E) & = & -pdv(vb(B), t) \
+  & curl vb(B) & = & mu_0 (vb(J) + epsilon_0 pdv(vb(E), t))
 $
 
 #newpara()
@@ -231,7 +231,7 @@ $
 
 下面是 Schrödinger 方程：
 $
-  i hbar dv(,t) ket(Psi(t)) = hat(H) ket(Psi(t))
+  i hbar dv(, t) ket(Psi(t)) = hat(H) ket(Psi(t))
 $ <text.blue>
 其中
 $
@@ -276,20 +276,30 @@ $
 
 === 默认提供的 countblock
 
-Scripst 默认提供了一些计数器，你可以直接使用。分别是：
+Scripst 默认提供如下 countblock。表中的深度 `2` 表示跟随一级标题编号；它们都继承全局参数 `cb-counter-depth: 2`。
 
-- 定义：`#definition`
-- 定理：`#theorem`
-- 命题：`#proposition`
-- 引理：`#lamma`
-- 推论：`#corollary`
-- 评论：`#remark`
-- 断言：`#claim`
-- 练习：`#exercise`
-- 问题：`#problem`
-- 例子：`#example`
-- 注记：`#note`
-- 提醒：`#caution`
+#figure(
+  three-line-table[
+    | 块名称 | `cb` 名称 | `counter-name` | 默认深度 | 颜色 | 调用函数 |
+    | --- | --- | --- | --- | --- | --- |
+    | Definition | `def` | `def` | `2` | `mycolor.green` | `#definition` |
+    | Theorem | `thm` | `thm` | `2` | `mycolor.blue` | `#theorem` |
+    | Proposition | `prop` | `prop` | `2` | `mycolor.violet` | `#proposition` |
+    | Lemma | `lem` | `prop` | `2` | `mycolor.violet-light` | `#lemma` |
+    | Corollary | `cor` | `prop` | `2` | `mycolor.violet-dark` | `#corollary` |
+    | Remark | `rmk` | `prop` | `2` | `mycolor.violet-darker` | `#remark` |
+    | Claim | `clm` | `prop` | `2` | `mycolor.violet-deep` | `#claim` |
+    | Exercise | `ex` | `ex` | `2` | `mycolor.purple` | `#exercise` |
+    | Problem | `prob` | `prob` | `2` | `mycolor.orange` | `#problem` |
+    | Example | `eg` | `eg` | `2` | `mycolor.cyan` | `#example` |
+    | Note | `note` | `note` | `2`（默认不计数） | `mycolor.grey` | `#note` |
+    | Caution | `cau` | `cau` | `2`（默认不计数） | `mycolor.red` | `#caution` |
+  ],
+  caption: [Scripst 默认 countblock 配置],
+  numbering: none,
+)
+
+`proposition`、`lemma`、`corollary`、`remark` 和 `claim` 的 `counter-name` 都是 `"prop"`，因此默认共享同一列编号和同一种重置深度；它们的标题和颜色仍然各自独立。
 
 这些函数的参数和效果是一样的，只是计数器的名称不同。
 ```typst
@@ -297,7 +307,6 @@ Scripst 默认提供了一些计数器，你可以直接使用。分别是：
   subname: [],
   count: true,
   lab: none,
-  cb-counter-depth: 2,
 )[
   ...
 ]
@@ -309,7 +318,6 @@ Scripst 默认提供了一些计数器，你可以直接使用。分别是：
   | `subname` | `array` | `[]` | 该条目的名称 |
   | `count` | `bool` | `true` | 是否计数 |
   | `lab` | `str` | `none` | 该条目的标签 |
-  | `cb-counter-depth` | `int` | `2` | 计数器的深度 |
 ]
 下面是一个示例：
 ```typst
@@ -407,170 +415,162 @@ Fermat 并没有对 @fermat 给出公开的证明。
 
 #newpara()
 
-==== `cb-counter-depth` 参数
+=== 调整所有 countblock 的深度 <cb-counter>
 
-对于该参数的详细解释见 @cb-counter。
+`cb-counter-depth` 是所有 countblock 的全局默认深度，可取 `1`、`2` 或 `3`：
 
-=== `cb` 全局变量 <cb>
+- `1`：全文连续编号，如 `1, 2, 3`；
+- `2`：随一级标题重置，如 `1.1, 1.2, 2.1`；
+- `3`：随一级、二级标题重置，如 `1.1.1, 1.1.2, 1.2.1`。
 
-Scripst 通过全局变量 `cb` 记录着所有可以使用的计数器，以及全局的计数器深度 `cb-counter-depth`。
+例如，把所有没有单独指定深度的 countblock 调整为深度 `3`：
 
-Scripst 中默认的`cb`是这样的：
+```typst
+#show: scripst.with(
+  countblocks: cb,
+  cb-counter-depth: 3,
+)
+```
+
+`cb-counter-depth` 只改变默认值。已经在 `countblocks` 中单独指定深度的计数器族不会受它影响。
+
+=== 调整个别 countblock 的深度
+
+使用 `set-countblock-depth` 可以覆盖某个计数器族的深度：
+
+```typst
+#let blocks = set-countblock-depth(cb, "thm", 3)
+
+#show: scripst.with(
+  countblocks: blocks,
+  cb-counter-depth: 2,
+)
+```
+
+此时只有 `theorem` 使用深度 `3`，其余独立计数器仍继承全局深度 `2`。
+
+函数签名如下：
+
+```typst
+#set-countblock-depth(cb, name, depth, detach: false)
+```
+
+#three-line-table[
+  | 参数 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | `cb` | `dict` |  | 原 countblock 字典 |
+  | `name` | `str` |  | 要调整的 `cb` 名称 |
+  | `depth` | `int` |  | 新深度，只能是 `1`、`2` 或 `3` |
+  | `detach` | `bool` | `false` | 是否从原共享计数器中拆出该块 |
+]
+
+==== 调整共享计数器族
+
+`proposition`、`lemma`、`corollary`、`remark` 和 `claim` 共用 `counter-name: "prop"`。因此下面的写法会把整个共享族一起改为深度 `3`：
+
+```typst
+#let blocks = set-countblock-depth(cb, "lem", 3)
+```
+
+这是必要的：共享同一个计数器的块必须在相同标题位置一起重置，不能同时拥有不同深度。
+
+==== 将一个块拆成独立深度
+
+如果只希望 `lemma` 使用深度 `1`，同时让其他 `prop` 族成员继续使用深度 `2`，设置 `detach: true`：
+
+```typst
+#let blocks = set-countblock-depth(cb, "lem", 1, detach: true)
+#let lemma = countblock.with("lem", blocks)
+
+#show: scripst.with(
+  countblocks: blocks,
+  cb-counter-depth: 2,
+)
+```
+
+`detach: true` 会把 `lemma` 的 `counter-name` 从 `"prop"` 改成 `"lem"`。因为计数器身份发生了变化，所以需要使用更新后的 `blocks` 重新封装 `lemma`。只调整本来就独立的 `theorem`、`definition` 等块的深度时，不需要重新封装默认函数。
+
+=== 增添新的 countblock <new-cb>
+
+使用 `add-countblock` 添加新块，并把更新后的字典传给 `scripst(countblocks: ...)`：
+
+```typst
+#let blocks = add-countblock(
+  cb,
+  "alg",
+  "Algorithm",
+  yellow,
+  depth: 3,
+)
+#let algorithm = countblock.with("alg", blocks)
+
+#show: scripst.with(
+  countblocks: blocks,
+  cb-counter-depth: 2,
+)
+```
+
+此时 `algorithm` 使用独立计数器和深度 `3`；其他默认块仍使用全局深度 `2`。
+
+`add-countblock` 的完整签名如下：
+
+```typst
+#add-countblock(cb, name, info, color, counter-name: none, depth: none)
+```
+
+#three-line-table[
+  | 参数 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | `cb` | `dict` |  | 原 countblock 字典 |
+  | `name` | `str` |  | 新块在字典中的名称 |
+  | `info` | `str` 或 `content` |  | 显示在块标题中的名称 |
+  | `color` | `color` |  | 背景和左边框颜色 |
+  | `counter-name` | `str` | `none` | 实际计数器名；默认与 `name` 相同 |
+  | `depth` | `int` 或 `none` | `none` | 独立深度；`none` 表示继承 `cb-counter-depth` |
+]
+
+若要让新块共享已有编号，可以指定已有的 `counter-name`。例如让 `Assumption` 加入 theorem 的编号序列：
+
+```typst
+#let blocks = add-countblock(
+  cb,
+  "asm",
+  "Assumption",
+  aqua,
+  counter-name: "thm",
+)
+#let assumption = countblock.with("asm", blocks)
+```
+
+共享 `counter-name` 的所有条目必须使用相同深度；否则 Scripst 会直接报错，避免出现显示编号和重置规则不一致。
+
+=== `cb` 字典结构 <cb>
+
+每一项的结构是 `(info, color, counter-name, depth)`。第四项 `depth` 可以省略或设为 `none`，表示继承全局 `cb-counter-depth`：
+
 ```typst
 #let cb = (
-  "def": ("Definition", mycolor.green, "def"),
-  "thm": ("Theorem", mycolor.blue, "thm"),
-  "prop": ("Proposition", mycolor.violet, "prop"),
-  "lem": ("Lemma", mycolor.violet-light, "prop"),
-  "cor": ("Corollary", mycolor.violet-dark, "prop"),
-  "rmk": ("Remark", mycolor.violet-darker, "prop"),
-  "clm": ("Claim", mycolor.violet-deep, "prop"),
-  "ex": ("Exercise", mycolor.purple, "ex"),
-  "prob": ("Problem", mycolor.orange, "prob"),
-  "eg": ("Example", mycolor.cyan, "eg"),
-  "note": ("Note", mycolor.grey, "note"),
-  "cau": ("⚠️", mycolor.red, "cau"),
+  "def": ("Definition", mycolor.green, "def", none),
+  "thm": ("Theorem", mycolor.blue, "thm", none),
+  "prop": ("Proposition", mycolor.violet, "prop", none),
+  "lem": ("Lemma", mycolor.violet-light, "prop", none),
+  // ...
   "cb-counter-depth": 2,
 )
 ```
 
-#newpara()
-
-=== countblock 的新建与注册 <new-cb>
-
-Scripst 提供了 `add-countblock` 函数来添加（或重载）一个计数器，以及 `reg-countblock` 函数来注册这个计数器。你可以通过在文档开头
-```typst
-#let cb = add-countblock(cb, "test", "This is a test", teal)
-#show: reg-countblock.with("test")
-```
-来创建一个countblock。
-#note[
-  上面的代码意味着我们先更新了`cb`，再将其的计数器加入整个文档中。
-]
-
-#newpara()
-
-==== 函数 `add-countblock`
-
-函数 `add-countblock` 的参数如下
-```typst
-#add-countblock(cb, name, info, color, counter-name: none) {return cb}
-```
-参数说明如下
-#three-line-table[
-  | 参数 | 类型 | 默认值 | 说明 |
-  | --- | --- | --- | --- |
-  | `cb` | `dict` | `` | 计数器字典 |
-  | `name` | `str` | `` | 计数器的名称 |
-  | `info` | `str` | `` | 计数器的信息 |
-  | `color` | `color` | `` | 计数器的颜色 |
-  | `counter-name` | `str` | `none` | 计数器的编号 |
-]
-- `cb`是一个字典，其格式如@cb 所示。该函数的作用就是将`cb`更新，在使用时需要按照显示赋值。
-  #note(count: false)[
-    由于 typst 语言的函数不存在指针或引用，传入的变量不能修改，我们只能通过显式的返回值来修改变量。并且将其传入下一个函数。目前作者没有找到更好的方法。
-  ]
-- `name: (info, color, counter-name)`是一个计数器的基本信息。在渲染时，计数器的左上角会显示`info counter(counter-name)`例如`Theorem 1.1`作为该计数器的编号；颜色会是`color`颜色的。
-- `counter-name`是计数器的编号，如果没有指定，那么会使用`name`作为编号。
-
-==== 函数 `reg-countblock`
-
-函数 `reg-countblock` 的参数如下
-```typst
-#show reg-countblock.with(name, cb-counter-depth: 2)
-```
-参数说明如下
-#three-line-table[
-  | 参数 | 类型 | 默认值 | 说明 |
-  | --- | --- | --- | --- |
-  | `counter-name` | `str` | `` | 计数器的编号 |
-  | `cb-counter-depth` | `int` | `2` | 计数器的深度 |
-]
-- `counter-name`是计数器的编号，也就是在 `add-countblock` 中（未指定是`name`）显示指定的参数。例如默认提供的`clm`的计数器是`prop`。
-- `cb-counter-depth`是你该计数器的深度，你可以指定为`1, 2, 3`。
-
-#separator
-
-此后你就可以使用 `countblock` 函数来使用这个计数器。
-
-#let cb = add-countblock(cb, "test", "This is a test", teal)
-#show: reg-countblock.with("test")
-
-=== countblock 的计数器 <cb-counter>
-
-前面并没有提到`cb-counter-depth`参数，在这一章我们详细讲解这个参数，以及其实现方式。
-
-全局变量 `cb` 中的 `cb-counter-depth` 默认值是2。所以默认提供的 countblock 函数的计数器深度是2。
-
-#note[
-  如果你直接更改全局变量里的 `cb-counter-depth`，默认提供的计数器是不会改变的。这是因为在创建计数器时，会将原先的 `cb.at("cb-counter-depth")` 作为默认值传入。当更新 `cb` 时，原先的 `cb-counter-depth` 不会改变。所以你需要重新注册这个计数器。
-]
-
-计数器的逻辑与 @counter 的相同。
-
-*如果你需要注册一个深度为3的计数器，你可以这样做：*
-```typst
-#let cb = add-countblock(cb, "test1", "This is a test1", green)
-#show: reg-countblock.with("test1", cb-counter-depth: 3)
-```
-#let cb = add-countblock(cb, "test1", "This is a test1", green)
-#show: reg-countblock.with("test1", cb-counter-depth: 3)
-
-#newpara()
-
-此外你可以通过`reg-default-countblock`函数来注册默认的计数器。例如你*希望所有的默认的计数器都是深度为3的*，你可以这样做：
-```typst
-#show: reg-default-countblock.with(cb-counter-depth: 3)
-```
-#show: reg-default-countblock.with(cb-counter-depth: 3)
-当然，如果你仅仅这么做还不够，因为封装好的计数器还是以2为默认值。如果你直接调用
-```typst
-#definition[
-  这是一个定义，请你理解它。
-]
-```
-那么这个计数器的深度还是2。
-#definition[
-  这是一个定义，请你理解它。
-]
-所以你需要指定深度为3：
-```typst
-#definition(cb-counter-depth: 3)[
-  这是一个定义，请你理解它。
-]
-```
-#definition(cb-counter-depth: 3)[
-  这是一个定义，请你理解它。
-]
-当然，你可以直接*进一步对其进行封装*：
-```typst
-#let definition = definition.with(cb-counter-depth: 3)
-```
-#let definition = definition.with(cb-counter-depth: 3)
-之后再使用`definition`函数就会默认使用深度为3的计数器
-```typst
-#definition[
-  这是一个定义，请你理解它。
-]
-```
-#definition[
-  这是一个定义，请你理解它。
-]
-
-#note[
-  事实上，前文提到的 `cb-counter-depth` 参数就是在文档初始化的时候调用 `reg-default-countblock` 函数来设置的。
-]
+#let blocks = add-countblock(cb, "test", "This is a test", teal)
+#let test = countblock.with("test", blocks)
 
 #newpara()
 
 === countblock 的使用
 
-在定义并且注册一个块之后，就可以使用 `countblock` 函数来创建一个块：
+定义好一个块之后，就可以使用 `countblock` 函数来创建它：
 ```typst
 #countblock(
   name,
   cb,
-  cb-counter-depth: cb.at("cb-counter-depth"), // default: 2
   subname: "",
   count: true,
   lab: none
@@ -584,31 +584,29 @@ Scripst 提供了 `add-countblock` 函数来添加（或重载）一个计数器
   | --- | --- | --- | --- |
   | `name` | `str` | `` | 计数器的名称 |
   | `cb` | `dict` | `` | 计数器字典 |
-  | `cb-counter-depth` | `int` | `cb.at("cb-counter-depth")` | 计数器的深度 |
   | `subname` | `str` | `` | 该条目的名称 |
   | `count` | `bool` | `true` | 是否计数 |
   | `lab` | `str` | `none` | 该条目的标签 |
 ]
 - `name`是计数器的名称，也就是在 `add-countblock` 中显示指定的参数。
 - `cb`是一个字典，其格式如@cb 所示。注意，你需要传含有该计数器的（最新的）`cb`，所以一定需要先更新`cb`，再传入。
-- `cb-counter-depth`是你该计数器的深度，你可以指定为`1, 2, 3`。
 - `subname`是会显示在计数器后的信息，例如定理名称等。
 - `count`是一个布尔值，如果你不想计数，可以将其设置为`false`。
 - `lab`是一个字符串，如果你想要为这个块添加一个标签，以便在文中引用，可以使用这个参数。
 
-例如，我想使用我在 @new-cb 中创建的`test`计数器：
+例如，使用在 @new-cb 中创建的 `test`：
 ```typst
-#countblock("test", cb)[
+#countblock("test", blocks)[
   1 + 1 = 2
 ]
 ```
-#countblock("test", cb)[
+#test[
   1 + 1 = 2
 ]
 
 当然也可以将其封装成另一个函数：
 ```typst
-#let test = countblock.with("test", cb)
+#let test = countblock.with("test", blocks)
 ```
 然后使用`test`函数：
 ```typst
@@ -616,61 +614,31 @@ Scripst 提供了 `add-countblock` 函数来添加（或重载）一个计数器
   1 + 1 = 2
 ]
 ```
-#let test = countblock.with("test", cb)
 #test[
-  1 + 1 = 2
-]
-
-#newpara()
-
-当然，对于在 @cb-counter 中注册的深度为3的`test1`计数器，我们需要在使用时指定深度：
-```typst
-#countblock("test1", cb, cb-counter-depth: 3)[
-  1 + 1 = 2
-]
-#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)
-#test1[
-  1 + 1 = 2
-]
-```
-#countblock("test1", cb, cb-counter-depth: 3)[
-  1 + 1 = 2
-]
-#let test1 = countblock.with("test1", cb, cb-counter-depth: 3)
-#test1[
   1 + 1 = 2
 ]
 
 === 总结
 
-Scripst 提供了一种简单的计数器模块，你可以通过 `add-countblock` 函数来添加一个计数器，通过 `reg-countblock` 函数来注册这个计数器，然后通过 `countblock` 函数来使用这个计数器。
-
-对于默认的计数器，其深度为2，你可以通过 `reg-default-countblock` 函数来注册默认的计数器。
-
-如果你希望所有 `countblock` 的深度为2，那么在你注册和使用的时候不必在意深度。
-
-如果你希望所有 `countblock` 的深度为3，那么你需要在注册和使用的时候指定深度。
+Scripst 通过 `add-countblock` 扩展字典，通过 `countblocks` 将整个字典一次性交给模板，再通过 `countblock` 创建具体的块。编号、重置和引用都由 Ratchet 统一管理。
 
 #example(count: false)[
 
-  下面给出一个例子：使用者希望包括默认的所有 `countblock` 的计数器深度都是3，但希望 `remark` 与先前默认绑定的 `proposition`, `lemma`, `corollary`, `claim` 的计数器独立出来。再创建一个深度为 3 的 `algorithm` 计数器。
+  综合示例：默认块使用深度 `3`，仅把 `remark` 从 `prop` 共享族中拆出并设为深度 `1`，再创建深度 `2` 的 `algorithm`。
 
   ```typst
+  #let blocks = set-countblock-depth(cb, "rmk", 1, detach: true)
+  #let blocks = add-countblock(blocks, "alg", "Algorithm", yellow, depth: 2)
+  #let remark = countblock.with("rmk", blocks)
+  #let algorithm = countblock.with("alg", blocks)
+
   #show: scripst.with(
     // ...
+    countblocks: blocks,
     cb-counter-depth: 3,
   )
-  #let cb = add-countblock(cb, "rmk", "Remark", mycolor.violet-darker)
-  #let cb = add-countblock(cb, "algorithm", "Algorithm", mycolor.yellow)
-  #show: reg-countblock.with("rmk", cb-counter-depth: 3)
-  #show: reg-countblock.with("algorithm", cb-counter-depth: 3)
-  #let definition = definition.with(cb-counter-depth: 3)
-  #let theorem = theorem.with(cb-counter-depth: 3)
-  // ...
-  #let remark = countblock.with("rmk", cb, cb-counter-depth: 3) // 这里需要重新封装是因为其计数器改变了
-  #let algorithm = countblock.with("algorithm", cb, cb-counter-depth: 3)
   ```
-  放在文档的开头，`#script` 之后即可。
+  把字典和封装函数放在 `#show: scripst.with(...)` 之前即可。
 ]
 
 #newpara()
@@ -745,7 +713,7 @@ Scripst 提供了一种简单的计数器模块，你可以通过 `add-countbloc
 为数学公式调节了引用
 
 $
-  laplacian = pdv(,x,2) + pdv(,y,2) + pdv(,z,2)
+  laplacian = pdv(, x, 2) + pdv(, y, 2) + pdv(, z, 2)
 $<laplacian>
 
 对 @laplacian 的引用，格式不再是 #["式 @laplacian"]<text.red> 而是括号的形式。
@@ -757,10 +725,10 @@ $<laplacian>
 
 $
   u(x,t) = #math.cases(
-  $sum_(i=1)^oo 4/(n pi) sin((n pi x)/L) e^(-((n pi)/L)^2 alpha t) "  "& 0<x<L$,
-  $0 "  " &"otherwise"$,
-  gap: 1em
-)
+    $sum_(i=1)^oo 4/(n pi) sin((n pi x)/L) e^(-((n pi)/L)^2 alpha t) "  "& 0<x<L$,
+    $0 "  " &"otherwise"$,
+    gap: 1em,
+  )
 $
 
 `scripst`提供了一个新的`cases`环境，可以在数学公式中使用。它的用法与原本的`cases`环境相同，如下所示：
@@ -779,8 +747,8 @@ $
 $
   u(x,t) = cases(
     gap: #1em,
-    sum_(i=1)^oo 4/(n pi) sin((n pi x)/L) e^(-((n pi)/L)^2 alpha t) "  "& 0<x<L,
-    0 "  " &"otherwise"
+    sum_(i=1)^oo 4/(n pi) sin((n pi x)/L) e^(-((n pi)/L)^2 alpha t) "  " & 0<x<L,
+    0 "  " & "otherwise"
   )
 $
 
