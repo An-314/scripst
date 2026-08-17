@@ -77,6 +77,8 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
   countblocks: cb,               // dict
   matheq-outline: "(1.1)",       // str, function
   counter-outline: "1.1",       // str, function
+  link-color: blue,               // color
+  ref-color: red,                 // color
   header: true                   // bool
   lang: "zh",                    // str: ("zh", "en", "fr", ...)
   par-indent: 2em,               // length

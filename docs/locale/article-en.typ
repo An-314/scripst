@@ -177,6 +177,8 @@ Scripst template provides some parameters to customise the style of the document
   countblocks: cb,      // dict
   matheq-outline: "(1.1)", // str, function
   counter-outline: "1.1", // str, function
+  link-color: blue,     // color
+  ref-color: red,       // color
   header: true,         // bool
   lang: "en",           // str: ("zh", "en", "fr", ...)
   par-indent: 0em,      // length
@@ -452,6 +454,16 @@ The countblock registry used by the template. It defaults to `cb`. Pass an updat
 == matheq-outline
 
 The equation numbering pattern. It defaults to `"(1.1)"`, so displayed equations and their references include parentheses.
+
+== link-color
+
+The text color of hyperlinks. It defaults to `blue`. Equation, figure, and countblock reference colors remain controlled by `matheq-color` and `counter-color`.
+
+PDF link borders and hover feedback are controlled by the PDF viewer. Typst currently cannot reliably customize their appearance.
+
+== ref-color
+
+The text color of ordinary `@label` references. It defaults to `red`. Equation references remain controlled by `matheq-color`; figure and countblock references remain controlled by `counter-color`.
 
 == header
 

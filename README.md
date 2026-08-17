@@ -130,6 +130,8 @@ typst init @preview/scripst:1.1.2 project_name
   cb-counter-depth: 2,
   countblocks: cb,
   matheq-outline: "(1.1)",
+  link-color: blue,
+  ref-color: red,
   header: true,
   lang: "en",
 )
@@ -156,6 +158,8 @@ typst init @preview/scripst:1.1.2 project_name
 | `cb-counter-depth` | `int` | `2` | `countblock` module counter numbering depth |
 | `countblocks` | `dict` | `cb` | Countblock registry configured by Ratchet |
 | `matheq-outline` | `str`, `function` | `"(1.1)"` | Equation numbering pattern |
+| `link-color` | `color` | `blue` | Hyperlink text color |
+| `ref-color` | `color` | `red` | Ordinary `@label` reference color |
 | `header` | `bool` | `true` | Enable header |
 | `lang` | `str` | `"zh"` | Language (`"zh"`, `"en"`, `"fr"`, etc.) |
 
