@@ -6,7 +6,7 @@ Scripst
 
 <div align="center">
 
-[![Current Version](https://img.shields.io/badge/version-v1.1.1-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.1)
+[![Current Version](https://img.shields.io/badge/version-v1.1.2-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.2)
 [![License](https://img.shields.io/badge/license-MIT-turquoise.svg)](https://github.com/An-314/scripst/blob/main/LICENSE)
 [![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst)
 [![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
@@ -101,13 +101,13 @@ Or refer to the [Typst official documentation](https://github.com/typst/typst) f
 Import the template at the beginning of your Typst file:
 
 ```typst
-#import "@preview/scripst:1.1.1": *
+#import "@preview/scripst:1.1.2": *
 ```
 
 Use `typst init` to quickly create a project:
 
 ```bash
-typst init @preview/scripst:1.1.0 project_name
+typst init @preview/scripst:1.1.2 project_name
 ```
 
 
@@ -128,6 +128,8 @@ typst init @preview/scripst:1.1.0 project_name
   matheq-depth: 2,
   counter-depth: 2,
   cb-counter-depth: 2,
+  countblocks: cb,
+  matheq-outline: "(1.1)",
   header: true,
   lang: "en",
 )
@@ -152,6 +154,8 @@ typst init @preview/scripst:1.1.0 project_name
 | `matheq-depth` | `int` | `2` | Math equation numbering depth |
 | `counter-depth` | `int` | `2` | Overall counter numbering depth |
 | `cb-counter-depth` | `int` | `2` | `countblock` module counter numbering depth |
+| `countblocks` | `dict` | `cb` | Countblock registry configured by Ratchet |
+| `matheq-outline` | `str`, `function` | `"(1.1)"` | Equation numbering pattern |
 | `header` | `bool` | `true` | Enable header |
 | `lang` | `str` | `"zh"` | Language (`"zh"`, `"en"`, `"fr"`, etc.) |
 
@@ -170,7 +174,7 @@ Below is an example of a `countblock` module:
 ![countblock example](./previews/countblock.png)
 
 ```typst
-#theorem("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
+#theorem(subname: [_Fermat's Last Theorem_], lab: "fermat")[
 
   No three $a, b, c in NN^+$ can satisfy the equation
   $
@@ -183,6 +187,27 @@ Fermat did not provide a public proof for @fermat.
 ```
 
 This will create a theorem block and allow it to be referenced in the document.
+
+Counter depths can be configured globally or per block. Blocks sharing a
+`counter-name` are one counter family, so changing one updates the whole family;
+use `detach: true` to give only that block an independent counter.
+
+```typst
+#let blocks = set-countblock-depth(cb, "thm", 3)
+#let blocks = set-countblock-depth(blocks, "rmk", 1, detach: true)
+#let blocks = add-countblock(blocks, "alg", "Algorithm", yellow, depth: 2)
+
+#show: scripst.with(
+  countblocks: blocks,
+  cb-counter-depth: 2, // Fallback for blocks without an explicit depth.
+)
+
+#let algorithm = countblock.with("alg", blocks)
+#algorithm[An algorithm block with depth-2 numbering.]
+```
+
+See the documentation for the complete default block table (name, depth,
+color, and call function) and shared-counter examples.
 
 ### Quick setting by using lable
 
@@ -301,26 +326,26 @@ If the template is stored in the `src/` directory, import it as:
 ### Method 2: Using Typst Local Package Management  
 Manually download Scripst and store it in:  
 ```  
-~/.local/share/typst/packages/preview/scripst/1.1.1                 # Linux  
-%APPDATA%\typst\packages\preview\scripst\1.1.1                      # Windows  
-~/Library/Application Support/typst/packages/preview/scripst/1.1.1  # macOS  
+~/.local/share/typst/packages/preview/scripst/1.1.2                 # Linux
+%APPDATA%\typst\packages\preview\scripst\1.1.2                      # Windows
+~/Library/Application Support/typst/packages/preview/scripst/1.1.2  # macOS
 ```  
 
 Alternatively, run the following command:  
 ```bash  
 cd {data-dir}/typst/packages/preview/scripst  
-git clone https://github.com/An-314/scripst.git 1.1.1  
+git clone https://github.com/An-314/scripst.git 1.1.2
 ```  
 Here, `data-dir` refers to Typst's data directory (e.g., `~/.local/share/` on Linux, `%APPDATA%\` on Windows, or `~/Library/Application Support/` on macOS).  
 
 Then import the template directly in your Typst file:  
 ```typst  
-#import "@local/scripst:1.1.1": *  
+#import "@local/scripst:1.1.2": *
 ```  
 
 Use `typst init` to create a project quickly:  
 ```bash  
-typst init @local/scripst:1.1.1 project_name  
+typst init @local/scripst:1.1.2 project_name
 ```  
 
 Scripst offers several adjustable settings, i.e. font, colour palette, default countblock name in `./src/configs.typ`. You can adjust them per your need.

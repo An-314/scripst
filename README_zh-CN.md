@@ -6,7 +6,7 @@ Scripst
 
 <div align="center">
 
-[![Current Version](https://img.shields.io/badge/version-v1.1.1-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.1)
+[![Current Version](https://img.shields.io/badge/version-v1.1.2-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.2)
 [![License](https://img.shields.io/badge/license-MIT-turquoise.svg)](https://github.com/An-314/scripst/blob/main/LICENSE)
 [![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst/zh)
 [![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
@@ -95,13 +95,13 @@ brew install typst # macOS
 在 `.typ` 文档开头添加
 
 ```typst
-#import "@local/scripst:1.1.1": *
+#import "@local/scripst:1.1.2": *
 ```
 即可。
 
 亦可以使用 `typst init` 快速创建项目：
 ```bash
-typst init @local/scripst:1.1.1 project_name
+typst init @local/scripst:1.1.2 project_name
 ```
 
 
@@ -110,7 +110,7 @@ typst init @local/scripst:1.1.1 project_name
 在 Typst 文件开头引入模板：
 
 ```typst
-#import "@local/scripst:1.1.1": *
+#import "@local/scripst:1.1.2": *
 ```
 
 ### 创建 `article` 文档
@@ -130,6 +130,8 @@ typst init @local/scripst:1.1.1 project_name
   matheq-depth: 2,
   counter-depth: 2,
   cb-counter-depth: 2,
+  countblocks: cb,
+  matheq-outline: "(1.1)",
   header: true,
   lang: "zh",
   par-indent: 2em,
@@ -156,6 +158,8 @@ typst init @local/scripst:1.1.1 project_name
 | `matheq-depth` | `int` | `2` | 数学公式编号深度 |
 | `counter-depth` | `int` | `2` | 全局的计数器编号深度 |
 | `cb-counter-depth` | `int` | `2` | `countblock` 模块的计数器编号深度 |
+| `countblocks` | `dict` | `cb` | 交由 Ratchet 配置的 countblock 字典 |
+| `matheq-outline` | `str`, `function` | `"(1.1)"` | 数学公式编号格式 |
 | `header` | `bool` | `true` | 是否生成页眉 |
 | `lang` | `str` | `"zh"` | 语言 (`"zh"`, `"en"`, `"fr"` 等) |
 | `par-indent` | `length` | `2em` | 段落首行缩进 |
@@ -177,7 +181,7 @@ typst init @local/scripst:1.1.1 project_name
 ![countblock 示例](./previews/countblock.png)
 
 ```typst
-#theorem("thm", subname: [_Fermat's Last Theorem_], lab: "fermat", cb)[
+#theorem(subname: [_Fermat's Last Theorem_], lab: "fermat")[
 
   No three $a, b, c in NN^+$ can satisfy the equation
   $
@@ -189,6 +193,26 @@ typst init @local/scripst:1.1.1 project_name
 Fermat 并没有对 @fermat 给出公开的证明。
 ```
 就可以生成一个定理模块，并且在文中引用该模块。
+
+计数深度既可以统一设置，也可以精确到单个块。共享同一
+`counter-name` 的块属于同一个计数器族，因此默认会一起调整；若只想让某个块
+独立编号，请使用 `detach: true`。
+
+```typst
+#let blocks = set-countblock-depth(cb, "thm", 3)
+#let blocks = set-countblock-depth(blocks, "rmk", 1, detach: true)
+#let blocks = add-countblock(blocks, "alg", "算法", yellow, depth: 2)
+
+#show: scripst.with(
+  countblocks: blocks,
+  cb-counter-depth: 2, // 未单独指定深度的块使用此值。
+)
+
+#let algorithm = countblock.with("alg", blocks)
+#algorithm[一个使用二级编号的算法块。]
+```
+
+完整的默认块列表（名称、深度、颜色、调用函数）以及共享计数器示例，请参见文档。
 
 ### label 快速设置
 
@@ -307,16 +331,16 @@ project/
 
 可手动下载 Scripst 并将其存放至：
 ```
-~/.local/share/typst/packages/preview/scripst/1.1.1                 # Linux
-%APPDATA%\typst\packages\preview\scripst\1.1.1                      # Windows
-~/Library/Application Support/typst/packages/preview/scripst/1.1.1  # macOS
+~/.local/share/typst/packages/preview/scripst/1.1.2                 # Linux
+%APPDATA%\typst\packages\preview\scripst\1.1.2                      # Windows
+~/Library/Application Support/typst/packages/preview/scripst/1.1.2  # macOS
 ```
 
 或者运行如下命令：
 
 ```bash 
 cd {data-dir}/typst/packages/preview/scripst
-git clone https://github.com/An-314/scripst.git 1.1.1
+git clone https://github.com/An-314/scripst.git 1.1.2
 ```
 
 其中`data-dir`为Typst的数据目录，如上述Linux系统中的`~/.local/share/`，Windows系统中的`%APPDATA%\`，macOS系统中的`~/Library/Application Support/`。
@@ -324,7 +348,7 @@ git clone https://github.com/An-314/scripst.git 1.1.1
 然后在 Typst 文件中直接引入：
 
 ```typst
-#import "@local/scripst:1.1.1": *
+#import "@local/scripst:1.1.2": *
 ```
 
 即可使用 Scripst 模板。
@@ -332,7 +356,7 @@ git clone https://github.com/An-314/scripst.git 1.1.1
 使用 `typst init` 快速创建项目：
 
 ```bash
-typst init @local/scripst:1.1.1 project_name
+typst init @local/scripst:1.1.2 project_name
 ```
 
 Scripst 提供多项可调参数，例如字体、配色方案、默认的 countblock 名称等，均位于 ./src/configs.typ 文件中，可按需修改。

@@ -1,5 +1,7 @@
 #import "@preview/scripst:1.1.2": *
 
+#let doc-countblocks = add-countblock(cb, "test", "This is a test", teal)
+
 #show: scripst.with(
   template: "report",
   title: [Scripst 的使用方法],
@@ -20,6 +22,7 @@
   contents: true,
   content-depth: 3,
   matheq-depth: 2,
+  countblocks: doc-countblocks,
   lang: "zh",
 )
 
