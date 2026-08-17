@@ -1,8 +1,10 @@
-#import "components.typ": *
 #import "configs.typ": *
 #import "@preview/ratchet:0.0.3": figure-number
 
 #let add-countblock(cb, name, info, color, counter-name: none, depth: none) = {
+  if depth != none and not (depth in (1, 2, 3)) {
+    panic("add-countblock: depth must be none, 1, 2, or 3")
+  }
   if counter-name == none { counter-name = name }
   cb.insert(name, (info, color, counter-name, depth))
   return cb

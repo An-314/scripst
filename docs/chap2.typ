@@ -414,7 +414,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | numbering-format | `str`, `function` | `"1.1"` | 章节标题的编号格式 |
+    | numbering-format | `str`, `function`, `none` | `"1.1"` | 章节标题的编号格式 |
   ],
   numbering: none,
 )
@@ -425,7 +425,7 @@ datetime.today().display()
 你可以传入一个函数来实现自定义的编号格式，例如：
 
 ```typst
-#let numbering = (n, ..it) => "Chapter" + str(n) + "" + numbering("1.1", ..it)
+#let custom-numbering = (n, ..it) => "Chapter " + str(n) + " " + numbering("1.1", ..it)
 ```
 
 #note[
@@ -439,7 +439,7 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | chapter-numbering-format | `str`, `function` | 根据语言而定 | 章节标题的编号格式 |
+    | chapter-numbering-format | `str`, `function`, `none` | 根据语言而定 | 章节标题的编号格式 |
   ],
   numbering: none,
 )
@@ -449,7 +449,7 @@ datetime.today().display()
 
   所以当你需要传入含有 `i` 的pattern时，建议使用函数的方式来传入，例如：
   ```typst
-  #let numbering = (n, ..it) => "Unit" + str(n)
+  #let custom-numbering = (n, ..it) => "Unit " + str(n)
   ```
   这样就可以避免 typst 的 bug 了。
 ]

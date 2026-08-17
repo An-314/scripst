@@ -42,6 +42,15 @@
   offset: 0,
   body,
 ) = {
+  if numbering-format != none and not (type(numbering-format) in (str, function)) {
+    panic("scripst: numbering-format must be none, a string, or a function")
+  }
+  if chapter-numbering-format != none and not (type(chapter-numbering-format) in (str, function)) {
+    panic("scripst: chapter-numbering-format must be none, a string, or a function")
+  }
+  if type(offset) != int { panic("scripst: offset must be an integer") }
+  if offset < -1 { panic("scripst: offset must be at least -1") }
+
   let heading-numbering = if numbering-format == none { "1.1" } else { numbering-format }
   let chapter-numbering = if chapter-numbering-format == none {
     localize("number-format", lang: lang)
