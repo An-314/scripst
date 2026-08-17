@@ -292,6 +292,38 @@ datetime.today().display()
 
 计数器引用的颜色。默认为`"blue"`。
 
+== link-color
+
+#figure(
+  three-line-table[
+    | 参数 | 类型 | 默认值 | 说明 |
+    | --- | --- | --- | --- |
+    | link-color | `color` | `blue` | 超链接文字颜色 |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+超链接文字的颜色。该设置不会改变 `matheq-color` 和 `counter-color` 分别指定的公式、图表及 countblock 引用颜色。
+
+PDF 链接边框和鼠标悬浮反馈由 PDF 阅读器控制，Typst 目前不能可靠地自定义其外观。
+
+== ref-color
+
+#figure(
+  three-line-table[
+    | 参数 | 类型 | 默认值 | 说明 |
+    | --- | --- | --- | --- |
+    | ref-color | `color` | `red` | 普通 `@label` 引用的文字颜色 |
+  ],
+  numbering: none,
+)
+
+#newpara()
+
+普通 `@label` 引用的颜色。公式引用仍由 `matheq-color` 控制，图表和 countblock 引用仍由 `counter-color` 控制。
+
 == header
 
 #figure(
@@ -365,7 +397,7 @@ datetime.today().display()
 
 #newpara()
 
-段落内间距。在中文文档中默认是`1em`。
+段落内间距。在中文文档中默认是`1em`。（中文文档可以设置为`0.5em`附近来接近 LaTeX 的默认效果。）
 
 #note(count: false)[
   默认值会随着语言的选择而变化，具体情况见下表

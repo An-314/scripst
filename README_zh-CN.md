@@ -132,6 +132,8 @@ typst init @local/scripst:1.1.2 project_name
   cb-counter-depth: 2,
   countblocks: cb,
   matheq-outline: "(1.1)",
+  link-color: blue,
+  ref-color: red,
   header: true,
   lang: "zh",
   par-indent: 2em,
@@ -160,6 +162,8 @@ typst init @local/scripst:1.1.2 project_name
 | `cb-counter-depth` | `int` | `2` | `countblock` 模块的计数器编号深度 |
 | `countblocks` | `dict` | `cb` | 交由 Ratchet 配置的 countblock 字典 |
 | `matheq-outline` | `str`, `function` | `"(1.1)"` | 数学公式编号格式 |
+| `link-color` | `color` | `blue` | 超链接文字颜色 |
+| `ref-color` | `color` | `red` | 普通 `@label` 引用颜色 |
 | `header` | `bool` | `true` | 是否生成页眉 |
 | `lang` | `str` | `"zh"` | 语言 (`"zh"`, `"en"`, `"fr"` 等) |
 | `par-indent` | `length` | `2em` | 段落首行缩进 |
