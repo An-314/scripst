@@ -7,11 +7,11 @@ Scripst
 <div align="center">
 
 [![Current Version](https://img.shields.io/badge/version-v1.1.2-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.2)
-[![License](https://img.shields.io/badge/license-MIT-turquoise.svg)](https://github.com/An-314/scripst/blob/main/LICENSE)
+[![MIT License badge](https://img.shields.io/badge/license-MIT-turquoise.svg)](./LICENSE)
 [![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst/zh)
 [![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
 
-简体中文 | [English](https://github.com/An-314/scripst/blob/main/README.md)
+简体中文 | [English](./README.md)
 
 </div>
 
@@ -60,7 +60,7 @@ Scripst
 - 高扩展性：模块化设计，便于对模板进行扩展
 
 <p align="center">
-  <img src="./previews/article-1.png" alt="Demo0" width="30%" />
+  <img src="./previews/article-1.png" alt="Scripst 文章封面与目录" width="30%" />
   <img src="./previews/article-ratchet.png" alt="Ratchet 统一编号" width="30%" />
   <img src="./previews/article-countblocks.png" alt="Countblock 计数器族" width="30%" />
 </p>
@@ -343,14 +343,14 @@ project/
 ```
 若模板存放于 `src/` 目录下，引入方式：
 
-```typst
+```text
 #import "src/main.typ": *
 ```
 
 ### 方法 2：使用 Typst 本地包管理
 
 可手动下载 Scripst 并将其存放至：
-```
+```text
 ~/.local/share/typst/packages/preview/scripst/1.1.2                 # Linux
 %APPDATA%\typst\packages\preview\scripst\1.1.2                      # Windows
 ~/Library/Application Support/typst/packages/preview/scripst/1.1.2  # macOS
@@ -383,5 +383,5 @@ Scripst 提供多项可调参数，例如字体、配色方案、默认的 count
 
 ## 🎯 TODO
 
-- [ ] 加入 `beamer` 模板
-- [ ] 加入更多可配置项
+- 加入 `beamer` 模板
+- 加入更多可配置项

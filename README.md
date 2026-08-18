@@ -7,11 +7,11 @@ Scripst
 <div align="center">
 
 [![Current Version](https://img.shields.io/badge/version-v1.1.2-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.2)
-[![License](https://img.shields.io/badge/license-MIT-turquoise.svg)](https://github.com/An-314/scripst/blob/main/LICENSE)
+[![MIT License badge](https://img.shields.io/badge/license-MIT-turquoise.svg)](./LICENSE)
 [![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst)
 [![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
 
-[简体中文](https://github.com/An-314/scripst/blob/main/README_zh-CN.md) | English
+[简体中文](./README_zh-CN.md) | English
 
 </div>
 
@@ -339,13 +339,13 @@ project/
 ├── chap2.typ  
 ```  
 If the template is stored in the `src/` directory, import it as:  
-```typst  
+```text
 #import "src/main.typ": *  
 ```  
 
 ### Method 2: Using Typst Local Package Management  
 Manually download Scripst and store it in:  
-```  
+```text
 ~/.local/share/typst/packages/preview/scripst/1.1.2                 # Linux
 %APPDATA%\typst\packages\preview\scripst\1.1.2                      # Windows
 ~/Library/Application Support/typst/packages/preview/scripst/1.1.2  # macOS
@@ -372,5 +372,5 @@ Scripst offers several adjustable settings, i.e. font, colour palette, default c
 
 ## 🎯 TODO
 
-* [ ] Add `beamer` template
-* [ ] Add more configuration options
+- Add a `beamer` template
+- Add more configuration options
