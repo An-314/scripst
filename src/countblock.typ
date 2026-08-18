@@ -80,6 +80,7 @@
     radius: 4pt,
     width: 100%,
     stroke: (left: (thickness: 4pt, paint: color)),
+    breakable: true,
     [
       #set text(font: font.countblock)
       #set align(left)
@@ -92,9 +93,12 @@
     ],
   )
 
+  // Keep a native figure as a zero-size anchor so Ratchet and `@ref` can use
+  // Typst's figure counter, while leaving the visible block in normal flow.
+  // A figure containing the whole block cannot break across pages.
   let elem = if count {
     figure(
-      rendered,
+      [],
       caption: none,
       kind: counter-name,
       supplement: info,
@@ -102,7 +106,7 @@
     )
   } else {
     figure(
-      rendered,
+      [],
       caption: none,
       kind: counter-name,
       supplement: info,
@@ -111,9 +115,14 @@
     )
   }
 
-  [
+  let anchor = [
     #elem
     #if lab != none { label(lab) }
+  ]
+
+  [
+    #place(anchor)
+    #rendered
   ]
 }
 
