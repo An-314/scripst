@@ -19,6 +19,7 @@ Scripst
 
 - [📑 Contents](#-contents)
 - [🚀 Features](#-features)
+- [⚙️ Numbering powered by Ratchet](#-numbering-powered-by-ratchet)
 - [📌 Fonts](#-fonts)
 - [📦 Installation](#-installation)
   - [Install Typst](#install-typst)
@@ -49,6 +50,7 @@ Scripst
 
 ## 🚀 Features
 
+* Numbering powered by [Ratchet](https://github.com/An-314/ratchet): Equations, figures, tables, raw blocks, and custom `countblock` families share one reliable numbering and reference engine.
 * Added the `countblock` module: A customizable-named and colored block with a built-in counter that can be referenced anywhere in the document. It supports theorem/problem/remark typesetting. For details, see [🆕 `countblock` module](#-countblock-module).  
 * Quick settings via labels: Font color customization, disabling math environments, and removing title numbering.  
 * Enhanced counter hierarchy: Global counters now support multi-level numbering formats (`1`, `1.1`, `1.1.1`). Equations, figures, and `countblock` can adopt hierarchical numbering as needed.  
@@ -60,10 +62,23 @@ Scripst
 * High Extensibility: Modular design, easy to extend the templates.
 
 <p align="center">
-  <img src="./previews/article-1.png" alt="Demo0" width="30%" />
-  <img src="./previews/article-12.png" alt="Demo1" width="30%" />
-  <img src="./previews/article-9.png" alt="Demo2" width="30%" />
+  <img src="./previews/article-en-1.png" alt="Article title and contents" width="30%" />
+  <img src="./previews/article-en-ratchet.png" alt="Ratchet numbering" width="30%" />
+  <img src="./previews/article-en-countblocks.png" alt="Countblock families" width="30%" />
 </p>
+
+## ⚙️ Numbering powered by Ratchet
+
+Scripst 1.1.2 is powered by [Ratchet 0.0.3](https://github.com/An-314/ratchet), a focused numbering package created by the same author. Ratchet provides a single, consistent engine for equations, figures, tables, raw blocks, and custom `figure(kind: ...)` families—including every Scripst `countblock`.
+
+With Ratchet, Scripst can:
+
+* assign depth `1`, `2`, or `3` independently to each counter family;
+* reset counters at the appropriate heading level;
+* keep displayed numbers, references, and outline entries consistent;
+* add new countblocks without writing extra registration or reset rules.
+
+Scripst configures Ratchet automatically, so users do not need an additional import. Ratchet can also be used independently in other projects; see its [repository](https://github.com/An-314/ratchet) and [Universe page](https://typst.app/universe/package/ratchet).
 
 ## 📌 Fonts
 
@@ -167,7 +182,7 @@ typst init @preview/scripst:1.1.2 project_name
 
 ## 🆕 Feature Demonstration
 
-The specific use of this section is described in [Scripst Documentation](. /docs/builds/article.pdf).
+The specific use of this section is described in [Scripst Documentation](./docs/builds/article.pdf).
 
 ### `countblock` Module
 
@@ -234,7 +249,7 @@ $
 where $E$<text.red> is #[energy]<text.lime>。
 ```
 
-![labelset example](./previews/labelset.jpg)
+![labelset example](./previews/labelset.png)
 
 ### `newpara` function
 
@@ -256,11 +271,11 @@ So when you think the layout between paragraphs is not pretty enough, try using 
 ### Article 
 
 <p align="center">
-  <img src="./previews/article-1.png" alt="Article Page 1" width="30%" />
-  <img src="./previews/article-2.png" alt="Article Page 2" width="30%" />
+  <img src="./previews/article-en-1.png" alt="Article Page 1" width="30%" />
+  <img src="./previews/article-en-2.png" alt="Article Page 2" width="30%" />
 </p>
 
-[Aritcle Demo](./docs/locale/builds/article-en.pdf) 
+[Article Demo](./docs/locale/builds/article-en.pdf)
 
 ### Book
 
@@ -293,6 +308,7 @@ Feel free to submit issues or pull requests! If you have any improvement suggest
 
 For certain content, Scripst uses the following Typst packages:
 
+* [ratchet](https://typst.app/universe/package/ratchet) — unified numbering, resets, references, and custom counter families
 * [tablem](https://typst.app/universe/package/tablem)
 * [physica](https://typst.app/universe/package/physica)
 

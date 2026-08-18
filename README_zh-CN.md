@@ -19,6 +19,7 @@ Scripst
 
 - [📑 目录](#-目录)
 - [🚀 特性](#-特性)
+- [⚙️ Ratchet 驱动的统一编号](#-ratchet-驱动的统一编号)
 - [📌 字体](#-字体)
 - [📦 安装](#-安装)
   - [安装 Typst](#安装-typst)
@@ -47,6 +48,7 @@ Scripst
 
 ## 🚀 特性
 
+- 由 [Ratchet](https://github.com/An-314/ratchet) 驱动统一编号：公式、图片、表格、代码块与自定义 `countblock` 计数器族使用同一套可靠的编号与引用引擎
 - 新增模块`countblock`：这是一个可以自定义名称和颜色的模块，内置一个计数器，并且可以在文中随时引用；可以用来做定理、问题、注记等模块，更详细的内容见[🆕 `countblock`模块](#countblock模块)
 - 利用 label 快速设置：字体颜色、取消数学环境和标题的计数编号等
 - 更好的计数器支持：支持为全局的计数器选择层数，公式、图片环境、`countblock`等的计数器都可以根据需要选择层数（`1`, `1.1`, `1.1.1`）
@@ -59,9 +61,22 @@ Scripst
 
 <p align="center">
   <img src="./previews/article-1.png" alt="Demo0" width="30%" />
-  <img src="./previews/article-12.png" alt="Demo1" width="30%" />
-  <img src="./previews/article-9.png" alt="Demo2" width="30%" />
+  <img src="./previews/article-ratchet.png" alt="Ratchet 统一编号" width="30%" />
+  <img src="./previews/article-countblocks.png" alt="Countblock 计数器族" width="30%" />
 </p>
+
+## ⚙️ Ratchet 驱动的统一编号
+
+Scripst 1.1.2 使用同一作者开发的 [Ratchet 0.0.3](https://github.com/An-314/ratchet) 作为统一编号引擎。公式、图片、表格、代码块以及自定义 `figure(kind: ...)` 计数器族——包括所有 Scripst `countblock`——都由 Ratchet 统一管理。
+
+Ratchet 为 Scripst 带来了：
+
+- 可为每一个计数器族独立选择深度 `1`、`2` 或 `3`；
+- 根据对应的标题层级准确重置计数器；
+- 保证正文编号、交叉引用和目录条目始终一致；
+- 新增 countblock 时不再需要额外编写注册和重置规则。
+
+Scripst 已经自动完成 Ratchet 配置，使用模板时无需再次导入。Ratchet 也可以脱离 Scripst 单独使用，详见其 [代码仓库](https://github.com/An-314/ratchet) 和 [Universe 页面](https://typst.app/universe/package/ratchet)。
 
 ## 📌 字体
 
@@ -95,13 +110,13 @@ brew install typst # macOS
 在 `.typ` 文档开头添加
 
 ```typst
-#import "@local/scripst:1.1.2": *
+#import "@preview/scripst:1.1.2": *
 ```
 即可。
 
 亦可以使用 `typst init` 快速创建项目：
 ```bash
-typst init @local/scripst:1.1.2 project_name
+typst init @preview/scripst:1.1.2 project_name
 ```
 
 
@@ -110,7 +125,7 @@ typst init @local/scripst:1.1.2 project_name
 在 Typst 文件开头引入模板：
 
 ```typst
-#import "@local/scripst:1.1.2": *
+#import "@preview/scripst:1.1.2": *
 ```
 
 ### 创建 `article` 文档
@@ -239,7 +254,7 @@ $
 其中 $E$<text.red> 是#[能量]<text.lime>。
 ```
 
-![labelset 示例](./previews/labelset.jpg)
+![labelset 示例](./previews/labelset.png)
 
 ### `newpara` 函数
 
@@ -263,7 +278,7 @@ $
   <img src="./previews/article-2.png" alt="Article Page 2" width="30%" />
 </p>
 
-[Aritcle 示例](./docs/builds/article.pdf)
+[Article 示例](./docs/builds/article.pdf)
 
 ### book 文档
 
@@ -295,6 +310,7 @@ $
 
 对于部分内容，Scripst 引用了以下 Typst 包：
 
+- [ratchet](https://typst.app/universe/package/ratchet) — 统一管理编号、重置、引用和自定义计数器族
 - [tablem](https://typst.app/universe/package/tablem)
 - [physica](https://typst.app/universe/package/physica)
 
