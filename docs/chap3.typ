@@ -263,6 +263,18 @@ $
 
 #newpara()
 
+== 由 Ratchet 驱动的统一编号 <ratchet>
+
+Scripst 1.1.2 使用 #link("https://github.com/An-314/ratchet")[Ratchet 0.0.3] 作为统一编号引擎。Ratchet 负责公式、图片、表格、代码块以及自定义 `figure(kind: ...)` 计数器族的编号、标题层级重置和交叉引用；Scripst 的所有 countblock 也建立在这套机制之上。
+
+这项集成使正文编号、交叉引用和目录条目共享同一份配置。每个计数器族都可以独立选择深度 `1`、`2` 或 `3`，新增 countblock 时也不再需要手动安装注册规则或标题重置规则。
+
+#note(count: false)[
+  Scripst 会自动配置 Ratchet，使用模板时无需再次导入。Ratchet 也可以作为独立包用于其他项目，详见 #link("https://typst.app/universe/package/ratchet")[Ratchet 的 Universe 页面]。
+]
+
+#newpara()
+
 == countblock
 
 #definition(subname: [countblock])[
