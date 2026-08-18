@@ -28,6 +28,7 @@
   content-depth: 3,
   matheq-depth: 2,
   lang: "fr",
+  par-spacing: 0.9em, // You could change these settings
 )
 
 = #lorem(2)
@@ -57,6 +58,6 @@ Fermat did not provide proof publicly for @fermat.
   )
 ][
   $
-    i hbar dv(,t) ket(Psi(t)) = hat(H) ket(Psi(t))
+    i hbar dv(, t) ket(Psi(t)) = hat(H) ket(Psi(t))
   $
 ]
