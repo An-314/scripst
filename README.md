@@ -18,6 +18,7 @@ Scripst
 ## 📑 Contents
 
 - [📑 Contents](#-contents)
+- [✍️ Why Typst + Scripst](#️-why-typst--scripst)
 - [🚀 Features](#-features)
 - [⚙️ Numbering powered by Ratchet](#-numbering-powered-by-ratchet)
 - [📌 Fonts](#-fonts)
@@ -47,6 +48,27 @@ Scripst
 
 
 * * *
+
+## ✍️ Why Typst + Scripst
+
+Typst combines lightweight, Markdown-like markup with professional typesetting, fast incremental compilation, and modern versioned package imports. Scripst adds ready-to-use layouts, centralized parameters, academic content blocks, and a unified numbering system.
+
+<p align="center">
+  <img src="./previews/why-typst-en.png" alt="Why Typst and Scripst" width="55%" />
+</p>
+
+The following four pages typeset the same two-level quantum-mechanics note in Markdown, LaTeX, and Typst + Scripst. They compare itemize, ket/bra notation, integrals and sums, definitions, theorems, proofs, problems, solutions, three-line tables, and references. The fourth page is generated directly by Scripst using its real Physica notation, `three-line-table`, countblocks, component styles, and Ratchet numbering:
+
+<p align="center">
+  <img src="./previews/syntax-comparison-en-1.png" alt="Markdown syntax" width="48%" />
+  <img src="./previews/syntax-comparison-en-2.png" alt="LaTeX syntax" width="48%" />
+</p>
+<p align="center">
+  <img src="./previews/syntax-comparison-en-3.png" alt="Typst and Scripst syntax" width="48%" />
+  <img src="./previews/syntax-comparison-en-4.png" alt="Real Scripst output" width="48%" />
+</p>
+
+Editable Typst sources are available in [`why-typst-en.typ`](./docs/promotional/why-typst-en.typ) and [`syntax-comparison-en.typ`](./docs/promotional/syntax-comparison-en.typ).
 
 ## 🚀 Features
 
@@ -315,6 +337,15 @@ For certain content, Scripst uses the following Typst packages:
 ## 📝 License
 
 This project is licensed under the MIT License.
+
+The Genshin Impact images in `docs/pic/pic.jpg` and
+`docs/locale/pic/pic.jpg` are used only as documentation examples for
+personal, non-commercial purposes, in accordance with the licensor's
+[published rules](https://www.hoyolab.com/article/143107). In Mainland China,
+the licensor is miHoYo Co., Ltd.; outside Mainland China, it is Cognosphere
+Pte. Ltd. The image in `docs/pic/pic.jpg` is copyright © miHoYo, and the image
+in `docs/locale/pic/pic.jpg` is copyright © COGNOSPHERE. These images are not
+covered by this project's MIT License.
 
 ## 📥 Offline Usage
 

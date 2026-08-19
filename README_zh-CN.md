@@ -18,6 +18,7 @@ Scripst
 ## 📑 目录
 
 - [📑 目录](#-目录)
+- [✍️ 为什么是 Typst + Scripst](#️-为什么是-typst--scripst)
 - [🚀 特性](#-特性)
 - [⚙️ Ratchet 驱动的统一编号](#-ratchet-驱动的统一编号)
 - [📌 字体](#-字体)
@@ -45,6 +46,27 @@ Scripst
 - [🎯 TODO](#-todo)
 
 ---
+
+## ✍️ 为什么是 Typst + Scripst
+
+Typst 兼具接近 Markdown 的轻便标记、面向专业文档的排版能力，以及极快的增量编译；Scripst 在此基础上补充开箱即用的排版预设、集中参数接口和统一编码系统。
+
+<p align="center">
+  <img src="./previews/why-typst.png" alt="为什么推荐 Typst + Scripst" width="55%" />
+</p>
+
+下面以同一篇二能级量子力学笔记为例，分别展示 Markdown、LaTeX 与 Typst + Scripst 在 itemize、ket/bra、积分与求和公式、定义、定理、证明、习题、三线表和引用上的写法。第四页由当前 Scripst 直接生成，使用包内真实的 Physica 符号、`three-line-table`、countblock、组件样式和 Ratchet 编号系统：
+
+<p align="center">
+  <img src="./previews/syntax-comparison-1.png" alt="Markdown 语法" width="48%" />
+  <img src="./previews/syntax-comparison-2.png" alt="LaTeX 语法" width="48%" />
+</p>
+<p align="center">
+  <img src="./previews/syntax-comparison-3.png" alt="Typst 与 Scripst 语法" width="48%" />
+  <img src="./previews/syntax-comparison-4.png" alt="统一排版结果与 Scripst 功能总结" width="48%" />
+</p>
+
+两张宣传图的可编辑 Typst 源文件分别位于 [`why-typst.typ`](./docs/promotional/why-typst.typ) 和 [`syntax-comparison.typ`](./docs/promotional/syntax-comparison.typ)。
 
 ## 🚀 特性
 
@@ -317,6 +339,13 @@ $
 ## 📝 许可证协议
 
 本项目使用 MIT 许可证协议。
+
+`docs/pic/pic.jpg` 和 `docs/locale/pic/pic.jpg` 中的《原神》图片仅用作文档示例，
+并依照授权方的[公开规则](https://www.hoyolab.com/article/143107)限于个人、非商业用途。
+在中国大陆地区，授权方为上海米哈游网络科技股份有限公司；在中国大陆以外地区，
+授权方为 Cognosphere Pte. Ltd.。`docs/pic/pic.jpg` 的图片版权标识为 © miHoYo，
+`docs/locale/pic/pic.jpg` 的图片版权标识为 © COGNOSPHERE。
+这两张图片不适用于本项目的 MIT 许可证。
 
 ## 📥 离线使用
 
