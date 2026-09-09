@@ -35,12 +35,12 @@ brew install typst # macOS
 #link("https://typst.app/universe/package/scripst")[Scripst包]已经提交至社区，在联网的状态下，可直接使用
 
 ```typst
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 ```
 来引入 Scripst 的模板。你也可以通过`typst init`来一键使用模板创建新的项目：
 
 ```bash
-typst init @preview/scripst:1.1.2 project_name
+typst init @preview/scripst:1.1.3 project_name
 ```
 
 这种方法无需手动下载模板文件，只需要在文档中引入即可。
@@ -84,21 +84,21 @@ typst init @preview/scripst:1.1.2 project_name
 
 例如该模板的应该放在
 ```
-~/.local/share/typst/packages/preview/scripst/1.1.2               # in Linux
-%APPDATA%\typst\packages\preview\scripst\1.1.2                    # in Windows
-~/Library/Application Support/typst/packages/local/scripst/1.1.2  # macOS
+~/.local/share/typst/packages/preview/scripst/1.1.3               # in Linux
+%APPDATA%\typst\packages\preview\scripst\1.1.3                    # in Windows
+~/Library/Application Support/typst/packages/local/scripst/1.1.3  # macOS
 ```
 你可以执行指令
 ```bash
 cd ~/.local/share/typst/packages/preview/scripst
-git clone https://github.com/An-314/scripst.git 1.1.2
+git clone https://github.com/An-314/scripst.git 1.1.3
 ```
 如果是这样的目录结构，那么在文档中引入模板文件的方式应该是：
 ```typst
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 ```
 这样的好处是你可以直接通过`typst init`来一键使用模板创建新的项目：
 ```bash
-typst init @preview/scripst:1.1.2 project_name
+typst init @preview/scripst:1.1.3 project_name
 ```
 #newpara()
