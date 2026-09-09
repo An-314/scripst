@@ -6,7 +6,7 @@ Scripst
 
 <div align="center">
 
-[![Current Version](https://img.shields.io/badge/version-v1.1.2-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.2)
+[![Current Version](https://img.shields.io/badge/version-v1.1.3-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.3)
 [![MIT License badge](https://img.shields.io/badge/license-MIT-turquoise.svg)](./LICENSE)
 [![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst)
 [![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
@@ -91,7 +91,7 @@ Editable Typst sources are available in [`why-typst-en.typ`](./docs/promotional/
 
 ## ⚙️ Numbering powered by Ratchet
 
-Scripst 1.1.2 is powered by [Ratchet 0.0.4](https://github.com/An-314/ratchet), a focused numbering package created by the same author. Ratchet provides a single, consistent engine for equations, figures, tables, raw blocks, and custom `figure(kind: ...)` families—including every Scripst `countblock`.
+Scripst 1.1.3 is powered by [Ratchet 0.0.4](https://github.com/An-314/ratchet), a focused numbering package created by the same author. Ratchet provides a single, consistent engine for equations, figures, tables, raw blocks, and custom `figure(kind: ...)` families—including every Scripst `countblock`.
 
 With Ratchet, Scripst can:
 
@@ -138,13 +138,13 @@ Or refer to the [Typst official documentation](https://github.com/typst/typst) f
 Import the template at the beginning of your Typst file:
 
 ```typst
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 ```
 
 Use `typst init` to quickly create a project:
 
 ```bash
-typst init @preview/scripst:1.1.2 project_name
+typst init @preview/scripst:1.1.3 project_name
 ```
 
 
@@ -377,26 +377,26 @@ If the template is stored in the `src/` directory, import it as:
 ### Method 2: Using Typst Local Package Management  
 Manually download Scripst and store it in:  
 ```text
-~/.local/share/typst/packages/preview/scripst/1.1.2                 # Linux
-%APPDATA%\typst\packages\preview\scripst\1.1.2                      # Windows
-~/Library/Application Support/typst/packages/preview/scripst/1.1.2  # macOS
+~/.local/share/typst/packages/preview/scripst/1.1.3                 # Linux
+%APPDATA%\typst\packages\preview\scripst\1.1.3                      # Windows
+~/Library/Application Support/typst/packages/preview/scripst/1.1.3  # macOS
 ```  
 
 Alternatively, run the following command:  
 ```bash  
 cd {data-dir}/typst/packages/preview/scripst  
-git clone https://github.com/An-314/scripst.git 1.1.2
+git clone https://github.com/An-314/scripst.git 1.1.3
 ```  
 Here, `data-dir` refers to Typst's data directory (e.g., `~/.local/share/` on Linux, `%APPDATA%\` on Windows, or `~/Library/Application Support/` on macOS).  
 
 Then import the template directly in your Typst file:  
 ```typst  
-#import "@local/scripst:1.1.2": *
+#import "@local/scripst:1.1.3": *
 ```  
 
 Use `typst init` to create a project quickly:  
 ```bash  
-typst init @local/scripst:1.1.2 project_name
+typst init @local/scripst:1.1.3 project_name
 ```  
 
 Scripst offers several adjustable settings, i.e. font, colour palette, default countblock name in `./src/configs.typ`. You can adjust them per your need.

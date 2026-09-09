@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.2": braket, font, mycolor
+#import "@preview/scripst:1.1.3": braket, font, mycolor
 
 #set page(
   width: 180mm,

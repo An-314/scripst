@@ -6,7 +6,7 @@ Scripst
 
 <div align="center">
 
-[![Current Version](https://img.shields.io/badge/version-v1.1.2-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.2)
+[![Current Version](https://img.shields.io/badge/version-v1.1.3-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.3)
 [![MIT License badge](https://img.shields.io/badge/license-MIT-turquoise.svg)](./LICENSE)
 [![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst/zh)
 [![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
@@ -89,7 +89,7 @@ Typst 兼具接近 Markdown 的轻便标记、面向专业文档的排版能力�
 
 ## ⚙️ Ratchet 驱动的统一编号
 
-Scripst 1.1.2 使用同一作者开发的 [Ratchet 0.0.4](https://github.com/An-314/ratchet) 作为统一编号引擎。公式、图片、表格、代码块以及自定义 `figure(kind: ...)` 计数器族——包括所有 Scripst `countblock`——都由 Ratchet 统一管理。
+Scripst 1.1.3 使用同一作者开发的 [Ratchet 0.0.4](https://github.com/An-314/ratchet) 作为统一编号引擎。公式、图片、表格、代码块以及自定义 `figure(kind: ...)` 计数器族——包括所有 Scripst `countblock`——都由 Ratchet 统一管理。
 
 Ratchet 为 Scripst 带来了：
 
@@ -132,13 +132,13 @@ brew install typst # macOS
 在 `.typ` 文档开头添加
 
 ```typst
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 ```
 即可。
 
 亦可以使用 `typst init` 快速创建项目：
 ```bash
-typst init @preview/scripst:1.1.2 project_name
+typst init @preview/scripst:1.1.3 project_name
 ```
 
 
@@ -147,7 +147,7 @@ typst init @preview/scripst:1.1.2 project_name
 在 Typst 文件开头引入模板：
 
 ```typst
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 ```
 
 ### 创建 `article` 文档
@@ -380,16 +380,16 @@ project/
 
 可手动下载 Scripst 并将其存放至：
 ```text
-~/.local/share/typst/packages/preview/scripst/1.1.2                 # Linux
-%APPDATA%\typst\packages\preview\scripst\1.1.2                      # Windows
-~/Library/Application Support/typst/packages/preview/scripst/1.1.2  # macOS
+~/.local/share/typst/packages/preview/scripst/1.1.3                 # Linux
+%APPDATA%\typst\packages\preview\scripst\1.1.3                      # Windows
+~/Library/Application Support/typst/packages/preview/scripst/1.1.3  # macOS
 ```
 
 或者运行如下命令：
 
 ```bash 
 cd {data-dir}/typst/packages/preview/scripst
-git clone https://github.com/An-314/scripst.git 1.1.2
+git clone https://github.com/An-314/scripst.git 1.1.3
 ```
 
 其中`data-dir`为Typst的数据目录，如上述Linux系统中的`~/.local/share/`，Windows系统中的`%APPDATA%\`，macOS系统中的`~/Library/Application Support/`。
@@ -397,7 +397,7 @@ git clone https://github.com/An-314/scripst.git 1.1.2
 然后在 Typst 文件中直接引入：
 
 ```typst
-#import "@local/scripst:1.1.2": *
+#import "@local/scripst:1.1.3": *
 ```
 
 即可使用 Scripst 模板。
@@ -405,7 +405,7 @@ git clone https://github.com/An-314/scripst.git 1.1.2
 使用 `typst init` 快速创建项目：
 
 ```bash
-typst init @local/scripst:1.1.2 project_name
+typst init @local/scripst:1.1.3 project_name
 ```
 
 Scripst 提供多项可调参数，例如字体、配色方案、默认的 countblock 名称等，均位于 ./src/configs.typ 文件中，可按需修改。
