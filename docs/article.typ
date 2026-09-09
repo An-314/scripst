@@ -19,6 +19,7 @@
   matheq-depth: 3,
   counter-depth: 3,
   countblocks: doc-countblocks,
+  countblock-lang: "zh",
   header: true,
   lang: "zh",
   numbering-format: "I.1",
@@ -75,6 +76,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
   counter-depth: 2,              // int: (1, 2, 3)
   cb-counter-depth: 2,           // int: (1, 2, 3)
   countblocks: cb,               // dict
+  countblock-lang: "en",        // str: ("en", "zh", "fr", ...)
   matheq-outline: "(1.1)",       // str, function
   counter-outline: "1.1",       // str, function
   link-color: blue,               // color

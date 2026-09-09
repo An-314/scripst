@@ -1,5 +1,14 @@
 #import "configs.typ": *
+#import "locale.typ": localize-countblock
 #import "@preview/ratchet:0.0.4": figure-number
+
+#let countblock-language = state("scripst-countblock-language", "en")
+
+#let set-countblock-language(lang) = countblock-language.update(lang)
+
+#let resolve-countblock-name(info) = context {
+  localize-countblock(info, lang: countblock-language.get())
+}
 
 #let add-countblock(cb, name, info, color, counter-name: none, depth: none) = {
   if depth != none and not (depth in (1, 2, 3)) {
@@ -70,7 +79,8 @@
   let item = cb.at(name)
   let (info, color, counter-name) = (item.at(0), item.at(1), item.at(2))
 
-  let title = [#info]
+  let localized-info = resolve-countblock-name(info)
+  let title = [#localized-info]
   if count { title += [ #figure-number(counter-name)] }
   if subname != "" { title += [ #subname] }
 
@@ -101,7 +111,7 @@
       [],
       caption: none,
       kind: counter-name,
-      supplement: info,
+      supplement: localized-info,
       outlined: false,
     )
   } else {
@@ -109,7 +119,7 @@
       [],
       caption: none,
       kind: counter-name,
-      supplement: info,
+      supplement: localized-info,
       numbering: none,
       outlined: false,
     )

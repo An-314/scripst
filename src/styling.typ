@@ -63,9 +63,7 @@
     type(heading-numbering) == str
   )
   set heading(numbering: heading-numbering) if type(heading-numbering) == function
-  // Keep the existing spacing inside a block so Hydra can correctly recognize
-  // headings that start a page without changing Scripst's heading rhythm.
-  show heading: it => block[
+  show heading: it => [
     #set text(font: font)
     #set par(first-line-indent: 0em)
     #v(1em)
@@ -74,7 +72,7 @@
     #it.body
     #v(0.5em)
   ]
-  show heading.where(level: 1): it => block[
+  show heading.where(level: 1): it => [
     #v(0.5em)
     #set heading(numbering: (n, ..it) => numbering(chapter-numbering, n + offset, ..it)) if (
       type(chapter-numbering) == str

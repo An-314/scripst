@@ -168,6 +168,7 @@ typst init @preview/scripst:1.1.3 project_name
   counter-depth: 2,
   cb-counter-depth: 2,
   countblocks: cb,
+  countblock-lang: "zh",
   matheq-outline: "(1.1)",
   link-color: blue,
   ref-color: red,
@@ -198,6 +199,7 @@ typst init @preview/scripst:1.1.3 project_name
 | `counter-depth` | `int` | `2` | 全局的计数器编号深度 |
 | `cb-counter-depth` | `int` | `2` | `countblock` 模块的计数器编号深度 |
 | `countblocks` | `dict` | `cb` | 交由 Ratchet 配置的 countblock 字典 |
+| `countblock-lang` | `str` | `"en"` | 内置 countblock 名称的语言 |
 | `matheq-outline` | `str`, `function` | `"(1.1)"` | 数学公式编号格式 |
 | `link-color` | `color` | `blue` | 超链接文字颜色 |
 | `ref-color` | `color` | `red` | 普通 `@label` 引用颜色 |
@@ -216,6 +218,8 @@ typst init @preview/scripst:1.1.3 project_name
 ### `countblock`模块
 
 `countblock` 是一个可以自定义名称和颜色的模块，内置一个计数器，并且可以在文中随时引用；可以用来做定理、问题、注记等模块。
+
+内置块名默认使用英文。`countblock-lang` 支持 `en`、`zh`、`fr`、`es`、`ja`、`de`、`it`、`pt`、`ru`、`ko`、`ar`、`hi`、`tr`、`nl`、`sv`、`fi`、`da`、`no`、`pl`、`gr` 和 `vi`。自定义块既可以使用固定的 `str`/`content` 名称，也可以传入 `(en: "Assumption", zh: "假设")` 这样的多语言字典；缺少所选语言时会回退到 `en`。内置翻译统一维护在 `src/locale/countblock.typ` 中。
 
 下图是一个 `countblock` 模块的示例：
 

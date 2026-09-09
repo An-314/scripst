@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 
 = 使用 Scripst 排版 Typst 文档
 
@@ -102,4 +102,3 @@ git clone https://github.com/An-314/scripst.git 1.1.2
 typst init @preview/scripst:1.1.2 project_name
 ```
 #newpara()
-
