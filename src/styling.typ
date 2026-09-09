@@ -1,5 +1,6 @@
 #import "configs.typ": *
 #import "locale.typ": *
+#import "package.typ": hydra
 
 #let stydoc(title, author, body) = {
   set document(title: title, author: author)
@@ -222,6 +223,13 @@
       set text(font: font)
       context {
         if here().position().page == 1 { return }
+        /*
+        Legacy implementation: it queried every level-1 heading and selected
+        the last one whose page number was not greater than the current page.
+        This flattened rich content through `sec.body.text`, ignored the
+        heading's numbering function, and could select a heading that appeared
+        later on the same page.
+
         let secs = query(heading.where(level: 1))
         let sec = ()
         for s in secs.rev() {
@@ -238,9 +246,24 @@
           let secnum = num + " " + text
           return secnum
         }
+        */
 
-        if sec != none and sec != () {
-          let secnum = mksec(sec)
+        let secnum = hydra(
+          1,
+          // Do not announce a section before the reader reaches its heading.
+          next-filter: (_, _) => false,
+          // Avoid repeating a level-1 heading in the header on its opening page.
+          skip-starting: true,
+          display: (_, sec) => {
+            if sec.numbering != none {
+              numbering(sec.numbering, ..counter(heading).at(sec.location()))
+              [ ]
+            }
+            smallcaps(sec.body)
+          },
+        )
+
+        if secnum != none {
           if info != "" and info != none {
             return grid(columns: (1fr,) * 3, align: (left, center, right))[#smallcaps(title)][#info][#secnum]
           } else if title != "" and title != none {

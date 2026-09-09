@@ -34,17 +34,17 @@
 )
 
 #let cb = (
-  "def": ("Definition", mycolor.green, "def"),
-  "thm": ("Theorem", mycolor.blue, "thm"),
-  "prop": ("Proposition", mycolor.violet, "prop"),
-  "lem": ("Lemma", mycolor.violet-light, "prop"),
-  "cor": ("Corollary", mycolor.violet-dark, "prop"),
-  "rmk": ("Remark", mycolor.violet-darker, "prop"),
-  "clm": ("Claim", mycolor.violet-deep, "prop"),
-  "ex": ("Exercise", mycolor.purple, "ex"),
-  "prob": ("Problem", mycolor.orange, "prob"),
-  "eg": ("Example", mycolor.cyan, "eg"),
-  "note": ("Note", mycolor.grey, "note"),
+  "def": ((key: "definition"), mycolor.green, "def"),
+  "thm": ((key: "theorem"), mycolor.blue, "thm"),
+  "prop": ((key: "proposition"), mycolor.violet, "prop"),
+  "lem": ((key: "lemma"), mycolor.violet-light, "prop"),
+  "cor": ((key: "corollary"), mycolor.violet-dark, "prop"),
+  "rmk": ((key: "remark"), mycolor.violet-darker, "prop"),
+  "clm": ((key: "claim"), mycolor.violet-deep, "prop"),
+  "ex": ((key: "exercise"), mycolor.purple, "ex"),
+  "prob": ((key: "problem"), mycolor.orange, "prob"),
+  "eg": ((key: "example"), mycolor.cyan, "eg"),
+  "note": ((key: "note"), mycolor.grey, "note"),
   "cau": ("⚠️", mycolor.red, "cau"),
   "cb-counter-depth": 2,
 )

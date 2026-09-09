@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 
 #let doc-countblocks = add-countblock(cb, "test", "This is a test", teal)
 
@@ -63,13 +63,13 @@ Based on Typst, Scripst provides some simple templates for convenient daily docu
 #link("https://typst.app/universe/package/scripst")[Scripst Package] has already been submitted to the community. If network available, you can directly use
 
 ```typst
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 ```
 to import the Scripst templates in your document.
 
 You can also use `typst init` to create a new project with the template:
 ```bash
-typst init @preview/scripst:1.1.2 project_name
+typst init @preview/scripst:1.1.3 project_name
 ```
 
 This method does not require downloading the template files, just import them in the document.
@@ -113,22 +113,22 @@ Of course, you don't have to worry about not being able to modify the template f
 
 For example, the template should be placed in
 ```
-~/.local/share/typst/packages/preview/scripst/1.1.2               # in Linux
-%APPDATA%\typst\packages\preview\scripst\1.1.2                    # in Windows
-~/Library/Application Support/typst/packages/local/scripst/1.1.2  # macOS
+~/.local/share/typst/packages/preview/scripst/1.1.3               # in Linux
+%APPDATA%\typst\packages\preview\scripst\1.1.3                    # in Windows
+~/Library/Application Support/typst/packages/local/scripst/1.1.3  # macOS
 ```
 You can execute the following command:
 ```bash
 cd ~/.local/share/typst/packages/preview/scripst/
-git clone https://github.com/An-314/scripst.git 1.1.2
+git clone https://github.com/An-314/scripst.git 1.1.3
 ```
 If the directory structure is like this, then the way to import the template files in the document should be:
 ```typst
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 ```
 The advantage of this is that you can directly use `typst init` to create a new project with the template:
 ```bash
-typst init @preview/scripst:1.1.2 project_name
+typst init @preview/scripst:1.1.3 project_name
 ```
 #newpara()
 
@@ -175,6 +175,7 @@ Scripst template provides some parameters to customise the style of the document
   counter-depth: 3,     // int: (1, 2, 3)
   cb-counter-depth: 2,  // int: (1, 2, 3)
   countblocks: cb,      // dict
+  countblock-lang: "en", // str: ("en", "zh", "fr", ...)
   matheq-outline: "(1.1)", // str, function
   counter-outline: "1.1", // str, function
   link-color: blue,     // color
@@ -450,6 +451,12 @@ The default numbering depth for entries passed through `countblocks`. Per-counte
 == countblocks
 
 The countblock registry used by the template. It defaults to `cb`. Pass an updated registry here before using custom countblocks so Ratchet can configure their numbering and references.
+
+== countblock-lang
+
+The language used for built-in countblock names. It defaults to `"en"` and supports `en`, `zh`, `fr`, `es`, `ja`, `de`, `it`, `pt`, `ru`, `ko`, `ar`, `hi`, `tr`, `nl`, `sv`, `fi`, `da`, `no`, `pl`, `gr`, and `vi`.
+
+A custom block's `info` may also be a language dictionary such as `(en: "Assumption", zh: "假设", de: "Annahme")`. If the selected key is absent, Scripst falls back to `en`, then to the first available value. Built-in translations are maintained together in `src/locale/countblock.typ`.
 
 == matheq-outline
 
@@ -853,7 +860,7 @@ Currently, Scripst provides the following settings:
 
 == Unified numbering powered by Ratchet <ratchet>
 
-Scripst 1.1.2 uses #link("https://github.com/An-314/ratchet")[Ratchet 0.0.4] as its unified numbering engine. Ratchet manages numbering, heading-level resets, and cross-references for equations, figures, tables, raw blocks, and custom `figure(kind: ...)` families. Every Scripst countblock is built on the same mechanism.
+Scripst 1.1.3 uses #link("https://github.com/An-314/ratchet")[Ratchet 0.0.4] as its unified numbering engine. Ratchet manages numbering, heading-level resets, and cross-references for equations, figures, tables, raw blocks, and custom `figure(kind: ...)` families. Every Scripst countblock is built on the same mechanism.
 
 This integration keeps displayed numbers, references, and outline entries on one configuration. Each counter family can independently use depth `1`, `2`, or `3`, and new countblocks no longer require handwritten registration or heading-reset rules.
 
@@ -1113,7 +1120,7 @@ Use `add-countblock`, then pass the updated registry through `countblocks`:
   | --- | --- | --- | --- |
   | `cb` | `dict` |  | Original registry |
   | `name` | `str` |  | New registry key |
-  | `info` | `str` or `content` |  | Displayed block title |
+  | `info` | `str`, `content`, or `dict` |  | Displayed block title or localized titles |
   | `color` | `color` |  | Background and left-border color |
   | `counter-name` | `str` | `none` | Actual counter kind; defaults to `name` |
   | `depth` | `int` or `none` | `none` | Explicit depth; `none` inherits `cb-counter-depth` |
@@ -1125,7 +1132,7 @@ A new block can share an existing sequence by using the same `counter-name`:
 #let blocks = add-countblock(
   cb,
   "asm",
-  "Assumption",
+  (en: "Assumption", zh: "假设"),
   aqua,
   counter-name: "thm",
 )

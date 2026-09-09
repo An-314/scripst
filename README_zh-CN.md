@@ -6,7 +6,7 @@ Scripst
 
 <div align="center">
 
-[![Current Version](https://img.shields.io/badge/version-v1.1.2-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.2)
+[![Current Version](https://img.shields.io/badge/version-v1.1.3-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.3)
 [![MIT License badge](https://img.shields.io/badge/license-MIT-turquoise.svg)](./LICENSE)
 [![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst/zh)
 [![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
@@ -18,6 +18,7 @@ Scripst
 ## 📑 目录
 
 - [📑 目录](#-目录)
+- [✍️ 为什么是 Typst + Scripst](#️-为什么是-typst--scripst)
 - [🚀 特性](#-特性)
 - [⚙️ Ratchet 驱动的统一编号](#-ratchet-驱动的统一编号)
 - [📌 字体](#-字体)
@@ -46,6 +47,27 @@ Scripst
 
 ---
 
+## ✍️ 为什么是 Typst + Scripst
+
+Typst 兼具接近 Markdown 的轻便标记、面向专业文档的排版能力，以及极快的增量编译；Scripst 在此基础上补充开箱即用的排版预设、集中参数接口和统一编码系统。
+
+<p align="center">
+  <img src="./previews/why-typst.png" alt="为什么推荐 Typst + Scripst" width="55%" />
+</p>
+
+下面以同一篇二能级量子力学笔记为例，分别展示 Markdown、LaTeX 与 Typst + Scripst 在 itemize、ket/bra、积分与求和公式、定义、定理、证明、习题、三线表和引用上的写法。第四页由当前 Scripst 直接生成，使用包内真实的 Physica 符号、`three-line-table`、countblock、组件样式和 Ratchet 编号系统：
+
+<p align="center">
+  <img src="./previews/syntax-comparison-1.png" alt="Markdown 语法" width="48%" />
+  <img src="./previews/syntax-comparison-2.png" alt="LaTeX 语法" width="48%" />
+</p>
+<p align="center">
+  <img src="./previews/syntax-comparison-3.png" alt="Typst 与 Scripst 语法" width="48%" />
+  <img src="./previews/syntax-comparison-4.png" alt="统一排版结果与 Scripst 功能总结" width="48%" />
+</p>
+
+两张宣传图的可编辑 Typst 源文件分别位于 [`why-typst.typ`](./docs/promotional/why-typst.typ) 和 [`syntax-comparison.typ`](./docs/promotional/syntax-comparison.typ)。
+
 ## 🚀 特性
 
 - 由 [Ratchet](https://github.com/An-314/ratchet) 驱动统一编号：公式、图片、表格、代码块与自定义 `countblock` 计数器族使用同一套可靠的编号与引用引擎
@@ -67,7 +89,7 @@ Scripst
 
 ## ⚙️ Ratchet 驱动的统一编号
 
-Scripst 1.1.2 使用同一作者开发的 [Ratchet 0.0.4](https://github.com/An-314/ratchet) 作为统一编号引擎。公式、图片、表格、代码块以及自定义 `figure(kind: ...)` 计数器族——包括所有 Scripst `countblock`——都由 Ratchet 统一管理。
+Scripst 1.1.3 使用同一作者开发的 [Ratchet 0.0.4](https://github.com/An-314/ratchet) 作为统一编号引擎。公式、图片、表格、代码块以及自定义 `figure(kind: ...)` 计数器族——包括所有 Scripst `countblock`——都由 Ratchet 统一管理。
 
 Ratchet 为 Scripst 带来了：
 
@@ -110,13 +132,13 @@ brew install typst # macOS
 在 `.typ` 文档开头添加
 
 ```typst
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 ```
 即可。
 
 亦可以使用 `typst init` 快速创建项目：
 ```bash
-typst init @preview/scripst:1.1.2 project_name
+typst init @preview/scripst:1.1.3 project_name
 ```
 
 
@@ -125,7 +147,7 @@ typst init @preview/scripst:1.1.2 project_name
 在 Typst 文件开头引入模板：
 
 ```typst
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 ```
 
 ### 创建 `article` 文档
@@ -146,6 +168,7 @@ typst init @preview/scripst:1.1.2 project_name
   counter-depth: 2,
   cb-counter-depth: 2,
   countblocks: cb,
+  countblock-lang: "zh",
   matheq-outline: "(1.1)",
   link-color: blue,
   ref-color: red,
@@ -176,6 +199,7 @@ typst init @preview/scripst:1.1.2 project_name
 | `counter-depth` | `int` | `2` | 全局的计数器编号深度 |
 | `cb-counter-depth` | `int` | `2` | `countblock` 模块的计数器编号深度 |
 | `countblocks` | `dict` | `cb` | 交由 Ratchet 配置的 countblock 字典 |
+| `countblock-lang` | `str` | `"en"` | 内置 countblock 名称的语言 |
 | `matheq-outline` | `str`, `function` | `"(1.1)"` | 数学公式编号格式 |
 | `link-color` | `color` | `blue` | 超链接文字颜色 |
 | `ref-color` | `color` | `red` | 普通 `@label` 引用颜色 |
@@ -194,6 +218,8 @@ typst init @preview/scripst:1.1.2 project_name
 ### `countblock`模块
 
 `countblock` 是一个可以自定义名称和颜色的模块，内置一个计数器，并且可以在文中随时引用；可以用来做定理、问题、注记等模块。
+
+内置块名默认使用英文。`countblock-lang` 支持 `en`、`zh`、`fr`、`es`、`ja`、`de`、`it`、`pt`、`ru`、`ko`、`ar`、`hi`、`tr`、`nl`、`sv`、`fi`、`da`、`no`、`pl`、`gr` 和 `vi`。自定义块既可以使用固定的 `str`/`content` 名称，也可以传入 `(en: "Assumption", zh: "假设")` 这样的多语言字典；缺少所选语言时会回退到 `en`。内置翻译统一维护在 `src/locale/countblock.typ` 中。
 
 下图是一个 `countblock` 模块的示例：
 
@@ -311,12 +337,20 @@ $
 对于部分内容，Scripst 引用了以下 Typst 包：
 
 - [ratchet](https://typst.app/universe/package/ratchet) — 统一管理编号、重置、引用和自定义计数器族
+- [hydra](https://typst.app/universe/package/hydra) — 选择当前标题并生成支持富文本的页眉
 - [tablem](https://typst.app/universe/package/tablem)
 - [physica](https://typst.app/universe/package/physica)
 
 ## 📝 许可证协议
 
 本项目使用 MIT 许可证协议。
+
+`docs/pic/pic.jpg` 和 `docs/locale/pic/pic.jpg` 中的《原神》图片仅用作文档示例，
+并依照授权方的[公开规则](https://www.hoyolab.com/article/143107)限于个人、非商业用途。
+在中国大陆地区，授权方为上海米哈游网络科技股份有限公司；在中国大陆以外地区，
+授权方为 Cognosphere Pte. Ltd.。`docs/pic/pic.jpg` 的图片版权标识为 © miHoYo，
+`docs/locale/pic/pic.jpg` 的图片版权标识为 © COGNOSPHERE。
+这两张图片不适用于本项目的 MIT 许可证。
 
 ## 📥 离线使用
 
@@ -351,16 +385,16 @@ project/
 
 可手动下载 Scripst 并将其存放至：
 ```text
-~/.local/share/typst/packages/preview/scripst/1.1.2                 # Linux
-%APPDATA%\typst\packages\preview\scripst\1.1.2                      # Windows
-~/Library/Application Support/typst/packages/preview/scripst/1.1.2  # macOS
+~/.local/share/typst/packages/preview/scripst/1.1.3                 # Linux
+%APPDATA%\typst\packages\preview\scripst\1.1.3                      # Windows
+~/Library/Application Support/typst/packages/preview/scripst/1.1.3  # macOS
 ```
 
 或者运行如下命令：
 
 ```bash 
 cd {data-dir}/typst/packages/preview/scripst
-git clone https://github.com/An-314/scripst.git 1.1.2
+git clone https://github.com/An-314/scripst.git 1.1.3
 ```
 
 其中`data-dir`为Typst的数据目录，如上述Linux系统中的`~/.local/share/`，Windows系统中的`%APPDATA%\`，macOS系统中的`~/Library/Application Support/`。
@@ -368,7 +402,7 @@ git clone https://github.com/An-314/scripst.git 1.1.2
 然后在 Typst 文件中直接引入：
 
 ```typst
-#import "@local/scripst:1.1.2": *
+#import "@local/scripst:1.1.3": *
 ```
 
 即可使用 Scripst 模板。
@@ -376,7 +410,7 @@ git clone https://github.com/An-314/scripst.git 1.1.2
 使用 `typst init` 快速创建项目：
 
 ```bash
-typst init @local/scripst:1.1.2 project_name
+typst init @local/scripst:1.1.3 project_name
 ```
 
 Scripst 提供多项可调参数，例如字体、配色方案、默认的 countblock 名称等，均位于 ./src/configs.typ 文件中，可按需修改。

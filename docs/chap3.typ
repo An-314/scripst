@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 
 = 模板效果展示
 
@@ -265,7 +265,7 @@ $
 
 == 由 Ratchet 驱动的统一编号 <ratchet>
 
-Scripst 1.1.2 使用 #link("https://github.com/An-314/ratchet")[Ratchet 0.0.4] 作为统一编号引擎。Ratchet 负责公式、图片、表格、代码块以及自定义 `figure(kind: ...)` 计数器族的编号、标题层级重置和交叉引用；Scripst 的所有 countblock 也建立在这套机制之上。
+Scripst 1.1.3 使用 #link("https://github.com/An-314/ratchet")[Ratchet 0.0.4] 作为统一编号引擎。Ratchet 负责公式、图片、表格、代码块以及自定义 `figure(kind: ...)` 计数器族的编号、标题层级重置和交叉引用；Scripst 的所有 countblock 也建立在这套机制之上。
 
 这项集成使正文编号、交叉引用和目录条目共享同一份配置。每个计数器族都可以独立选择深度 `1`、`2` 或 `3`，新增 countblock 时也不再需要手动安装注册规则或标题重置规则。
 
@@ -290,6 +290,7 @@ Scripst 1.1.2 使用 #link("https://github.com/An-314/ratchet")[Ratchet 0.0.4] �
 
 Scripst 默认提供如下 countblock。表中的深度 `2` 表示跟随一级标题编号；它们都继承全局参数 `cb-counter-depth: 2`。
 
+
 #figure(
   three-line-table[
     | 块名称 | `cb` 名称 | `counter-name` | 默认深度 | 颜色 | 调用函数 |
@@ -310,6 +311,8 @@ Scripst 默认提供如下 countblock。表中的深度 `2` 表示跟随一级�
   caption: [Scripst 默认 countblock 配置],
   numbering: none,
 )
+
+表中的英文名称是 `countblock-lang: "en"` 的默认结果。设为 `"zh"` 时会对应显示“定义”“定理”“命题”“引理”“推论”“注”“断言”“练习”“问题”“例”和“注记”；其他受支持语言见 @countblock-lang，警告块仍显示 `⚠️`。
 
 `proposition`、`lemma`、`corollary`、`remark` 和 `claim` 的 `counter-name` 都是 `"prop"`，因此默认共享同一列编号和同一种重置深度；它们的标题和颜色仍然各自独立。
 
@@ -535,7 +538,7 @@ Fermat 并没有对 @fermat 给出公开的证明。
   | --- | --- | --- | --- |
   | `cb` | `dict` |  | 原 countblock 字典 |
   | `name` | `str` |  | 新块在字典中的名称 |
-  | `info` | `str` 或 `content` |  | 显示在块标题中的名称 |
+  | `info` | `str`、`content` 或 `dict` |  | 显示名称，或按语言索引的名称字典 |
   | `color` | `color` |  | 背景和左边框颜色 |
   | `counter-name` | `str` | `none` | 实际计数器名；默认与 `name` 相同 |
   | `depth` | `int` 或 `none` | `none` | 独立深度；`none` 表示继承 `cb-counter-depth` |
@@ -547,7 +550,7 @@ Fermat 并没有对 @fermat 给出公开的证明。
 #let blocks = add-countblock(
   cb,
   "asm",
-  "Assumption",
+  (en: "Assumption", zh: "假设"),
   aqua,
   counter-name: "thm",
 )

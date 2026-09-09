@@ -6,7 +6,7 @@ Scripst
 
 <div align="center">
 
-[![Current Version](https://img.shields.io/badge/version-v1.1.2-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.2)
+[![Current Version](https://img.shields.io/badge/version-v1.1.3-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.3)
 [![MIT License badge](https://img.shields.io/badge/license-MIT-turquoise.svg)](./LICENSE)
 [![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst)
 [![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
@@ -18,6 +18,7 @@ Scripst
 ## 📑 Contents
 
 - [📑 Contents](#-contents)
+- [✍️ Why Typst + Scripst](#️-why-typst--scripst)
 - [🚀 Features](#-features)
 - [⚙️ Numbering powered by Ratchet](#-numbering-powered-by-ratchet)
 - [📌 Fonts](#-fonts)
@@ -48,6 +49,27 @@ Scripst
 
 * * *
 
+## ✍️ Why Typst + Scripst
+
+Typst combines lightweight, Markdown-like markup with professional typesetting, fast incremental compilation, and modern versioned package imports. Scripst adds ready-to-use layouts, centralized parameters, academic content blocks, and a unified numbering system.
+
+<p align="center">
+  <img src="./previews/why-typst-en.png" alt="Why Typst and Scripst" width="55%" />
+</p>
+
+The following four pages typeset the same two-level quantum-mechanics note in Markdown, LaTeX, and Typst + Scripst. They compare itemize, ket/bra notation, integrals and sums, definitions, theorems, proofs, problems, solutions, three-line tables, and references. The fourth page is generated directly by Scripst using its real Physica notation, `three-line-table`, countblocks, component styles, and Ratchet numbering:
+
+<p align="center">
+  <img src="./previews/syntax-comparison-en-1.png" alt="Markdown syntax" width="48%" />
+  <img src="./previews/syntax-comparison-en-2.png" alt="LaTeX syntax" width="48%" />
+</p>
+<p align="center">
+  <img src="./previews/syntax-comparison-en-3.png" alt="Typst and Scripst syntax" width="48%" />
+  <img src="./previews/syntax-comparison-en-4.png" alt="Real Scripst output" width="48%" />
+</p>
+
+Editable Typst sources are available in [`why-typst-en.typ`](./docs/promotional/why-typst-en.typ) and [`syntax-comparison-en.typ`](./docs/promotional/syntax-comparison-en.typ).
+
 ## 🚀 Features
 
 * Numbering powered by [Ratchet](https://github.com/An-314/ratchet): Equations, figures, tables, raw blocks, and custom `countblock` families share one reliable numbering and reference engine.
@@ -69,7 +91,7 @@ Scripst
 
 ## ⚙️ Numbering powered by Ratchet
 
-Scripst 1.1.2 is powered by [Ratchet 0.0.4](https://github.com/An-314/ratchet), a focused numbering package created by the same author. Ratchet provides a single, consistent engine for equations, figures, tables, raw blocks, and custom `figure(kind: ...)` families—including every Scripst `countblock`.
+Scripst 1.1.3 is powered by [Ratchet 0.0.4](https://github.com/An-314/ratchet), a focused numbering package created by the same author. Ratchet provides a single, consistent engine for equations, figures, tables, raw blocks, and custom `figure(kind: ...)` families—including every Scripst `countblock`.
 
 With Ratchet, Scripst can:
 
@@ -116,13 +138,13 @@ Or refer to the [Typst official documentation](https://github.com/typst/typst) f
 Import the template at the beginning of your Typst file:
 
 ```typst
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 ```
 
 Use `typst init` to quickly create a project:
 
 ```bash
-typst init @preview/scripst:1.1.2 project_name
+typst init @preview/scripst:1.1.3 project_name
 ```
 
 
@@ -144,6 +166,7 @@ typst init @preview/scripst:1.1.2 project_name
   counter-depth: 2,
   cb-counter-depth: 2,
   countblocks: cb,
+  countblock-lang: "en",
   matheq-outline: "(1.1)",
   link-color: blue,
   ref-color: red,
@@ -172,6 +195,7 @@ typst init @preview/scripst:1.1.2 project_name
 | `counter-depth` | `int` | `2` | Overall counter numbering depth |
 | `cb-counter-depth` | `int` | `2` | `countblock` module counter numbering depth |
 | `countblocks` | `dict` | `cb` | Countblock registry configured by Ratchet |
+| `countblock-lang` | `str` | `"en"` | Language of built-in countblock names |
 | `matheq-outline` | `str`, `function` | `"(1.1)"` | Equation numbering pattern |
 | `link-color` | `color` | `blue` | Hyperlink text color |
 | `ref-color` | `color` | `red` | Ordinary `@label` reference color |
@@ -187,6 +211,8 @@ The specific use of this section is described in [Scripst Documentation](./docs/
 ### `countblock` Module
 
 The `countblock` module is a customizable module where you can set the name and color, and it comes with a built-in counter that can be referenced anywhere in the document. It can be used to create blocks for theorems, definitions, problems, notes, and more.
+
+Built-in countblock names are English by default. `countblock-lang` supports `en`, `zh`, `fr`, `es`, `ja`, `de`, `it`, `pt`, `ru`, `ko`, `ar`, `hi`, `tr`, `nl`, `sv`, `fi`, `da`, `no`, `pl`, `gr`, and `vi`. A custom block may use either a fixed `str`/`content` name or a localization dictionary such as `(en: "Assumption", zh: "假设")`; missing languages fall back to `en`. The built-in translations are maintained together in `src/locale/countblock.typ`.
 
 Below is an example of a `countblock` module:
 
@@ -309,12 +335,22 @@ Feel free to submit issues or pull requests! If you have any improvement suggest
 For certain content, Scripst uses the following Typst packages:
 
 * [ratchet](https://typst.app/universe/package/ratchet) — unified numbering, resets, references, and custom counter families
+* [hydra](https://typst.app/universe/package/hydra) — active-heading selection and rich running headers
 * [tablem](https://typst.app/universe/package/tablem)
 * [physica](https://typst.app/universe/package/physica)
 
 ## 📝 License
 
 This project is licensed under the MIT License.
+
+The Genshin Impact images in `docs/pic/pic.jpg` and
+`docs/locale/pic/pic.jpg` are used only as documentation examples for
+personal, non-commercial purposes, in accordance with the licensor's
+[published rules](https://www.hoyolab.com/article/143107). In Mainland China,
+the licensor is miHoYo Co., Ltd.; outside Mainland China, it is Cognosphere
+Pte. Ltd. The image in `docs/pic/pic.jpg` is copyright © miHoYo, and the image
+in `docs/locale/pic/pic.jpg` is copyright © COGNOSPHERE. These images are not
+covered by this project's MIT License.
 
 ## 📥 Offline Usage
 
@@ -346,26 +382,26 @@ If the template is stored in the `src/` directory, import it as:
 ### Method 2: Using Typst Local Package Management  
 Manually download Scripst and store it in:  
 ```text
-~/.local/share/typst/packages/preview/scripst/1.1.2                 # Linux
-%APPDATA%\typst\packages\preview\scripst\1.1.2                      # Windows
-~/Library/Application Support/typst/packages/preview/scripst/1.1.2  # macOS
+~/.local/share/typst/packages/preview/scripst/1.1.3                 # Linux
+%APPDATA%\typst\packages\preview\scripst\1.1.3                      # Windows
+~/Library/Application Support/typst/packages/preview/scripst/1.1.3  # macOS
 ```  
 
 Alternatively, run the following command:  
 ```bash  
 cd {data-dir}/typst/packages/preview/scripst  
-git clone https://github.com/An-314/scripst.git 1.1.2
+git clone https://github.com/An-314/scripst.git 1.1.3
 ```  
 Here, `data-dir` refers to Typst's data directory (e.g., `~/.local/share/` on Linux, `%APPDATA%\` on Windows, or `~/Library/Application Support/` on macOS).  
 
 Then import the template directly in your Typst file:  
 ```typst  
-#import "@local/scripst:1.1.2": *
+#import "@local/scripst:1.1.3": *
 ```  
 
 Use `typst init` to create a project quickly:  
 ```bash  
-typst init @local/scripst:1.1.2 project_name
+typst init @local/scripst:1.1.3 project_name
 ```  
 
 Scripst offers several adjustable settings, i.e. font, colour palette, default countblock name in `./src/configs.typ`. You can adjust them per your need.
