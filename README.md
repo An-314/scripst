@@ -195,7 +195,7 @@ typst init @preview/scripst:1.1.3 project_name
 | `counter-depth` | `int` | `2` | Overall counter numbering depth |
 | `cb-counter-depth` | `int` | `2` | `countblock` module counter numbering depth |
 | `countblocks` | `dict` | `cb` | Countblock registry configured by Ratchet |
-| `countblock-lang` | `str` | `"en"` | Language of built-in countblock names (`"en"` or `"zh"`) |
+| `countblock-lang` | `str` | `"en"` | Language of built-in countblock names |
 | `matheq-outline` | `str`, `function` | `"(1.1)"` | Equation numbering pattern |
 | `link-color` | `color` | `blue` | Hyperlink text color |
 | `ref-color` | `color` | `red` | Ordinary `@label` reference color |
@@ -212,7 +212,7 @@ The specific use of this section is described in [Scripst Documentation](./docs/
 
 The `countblock` module is a customizable module where you can set the name and color, and it comes with a built-in counter that can be referenced anywhere in the document. It can be used to create blocks for theorems, definitions, problems, notes, and more.
 
-Built-in countblock names are English by default. Set `countblock-lang: "zh"` in `scripst.with(...)` to display Chinese names. A custom block may use either a fixed `str`/`content` name or a localization dictionary such as `(en: "Assumption", zh: "假设")`; missing languages fall back to `en`.
+Built-in countblock names are English by default. `countblock-lang` supports `en`, `zh`, `fr`, `es`, `ja`, `de`, `it`, `pt`, `ru`, `ko`, `ar`, `hi`, `tr`, `nl`, `sv`, `fi`, `da`, `no`, `pl`, `gr`, and `vi`. A custom block may use either a fixed `str`/`content` name or a localization dictionary such as `(en: "Assumption", zh: "假设")`; missing languages fall back to `en`. The built-in translations are maintained together in `src/locale/countblock.typ`.
 
 Below is an example of a `countblock` module:
 

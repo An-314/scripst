@@ -1,4 +1,5 @@
 #import "configs.typ": *
+#import "locale.typ": localize-countblock
 #import "@preview/ratchet:0.0.4": figure-number
 
 #let countblock-language = state("scripst-countblock-language", "en")
@@ -6,13 +7,7 @@
 #let set-countblock-language(lang) = countblock-language.update(lang)
 
 #let resolve-countblock-name(info) = context {
-  if type(info) != dictionary { info }
-  else {
-    let lang = countblock-language.get()
-    if lang in info { info.at(lang) }
-    else if "en" in info { info.at("en") }
-    else { info.values().first() }
-  }
+  localize-countblock(info, lang: countblock-language.get())
 }
 
 #let add-countblock(cb, name, info, color, counter-name: none, depth: none) = {

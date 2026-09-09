@@ -175,7 +175,7 @@ Scripst template provides some parameters to customise the style of the document
   counter-depth: 3,     // int: (1, 2, 3)
   cb-counter-depth: 2,  // int: (1, 2, 3)
   countblocks: cb,      // dict
-  countblock-lang: "en", // str: ("en", "zh")
+  countblock-lang: "en", // str: ("en", "zh", "fr", ...)
   matheq-outline: "(1.1)", // str, function
   counter-outline: "1.1", // str, function
   link-color: blue,     // color
@@ -454,7 +454,9 @@ The countblock registry used by the template. It defaults to `cb`. Pass an updat
 
 == countblock-lang
 
-The language used for built-in countblock names. It defaults to `"en"`; use `"zh"` for Chinese names. A custom block's `info` may also be a language dictionary such as `(en: "Assumption", zh: "假设")`. If the selected key is absent, Scripst falls back to `en`, then to the first available value.
+The language used for built-in countblock names. It defaults to `"en"` and supports `en`, `zh`, `fr`, `es`, `ja`, `de`, `it`, `pt`, `ru`, `ko`, `ar`, `hi`, `tr`, `nl`, `sv`, `fi`, `da`, `no`, `pl`, `gr`, and `vi`.
+
+A custom block's `info` may also be a language dictionary such as `(en: "Assumption", zh: "假设", de: "Annahme")`. If the selected key is absent, Scripst falls back to `en`, then to the first available value. Built-in translations are maintained together in `src/locale/countblock.typ`.
 
 == matheq-outline
 
