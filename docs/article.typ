@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 
 #let doc-countblocks = add-countblock(cb, "test", "This is a test", teal)
 

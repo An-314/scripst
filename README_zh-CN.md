@@ -333,6 +333,7 @@ $
 对于部分内容，Scripst 引用了以下 Typst 包：
 
 - [ratchet](https://typst.app/universe/package/ratchet) — 统一管理编号、重置、引用和自定义计数器族
+- [hydra](https://typst.app/universe/package/hydra) — 选择当前标题并生成支持富文本的页眉
 - [tablem](https://typst.app/universe/package/tablem)
 - [physica](https://typst.app/universe/package/physica)
 

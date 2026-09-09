@@ -331,6 +331,7 @@ Feel free to submit issues or pull requests! If you have any improvement suggest
 For certain content, Scripst uses the following Typst packages:
 
 * [ratchet](https://typst.app/universe/package/ratchet) — unified numbering, resets, references, and custom counter families
+* [hydra](https://typst.app/universe/package/hydra) — active-heading selection and rich running headers
 * [tablem](https://typst.app/universe/package/tablem)
 * [physica](https://typst.app/universe/package/physica)
 
