@@ -290,7 +290,6 @@ Scripst 1.1.2 使用 #link("https://github.com/An-314/ratchet")[Ratchet 0.0.4] �
 
 Scripst 默认提供如下 countblock。表中的深度 `2` 表示跟随一级标题编号；它们都继承全局参数 `cb-counter-depth: 2`。
 
-表中的英文名称是 `countblock-lang: "en"` 的默认结果。设为 `"zh"` 时会对应显示“定义”“定理”“命题”“引理”“推论”“注”“断言”“练习”“问题”“例”和“注记”；其他受支持语言见 @countblock-lang，警告块仍显示 `⚠️`。
 
 #figure(
   three-line-table[
@@ -312,6 +311,8 @@ Scripst 默认提供如下 countblock。表中的深度 `2` 表示跟随一级�
   caption: [Scripst 默认 countblock 配置],
   numbering: none,
 )
+
+表中的英文名称是 `countblock-lang: "en"` 的默认结果。设为 `"zh"` 时会对应显示“定义”“定理”“命题”“引理”“推论”“注”“断言”“练习”“问题”“例”和“注记”；其他受支持语言见 @countblock-lang，警告块仍显示 `⚠️`。
 
 `proposition`、`lemma`、`corollary`、`remark` 和 `claim` 的 `counter-name` 都是 `"prop"`，因此默认共享同一列编号和同一种重置深度；它们的标题和颜色仍然各自独立。
 
