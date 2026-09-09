@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.2": *
+#import "@preview/scripst:1.1.3": *
 
 == title
 
@@ -231,6 +231,10 @@ datetime.today().display()
 == countblocks
 
 模板使用的 countblock 字典，默认为 `cb`。创建自定义 countblock 后，应当在 `#show: scripst.with(...)` 中通过该参数传入更新后的字典，以便 Ratchet 配置其编号和引用。
+
+== countblock-lang
+
+内置 countblock 名称所用的语言，默认为 `"en"`；设为 `"zh"` 后会显示“定义”“定理”“引理”等中文名称。自定义块的 `info` 也可以传入多语言字典，例如 `(en: "Assumption", zh: "假设")`。若所选语言不存在，Scripst 会依次回退到 `en` 和字典中的第一个值。
 
 == matheq-outline
 

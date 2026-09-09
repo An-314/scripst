@@ -21,6 +21,7 @@
   counter-depth: 2,
   cb-counter-depth: 2,
   countblocks: cb,
+  countblock-lang: "en",
   matheq-outline: "(1.1)",
   counter-outline: "1.1",
   matheq-color: red,
@@ -82,6 +83,7 @@
     ),
   )
   show: labelset
+  set-countblock-language(countblock-lang)
   if template == "article" {
     mkarticle(title, info, author, time, abstract, keywords, contents, content-depth, lang, body)
   } else if template == "book" {

@@ -34,17 +34,17 @@
 )
 
 #let cb = (
-  "def": ("Definition", mycolor.green, "def"),
-  "thm": ("Theorem", mycolor.blue, "thm"),
-  "prop": ("Proposition", mycolor.violet, "prop"),
-  "lem": ("Lemma", mycolor.violet-light, "prop"),
-  "cor": ("Corollary", mycolor.violet-dark, "prop"),
-  "rmk": ("Remark", mycolor.violet-darker, "prop"),
-  "clm": ("Claim", mycolor.violet-deep, "prop"),
-  "ex": ("Exercise", mycolor.purple, "ex"),
-  "prob": ("Problem", mycolor.orange, "prob"),
-  "eg": ("Example", mycolor.cyan, "eg"),
-  "note": ("Note", mycolor.grey, "note"),
+  "def": ((en: "Definition", zh: "定义"), mycolor.green, "def"),
+  "thm": ((en: "Theorem", zh: "定理"), mycolor.blue, "thm"),
+  "prop": ((en: "Proposition", zh: "命题"), mycolor.violet, "prop"),
+  "lem": ((en: "Lemma", zh: "引理"), mycolor.violet-light, "prop"),
+  "cor": ((en: "Corollary", zh: "推论"), mycolor.violet-dark, "prop"),
+  "rmk": ((en: "Remark", zh: "注"), mycolor.violet-darker, "prop"),
+  "clm": ((en: "Claim", zh: "断言"), mycolor.violet-deep, "prop"),
+  "ex": ((en: "Exercise", zh: "练习"), mycolor.purple, "ex"),
+  "prob": ((en: "Problem", zh: "问题"), mycolor.orange, "prob"),
+  "eg": ((en: "Example", zh: "例"), mycolor.cyan, "eg"),
+  "note": ((en: "Note", zh: "注记"), mycolor.grey, "note"),
   "cau": ("⚠️", mycolor.red, "cau"),
   "cb-counter-depth": 2,
 )
