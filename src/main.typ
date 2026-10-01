@@ -5,5 +5,6 @@
   lemma, note, problem, proposition, reg-countblock, reg-default-countblock, remark, set-countblock-depth, theorem,
 )
 #import "configs.typ": cb, font, mycolor
+#import "fonts.typ": default-fonts
 #import "styling.typ": cases, newpara
 #import "package.typ": *

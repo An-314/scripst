@@ -6,7 +6,7 @@ Scripst
 
 <div align="center">
 
-[![Current Version](https://img.shields.io/badge/version-v1.1.3-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.3)
+[![Current Version](https://img.shields.io/badge/version-v1.2.0--dev-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases)
 [![MIT License badge](https://img.shields.io/badge/license-MIT-turquoise.svg)](./LICENSE)
 [![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst/zh)
 [![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
@@ -89,7 +89,7 @@ Typst 兼具接近 Markdown 的轻便标记、面向专业文档的排版能力�
 
 ## ⚙️ Ratchet 驱动的统一编号
 
-Scripst 1.1.3 使用同一作者开发的 [Ratchet 0.0.4](https://github.com/An-314/ratchet) 作为统一编号引擎。公式、图片、表格、代码块以及自定义 `figure(kind: ...)` 计数器族——包括所有 Scripst `countblock`——都由 Ratchet 统一管理。
+Scripst 1.2.0 使用同一作者开发的 [Ratchet 0.0.4](https://github.com/An-314/ratchet) 作为统一编号引擎。公式、图片、表格、代码块以及自定义 `figure(kind: ...)` 计数器族——包括所有 Scripst `countblock`——都由 Ratchet 统一管理。
 
 Ratchet 为 Scripst 带来了：
 
@@ -108,7 +108,31 @@ Scripst 已经自动完成 Ratchet 配置，使用模板时无需再次导入。
 - 备选字体：[Linux Libertine](https://en.wikipedia.org/wiki/Linux_Libertine)
 - 以及SimSun, SimHei, KaiTi等中文字体
 
-使用默认字体前，请确保已安装该字体，或根据[离线使用](#-离线使用)部分的指导进行替换。
+使用默认字体前，请确保已安装相应字体。从 1.2.0 起，可以直接通过 `fonts` 选择字体：
+
+```typst
+#import "@preview/scripst:1.2.0": *
+#show: scripst.with(
+  fonts: (
+    body: ("Libertinus Serif", "Noto Serif CJK SC"),
+    heading: ("Libertinus Sans", "Noto Sans CJK SC"),
+    countblock: ("Libertinus Serif", "Noto Serif CJK SC"),
+    raw: ("DejaVu Sans Mono", "Noto Sans CJK SC"),
+    math: "New Computer Modern Math",
+  ),
+)
+```
+
+只需传入要修改的项目；每项支持字体名称、字体描述字典或非空回退列表。
+`fonts: (:)` 保持默认外观。可配置项包括：`body`、`title`、`info`、`author`、
+`time`、`abstract`、`keywords`、`preface`、`contents`、`heading`、`countblock`、
+`caption`、`table`、`header`、`strong`、`emph`、`quote`、`raw` 和 `math`。
+
+修改 `body` 时，表格、日期等继承项会跟随修改；标题、粗体、强调、countblock 等项目
+保留独立默认值。块标题由 `strong` 控制，公式由 `math` 控制。
+`auto` 恢复对应默认值；可用 `default-fonts + (body: "Libertinus Serif")` 构建可复用配置。
+字体需要自行安装或上传，数学字体应支持 OpenType MATH。
+完整默认值、继承关系及示例见[字体配置文档](./docs/fonts.typ)。
 
 ## 📦 安装
 
@@ -132,13 +156,13 @@ brew install typst # macOS
 在 `.typ` 文档开头添加
 
 ```typst
-#import "@preview/scripst:1.1.3": *
+#import "@preview/scripst:1.2.0": *
 ```
 即可。
 
 亦可以使用 `typst init` 快速创建项目：
 ```bash
-typst init @preview/scripst:1.1.3 project_name
+typst init @preview/scripst:1.2.0 project_name
 ```
 
 
@@ -147,7 +171,7 @@ typst init @preview/scripst:1.1.3 project_name
 在 Typst 文件开头引入模板：
 
 ```typst
-#import "@preview/scripst:1.1.3": *
+#import "@preview/scripst:1.2.0": *
 ```
 
 ### 创建 `article` 文档
@@ -193,6 +217,7 @@ typst init @preview/scripst:1.1.3 project_name
 | `keywords` | `array` | `()` | 关键词 |
 | `preface` | `content`, `str`, `none` | `none` | 前言 |
 | `font-size` | `length` | `11pt` | 字体大小 |
+| `fonts` | `dict` | `(:)` | 按用途设置字体，支持局部覆盖（1.2.0） |
 | `contents` | `bool` | `false` | 是否生成目录 |
 | `content-depth` | `int` | `2` | 目录深度 |
 | `matheq-depth` | `int` | `2` | 数学公式编号深度 |
@@ -385,16 +410,16 @@ project/
 
 可手动下载 Scripst 并将其存放至：
 ```text
-~/.local/share/typst/packages/preview/scripst/1.1.3                 # Linux
-%APPDATA%\typst\packages\preview\scripst\1.1.3                      # Windows
-~/Library/Application Support/typst/packages/preview/scripst/1.1.3  # macOS
+~/.local/share/typst/packages/preview/scripst/1.2.0                 # Linux
+%APPDATA%\typst\packages\preview\scripst\1.2.0                      # Windows
+~/Library/Application Support/typst/packages/preview/scripst/1.2.0  # macOS
 ```
 
 或者运行如下命令：
 
 ```bash 
 cd {data-dir}/typst/packages/preview/scripst
-git clone https://github.com/An-314/scripst.git 1.1.3
+git clone https://github.com/An-314/scripst.git 1.2.0
 ```
 
 其中`data-dir`为Typst的数据目录，如上述Linux系统中的`~/.local/share/`，Windows系统中的`%APPDATA%\`，macOS系统中的`~/Library/Application Support/`。
@@ -402,7 +427,7 @@ git clone https://github.com/An-314/scripst.git 1.1.3
 然后在 Typst 文件中直接引入：
 
 ```typst
-#import "@local/scripst:1.1.3": *
+#import "@local/scripst:1.2.0": *
 ```
 
 即可使用 Scripst 模板。
@@ -410,10 +435,10 @@ git clone https://github.com/An-314/scripst.git 1.1.3
 使用 `typst init` 快速创建项目：
 
 ```bash
-typst init @local/scripst:1.1.3 project_name
+typst init @local/scripst:1.2.0 project_name
 ```
 
-Scripst 提供多项可调参数，例如字体、配色方案、默认的 countblock 名称等，均位于 ./src/configs.typ 文件中，可按需修改。
+字体可通过主函数的 `fonts` 字典配置；配色方案和默认 countblock 定义可参见 `src/configs.typ`。
 
 ## 🎯 TODO
 

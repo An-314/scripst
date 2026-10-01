@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.3": *
+#import "@preview/scripst:1.2.0": *
 
 #let doc-countblocks = add-countblock(cb, "test", "This is a test", teal)
 
@@ -70,6 +70,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
   abstract: none,                // str, content, none
   keywords: (),                  // array
   font-size: 11pt,               // length
+  fonts: (:),                   // dictionary: font families by role
   contents: false,               // bool
   content-depth: 2,              // int
   matheq-depth: 2,               // int: (1, 2, 3)

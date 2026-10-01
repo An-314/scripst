@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.3": *
+#import "@preview/scripst:1.2.0": *
 
 #show: scripst.with(
   template: "article",

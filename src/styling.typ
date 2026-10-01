@@ -154,6 +154,7 @@
 
 #let styquote(font: font.quote, body) = {
   show quote: it => [
+    #show emph: set text(font: font)
     #set text(font: font)
     #align(center)[#emph[#it]]
   ]
@@ -182,7 +183,7 @@
   body
 }
 
-#let styraw(font: font.raw, body) = {
+#let styraw(font: (font.raw, "SimSun"), body) = {
   show raw.where(block: true): block.with(
     width: 100%,
     fill: luma(240),
@@ -190,7 +191,7 @@
     radius: 5pt,
   )
   show raw.where(block: true): set par(leading: 0.7em)
-  show raw: set text(font: (font, "simsun"), size: 10pt)
+  show raw: set text(font: font, size: 10pt)
   body
 }
 
@@ -199,7 +200,8 @@
   body
 }
 
-#let stymatheq(eq-depth: 2, body) = {
+#let stymatheq(eq-depth: 2, font: auto, body) = {
+  show math.equation: set text(font: font) if font != auto
   set math.equation(supplement: [])
   // Manipulating math.equation.body using show: https://github.com/typst/typst/discussions/2242
   // show math.equation.where(block: false): it => {
