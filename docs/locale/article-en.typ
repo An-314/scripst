@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.3": *
+#import "@preview/scripst:1.2.0": *
 
 #let doc-countblocks = add-countblock(cb, "test", "This is a test", teal)
 
@@ -63,13 +63,13 @@ Based on Typst, Scripst provides some simple templates for convenient daily docu
 #link("https://typst.app/universe/package/scripst")[Scripst Package] has already been submitted to the community. If network available, you can directly use
 
 ```typst
-#import "@preview/scripst:1.1.3": *
+#import "@preview/scripst:1.2.0": *
 ```
 to import the Scripst templates in your document.
 
 You can also use `typst init` to create a new project with the template:
 ```bash
-typst init @preview/scripst:1.1.3 project_name
+typst init @preview/scripst:1.2.0 project_name
 ```
 
 This method does not require downloading the template files, just import them in the document.
@@ -113,22 +113,22 @@ Of course, you don't have to worry about not being able to modify the template f
 
 For example, the template should be placed in
 ```
-~/.local/share/typst/packages/preview/scripst/1.1.3               # in Linux
-%APPDATA%\typst\packages\preview\scripst\1.1.3                    # in Windows
-~/Library/Application Support/typst/packages/local/scripst/1.1.3  # macOS
+~/.local/share/typst/packages/preview/scripst/1.2.0               # in Linux
+%APPDATA%\typst\packages\preview\scripst\1.2.0                    # in Windows
+~/Library/Application Support/typst/packages/local/scripst/1.2.0  # macOS
 ```
 You can execute the following command:
 ```bash
 cd ~/.local/share/typst/packages/preview/scripst/
-git clone https://github.com/An-314/scripst.git 1.1.3
+git clone https://github.com/An-314/scripst.git 1.2.0
 ```
 If the directory structure is like this, then the way to import the template files in the document should be:
 ```typst
-#import "@preview/scripst:1.1.3": *
+#import "@preview/scripst:1.2.0": *
 ```
 The advantage of this is that you can directly use `typst init` to create a new project with the template:
 ```bash
-typst init @preview/scripst:1.1.3 project_name
+typst init @preview/scripst:1.2.0 project_name
 ```
 #newpara()
 
@@ -169,6 +169,7 @@ Scripst template provides some parameters to customise the style of the document
   abstract: none,       // str, content, none
   keywords: (),         // array
   font-size: 11pt,      // length
+  fonts: (:),          // dictionary: font families by role
   contents: false,      // bool
   content-depth: 2,     // int
   matheq-depth: 2,      // int: (1, 2, 3)
@@ -338,6 +339,8 @@ The keywords of the document. Pass a list of `str` or `content`.
 Like `author`, the parameter is a list, not a string.
 
 Keywords will only appear at the beginning of the document if `abstract` is not empty.
+
+#include "fonts-en.typ"
 
 == font-size
 
@@ -860,7 +863,7 @@ Currently, Scripst provides the following settings:
 
 == Unified numbering powered by Ratchet <ratchet>
 
-Scripst 1.1.3 uses #link("https://github.com/An-314/ratchet")[Ratchet 0.0.4] as its unified numbering engine. Ratchet manages numbering, heading-level resets, and cross-references for equations, figures, tables, raw blocks, and custom `figure(kind: ...)` families. Every Scripst countblock is built on the same mechanism.
+Scripst 1.2.0 uses #link("https://github.com/An-314/ratchet")[Ratchet 0.0.4] as its unified numbering engine. Ratchet manages numbering, heading-level resets, and cross-references for equations, figures, tables, raw blocks, and custom `figure(kind: ...)` families. Every Scripst countblock is built on the same mechanism.
 
 This integration keeps displayed numbers, references, and outline entries on one configuration. Each counter family can independently use depth `1`, `2`, or `3`, and new countblocks no longer require handwritten registration or heading-reset rules.
 

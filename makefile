@@ -13,7 +13,7 @@ PDF_FILES = article book report
 TEMPLATE_DOCS = $(foreach file, $(PDF_FILES), $(PDF_DIR)/$(file).pdf)
 TEMPLATE_DOCS_LOCALE = $(PDF_DIR_LOCALE)/article-en.pdf
 TEMPLATE_DOCS_ALL = $(TEMPLATE_DOCS) $(TEMPLATE_DOCS_LOCALE)
-DOC_CHAPTERS = $(wildcard $(TYP_DIR)/chap*.typ)
+DOC_CHAPTERS = $(wildcard $(TYP_DIR)/chap*.typ) $(TYP_DIR)/fonts.typ
 SCRIPST_SOURCES = $(wildcard src/*.typ src/locale/*.typ)
 
 PREVIEW_IMAGES = $(foreach file, $(PDF_FILES), $(PREVIEW_DIR)/$(file)-1.png $(PREVIEW_DIR)/$(file)-2.png)
@@ -34,7 +34,7 @@ $(PDF_DIR)/%.pdf: $(TYP_DIR)/%.typ $(DOC_CHAPTERS) $(SCRIPST_SOURCES)
 	mkdir -p $(PDF_DIR)
 	cd $(TYP_DIR) && typst compile $*.typ builds/$*.pdf
 
-$(PDF_DIR_LOCALE)/article-en.pdf: $(TYP_DIR_LOCALE)/article-en.typ $(SCRIPST_SOURCES)
+$(PDF_DIR_LOCALE)/article-en.pdf: $(TYP_DIR_LOCALE)/article-en.typ $(TYP_DIR_LOCALE)/fonts-en.typ $(SCRIPST_SOURCES)
 	mkdir -p $(PDF_DIR_LOCALE)
 	typst compile $(TYP_DIR_LOCALE)/article-en.typ $(PDF_DIR_LOCALE)/article-en.pdf
 

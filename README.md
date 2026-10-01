@@ -6,7 +6,7 @@ Scripst
 
 <div align="center">
 
-[![Current Version](https://img.shields.io/badge/version-v1.1.3-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases/tag/v1.1.3)
+[![Current Version](https://img.shields.io/badge/version-v1.2.0--dev-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases)
 [![MIT License badge](https://img.shields.io/badge/license-MIT-turquoise.svg)](./LICENSE)
 [![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst)
 [![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
@@ -91,7 +91,7 @@ Editable Typst sources are available in [`why-typst-en.typ`](./docs/promotional/
 
 ## ⚙️ Numbering powered by Ratchet
 
-Scripst 1.1.3 is powered by [Ratchet 0.0.4](https://github.com/An-314/ratchet), a focused numbering package created by the same author. Ratchet provides a single, consistent engine for equations, figures, tables, raw blocks, and custom `figure(kind: ...)` families—including every Scripst `countblock`.
+Scripst 1.2.0 is powered by [Ratchet 0.0.4](https://github.com/An-314/ratchet), a focused numbering package created by the same author. Ratchet provides a single, consistent engine for equations, figures, tables, raw blocks, and custom `figure(kind: ...)` families—including every Scripst `countblock`.
 
 With Ratchet, Scripst can:
 
@@ -110,7 +110,33 @@ This project uses the following fonts by default:
 * Alternative fonts: [Linux Libertine](https://en.wikipedia.org/wiki/Linux_Libertine)
 * Chinese fonts such as SimSun, SimHei, KaiTi, etc. 
 
-If using these default fonts, please make sure they are correctly installed. Otherwise, replace them according to the instructions in [Offline Usage](#-offline-usage).
+Install the default fonts or choose your own through `fonts` (new in 1.2.0):
+
+```typst
+#import "@preview/scripst:1.2.0": *
+#show: scripst.with(
+  fonts: (
+    body: ("Libertinus Serif", "Noto Serif CJK SC"),
+    heading: ("Libertinus Sans", "Noto Sans CJK SC"),
+    countblock: ("Libertinus Serif", "Noto Serif CJK SC"),
+    raw: ("DejaVu Sans Mono", "Noto Sans CJK SC"),
+    math: "New Computer Modern Math",
+  ),
+)
+```
+
+Supply only the roles you want to override. Each value accepts a font name, a font
+descriptor, or a non-empty fallback list. `fonts: (:)` retains the default appearance.
+Available roles: `body`, `title`, `info`, `author`, `time`, `abstract`, `keywords`,
+`preface`, `contents`, `heading`, `countblock`, `caption`, `table`, `header`,
+`strong`, `emph`, `quote`, `raw`, and `math`.
+
+Changing `body` also updates roles that inherit it, such as tables and dates;
+headings, bold text, emphasis, and countblocks retain independent defaults.
+Block titles use `strong`; equations use `math`. `auto` restores a role's default.
+Use `default-fonts + (body: "Libertinus Serif")` to build a reusable configuration.
+Fonts must be installed or uploaded separately; math fonts need OpenType MATH support.
+See the [complete defaults, inheritance rules, and examples](./docs/locale/fonts-en.typ).
 
 
 ## 📦 Installation
@@ -138,13 +164,13 @@ Or refer to the [Typst official documentation](https://github.com/typst/typst) f
 Import the template at the beginning of your Typst file:
 
 ```typst
-#import "@preview/scripst:1.1.3": *
+#import "@preview/scripst:1.2.0": *
 ```
 
 Use `typst init` to quickly create a project:
 
 ```bash
-typst init @preview/scripst:1.1.3 project_name
+typst init @preview/scripst:1.2.0 project_name
 ```
 
 
@@ -189,6 +215,7 @@ typst init @preview/scripst:1.1.3 project_name
 | `keywords` | `array` | `()` | Keywords |
 | `preface` | `content`, `str`, `none` | `none` | Preface |
 | `font-size` | `length` | `11pt` | Font size |
+| `fonts` | `dict` | `(:)` | Font families by role; partial overrides supported (1.2.0) |
 | `contents` | `bool` | `false` | Whether to generate a table of contents |
 | `content-depth` | `int` | `2` | Table of contents depth |
 | `matheq-depth` | `int` | `2` | Math equation numbering depth |
@@ -382,26 +409,26 @@ If the template is stored in the `src/` directory, import it as:
 ### Method 2: Using Typst Local Package Management  
 Manually download Scripst and store it in:  
 ```text
-~/.local/share/typst/packages/preview/scripst/1.1.3                 # Linux
-%APPDATA%\typst\packages\preview\scripst\1.1.3                      # Windows
-~/Library/Application Support/typst/packages/preview/scripst/1.1.3  # macOS
+~/.local/share/typst/packages/preview/scripst/1.2.0                 # Linux
+%APPDATA%\typst\packages\preview\scripst\1.2.0                      # Windows
+~/Library/Application Support/typst/packages/preview/scripst/1.2.0  # macOS
 ```  
 
 Alternatively, run the following command:  
 ```bash  
 cd {data-dir}/typst/packages/preview/scripst  
-git clone https://github.com/An-314/scripst.git 1.1.3
+git clone https://github.com/An-314/scripst.git 1.2.0
 ```  
 Here, `data-dir` refers to Typst's data directory (e.g., `~/.local/share/` on Linux, `%APPDATA%\` on Windows, or `~/Library/Application Support/` on macOS).  
 
 Then import the template directly in your Typst file:  
 ```typst  
-#import "@local/scripst:1.1.3": *
+#import "@local/scripst:1.2.0": *
 ```  
 
 Use `typst init` to create a project quickly:  
 ```bash  
-typst init @local/scripst:1.1.3 project_name
+typst init @local/scripst:1.2.0 project_name
 ```  
 
 Scripst offers several adjustable settings, i.e. font, colour palette, default countblock name in `./src/configs.typ`. You can adjust them per your need.

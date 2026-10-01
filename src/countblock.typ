@@ -1,4 +1,5 @@
 #import "configs.typ": *
+#import "fonts.typ": countblock-font
 #import "locale.typ": localize-countblock
 #import "@preview/ratchet:0.0.4": figure-number
 
@@ -84,7 +85,7 @@
   if count { title += [ #figure-number(counter-name)] }
   if subname != "" { title += [ #subname] }
 
-  let rendered = block(
+  let rendered = context block(
     fill: color.transparentize(70%),
     inset: 12pt,
     radius: 4pt,
@@ -92,7 +93,7 @@
     stroke: (left: (thickness: 4pt, paint: color)),
     breakable: true,
     [
-      #set text(font: font.countblock)
+      #set text(font: countblock-font.get())
       #set align(left)
       #v(-0.5em)#h(-0.5em)
       #box(fill: color.transparentize(60%), inset: 6pt, outset: -2pt, radius: 3pt)[#h(0.3em)#strong(title)#h(0.3em)]

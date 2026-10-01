@@ -1,4 +1,4 @@
-#import "@preview/scripst:1.1.3": *
+#import "@preview/scripst:1.2.0": *
 
 == title
 
@@ -121,6 +121,8 @@ datetime.today().display()
 和`author`一样，参数是一个列表，而不能是一个字符串。
 
 只有在`abstract`不为空时，关键词才会出现在文档的开头。
+
+#include "fonts.typ"
 
 == font-size
 

@@ -1,8 +1,10 @@
 #import "configs.typ": *
 #import "styling.typ": *
 #import "components.typ": *
+#import "fonts.typ": resolve-fonts
 
-#let mkarticle(title, info, author, time, abstract, keywords, contents, content-depth, lang, body) = {
+#let mkarticle(title, info, author, time, abstract, keywords, contents, content-depth, lang, fonts: resolve-fonts((:)), body) = {
+  let article = article-components(fonts)
   if title != none and title != "" { (article.mktitle)(title) }
   if info != none and info != "" { (article.mkinfo)(info) }
   if author != none and author != () { (article.mkauthor)(author) }
@@ -12,7 +14,8 @@
   body
 }
 
-#let mkbook(title, info, author, time, abstract, keywords, preface, contents, content-depth, lang, body) = {
+#let mkbook(title, info, author, time, abstract, keywords, preface, contents, content-depth, lang, fonts: resolve-fonts((:), template: "book"), body) = {
+  let book = book-components(fonts)
   if title != none and title != "" { (book.mktitle)(title) }
   if info != none and info != "" { (book.mkinfo)(info) }
   if author != none and author != () { (book.mkauthor)(author) }
@@ -43,7 +46,9 @@
   body
 }
 
-#let mkreport(title, info, author, time, abstract, keywords, preface, contents, content-depth, lang, body) = {
+#let mkreport(title, info, author, time, abstract, keywords, preface, contents, content-depth, lang, fonts: resolve-fonts((:), template: "report"), body) = {
+  let report = report-components(fonts)
+  let article = article-components(fonts)
   if title != none and title != "" { (report.mktitle)(title) }
   if info != none and info != "" { (report.mkinfo)(info) }
   if author != none and author != () { (report.mkauthor)(author) }

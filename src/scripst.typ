@@ -3,6 +3,7 @@
 #import "components.typ": *
 #import "template.typ": *
 #import "countblock.typ": *
+#import "fonts.typ": resolve-fonts, with-countblock-font
 #import "@preview/ratchet:0.0.4": ratchet
 
 #let scripst(
@@ -15,6 +16,7 @@
   keywords: (),
   preface: none,
   font-size: 11pt,
+  fonts: (:),
   contents: false,
   content-depth: 2,
   matheq-depth: 2,
@@ -38,6 +40,7 @@
   offset: 0,
   body,
 ) = {
+  let fonts = resolve-fonts(fonts, template: template)
   // Ratchet installs a contextual state anchor before rendering the body.
   // Configure article pages first so that changing page settings afterwards
   // does not leave the anchor on an otherwise blank first page.
@@ -45,10 +48,11 @@
 
   show: stydoc.with(title, author)
   show: stypar.with(lang: lang, par-indent: par-indent, leading: par-leading, spacing: par-spacing)
-  show: stytext.with(lang: lang, size: font-size)
-  show: stystrong
-  show: styemph
+  show: stytext.with(font: fonts.body, lang: lang, size: font-size)
+  show: stystrong.with(font: fonts.strong)
+  show: styemph.with(font: fonts.emph)
   show: styheading.with(
+    font: fonts.heading,
     lang: lang,
     counter-depth: counter-depth,
     matheq-depth: matheq-depth,
@@ -56,18 +60,19 @@
     chapter-numbering-format: chapter-numbering-format,
     offset: offset,
   )
-  show: styfigure.with(counter-depth: counter-depth)
+  show: styfigure.with(counter-depth: counter-depth, font: fonts.caption)
   show: styimage
-  show: stytable
+  show: stytable.with(font: fonts.table)
   show: styenum
   show: stylist
   show: stytermlist
-  show: styquote
-  show: styraw
+  show: styquote.with(font: fonts.quote)
+  show: styraw.with(font: fonts.raw)
   show: styref.with(color: ref-color)
   show: stylink.with(color: link-color)
-  show: stymatheq.with(eq-depth: matheq-depth)
-  show: styheader.with(header: header, title, info)
+  show: stymatheq.with(eq-depth: matheq-depth, font: fonts.math)
+  show: styheader.with(header: header, font: fonts.header, title, info)
+  show: with-countblock-font.with(fonts.countblock)
   show: ratchet.with(
     eq-depth: matheq-depth,
     eq-outline: matheq-outline,
@@ -85,12 +90,12 @@
   show: labelset
   set-countblock-language(countblock-lang)
   if template == "article" {
-    mkarticle(title, info, author, time, abstract, keywords, contents, content-depth, lang, body)
+    mkarticle(title, info, author, time, abstract, keywords, contents, content-depth, lang, fonts: fonts, body)
   } else if template == "book" {
     show: stychapter
-    mkbook(title, info, author, time, abstract, keywords, preface, contents, content-depth, lang, body)
+    mkbook(title, info, author, time, abstract, keywords, preface, contents, content-depth, lang, fonts: fonts, body)
   } else if template == "report" {
-    mkreport(title, info, author, time, abstract, keywords, preface, contents, content-depth, lang, body)
+    mkreport(title, info, author, time, abstract, keywords, preface, contents, content-depth, lang, fonts: fonts, body)
   } else {
     panic("Unknown template!")
   }
