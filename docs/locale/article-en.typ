@@ -919,6 +919,7 @@ These functions share identical parameters and effects, differing only in counte
   subname: [],
   count: true,
   lab: none,
+  breakable: true,
 )[
   ...
 ]
@@ -930,6 +931,7 @@ Parameter specifications:
   | `subname` | `array` | `[]` | Entry name |
   | `count` | `bool` | `true` | Enable numbering |
   | `lab` | `str` | `none` | Entry label |
+  | `breakable` | `bool` | `true` | Allow this block instance to split across pages |
 ]
 Example usage:
 ```typst
@@ -957,6 +959,18 @@ This creates a numbered theorem block:
 ==== `subname` Parameter
 
 `subname` displays supplemental information after the counter, such as theorem names. In the example above, it shows "Fermat's Last Theorem".
+
+==== `breakable` Parameter
+
+Set `breakable` independently on each call, without changing `cb` or redefining a function. It defaults to `true`, allowing page breaks. With `false`, the entire block moves to the next page if the remaining space is insufficient. Keep `true` for content taller than a full page.
+
+```typst
+#theorem(breakable: false)[Keep this theorem on one page.]
+#theorem[This theorem still allows page breaks by default.]
+#note(breakable: false)[Keep this particular note together too.]
+```
+
+Custom blocks defined with `countblock.with(...)` accept the same per-call parameter.
 
 ==== `lab` Parameter
 
@@ -1173,7 +1187,8 @@ After defining a block, use the `countblock` function to create it:
   cb,
   subname: "",
   count: true,
-  lab: none
+  lab: none,
+  breakable: true,
 )[
   ...
 ]
@@ -1187,12 +1202,14 @@ Parameter specifications:
   | `subname` | `str` | `` | Entry name |
   | `count` | `bool` | `true` | Enable numbering |
   | `lab` | `str` | `none` | Reference label |
+  | `breakable` | `bool` | `true` | Allow this block instance to split across pages |
 ]
 - `name`: Counter name, as specified in `add-countblock`.
 - `cb`: Dictionary formatted as @cb. Ensure it contains the latest counter by updating `cb` first.
 - `subname`: Supplemental text displayed after the counter (e.g., theorem name).
 - `count`: Set `false` to disable numbering.
 - `lab`: Label for cross-referencing with `@lab`.
+- `breakable`: Applies only to this call; set `false` to keep this block on one page.
 
 Example using the `test` counter created in @new-cb:
 ```typst
