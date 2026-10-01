@@ -75,7 +75,7 @@
   groups
 }
 
-#let countblock(name, cb, cb-counter-depth: none, subname: "", count: true, lab: none, body) = {
+#let countblock(name, cb, cb-counter-depth: none, subname: "", count: true, lab: none, breakable: true, body) = {
   if not (name in cb) { panic("countblock: block not registered") }
   let item = cb.at(name)
   let (info, color, counter-name) = (item.at(0), item.at(1), item.at(2))
@@ -91,7 +91,7 @@
     radius: 4pt,
     width: 100%,
     stroke: (left: (thickness: 4pt, paint: color)),
-    breakable: true,
+    breakable: breakable,
     [
       #set text(font: countblock-font.get())
       #set align(left)

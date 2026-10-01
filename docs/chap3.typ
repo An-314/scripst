@@ -322,6 +322,7 @@ Scripst 默认提供如下 countblock。表中的深度 `2` 表示跟随一级�
   subname: [],
   count: true,
   lab: none,
+  breakable: true,
 )[
   ...
 ]
@@ -333,6 +334,7 @@ Scripst 默认提供如下 countblock。表中的深度 `2` 表示跟随一级�
   | `subname` | `array` | `[]` | 该条目的名称 |
   | `count` | `bool` | `true` | 是否计数 |
   | `lab` | `str` | `none` | 该条目的标签 |
+  | `breakable` | `bool` | `true` | 本次调用的块是否允许跨页 |
 ]
 下面是一个示例：
 ```typst
@@ -363,6 +365,20 @@ Scripst 默认提供如下 countblock。表中的深度 `2` 表示跟随一级�
 ==== `subname` 参数
 
 `subname` 是会显示在计数器后的信息，例如定理名称等。在上述例子中是“Fermat's Last Theorem”。
+
+==== `breakable` 参数
+
+每次调用都可以独立设置 `breakable`，不需要修改 `cb` 或重新定义函数。默认值为 `true`，允许跨页；设为 `false` 时，当前页剩余空间不足会将整个块移到下一页。超过一整页的内容应保持 `true`。
+
+此参数不改变原有引用锚点结构：不可跨页的块整体移页时，`lab` 的跳转目标可能仍位于前一页。
+
+```typst
+#theorem(breakable: false)[这个定理保持在同一页。]
+#theorem[这个定理仍然默认允许跨页。]
+#note(breakable: false)[这次调用的注记也不跨页。]
+```
+
+通过 `countblock.with(...)` 定义的自定义块同样支持这个调用参数。
 
 ==== `lab` 参数
 
@@ -588,7 +604,8 @@ Fermat 并没有对 @fermat 给出公开的证明。
   cb,
   subname: "",
   count: true,
-  lab: none
+  lab: none,
+  breakable: true,
 )[
   ...
 ]
@@ -602,12 +619,14 @@ Fermat 并没有对 @fermat 给出公开的证明。
   | `subname` | `str` | `` | 该条目的名称 |
   | `count` | `bool` | `true` | 是否计数 |
   | `lab` | `str` | `none` | 该条目的标签 |
+  | `breakable` | `bool` | `true` | 本次调用的块是否允许跨页 |
 ]
 - `name`是计数器的名称，也就是在 `add-countblock` 中显示指定的参数。
 - `cb`是一个字典，其格式如@cb 所示。注意，你需要传含有该计数器的（最新的）`cb`，所以一定需要先更新`cb`，再传入。
 - `subname`是会显示在计数器后的信息，例如定理名称等。
 - `count`是一个布尔值，如果你不想计数，可以将其设置为`false`。
 - `lab`是一个字符串，如果你想要为这个块添加一个标签，以便在文中引用，可以使用这个参数。
+- `breakable`只作用于本次调用，设为 `false` 可让该块保持在同一页。
 
 例如，使用在 @new-cb 中创建的 `test`：
 ```typst
