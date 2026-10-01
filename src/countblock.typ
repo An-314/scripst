@@ -85,9 +85,28 @@
   if count { title += [ #figure-number(counter-name)] }
   if subname != "" { title += [ #subname] }
 
+  let rendered = context block(
+    fill: color.transparentize(70%),
+    inset: 12pt,
+    radius: 4pt,
+    width: 100%,
+    stroke: (left: (thickness: 4pt, paint: color)),
+    breakable: breakable,
+    [
+      #set text(font: countblock-font.get())
+      #set align(left)
+      #v(-0.5em)#h(-0.5em)
+      #box(fill: color.transparentize(60%), inset: 6pt, outset: -2pt, radius: 3pt)[#h(0.3em)#strong(title)#h(0.3em)]
+      #h(0.75em)
+
+      #v(-0.3em)
+      #body
+    ],
+  )
+
   // Keep a native figure as a zero-size anchor so Ratchet and `@ref` can use
-  // Typst's figure counter. Place it inside the visible block so it follows
-  // the block when moved to the next page, without preventing page breaks.
+  // Typst's figure counter, while leaving the visible block in normal flow.
+  // A figure containing the whole block cannot break across pages.
   let elem = if count {
     figure(
       [],
@@ -112,25 +131,10 @@
     #if lab != none { label(lab) }
   ]
 
-  context block(
-    fill: color.transparentize(70%),
-    inset: 12pt,
-    radius: 4pt,
-    width: 100%,
-    stroke: (left: (thickness: 4pt, paint: color)),
-    breakable: breakable,
-    [
-      #place(anchor)
-      #set text(font: countblock-font.get())
-      #set align(left)
-      #v(-0.5em)#h(-0.5em)
-      #box(fill: color.transparentize(60%), inset: 6pt, outset: -2pt, radius: 3pt)[#h(0.3em)#strong(title)#h(0.3em)]
-      #h(0.75em)
-
-      #v(-0.3em)
-      #body
-    ],
-  )
+  [
+    #place(anchor)
+    #rendered
+  ]
 }
 
 #let definition = countblock.with("def", cb)

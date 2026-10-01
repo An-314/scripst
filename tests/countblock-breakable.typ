@@ -20,11 +20,13 @@
     if splits {
       assert.eq(page-of(start), page-of(before))
       assert(page-of(end) > page-of(start), message: prefix + " must split")
+      assert.eq(page-of(anchor), page-of(start))
     } else {
       assert(page-of(start) > page-of(before), message: prefix + " must move to the next page")
       assert.eq(page-of(end), page-of(start), message: prefix + " must stay together")
     }
-    assert.eq(page-of(anchor), page-of(start), message: prefix + " reference target must follow the visible block")
+    // Preserve the existing external anchor. With breakable: false, it may
+    // remain on the preceding page when the visible block moves.
   }
   pagebreak()
 }

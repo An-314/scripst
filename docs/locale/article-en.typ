@@ -964,6 +964,8 @@ This creates a numbered theorem block:
 
 Set `breakable` independently on each call, without changing `cb` or redefining a function. It defaults to `true`, allowing page breaks. With `false`, the entire block moves to the next page if the remaining space is insufficient. Keep `true` for content taller than a full page.
 
+This option leaves the existing reference anchor structure unchanged: when an unbreakable block moves to the next page, its `lab` target may remain on the preceding page.
+
 ```typst
 #theorem(breakable: false)[Keep this theorem on one page.]
 #theorem[This theorem still allows page breaks by default.]
