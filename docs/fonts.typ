@@ -5,6 +5,9 @@
 从 Scripst 1.2.0 开始，可以通过主函数的 `fonts` 字典配置字体，无需修改包源码。
 默认值是空字典 `(:)`：只覆盖传入的项，其余保留默认值。
 `font-size` 仍用于设置字号，`fonts` 只负责字体族。
+行内代码和代码块的字号均跟随所在位置的正文，不再固定为 `10pt` 或额外缩小。
+局部 `#set text(size: ...)` 也会生效；若需单独缩小代码，可在模板 show 规则之后写
+`#show raw: set text(size: 9pt)`，或用 `raw.where(block: true)` 只调整代码块。
 
 ```typst
 #import "@preview/scripst:1.2.0": *

@@ -130,14 +130,14 @@ datetime.today().display()
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | font-size | `length` | `11pt` | 文档字体大小 |
+    | font-size | `length` / `auto` | `auto` | 文档字体大小 |
   ],
   numbering: none,
 )
 
 #newpara()
 
-文档的字体大小。默认为`11pt`。
+文档的字体大小。默认 `auto` 在 article、book、report 中使用 `11pt`，在 beamer 中使用 `20pt`。
 
 参考`length`类型的值，可以传入`pt`、`mm`、`cm`、`in`、`em`等单位。
 
@@ -383,14 +383,14 @@ PDF 链接边框和鼠标悬浮反馈由 PDF 阅读器控制，Typst 目前不�
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | par-indent | `length` | `2em` | 段落首行缩进 |
+    | par-indent | `length` / `auto` | `auto` | 段落首行缩进 |
   ],
   numbering: none,
 )
 
 #newpara()
 
-段落首行缩进。默认为`2em`。如果调节成`0em`，则为不缩进。
+段落首行缩进。默认 `auto` 在 article、book、report 中使用 `2em`，在 beamer 中使用 `0em`。显式设为 `0em` 即不缩进。
 
 == par-leading
 

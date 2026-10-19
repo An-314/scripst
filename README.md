@@ -2,7 +2,7 @@
 Scripst
 </h1>
 
-**Scripst** is a template package based on **Typst**, offering a set of simple and efficient document templates suitable for everyday documents, assignments, notes, papers, and other scenarios.
+**Scripst** is a template package based on **Typst**, offering a set of simple and efficient templates for everyday documents, assignments, notes, papers, and academic presentations.
 
 <div align="center">
 
@@ -28,6 +28,7 @@ Scripst
 - [📄 Using Scripst](#-using-scripst)
   - [Import Scripst Template](#import-scripst-template)
   - [Create `article` Document](#create-article-document)
+  - [Create `beamer` Slides](#create-beamer-slides)
 - [🔧 Template Parameters](#-template-parameters)
 - [🆕 Feature Demonstration](#-feature-demonstration)
   - [`countblock` Module](#countblock-module)
@@ -73,6 +74,7 @@ Editable Typst sources are available in [`why-typst-en.typ`](./docs/promotional/
 ## 🚀 Features
 
 * Numbering powered by [Ratchet](https://github.com/An-314/ratchet): Equations, figures, tables, raw blocks, and custom `countblock` families share one reliable numbering and reference engine.
+* Academic slides powered by [Touying](https://typst.app/universe/package/touying): The `beamer` template combines Stargazer layouts, columns, and incremental reveals with Scripst's fonts, mathematical notation, and numbered blocks.
 * Added the `countblock` module: A customizable-named and colored block with a built-in counter that can be referenced anywhere in the document. It supports theorem/problem/remark typesetting. For details, see [🆕 `countblock` module](#-countblock-module).  
 * Quick settings via labels: Font color customization, disabling math environments, and removing title numbering.  
 * Enhanced counter hierarchy: Global counters now support multi-level numbering formats (`1`, `1.1`, `1.1.1`). Equations, figures, and `countblock` can adopt hierarchical numbering as needed.  
@@ -143,7 +145,7 @@ See the [complete defaults, inheritance rules, and examples](./docs/locale/fonts
 
 ### Install Typst
 
-Make sure Typst is installed. You can install it using the following commands:
+Scripst 1.2.0 requires Typst **0.15.0 or newer**. You can install it using the following commands:
 
 ```bash
 sudo apt install typst # Debian/Ubuntu
@@ -202,11 +204,59 @@ typst init @preview/scripst:1.2.0 project_name
 ```
 
 
+### Create `beamer` Slides
+
+The new `beamer` template uses Touying 0.8.0's Stargazer theme. Keep writing with
+Scripst's math utilities and countblocks; Touying handles the slide layout and
+incremental reveals. This is a Typst presentation template, not a LaTeX importer.
+
+```typst
+#import "@preview/scripst:1.2.0": *
+#import slides: *
+
+#show: scripst.with(
+  template: "beamer",
+  title: [A short quantum-mechanics talk],
+  info: [Scripst + Touying],
+  author: ("Your name",),
+  lang: "en",
+  matheq-depth: 1,
+  cb-counter-depth: 1,
+  beamer: (
+    aspect-ratio: "16-9",
+    institution: [Your institution],
+    progress-bar: false,
+  ),
+)
+
+#title-slide()
+#slide(title: [A two-level state], composer: (3fr, 2fr))[
+  $ ket(psi) = alpha ket(0) + beta ket(1) $
+][
+  #note[The amplitudes satisfy $abs(alpha)^2 + abs(beta)^2 = 1$.]
+]
+#slide(title: [Reveal one step at a time])[
+  - Set up the state.
+  #pause
+  - Compute the measurement probabilities.
+]
+```
+
+The default body size is `20pt`, with no first-line indentation. Use the same
+`fonts`, `font-size`, and numbering parameters as in documents. Call `title-slide()`
+and `outline-slide()` explicitly; article options such as `contents`, `abstract`,
+`preface`, and `header` do not generate slide content. Put `pause` **between**
+Scripst blocks: animation inside a countblock is not currently supported.
+
+See the [configuration guide](./docs/beamer.md), [English demo source](./docs/locale/beamer-en.typ),
+and [Chinese demo source](./docs/beamer.typ). The demos use local source imports
+and can be compiled from the repository root with `typst compile --root . docs/locale/beamer-en.typ`.
+
 ## 🔧 Template Parameters
 
 | Parameter | Type | Default Value | Description |
 | --- | --- | --- | --- |
-| `template` | `str` | `"article"` | Choose template (`"article"`, `"book"`, `"report"`) |
+| `template` | `str` | `"article"` | Choose template (`"article"`, `"book"`, `"report"`, `"beamer"`) |
 | `title` | `content`, `str`, `none` | `""` | Document title |
 | `info` | `content`, `str`, `none` | `""` | Document subtitle or supplementary information |
 | `author` | `content`, `str`, `array` | `()` | List of authors |
@@ -214,8 +264,9 @@ typst init @preview/scripst:1.2.0 project_name
 | `abstract` | `content`, `str`, `none` | `none` | Document abstract |
 | `keywords` | `array` | `()` | Keywords |
 | `preface` | `content`, `str`, `none` | `none` | Preface |
-| `font-size` | `length` | `11pt` | Font size |
+| `font-size` | `length`, `auto` | `auto` | `11pt` for documents; `20pt` for beamer; code inherits the surrounding size |
 | `fonts` | `dict` | `(:)` | Font families by role; partial overrides supported (1.2.0) |
+| `beamer` | `dict` | `(:)` | Slide-specific settings; see the [guide](./docs/beamer.md) |
 | `contents` | `bool` | `false` | Whether to generate a table of contents |
 | `content-depth` | `int` | `2` | Table of contents depth |
 | `matheq-depth` | `int` | `2` | Math equation numbering depth |
@@ -224,10 +275,11 @@ typst init @preview/scripst:1.2.0 project_name
 | `countblocks` | `dict` | `cb` | Countblock registry configured by Ratchet |
 | `countblock-lang` | `str` | `"en"` | Language of built-in countblock names |
 | `matheq-outline` | `str`, `function` | `"(1.1)"` | Equation numbering pattern |
-| `link-color` | `color` | `blue` | Hyperlink text color |
+| `link-color` | `color` | `blue` | Hyperlink text color; beamer applies it to external URLs, preserving theme navigation colors |
 | `ref-color` | `color` | `red` | Ordinary `@label` reference color |
 | `header` | `bool` | `true` | Enable header |
 | `lang` | `str` | `"zh"` | Language (`"zh"`, `"en"`, `"fr"`, etc.) |
+| `par-indent` | `length`, `auto` | `auto` | `2em` for documents; `0em` for beamer |
 
 * * *
 
@@ -363,6 +415,7 @@ For certain content, Scripst uses the following Typst packages:
 
 * [ratchet](https://typst.app/universe/package/ratchet) — unified numbering, resets, references, and custom counter families
 * [hydra](https://typst.app/universe/package/hydra) — active-heading selection and rich running headers
+* [touying](https://typst.app/universe/package/touying) — slide layouts and incremental reveals for the beamer template
 * [tablem](https://typst.app/universe/package/tablem)
 * [physica](https://typst.app/universe/package/physica)
 
@@ -435,5 +488,5 @@ Scripst offers several adjustable settings, i.e. font, colour palette, default c
 
 ## 🎯 TODO
 
-- Add a `beamer` template
+- [x] Add a `beamer` template (1.2.0)
 - Add more configuration options

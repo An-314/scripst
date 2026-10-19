@@ -61,7 +61,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 
 ```typst
 #let scripst(
-  template: "book",  // str: ("article", "book", "report")
+  template: "book",  // str: ("article", "book", "report", "beamer")
   title: "",            // str, content, none
   info: "",             // str, content, none
   author: (),           // str, content, array, none
@@ -69,8 +69,9 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
   abstract: none,       // str, content, none
   keywords: (),         // array
   preface: none,        // str, content, none
-  font-size: 11pt,      // length
+  font-size: auto,      // documents: 11pt; beamer: 20pt
   fonts: (:),          // dictionary: font families by role
+  beamer: (:),         // dictionary: presentation options
   contents: false,      // bool
   content-depth: 2,     // int
   matheq-depth: 2,      // int: (1, 2)
@@ -89,20 +90,21 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
   three-line-table[
     | 参数 | 类型 | 可选值 | 默认值 | 说明 |
     | --- | --- | --- | --- | --- |
-    | template | `str` | `("article", "book", "report")` | `"article"` | 模板类型 |
+    | template | `str` | `("article", "book", "report", "beamer")` | `"article"` | 模板类型 |
   ],
   numbering: none,
 )
 
 #newpara()
 
-目前 Scripst 提供了三种模板，分别是 article 、book 和 report 。
+目前 Scripst 提供了四种模板：article、book、report 和 beamer。1.2.0 版本要求 Typst 0.15.0 或更新版本。
 
 本模板采用 book 模板。
 
 - article：适用于日常文档、作业、小型笔记、小型论文等
 - book：适用于书籍、课程笔记等
 - report：适用于实验报告、论文等
+- beamer：基于 Touying 0.8.0 / Stargazer 的学术演示；配置详见 `docs/beamer.md`，完整示例见 `docs/beamer.typ`
 
 此外的字符串传入会导致`panic`：`"Unknown template!"`。
 

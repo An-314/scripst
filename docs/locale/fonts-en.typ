@@ -5,6 +5,10 @@
 Starting with Scripst 1.2.0, the main function accepts a `fonts` dictionary.
 Its default, `(:)`, keeps the existing fonts. Supply only the roles you want to change;
 there is no need to edit package files. `font-size` still controls the text size.
+Inline and block code inherit the surrounding text size instead of using a fixed
+`10pt` or an extra reduction. Local `#set text(size: ...)` rules also apply.
+To shrink code independently, add `#show raw: set text(size: 9pt)` after the
+template show rule, or use `raw.where(block: true)` to target block code only.
 
 ```typst
 #import "@preview/scripst:1.2.0": *

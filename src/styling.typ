@@ -191,7 +191,8 @@
     radius: 5pt,
   )
   show raw.where(block: true): set par(leading: 0.7em)
-  show raw: set text(font: font, size: 10pt)
+  // Cancel Typst's default 0.8em scaling and inherit the surrounding size.
+  show raw: set text(font: font, size: 1em / 0.8)
   body
 }
 

@@ -12,7 +12,8 @@ SIZE = "1080x>"     # 目标缩略图大小
 PDF_FILES = article book report
 TEMPLATE_DOCS = $(foreach file, $(PDF_FILES), $(PDF_DIR)/$(file).pdf)
 TEMPLATE_DOCS_LOCALE = $(PDF_DIR_LOCALE)/article-en.pdf
-TEMPLATE_DOCS_ALL = $(TEMPLATE_DOCS) $(TEMPLATE_DOCS_LOCALE)
+BEAMER_DOCS = $(PDF_DIR)/beamer.pdf $(PDF_DIR_LOCALE)/beamer-en.pdf
+TEMPLATE_DOCS_ALL = $(TEMPLATE_DOCS) $(TEMPLATE_DOCS_LOCALE) $(BEAMER_DOCS)
 DOC_CHAPTERS = $(wildcard $(TYP_DIR)/chap*.typ) $(TYP_DIR)/fonts.typ
 SCRIPST_SOURCES = $(wildcard src/*.typ src/locale/*.typ)
 
@@ -29,6 +30,16 @@ all: $(TEMPLATE_DOCS_ALL) $(PREVIEW_ALL) thumbnail.png
 doc: $(TEMPLATE_DOCS_ALL)
 
 preview: $(PREVIEW_ALL)
+
+beamer: $(BEAMER_DOCS)
+
+$(PDF_DIR)/beamer.pdf: $(TYP_DIR)/beamer.typ $(SCRIPST_SOURCES)
+	mkdir -p $(PDF_DIR)
+	typst compile --root . $< $@
+
+$(PDF_DIR_LOCALE)/beamer-en.pdf: $(TYP_DIR_LOCALE)/beamer-en.typ $(SCRIPST_SOURCES)
+	mkdir -p $(PDF_DIR_LOCALE)
+	typst compile --root . $< $@
 
 $(PDF_DIR)/%.pdf: $(TYP_DIR)/%.typ $(DOC_CHAPTERS) $(SCRIPST_SOURCES)
 	mkdir -p $(PDF_DIR)
@@ -77,4 +88,4 @@ thumbnail.png: template/main.typ $(SCRIPST_SOURCES)
 clean:
 	rm -rf $(PREVIEW_DIR) $(TEMPLATE_DOCS)
 
-.PHONY: all doc preview clean
+.PHONY: all doc preview beamer clean

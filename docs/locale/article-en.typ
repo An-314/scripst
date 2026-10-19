@@ -161,15 +161,16 @@ Scripst template provides some parameters to customise the style of the document
 
 ```typst
 #let scripst(
-  template: "article",  // str: ("article", "book", "report")
+  template: "article",  // str: ("article", "book", "report", "beamer")
   title: "",            // str, content, none
   info: "",             // str, content, none
   author: (),           // array
   time: "",             // str, content, none
   abstract: none,       // str, content, none
   keywords: (),         // array
-  font-size: 11pt,      // length
+  font-size: auto,      // 11pt for documents; 20pt for beamer
   fonts: (:),          // dictionary: font families by role
+  beamer: (:),         // dictionary: presentation options
   contents: false,      // bool
   content-depth: 2,     // int
   matheq-depth: 2,      // int: (1, 2, 3)
@@ -183,7 +184,7 @@ Scripst template provides some parameters to customise the style of the document
   ref-color: red,       // color
   header: true,         // bool
   lang: "en",           // str: ("zh", "en", "fr", ...)
-  par-indent: 0em,      // length
+  par-indent: auto,     // documents: 2em; beamer: 0em
   par-leading: none,    // length
   par-spacing: none,    // length
   body,
@@ -200,20 +201,21 @@ Scripst template provides some parameters to customise the style of the document
   three-line-table[
     | Parameter | Type | Optional Values | Default Value | Description |
     | --- | --- | --- | --- | --- |
-    | template | `str` | `("article", "book", "report")` | `"article"` | Template type |
+    | template | `str` | `("article", "book", "report", "beamer")` | `"article"` | Template type |
   ],
   numbering: none,
 )
 
 #newpara()
 
-Currently, Scripst provides three templates: article, book, and report.
+Scripst provides four templates: article, book, report, and beamer. Version 1.2.0 requires Typst 0.15.0 or newer.
 
 This template uses the article template.
 
 - article: Suitable for daily documents, assignments, tiny notes, light papers, etc.
 - book: Suitable for books, course notes, etc.
 - report: Suitable for lab reports, papers, etc.
+- beamer: Academic presentations powered by Touying 0.8.0 / Stargazer. See `docs/beamer.md` for options and `docs/locale/beamer-en.typ` for a complete example.
 
 Passing other strings will cause a `panic`: `"Unknown template!"`.
 
@@ -348,14 +350,14 @@ Keywords will only appear at the beginning of the document if `abstract` is not 
   three-line-table[
     | Parameter | Type | Default Value | Description |
     | --- | --- | --- | --- |
-    | font-size | `length`| `11pt` | Document font size |
+    | font-size | `length` / `auto` | `auto` | Document font size |
   ],
   numbering: none,
 )
 
 #newpara()
 
-The font size of the document. The default is `11pt`.
+The default `auto` uses `11pt` for article/book/report and `20pt` for beamer.
 
 Refer to the `length` type values, you can pass `pt`, `mm`, `cm`, `in`, `em`, etc.
 
@@ -527,14 +529,14 @@ Accepts #link("https://en.wikipedia.org/wiki/ISO_639-1")[ISO_639-1] encoding for
   three-line-table[
     | Parameter | Type | Default | Description |
     | --- | --- | --- | --- |
-    | par-indent | `length` | `2em` | First-line paragraph indentation |
+    | par-indent | `length` / `auto` | `auto` | First-line paragraph indentation |
   ],
   numbering: none,
 )
 
 #newpara()
 
-Controls first-line paragraph indentation. Default: `2em`. Set to `0em` to disable indentation.
+Controls first-line paragraph indentation. The default `auto` uses `2em` for article/book/report and `0em` for beamer. Set to `0em` to disable indentation explicitly.
 
 == par-leading
 
