@@ -86,12 +86,12 @@ typst init @preview/scripst:1.2.0 project_name
 ```
 ~/.local/share/typst/packages/preview/scripst/1.2.0               # in Linux
 %APPDATA%\typst\packages\preview\scripst\1.2.0                    # in Windows
-~/Library/Application Support/typst/packages/local/scripst/1.2.0  # macOS
+~/Library/Application Support/typst/packages/preview/scripst/1.2.0  # macOS
 ```
 你可以执行指令
 ```bash
 cd ~/.local/share/typst/packages/preview/scripst
-git clone https://github.com/An-314/scripst.git 1.2.0
+git clone --branch v1.2.0 --depth 1 https://github.com/An-314/scripst.git 1.2.0
 ```
 如果是这样的目录结构，那么在文档中引入模板文件的方式应该是：
 ```typst

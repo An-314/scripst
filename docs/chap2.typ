@@ -209,9 +209,11 @@ datetime.today().display()
 
   一个计数器的深度为`1`时，计数器的编号会是全局的，不会受到章节的影响，即`1`, `2`, `3`, ...。
 
-  一个计数器的深度为`2`时，计数器的编号会受到一级标题的影响，即`1.1`, `1.2`, `2.1`, `2.2`, ...。但如果此时整个文档没有一级标题，Scripst 会自动将其转化为深度为`1`的情况。
+  一个计数器的深度为`2`时，计数器的编号会受到一级标题的影响，即`1.1`, `1.2`, `2.1`, `2.2`, ...。在尚无一级标题的地方，缺失的章节层级用 `0` 补齐，例如 `0.1`、`0.2`。
 
-  一个计数器的深度为`3`时，计数器的编号会受到一级标题和二级标题的影响，即`1.1.1`, `1.1.2`, `1.2.1`, `1.2.2`, `2.1.1`, ...。但如果此时整个文档没有二级标题但有一级标题，Scripst 会自动将其转化为深度为`2`的情况；如果没有一级标题，Scripst 会自动将其转化为深度为`1`的情况。
+  一个计数器的深度为`3`时，计数器的编号会受到一级标题和二级标题的影响，即`1.1.1`, `1.1.2`, `1.2.1`, `1.2.2`, `2.1.1`, ...。只有第一章、没有二级标题时会显示 `1.0.1`；尚无章节标题时会显示 `0.0.1`。
+
+  Ratchet 不会因为缺少标题而自动降低深度。若希望短文或幻灯片使用 `1`、`2` 这样的全局编号，请显式将相应深度设为 `1`。
 ]
 #newpara()
 
@@ -398,17 +400,17 @@ PDF 链接边框和鼠标悬浮反馈由 PDF 阅读器控制，Typst 目前不�
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | par-leading | `length` | 跟随`lang`设置 | 段落内的行间距 |
+    | par-leading | `length`, `none` | `none` | 段落内的行间距 |
   ],
   numbering: none,
 )
 
 #newpara()
 
-段落内间距。在中文文档中默认是`1em`。（中文文档可以设置为`0.5em`附近来接近 LaTeX 的默认效果。）
+段落内间距。`none` 在 article、book、report 中根据语言解析，中文默认为 `1em`；在 beamer 中固定解析为 `0.65em`。也可以显式传入长度。（中文文章可以设置为 `0.5em` 附近来接近 LaTeX 的默认效果。）
 
 #note(count: false)[
-  默认值会随着语言的选择而变化，具体情况见下表
+  article、book、report 的语言默认值见下表：
   #three-line-table[
     | 语言类型 | 默认值 |
     | --- | --- |
@@ -426,17 +428,17 @@ PDF 链接边框和鼠标悬浮反馈由 PDF 阅读器控制，Typst 目前不�
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | par-spacing | `length` | 跟随`lang`设置 | 段落间距 |
+    | par-spacing | `length`, `none` | `none` | 段落间距 |
   ],
   numbering: none,
 )
 
 #newpara()
 
-段落间距。在中文文档中默认是`1.2em`。
+段落间距。`none` 在 article、book、report 中根据语言解析，中文默认为 `1.2em`；在 beamer 中固定解析为 `0.7em`。也可以显式传入长度。
 
 #note(count: false)[
-  默认值会随着语言的选择而变化，具体情况见下表
+  article、book、report 的语言默认值见下表：
   #three-line-table[
     | 语言类型 | 默认值 |
     | --- | --- |
@@ -454,13 +456,13 @@ PDF 链接边框和鼠标悬浮反馈由 PDF 阅读器控制，Typst 目前不�
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | numbering-format | `str`, `function`, `none` | `"1.1"` | 章节标题的编号格式 |
+    | numbering-format | `str`, `function`, `none` | `none` | 章节标题的编号格式 |
   ],
   numbering: none,
 )
 #newpara()
 
-章节标题的编号格式。默认为`"1.1"`，即`1.1`、`2.1`、`3.1`等。
+章节标题的编号格式。主函数默认值为 `none`：article、book、report 将其解析为 `"1.1"`；beamer 默认不显示标题编号。
 
 你可以传入一个函数来实现自定义的编号格式，例如：
 
@@ -479,19 +481,21 @@ PDF 链接边框和鼠标悬浮反馈由 PDF 阅读器控制，Typst 目前不�
   three-line-table[
     | 参数 | 类型 | 默认值 | 说明 |
     | --- | --- | --- | --- |
-    | chapter-numbering-format | `str`, `function`, `none` | 根据语言而定 | 章节标题的编号格式 |
+    | chapter-numbering-format | `str`, `function`, `none` | `none` | 一级标题的编号格式 |
   ],
   numbering: none,
 )
 
+默认 `none` 在 article、book、report 中按语言选择一级标题格式；beamer 不使用此参数。
+
 #note[
-  目前 typst 如下的bug，当你以字符串的形式传入 `chapter-numbering-format` 时，如果字符串内含`"i"`，typst 会自动匹配当成罗马数字的格式来处理，例如`"i"`、`"ii"`、`"iii"`等。这个问题无法通过转义来解决。
+  Typst 的编号字符串会将 `"i"` 等字符识别为编号占位符，而非普通文字。
 
   所以当你需要传入含有 `i` 的pattern时，建议使用函数的方式来传入，例如：
   ```typst
   #let custom-numbering = (n, ..it) => "Unit " + str(n)
   ```
-  这样就可以避免 typst 的 bug 了。
+  这样可以明确区分普通文字与编号。
 ]
 
 #newpara()

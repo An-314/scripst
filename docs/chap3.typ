@@ -200,7 +200,7 @@ typst 为列举提供了简单的环境，如所示：
 
 只要你觉得需要换行，就可以使用`#newpara()`函数。
 
-== labelset
+== labelset <scripst-preview-labelset>
 
 得益于 typst 中的 `label` 函数，除了给这种类型添加标签外，还可以通过 label 方便地为所引用的对象设置样式。
 
@@ -263,6 +263,8 @@ $
 
 #newpara()
 
+#pagebreak(weak: true)
+
 == 由 Ratchet 驱动的统一编号 <ratchet>
 
 Scripst 1.2.0 使用 #link("https://github.com/An-314/ratchet")[Ratchet 0.0.4] 作为统一编号引擎。Ratchet 负责公式、图片、表格、代码块以及自定义 `figure(kind: ...)` 计数器族的编号、标题层级重置和交叉引用；Scripst 的所有 countblock 也建立在这套机制之上。
@@ -275,7 +277,7 @@ Scripst 1.2.0 使用 #link("https://github.com/An-314/ratchet")[Ratchet 0.0.4] �
 
 #newpara()
 
-== countblock
+== countblock <scripst-preview-countblocks>
 
 #definition(subname: [countblock])[
 
@@ -319,7 +321,7 @@ Scripst 默认提供如下 countblock。表中的深度 `2` 表示跟随一级�
 这些函数的参数和效果是一样的，只是计数器的名称不同。
 ```typst
 #definition(
-  subname: [],
+  subname: "",
   count: true,
   lab: none,
   breakable: true,
@@ -331,7 +333,7 @@ Scripst 默认提供如下 countblock。表中的深度 `2` 表示跟随一级�
 #three-line-table[
   | 参数 | 类型 | 默认值 | 说明 |
   | --- | --- | --- | --- |
-  | `subname` | `array` | `[]` | 该条目的名称 |
+  | `subname` | `str`, `content` | `""` | 该条目的名称 |
   | `count` | `bool` | `true` | 是否计数 |
   | `lab` | `str` | `none` | 该条目的标签 |
   | `breakable` | `bool` | `true` | 本次调用的块是否允许跨页 |
@@ -616,7 +618,7 @@ Fermat 并没有对 @fermat 给出公开的证明。
   | --- | --- | --- | --- |
   | `name` | `str` | `` | 计数器的名称 |
   | `cb` | `dict` | `` | 计数器字典 |
-  | `subname` | `str` | `` | 该条目的名称 |
+  | `subname` | `str`, `content` | `""` | 该条目的名称 |
   | `count` | `bool` | `true` | 是否计数 |
   | `lab` | `str` | `none` | 该条目的标签 |
   | `breakable` | `bool` | `true` | 本次调用的块是否允许跨页 |
@@ -656,7 +658,7 @@ Fermat 并没有对 @fermat 给出公开的证明。
 
 Scripst 通过 `add-countblock` 扩展字典，通过 `countblocks` 将整个字典一次性交给模板，再通过 `countblock` 创建具体的块。编号、重置和引用都由 Ratchet 统一管理。
 
-#example(count: false)[
+#example(count: false, breakable: false)[
 
   综合示例：默认块使用深度 `3`，仅把 `remark` 从 `prop` 共享族中拆出并设为深度 `1`，再创建深度 `2` 的 `algorithm`。
 
@@ -676,6 +678,8 @@ Scripst 通过 `add-countblock` 扩展字典，通过 `countblocks` 将整个字
 ]
 
 #newpara()
+
+#pagebreak(weak: true)
 
 == 一些其他的块
 

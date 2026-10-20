@@ -6,7 +6,7 @@ Scripst
 
 <div align="center">
 
-[![Current Version](https://img.shields.io/badge/version-v1.2.0--dev-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases)
+[![Current Version](https://img.shields.io/badge/version-v1.2.0-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases)
 [![MIT License badge](https://img.shields.io/badge/license-MIT-turquoise.svg)](./LICENSE)
 [![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst)
 [![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
@@ -38,6 +38,7 @@ Scripst
   - [Article](#article)
   - [Book](#book)
   - [Report](#report)
+  - [Beamer](#beamer)
 - [📜 Contributing](#-contributing)
 - [🔗 Dependencies](#-dependencies)
 - [📝 License](#-license)
@@ -248,9 +249,13 @@ and `outline-slide()` explicitly; article options such as `contents`, `abstract`
 `preface`, and `header` do not generate slide content. Put `pause` **between**
 Scripst blocks: animation inside a countblock is not currently supported.
 
-See the [configuration guide](./docs/beamer.md), [English demo source](./docs/locale/beamer-en.typ),
-and [Chinese demo source](./docs/beamer.typ). The demos use local source imports
-and can be compiled from the repository root with `typst compile --root . docs/locale/beamer-en.typ`.
+Read the full slide manuals: [English PDF](./docs/locale/builds/beamer-en.pdf)
+([source](./docs/locale/beamer-en.typ)) and [Chinese PDF](./docs/builds/beamer.pdf)
+([source](./docs/beamer.typ)). They cover parameters, fonts, columns, overlays,
+numbered blocks, and theme customization. A [configuration guide](./docs/beamer.md)
+and short [English](./docs/examples/beamer-en.typ) / [Chinese](./docs/examples/beamer.typ)
+quantum-mechanics demos are also included. Run `make doc` for all manuals or
+`make demo` for the short examples; both build against this checkout.
 
 ## 🔧 Template Parameters
 
@@ -275,11 +280,19 @@ and can be compiled from the repository root with `typst compile --root . docs/l
 | `countblocks` | `dict` | `cb` | Countblock registry configured by Ratchet |
 | `countblock-lang` | `str` | `"en"` | Language of built-in countblock names |
 | `matheq-outline` | `str`, `function` | `"(1.1)"` | Equation numbering pattern |
+| `counter-outline` | `str`, `function` | `"1.1"` | Figure and countblock numbering pattern |
+| `matheq-color` | `color` | `red` | Equation reference color |
+| `counter-color` | `color` | `blue` | Figure and countblock reference color |
 | `link-color` | `color` | `blue` | Hyperlink text color; beamer applies it to external URLs, preserving theme navigation colors |
 | `ref-color` | `color` | `red` | Ordinary `@label` reference color |
 | `header` | `bool` | `true` | Enable header |
 | `lang` | `str` | `"zh"` | Language (`"zh"`, `"en"`, `"fr"`, etc.) |
 | `par-indent` | `length`, `auto` | `auto` | `2em` for documents; `0em` for beamer |
+| `par-leading` | `length`, `none` | `none` | Language-dependent for documents; `0.65em` for beamer |
+| `par-spacing` | `length`, `none` | `none` | Language-dependent for documents; `0.7em` for beamer |
+| `numbering-format` | `str`, `function`, `none` | `none` | Document headings resolve to `"1.1"`; beamer leaves visible headings unnumbered |
+| `chapter-numbering-format` | `str`, `function`, `none` | `none` | Document chapter headings follow the language; not used by beamer |
+| `offset` | `int` | `0` | Chapter counter offset; minimum `-1` |
 
 * * *
 
@@ -402,6 +415,20 @@ So when you think the layout between paragraphs is not pretty enough, try using 
 
 [Report Demo](./docs/builds/report.pdf) *(Only in Simplified Chinese)*
 
+### Beamer
+
+<p align="center">
+  <img src="./previews/beamer-en-1.png" alt="Beamer guide cover" width="48%" />
+  <img src="./previews/beamer-en-2.png" alt="Beamer guide outline" width="48%" />
+</p>
+
+[English slide manual](./docs/locale/builds/beamer-en.pdf) ·
+[Chinese slide manual](./docs/builds/beamer.pdf) ·
+[Short runnable demos](./docs/examples/)
+
+The manuals are themselves built with Scripst's Beamer template and include
+real columns, numbered blocks, equations, tables, and incremental reveals.
+
 ## 📜 Contributing
 
 Feel free to submit issues or pull requests! If you have any improvement suggestions, join the discussion.
@@ -470,18 +497,18 @@ Manually download Scripst and store it in:
 Alternatively, run the following command:  
 ```bash  
 cd {data-dir}/typst/packages/preview/scripst  
-git clone https://github.com/An-314/scripst.git 1.2.0
+git clone --branch v1.2.0 --depth 1 https://github.com/An-314/scripst.git 1.2.0
 ```  
 Here, `data-dir` refers to Typst's data directory (e.g., `~/.local/share/` on Linux, `%APPDATA%\` on Windows, or `~/Library/Application Support/` on macOS).  
 
 Then import the template directly in your Typst file:  
 ```typst  
-#import "@local/scripst:1.2.0": *
+#import "@preview/scripst:1.2.0": *
 ```  
 
 Use `typst init` to create a project quickly:  
 ```bash  
-typst init @local/scripst:1.2.0 project_name
+typst init @preview/scripst:1.2.0 project_name
 ```  
 
 Scripst offers several adjustable settings, i.e. font, colour palette, default countblock name in `./src/configs.typ`. You can adjust them per your need.

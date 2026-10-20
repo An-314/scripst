@@ -41,7 +41,7 @@
   time: datetime.today().display(),
   abstract: [摘要],
   keywords: ("关键词1", "关键词2", "关键词3"),
-  preface: [前言]
+  preface: [前言],
   contents: true,
   content-depth: 2,
   matheq-depth: 2,
@@ -61,21 +61,38 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 
 ```typst
 #let scripst(
-  template: "book",  // str: ("article", "book", "report", "beamer")
-  title: "",            // str, content, none
-  info: "",             // str, content, none
-  author: (),           // str, content, array, none
-  time: "",             // str, content, none
-  abstract: none,       // str, content, none
-  keywords: (),         // array
-  preface: none,        // str, content, none
-  font-size: auto,      // documents: 11pt; beamer: 20pt
-  fonts: (:),          // dictionary: font families by role
-  beamer: (:),         // dictionary: presentation options
-  contents: false,      // bool
-  content-depth: 2,     // int
-  matheq-depth: 2,      // int: (1, 2)
-  lang: "zh",           // str: ("zh", "en", "fr", ...)
+  template: "article",           // "article", "book", "report", "beamer"
+  title: "",                     // str, content, none
+  info: "",                      // str, content, none
+  author: (),                    // str, content, array, none
+  time: "",                      // str, content, none
+  abstract: none,                // str, content, none
+  keywords: (),                  // array
+  preface: none,                 // str, content, none
+  font-size: auto,               // documents: 11pt; beamer: 20pt
+  fonts: (:),                    // dictionary: font families by role
+  beamer: (:),                   // dictionary: presentation options
+  contents: false,               // bool
+  content-depth: 2,              // int
+  matheq-depth: 2,               // int: (1, 2, 3)
+  counter-depth: 2,              // int: (1, 2, 3)
+  cb-counter-depth: 2,           // int: (1, 2, 3)
+  countblocks: cb,               // dictionary
+  countblock-lang: "en",         // str
+  matheq-outline: "(1.1)",        // str, function
+  counter-outline: "1.1",        // str, function
+  matheq-color: red,             // color
+  counter-color: blue,           // color
+  link-color: blue,              // color
+  ref-color: red,                // color
+  header: true,                  // bool
+  lang: "zh",                    // str
+  par-indent: auto,              // documents: 2em; beamer: 0em
+  par-leading: none,             // length, none
+  par-spacing: none,             // length, none
+  numbering-format: none,        // str, function, none
+  chapter-numbering-format: none, // str, function, none
+  offset: 0,                     // int
   body,
 ) = {
   ...
@@ -84,7 +101,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 
 #newpara()
 
-== tempalate
+== template
 
 #figure(
   three-line-table[
@@ -104,7 +121,7 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 - article：适用于日常文档、作业、小型笔记、小型论文等
 - book：适用于书籍、课程笔记等
 - report：适用于实验报告、论文等
-- beamer：基于 Touying 0.8.0 / Stargazer 的学术演示；配置详见 `docs/beamer.md`，完整示例见 `docs/beamer.typ`
+- beamer：基于 Touying 0.8.0 / Stargazer 的学术演示；配置详见 `docs/beamer.md`，完整幻灯片手册见 `docs/beamer.typ`，短示例见 `docs/examples/beamer.typ`
 
 此外的字符串传入会导致`panic`：`"Unknown template!"`。
 

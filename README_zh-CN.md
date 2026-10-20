@@ -6,7 +6,7 @@ Scripst
 
 <div align="center">
 
-[![Current Version](https://img.shields.io/badge/version-v1.2.0--dev-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases)
+[![Current Version](https://img.shields.io/badge/version-v1.2.0-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases)
 [![MIT License badge](https://img.shields.io/badge/license-MIT-turquoise.svg)](./LICENSE)
 [![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst/zh)
 [![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
@@ -38,6 +38,7 @@ Scripst
   - [article 文档](#article-文档)
   - [book 文档](#book-文档)
   - [report 文档](#report-文档)
+  - [beamer 幻灯片](#beamer-幻灯片)
 - [📜 贡献](#-贡献)
 - [🔗 依赖](#-依赖)
 - [📝 许可证协议](#-许可证协议)
@@ -250,8 +251,11 @@ typst init @preview/scripst:1.2.0 project_name
 `contents`、`abstract`、`preface`、`header` 不会自动生成幻灯片内容。
 请把 `pause` 放在 Scripst **块与块之间**，暂不支持在 countblock 内部逐步显示。
 
-详见[配置说明](./docs/beamer.md)、[中文演示源码](./docs/beamer.typ)和[英文演示源码](./docs/locale/beamer-en.typ)。
-示例通过相对路径引用当前源码；在仓库根目录运行 `typst compile --root . docs/beamer.typ` 即可编译。
+完整幻灯片手册：[中文 PDF](./docs/builds/beamer.pdf)（[源码](./docs/beamer.typ)）、
+[英文 PDF](./docs/locale/builds/beamer-en.pdf)（[源码](./docs/locale/beamer-en.typ)）。
+手册涵盖参数、字体、分栏、动画、编号块和主题定制。另外保留了[配置说明](./docs/beamer.md)，
+以及量子力学短示例（[中文](./docs/examples/beamer.typ) / [英文](./docs/examples/beamer-en.typ)）。
+在仓库根目录运行 `make doc` 构建全部手册，或运行 `make demo` 构建短示例；两者均使用当前检出的源码。
 
 ## 🔧 模板参数
 
@@ -276,13 +280,19 @@ typst init @preview/scripst:1.2.0 project_name
 | `countblocks` | `dict` | `cb` | 交由 Ratchet 配置的 countblock 字典 |
 | `countblock-lang` | `str` | `"en"` | 内置 countblock 名称的语言 |
 | `matheq-outline` | `str`, `function` | `"(1.1)"` | 数学公式编号格式 |
+| `counter-outline` | `str`, `function` | `"1.1"` | figure 和 countblock 编号格式 |
+| `matheq-color` | `color` | `red` | 公式引用颜色 |
+| `counter-color` | `color` | `blue` | figure 和 countblock 引用颜色 |
 | `link-color` | `color` | `blue` | 超链接文字颜色；beamer 仅应用于外部 URL，保留主题导航配色 |
 | `ref-color` | `color` | `red` | 普通 `@label` 引用颜色 |
 | `header` | `bool` | `true` | 是否生成页眉 |
 | `lang` | `str` | `"zh"` | 语言 (`"zh"`, `"en"`, `"fr"` 等) |
 | `par-indent` | `length`, `auto` | `auto` | 文档为 `2em`，beamer 为 `0em` |
-| `par-leading` | `length` | 文档跟随语言；beamer 为 `0.65em` | 行间距 |
-| `par-spacing` | `length` | 文档跟随语言；beamer 为 `0.7em` | 段落间距 |
+| `par-leading` | `length`, `none` | `none` | 文档跟随语言；beamer 为 `0.65em` |
+| `par-spacing` | `length`, `none` | `none` | 文档跟随语言；beamer 为 `0.7em` |
+| `numbering-format` | `str`, `function`, `none` | `none` | 文档标题解析为 `"1.1"`；beamer 默认不显示标题编号 |
+| `chapter-numbering-format` | `str`, `function`, `none` | `none` | 文档一级标题按语言解析；不用于 beamer |
+| `offset` | `int` | `0` | 章节计数偏移，最小值为 `-1` |
 
 ---
 
@@ -399,6 +409,19 @@ $
 
 [Report 示例](./docs/builds/report.pdf)
 
+### beamer 幻灯片
+
+<p align="center">
+  <img src="./previews/beamer-1.png" alt="Beamer 手册封面" width="48%" />
+  <img src="./previews/beamer-2.png" alt="Beamer 手册目录" width="48%" />
+</p>
+
+[中文完整手册](./docs/builds/beamer.pdf) ·
+[英文完整手册](./docs/locale/builds/beamer-en.pdf) ·
+[简短可运行示例](./docs/examples/)
+
+手册本身使用 Scripst 的 Beamer 模板排版，包含实际的分栏、编号块、公式、表格和逐步显示效果。
+
 ## 📜 贡献
 
 欢迎提交 Issue 或 Pull Request！如果有改进建议，欢迎加入讨论。
@@ -470,7 +493,7 @@ project/
 
 ```bash 
 cd {data-dir}/typst/packages/preview/scripst
-git clone https://github.com/An-314/scripst.git 1.2.0
+git clone --branch v1.2.0 --depth 1 https://github.com/An-314/scripst.git 1.2.0
 ```
 
 其中`data-dir`为Typst的数据目录，如上述Linux系统中的`~/.local/share/`，Windows系统中的`%APPDATA%\`，macOS系统中的`~/Library/Application Support/`。
@@ -478,7 +501,7 @@ git clone https://github.com/An-314/scripst.git 1.2.0
 然后在 Typst 文件中直接引入：
 
 ```typst
-#import "@local/scripst:1.2.0": *
+#import "@preview/scripst:1.2.0": *
 ```
 
 即可使用 Scripst 模板。
@@ -486,7 +509,7 @@ git clone https://github.com/An-314/scripst.git 1.2.0
 使用 `typst init` 快速创建项目：
 
 ```bash
-typst init @local/scripst:1.2.0 project_name
+typst init @preview/scripst:1.2.0 project_name
 ```
 
 字体可通过主函数的 `fonts` 字典配置；配色方案和默认 countblock 定义可参见 `src/configs.typ`。

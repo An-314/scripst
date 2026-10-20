@@ -306,21 +306,29 @@ Touying 0.8.0 编译验证。
 ]
 ````
 
-## 演示源码与构建
+## 手册、短示例与构建
 
-- [中文演示](./beamer.typ)
-- [英文演示](./locale/beamer-en.typ)
+- 完整幻灯片手册：[中文 PDF](./builds/beamer.pdf)（[源码](./beamer.typ)）、[英文 PDF](./locale/builds/beamer-en.pdf)（[源码](./locale/beamer-en.typ)）。
+- 独立量子力学短示例：[中文](./examples/beamer.typ)、[英文](./examples/beamer-en.typ)。
 
-两份示例使用相对路径引用当前 `src/main.typ`，不依赖已安装的 Scripst 1.2.0。
-在仓库根目录运行：
+正式手册与 article、book、report 一同维护，覆盖参数默认值、字体、页面组织、
+分栏、动画、编号与主题配置；短示例适合直接复制修改。
+这些源码通过相对路径引用当前 `src/main.typ`。在仓库根目录运行：
 
 ```sh
-typst compile --root . docs/beamer.typ
-typst compile --root . docs/locale/beamer-en.typ
+make doc       # 全部中英文手册
+make demo      # 独立短示例
+make preview thumbnail
+
+# 也可单独构建讲义模式（每个逻辑页保留最终状态）
+typst compile --root . --input handout=true docs/beamer.typ /tmp/beamer-handout.pdf
 ```
 
-示例包含五个逻辑页，其中一页逐步显示一次，因此普通模式输出六页 PDF；
-改为 `handout: true` 后为五页。
+构建工具需要 Python 3.11+、Typst 0.15.0+；预览图缩放还需要 ImageMagick。
+`make` 会使用临时包路径将当前检出的 Scripst 注册为清单中的版本，
+同时保留用户安装的其他包，不会改写已有安装。
+这套构建流程已在 Linux 验证。构建脚本使用符号链接，Windows 需要开发者模式或相应权限；Windows 构建尚未实测。
+两份短示例各包含五个逻辑页，其中一页逐步显示一次，因此普通模式输出六页 PDF。
 
 ## 上游文档
 
