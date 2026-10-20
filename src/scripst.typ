@@ -15,8 +15,9 @@
   abstract: none,
   keywords: (),
   preface: none,
-  font-size: 11pt,
+  font-size: auto,
   fonts: (:),
+  beamer: (:),
   contents: false,
   content-depth: 2,
   matheq-depth: 2,
@@ -32,7 +33,7 @@
   ref-color: red,
   header: true,
   lang: "zh",
-  par-indent: 2em,
+  par-indent: auto,
   par-leading: none,
   par-spacing: none,
   numbering-format: none,
@@ -41,6 +42,19 @@
   body,
 ) = {
   let fonts = resolve-fonts(fonts, template: template)
+  let font-size = if font-size == auto { if template == "beamer" { 20pt } else { 11pt } } else { font-size }
+  let par-indent = if par-indent == auto { if template == "beamer" { 0em } else { 2em } } else { par-indent }
+  if template == "beamer" {
+    import "beamer.typ": mkbeamer
+    return mkbeamer(
+      beamer, fonts, font-size, title, info, author, time, lang,
+      par-indent, par-leading, par-spacing,
+      countblocks, countblock-lang, matheq-depth, counter-depth, cb-counter-depth,
+      matheq-outline, counter-outline, matheq-color, counter-color, link-color, ref-color,
+      numbering-format, offset,
+      body,
+    )
+  }
   // Ratchet installs a contextual state anchor before rendering the body.
   // Configure article pages first so that changing page settings afterwards
   // does not leave the anchor on an otherwise blank first page.

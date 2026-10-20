@@ -5,6 +5,9 @@
 从 Scripst 1.2.0 开始，可以通过主函数的 `fonts` 字典配置字体，无需修改包源码。
 默认值是空字典 `(:)`：只覆盖传入的项，其余保留默认值。
 `font-size` 仍用于设置字号，`fonts` 只负责字体族。
+行内代码和代码块的字号均跟随所在位置的正文，不再固定为 `10pt` 或额外缩小。
+局部 `#set text(size: ...)` 也会生效；若需单独缩小代码，可在模板 show 规则之后写
+`#show raw: set text(size: 9pt)`，或用 `raw.where(block: true)` 只调整代码块。
 
 ```typst
 #import "@preview/scripst:1.2.0": *
@@ -34,7 +37,7 @@
   table.header([字段], [用途], [默认值 / 继承关系]),
   [`body`], [正文、普通列表和页码], [S],
   [`title`], [文档标题 / 封面标题], [H],
-  [`info`], [副标题], [article 跟随 `author`；book/report 跟随 `title`],
+  [`info`], [副标题], [article 跟随 `author`；book/report/beamer 跟随 `title`],
   [`author`], [作者], [K],
   [`time`], [日期], [跟随 `body`],
   [`abstract`], [摘要正文], [跟随 `body`],
@@ -45,7 +48,7 @@
   [`countblock`], [定理等块的正文，以及 `blankblock`], [S],
   [`caption`], [图注及 figure 基础字体], [K],
   [`table`], [表格内容], [跟随 `body`],
-  [`header`], [页眉], [`("Linux Libertine", "SimSun")`],
+  [`header`], [文档页眉；beamer 页脚标题], [`("Linux Libertine", "SimSun")`],
   [`strong`], [粗体文字，包括块标题和目录一级条目], [H],
   [`emph`], [强调文字，包括 proof/solution 标题], [K],
   [`quote`], [引用块（保留斜体效果）], [K],

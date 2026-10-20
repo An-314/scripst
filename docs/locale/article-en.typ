@@ -115,12 +115,12 @@ For example, the template should be placed in
 ```
 ~/.local/share/typst/packages/preview/scripst/1.2.0               # in Linux
 %APPDATA%\typst\packages\preview\scripst\1.2.0                    # in Windows
-~/Library/Application Support/typst/packages/local/scripst/1.2.0  # macOS
+~/Library/Application Support/typst/packages/preview/scripst/1.2.0  # macOS
 ```
 You can execute the following command:
 ```bash
 cd ~/.local/share/typst/packages/preview/scripst/
-git clone https://github.com/An-314/scripst.git 1.2.0
+git clone --branch v1.2.0 --depth 1 https://github.com/An-314/scripst.git 1.2.0
 ```
 If the directory structure is like this, then the way to import the template files in the document should be:
 ```typst
@@ -161,31 +161,38 @@ Scripst template provides some parameters to customise the style of the document
 
 ```typst
 #let scripst(
-  template: "article",  // str: ("article", "book", "report")
-  title: "",            // str, content, none
-  info: "",             // str, content, none
-  author: (),           // array
-  time: "",             // str, content, none
-  abstract: none,       // str, content, none
-  keywords: (),         // array
-  font-size: 11pt,      // length
-  fonts: (:),          // dictionary: font families by role
-  contents: false,      // bool
-  content-depth: 2,     // int
-  matheq-depth: 2,      // int: (1, 2, 3)
-  counter-depth: 3,     // int: (1, 2, 3)
-  cb-counter-depth: 2,  // int: (1, 2, 3)
-  countblocks: cb,      // dict
-  countblock-lang: "en", // str: ("en", "zh", "fr", ...)
-  matheq-outline: "(1.1)", // str, function
-  counter-outline: "1.1", // str, function
-  link-color: blue,     // color
-  ref-color: red,       // color
-  header: true,         // bool
-  lang: "en",           // str: ("zh", "en", "fr", ...)
-  par-indent: 0em,      // length
-  par-leading: none,    // length
-  par-spacing: none,    // length
+  template: "article",           // "article", "book", "report", "beamer"
+  title: "",                     // str, content, none
+  info: "",                      // str, content, none
+  author: (),                    // str, content, array, none
+  time: "",                      // str, content, none
+  abstract: none,                // str, content, none
+  keywords: (),                  // array
+  preface: none,                 // str, content, none
+  font-size: auto,               // documents: 11pt; beamer: 20pt
+  fonts: (:),                    // dictionary: font families by role
+  beamer: (:),                   // dictionary: presentation options
+  contents: false,               // bool
+  content-depth: 2,              // int
+  matheq-depth: 2,               // int: (1, 2, 3)
+  counter-depth: 2,              // int: (1, 2, 3)
+  cb-counter-depth: 2,           // int: (1, 2, 3)
+  countblocks: cb,               // dictionary
+  countblock-lang: "en",         // str
+  matheq-outline: "(1.1)",        // str, function
+  counter-outline: "1.1",        // str, function
+  matheq-color: red,             // color
+  counter-color: blue,           // color
+  link-color: blue,              // color
+  ref-color: red,                // color
+  header: true,                  // bool
+  lang: "zh",                    // str
+  par-indent: auto,              // documents: 2em; beamer: 0em
+  par-leading: none,             // length, none
+  par-spacing: none,             // length, none
+  numbering-format: none,        // str, function, none
+  chapter-numbering-format: none, // str, function, none
+  offset: 0,                     // int
   body,
 ) = {
   ...
@@ -200,20 +207,21 @@ Scripst template provides some parameters to customise the style of the document
   three-line-table[
     | Parameter | Type | Optional Values | Default Value | Description |
     | --- | --- | --- | --- | --- |
-    | template | `str` | `("article", "book", "report")` | `"article"` | Template type |
+    | template | `str` | `("article", "book", "report", "beamer")` | `"article"` | Template type |
   ],
   numbering: none,
 )
 
 #newpara()
 
-Currently, Scripst provides three templates: article, book, and report.
+Scripst provides four templates: article, book, report, and beamer. Version 1.2.0 requires Typst 0.15.0 or newer.
 
 This template uses the article template.
 
 - article: Suitable for daily documents, assignments, tiny notes, light papers, etc.
 - book: Suitable for books, course notes, etc.
 - report: Suitable for lab reports, papers, etc.
+- beamer: Academic presentations powered by Touying 0.8.0 / Stargazer. See `docs/beamer.md` for options and `docs/locale/beamer-en.typ` for a complete example.
 
 Passing other strings will cause a `panic`: `"Unknown template!"`.
 
@@ -348,14 +356,14 @@ Keywords will only appear at the beginning of the document if `abstract` is not 
   three-line-table[
     | Parameter | Type | Default Value | Description |
     | --- | --- | --- | --- |
-    | font-size | `length`| `11pt` | Document font size |
+    | font-size | `length` / `auto` | `auto` | Document font size |
   ],
   numbering: none,
 )
 
 #newpara()
 
-The font size of the document. The default is `11pt`.
+The default `auto` uses `11pt` for article/book/report and `20pt` for beamer.
 
 Refer to the `length` type values, you can pass `pt`, `mm`, `cm`, `in`, `em`, etc.
 
@@ -427,11 +435,11 @@ The counter depth for images (`image`), tables (`table`), and code blocks (`raw`
 
   When a counter has depth `1`, its numbering will be global and unaffected by chapters/sections, i.e., `1`, `2`, `3`, ...
 
-  When a counter has depth `2`, its numbering will follow level-1 headings, i.e., `1.1`, `1.2`, `2.1`, `2.2`, ... However, if the document contains no level-1 headings, Scripst will automatically treat it as depth `1`.
+  When a counter has depth `2`, its numbering follows level-1 headings, i.e., `1.1`, `1.2`, `2.1`, `2.2`, ... Before any level-1 heading, the missing chapter level is padded with `0`, giving `0.1`, `0.2`, etc.
 
-  When a counter has depth `3`, its numbering will follow level-1 and level-2 headings, i.e., `1.1.1`, `1.1.2`, `1.2.1`, `1.2.2`, `2.1.1`, ... However:
-  - If the document has level-1 headings but no level-2 headings, Scripst will treat it as depth `2`.
-  - If the document has no level-1 headings, Scripst will treat it as depth `1`.
+  When a counter has depth `3`, its numbering follows level-1 and level-2 headings, i.e., `1.1.1`, `1.1.2`, `1.2.1`, `1.2.2`, `2.1.1`, ... In chapter 1 before a level-2 heading, numbering starts at `1.0.1`; before any chapter headings, it starts at `0.0.1`.
+
+  Ratchet does not automatically reduce the depth when headings are missing. For short documents or slides needing global `1`, `2`, ... numbering, explicitly set the relevant depth to `1`.
 ]
 
 #newpara()
@@ -464,6 +472,14 @@ A custom block's `info` may also be a language dictionary such as `(en: "Assumpt
 == matheq-outline
 
 The equation numbering pattern. It defaults to `"(1.1)"`, so displayed equations and their references include parentheses.
+
+== counter-outline
+
+The numbering pattern for figures and countblocks. The default is `"1.1"`; it accepts a numbering string or function.
+
+== matheq-color / counter-color
+
+`matheq-color` defaults to `red` and controls equation references. `counter-color` defaults to `blue` and controls figure and countblock references. Both accept a color.
 
 == link-color
 
@@ -527,14 +543,14 @@ Accepts #link("https://en.wikipedia.org/wiki/ISO_639-1")[ISO_639-1] encoding for
   three-line-table[
     | Parameter | Type | Default | Description |
     | --- | --- | --- | --- |
-    | par-indent | `length` | `2em` | First-line paragraph indentation |
+    | par-indent | `length` / `auto` | `auto` | First-line paragraph indentation |
   ],
   numbering: none,
 )
 
 #newpara()
 
-Controls first-line paragraph indentation. Default: `2em`. Set to `0em` to disable indentation.
+Controls first-line paragraph indentation. The default `auto` uses `2em` for article/book/report and `0em` for beamer. Set to `0em` to disable indentation explicitly.
 
 == par-leading
 
@@ -542,17 +558,17 @@ Controls first-line paragraph indentation. Default: `2em`. Set to `0em` to disab
   three-line-table[
     | Parameter | Type | Default | Description |
     | --- | --- | --- | --- |
-    | par-leading | `length` | Language-dependent | Line spacing within paragraphs |
+    | par-leading | `length`, `none` | `none` | Line spacing within paragraphs |
   ],
   numbering: none,
 )
 
 #newpara()
 
-Adjusts line spacing within paragraphs. Defaults to `1em` for Chinese documents.
+Adjusts line spacing within paragraphs. In article/book/report, `none` selects the language-dependent value (`1em` for Chinese). In beamer, it selects `0.65em`. An explicit length overrides either default.
 
 #note(count: false)[
-  Default values changes according to language script type, with details shown below:
+  Language-dependent defaults for article/book/report are shown below:
   #set align(center)
   #three-line-table[
     | Script Category | Default |
@@ -571,17 +587,17 @@ Adjusts line spacing within paragraphs. Defaults to `1em` for Chinese documents.
   three-line-table[
     | Parameter | Type | Default | Description |
     | --- | --- | --- | --- |
-    | par-spacing | `length` | Language-dependent | Vertical spacing between paragraphs |
+    | par-spacing | `length`, `none` | `none` | Vertical spacing between paragraphs |
   ],
   numbering: none,
 )
 
 #newpara()
 
-Sets vertical spacing between paragraphs. Defaults to `1.2em` for Chinese documents.
+Sets vertical spacing between paragraphs. In article/book/report, `none` selects the language-dependent value (`1.2em` for Chinese). In beamer, it selects `0.7em`. An explicit length overrides either default.
 
 #note(count: false)[
-  Default values changes according to language script type, with details shown below:
+  Language-dependent defaults for article/book/report are shown below:
   #set align(center)
   #three-line-table[
     | Script Category | Default |
@@ -593,6 +609,31 @@ Sets vertical spacing between paragraphs. Defaults to `1.2em` for Chinese docume
     | Other Languages | 1em |
   ],
 ]
+
+== numbering-format
+
+The heading-numbering string or function. The main function defaults to `none`:
+article/book/report resolve it to `"1.1"`, while beamer leaves visible headings unnumbered.
+For document templates, string patterns apply `offset`; a custom function is responsible for its own displayed numbers.
+
+== chapter-numbering-format
+
+The level-1 heading format for article/book/report. The default `none` chooses a
+language-dependent format. Beamer does not use this parameter.
+Use a function when a title contains literal text that would otherwise be interpreted
+as numbering placeholders:
+
+```typst
+#show: scripst.with(
+  chapter-numbering-format: (n, ..rest) => "Unit " + str(n),
+)
+```
+
+== offset
+
+An integer chapter offset, default `0`, with a minimum of `-1`.
+Document templates use it for heading-numbering strings. Beamer passes it to
+Ratchet's chapter prefixes; it does not rewrite a custom visible-heading format.
 
 == body
 
@@ -799,7 +840,7 @@ Unlike the official `#parbreak()` function, the `#newpara()` function inserts a 
 
 Whenever you feel the need to wrap, you can use the `#newpara()` function.
 
-== labelset
+== labelset <scripst-preview-labelset>
 
 Thanks to the `label` function in Typst, in addition to adding labels to this type, you can conveniently set styles for referenced objects using `label`.
 
@@ -861,6 +902,8 @@ Currently, Scripst provides the following settings:
 
 #newpara()
 
+#pagebreak(weak: true)
+
 == Unified numbering powered by Ratchet <ratchet>
 
 Scripst 1.2.0 uses #link("https://github.com/An-314/ratchet")[Ratchet 0.0.4] as its unified numbering engine. Ratchet manages numbering, heading-level resets, and cross-references for equations, figures, tables, raw blocks, and custom `figure(kind: ...)` families. Every Scripst countblock is built on the same mechanism.
@@ -873,7 +916,7 @@ This integration keeps displayed numbers, references, and outline entries on one
 
 #newpara()
 
-== countblock
+== countblock <scripst-preview-countblocks>
 
 #definition(subname: [countblock])[
 
@@ -916,7 +959,7 @@ Scripst provides the following countblocks. Depth `2` means numbering follows le
 These functions share identical parameters and effects, differing only in counter names.
 ```typst
 #definition(
-  subname: [],
+  subname: "",
   count: true,
   lab: none,
   breakable: true,
@@ -928,7 +971,7 @@ Parameter specifications:
 #three-line-table[
   | Parameter | Type | Default | Description |
   | --- | --- | --- | --- |
-  | `subname` | `array` | `[]` | Entry name |
+  | `subname` | `str`, `content` | `""` | Entry name |
   | `count` | `bool` | `true` | Enable numbering |
   | `lab` | `str` | `none` | Entry label |
   | `breakable` | `bool` | `true` | Allow this block instance to split across pages |
@@ -1201,7 +1244,7 @@ Parameter specifications:
   | --- | --- | --- | --- |
   | `name` | `str` | `` | Counter name |
   | `cb` | `dict` | `` | Counter dictionary |
-  | `subname` | `str` | `` | Entry name |
+  | `subname` | `str`, `content` | `""` | Entry name |
   | `count` | `bool` | `true` | Enable numbering |
   | `lab` | `str` | `none` | Reference label |
   | `breakable` | `bool` | `true` | Allow this block instance to split across pages |
@@ -1240,7 +1283,7 @@ Alternatively, create a wrapper function:
 
 Use `add-countblock` to extend the registry, pass the entire registry to the template with `countblocks`, and use `countblock` to create individual blocks. Ratchet manages numbering, resets, and references.
 
-#example(count: false)[
+#example(count: false, breakable: false)[
   Combined example: default blocks use depth `3`, `remark` is detached from the `prop` family with depth `1`, and a new `algorithm` uses depth `2`.
 
   ```typst
@@ -1259,6 +1302,8 @@ Use `add-countblock` to extend the registry, pass the entire registry to the tem
 ]
 
 #newpara()
+
+#pagebreak(weak: true)
 
 == Some Other Blocks
 

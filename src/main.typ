@@ -8,3 +8,4 @@
 #import "fonts.typ": default-fonts
 #import "styling.typ": cases, newpara
 #import "package.typ": *
+#import "slides.typ" as slides

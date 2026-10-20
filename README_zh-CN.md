@@ -2,11 +2,11 @@
 Scripst
 </h1>
 
-**Scripst** 是一个基于 **Typst** 的模板包，提供了一套简约高效的文档模板，适用于日常文档、作业、笔记、论文等场景。
+**Scripst** 是一个基于 **Typst** 的模板包，提供了一套简约高效的模板，适用于日常文档、作业、笔记、论文和学术演示等场景。
 
 <div align="center">
 
-[![Current Version](https://img.shields.io/badge/version-v1.2.0--dev-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases)
+[![Current Version](https://img.shields.io/badge/version-v1.2.0-mediumaquamarine.svg)](https://github.com/An-314/scripst/releases)
 [![MIT License badge](https://img.shields.io/badge/license-MIT-turquoise.svg)](./LICENSE)
 [![Docs Online](https://img.shields.io/badge/docs-online-deepskyblue.svg)](https://an-314.github.io/scripst/zh)
 [![Latest Release](https://img.shields.io/github/v/release/An-314/scripst?label=latest&color=dodgerblue)](https://github.com/An-314/scripst/releases/latest)
@@ -28,6 +28,7 @@ Scripst
 - [📄 使用 Scripst](#-使用-scripst)
   - [引入 Scripst 模板](#引入-scripst-模板)
   - [创建 `article` 文档](#创建-article-文档)
+  - [创建 `beamer` 幻灯片](#创建-beamer-幻灯片)
 - [🔧 模板参数](#-模板参数)
 - [🆕 特性展示](#-特性展示)
   - [`countblock`模块](#countblock模块)
@@ -37,6 +38,7 @@ Scripst
   - [article 文档](#article-文档)
   - [book 文档](#book-文档)
   - [report 文档](#report-文档)
+  - [beamer 幻灯片](#beamer-幻灯片)
 - [📜 贡献](#-贡献)
 - [🔗 依赖](#-依赖)
 - [📝 许可证协议](#-许可证协议)
@@ -71,6 +73,7 @@ Typst 兼具接近 Markdown 的轻便标记、面向专业文档的排版能力�
 ## 🚀 特性
 
 - 由 [Ratchet](https://github.com/An-314/ratchet) 驱动统一编号：公式、图片、表格、代码块与自定义 `countblock` 计数器族使用同一套可靠的编号与引用引擎
+- 由 [Touying](https://typst.app/universe/package/touying) 驱动学术演示：`beamer` 模板结合 Stargazer 的页面、分栏和逐步显示，以及 Scripst 的字体、数学记号和编号块
 - 新增模块`countblock`：这是一个可以自定义名称和颜色的模块，内置一个计数器，并且可以在文中随时引用；可以用来做定理、问题、注记等模块，更详细的内容见[🆕 `countblock`模块](#countblock模块)
 - 利用 label 快速设置：字体颜色、取消数学环境和标题的计数编号等
 - 更好的计数器支持：支持为全局的计数器选择层数，公式、图片环境、`countblock`等的计数器都可以根据需要选择层数（`1`, `1.1`, `1.1.1`）
@@ -138,7 +141,7 @@ Scripst 已经自动完成 Ratchet 配置，使用模板时无需再次导入。
 
 ### 安装 Typst
 
-确保已安装 Typst，可以使用以下命令进行安装：
+Scripst 1.2.0 要求 Typst **0.15.0 或更新版本**。可以使用以下命令进行安装：
 
 ```bash
 sudo apt install typst # Debian/Ubuntu
@@ -204,11 +207,61 @@ typst init @preview/scripst:1.2.0 project_name
 )
 ```
 
+### 创建 `beamer` 幻灯片
+
+新的 `beamer` 模板基于 Touying 0.8.0 的 Stargazer 主题：继续使用 Scripst
+熟悉的数学工具和 countblock，由 Touying 负责幻灯片布局和逐步显示。
+这是 Typst 演示模板，不是 LaTeX 源码导入器。
+
+```typst
+#import "@preview/scripst:1.2.0": *
+#import slides: *
+
+#show: scripst.with(
+  template: "beamer",
+  title: [一个简短的量子力学报告],
+  info: [Scripst + Touying],
+  author: ("你的名字",),
+  lang: "zh",
+  countblock-lang: "zh",
+  matheq-depth: 1,
+  cb-counter-depth: 1,
+  beamer: (
+    aspect-ratio: "16-9",
+    institution: [你的单位],
+    progress-bar: false,
+  ),
+)
+
+#title-slide()
+#slide(title: [二能级态], composer: (3fr, 2fr))[
+  $ ket(psi) = alpha ket(0) + beta ket(1) $
+][
+  #note[概率幅满足 $abs(alpha)^2 + abs(beta)^2 = 1$。]
+]
+#slide(title: [逐步展示])[
+  - 写出量子态。
+  #pause
+  - 计算各测量结果的概率。
+]
+```
+
+正文默认 `20pt`、首行不缩进，可继续用主函数的 `fonts`、`font-size` 和编号参数调整。
+封面和目录分别显式调用 `title-slide()`、`outline-slide()`；文章参数
+`contents`、`abstract`、`preface`、`header` 不会自动生成幻灯片内容。
+请把 `pause` 放在 Scripst **块与块之间**，暂不支持在 countblock 内部逐步显示。
+
+完整幻灯片手册：[中文 PDF](./docs/builds/beamer.pdf)（[源码](./docs/beamer.typ)）、
+[英文 PDF](./docs/locale/builds/beamer-en.pdf)（[源码](./docs/locale/beamer-en.typ)）。
+手册涵盖参数、字体、分栏、动画、编号块和主题定制。另外保留了[配置说明](./docs/beamer.md)，
+以及量子力学短示例（[中文](./docs/examples/beamer.typ) / [英文](./docs/examples/beamer-en.typ)）。
+在仓库根目录运行 `make doc` 构建全部手册，或运行 `make demo` 构建短示例；两者均使用当前检出的源码。
+
 ## 🔧 模板参数
 
 | 参数 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |
-| `template` | `str` | `"article"` | 选择模板 (`"article"`, `"book"`, `"report"`) |
+| `template` | `str` | `"article"` | 选择模板 (`"article"`, `"book"`, `"report"`, `"beamer"`) |
 | `title` | `content`, `str`, `none` | `""` | 文档标题 |
 | `info` | `content`, `str`, `none` | `""` | 文档副标题或补充信息 |
 | `author` | `content`, `str`, `array` | `()` | 作者列表 |
@@ -216,8 +269,9 @@ typst init @preview/scripst:1.2.0 project_name
 | `abstract` | `content`, `str`, `none` | `none` | 文档摘要 |
 | `keywords` | `array` | `()` | 关键词 |
 | `preface` | `content`, `str`, `none` | `none` | 前言 |
-| `font-size` | `length` | `11pt` | 字体大小 |
+| `font-size` | `length`, `auto` | `auto` | 文档为 `11pt`，beamer 为 `20pt`；代码跟随所在位置的字号 |
 | `fonts` | `dict` | `(:)` | 按用途设置字体，支持局部覆盖（1.2.0） |
+| `beamer` | `dict` | `(:)` | 幻灯片专用配置，见[配置说明](./docs/beamer.md) |
 | `contents` | `bool` | `false` | 是否生成目录 |
 | `content-depth` | `int` | `2` | 目录深度 |
 | `matheq-depth` | `int` | `2` | 数学公式编号深度 |
@@ -226,13 +280,19 @@ typst init @preview/scripst:1.2.0 project_name
 | `countblocks` | `dict` | `cb` | 交由 Ratchet 配置的 countblock 字典 |
 | `countblock-lang` | `str` | `"en"` | 内置 countblock 名称的语言 |
 | `matheq-outline` | `str`, `function` | `"(1.1)"` | 数学公式编号格式 |
-| `link-color` | `color` | `blue` | 超链接文字颜色 |
+| `counter-outline` | `str`, `function` | `"1.1"` | figure 和 countblock 编号格式 |
+| `matheq-color` | `color` | `red` | 公式引用颜色 |
+| `counter-color` | `color` | `blue` | figure 和 countblock 引用颜色 |
+| `link-color` | `color` | `blue` | 超链接文字颜色；beamer 仅应用于外部 URL，保留主题导航配色 |
 | `ref-color` | `color` | `red` | 普通 `@label` 引用颜色 |
 | `header` | `bool` | `true` | 是否生成页眉 |
 | `lang` | `str` | `"zh"` | 语言 (`"zh"`, `"en"`, `"fr"` 等) |
-| `par-indent` | `length` | `2em` | 段落首行缩进 |
-| `par-leading` | `length` | 跟随语言 | 段落首行缩进 |
-| `par-spacing` | `length` | 跟随语言 | 段落间距 |
+| `par-indent` | `length`, `auto` | `auto` | 文档为 `2em`，beamer 为 `0em` |
+| `par-leading` | `length`, `none` | `none` | 文档跟随语言；beamer 为 `0.65em` |
+| `par-spacing` | `length`, `none` | `none` | 文档跟随语言；beamer 为 `0.7em` |
+| `numbering-format` | `str`, `function`, `none` | `none` | 文档标题解析为 `"1.1"`；beamer 默认不显示标题编号 |
+| `chapter-numbering-format` | `str`, `function`, `none` | `none` | 文档一级标题按语言解析；不用于 beamer |
+| `offset` | `int` | `0` | 章节计数偏移，最小值为 `-1` |
 
 ---
 
@@ -349,6 +409,19 @@ $
 
 [Report 示例](./docs/builds/report.pdf)
 
+### beamer 幻灯片
+
+<p align="center">
+  <img src="./previews/beamer-1.png" alt="Beamer 手册封面" width="48%" />
+  <img src="./previews/beamer-2.png" alt="Beamer 手册目录" width="48%" />
+</p>
+
+[中文完整手册](./docs/builds/beamer.pdf) ·
+[英文完整手册](./docs/locale/builds/beamer-en.pdf) ·
+[简短可运行示例](./docs/examples/)
+
+手册本身使用 Scripst 的 Beamer 模板排版，包含实际的分栏、编号块、公式、表格和逐步显示效果。
+
 ## 📜 贡献
 
 欢迎提交 Issue 或 Pull Request！如果有改进建议，欢迎加入讨论。
@@ -363,6 +436,7 @@ $
 
 - [ratchet](https://typst.app/universe/package/ratchet) — 统一管理编号、重置、引用和自定义计数器族
 - [hydra](https://typst.app/universe/package/hydra) — 选择当前标题并生成支持富文本的页眉
+- [touying](https://typst.app/universe/package/touying) — beamer 的幻灯片布局和逐步显示
 - [tablem](https://typst.app/universe/package/tablem)
 - [physica](https://typst.app/universe/package/physica)
 
@@ -419,7 +493,7 @@ project/
 
 ```bash 
 cd {data-dir}/typst/packages/preview/scripst
-git clone https://github.com/An-314/scripst.git 1.2.0
+git clone --branch v1.2.0 --depth 1 https://github.com/An-314/scripst.git 1.2.0
 ```
 
 其中`data-dir`为Typst的数据目录，如上述Linux系统中的`~/.local/share/`，Windows系统中的`%APPDATA%\`，macOS系统中的`~/Library/Application Support/`。
@@ -427,7 +501,7 @@ git clone https://github.com/An-314/scripst.git 1.2.0
 然后在 Typst 文件中直接引入：
 
 ```typst
-#import "@local/scripst:1.2.0": *
+#import "@preview/scripst:1.2.0": *
 ```
 
 即可使用 Scripst 模板。
@@ -435,12 +509,12 @@ git clone https://github.com/An-314/scripst.git 1.2.0
 使用 `typst init` 快速创建项目：
 
 ```bash
-typst init @local/scripst:1.2.0 project_name
+typst init @preview/scripst:1.2.0 project_name
 ```
 
 字体可通过主函数的 `fonts` 字典配置；配色方案和默认 countblock 定义可参见 `src/configs.typ`。
 
 ## 🎯 TODO
 
-- 加入 `beamer` 模板
+- [x] 加入 `beamer` 模板（1.2.0）
 - 加入更多可配置项

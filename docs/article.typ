@@ -62,33 +62,37 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
 
 ```typst
 #let scripst(
-  template: "article",           // str: ("article", "book", "report")
+  template: "article",           // "article", "book", "report", "beamer"
   title: "",                     // str, content, none
   info: "",                      // str, content, none
   author: (),                    // str, content, array, none
   time: "",                      // str, content, none
   abstract: none,                // str, content, none
   keywords: (),                  // array
-  font-size: 11pt,               // length
-  fonts: (:),                   // dictionary: font families by role
+  preface: none,                 // str, content, none
+  font-size: auto,               // documents: 11pt; beamer: 20pt
+  fonts: (:),                    // dictionary: font families by role
+  beamer: (:),                   // dictionary: presentation options
   contents: false,               // bool
   content-depth: 2,              // int
   matheq-depth: 2,               // int: (1, 2, 3)
   counter-depth: 2,              // int: (1, 2, 3)
   cb-counter-depth: 2,           // int: (1, 2, 3)
-  countblocks: cb,               // dict
-  countblock-lang: "en",        // str: ("en", "zh", "fr", ...)
-  matheq-outline: "(1.1)",       // str, function
-  counter-outline: "1.1",       // str, function
-  link-color: blue,               // color
-  ref-color: red,                 // color
-  header: true,                   // bool
-  lang: "zh",                    // str: ("zh", "en", "fr", ...)
-  par-indent: 2em,               // length
-  par-leading: none,             // length
-  par-spacing: none,             // length
-  numbering-format: "I.1",       // str, function
-  chapter-numbering-format: "I", // str, function
+  countblocks: cb,               // dictionary
+  countblock-lang: "en",         // str
+  matheq-outline: "(1.1)",        // str, function
+  counter-outline: "1.1",        // str, function
+  matheq-color: red,             // color
+  counter-color: blue,           // color
+  link-color: blue,              // color
+  ref-color: red,                // color
+  header: true,                  // bool
+  lang: "zh",                    // str
+  par-indent: auto,              // documents: 2em; beamer: 0em
+  par-leading: none,             // length, none
+  par-spacing: none,             // length, none
+  numbering-format: none,        // str, function, none
+  chapter-numbering-format: none, // str, function, none
   offset: 0,                     // int
   body,
 ) = {
@@ -104,20 +108,21 @@ Scripst 的模板提供了一些参数，用来定制文档的样式。
   three-line-table[
     | 参数 | 类型 | 可选值 | 默认值 | 说明 |
     | --- | --- | --- | --- | --- |
-    | template | `str` | `("article", "book", "report")` | `"article"` | 模板类型 |
+    | template | `str` | `("article", "book", "report", "beamer")` | `"article"` | 模板类型 |
   ],
   numbering: none,
 )
 
 #newpara()
 
-目前 Scripst 提供了三种模板，分别是 article 、book 和 report 。
+目前 Scripst 提供了四种模板：article、book、report 和 beamer。1.2.0 版本要求 Typst 0.15.0 或更新版本。
 
 本模板采用 article 模板。
 
 - article：适用于日常文档、作业、小型笔记、小型论文等
 - book：适用于书籍、课程笔记等
 - report：适用于实验报告、论文等
+- beamer：基于 Touying 0.8.0 / Stargazer 的学术演示；配置详见 `docs/beamer.md`，完整幻灯片手册见 `docs/beamer.typ`，短示例见 `docs/examples/beamer.typ`
 
 此外的字符串传入会导致`panic`：`"Unknown template!"`。
 
